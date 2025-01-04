@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:tasky/features/tasks/views/create_task.dart';
 import 'package:tasky/core/constants/colors.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/material.dart';
 
 class NoTask extends StatelessWidget {
   const NoTask({super.key});
@@ -31,10 +32,12 @@ class NoTask extends StatelessWidget {
               ),
             ),
             icon: Icon(Icons.add, color: TaskyColors.blue),
-            onPressed: () {},
+            onPressed: () {
+              showModalBottomSheet(context: context, builder: (context) => CreateTask());
+            },
             style: ElevatedButton.styleFrom(
               backgroundColor: TaskyColors.blue10,
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(12),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),

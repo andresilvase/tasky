@@ -1,7 +1,8 @@
+import 'package:tasky/features/tasks/views/task_list.dart';
 import 'package:tasky/features/home/home_controller.dart';
 import 'package:tasky/custom_bottom_navigator.dart';
 import 'package:tasky/core/constants/colors.dart';
-import 'package:tasky/features/tasks/views/task_list.dart';
+import '../tasks/views/create_task.dart';
 import 'package:flutter/material.dart';
 import 'package:tasky/header.dart';
 import 'package:get/get.dart';
@@ -15,7 +16,7 @@ class Home extends StatelessWidget {
 
     final pages = <Widget>[
       TaskList(),
-      Container(),
+      CreateTask(),
       Container(),
       Container(),
     ];
@@ -42,8 +43,14 @@ class Home extends StatelessWidget {
       ),
       bottomNavigationBar: Obx(
         () => CustomBottomNavigator(
+          onIndexChanged: (index) {
+            if (index == 1) {
+              showModalBottomSheet(context: context, builder: (context) => CreateTask());
+            } else {
+              controller.changeIndex(index);
+            }
+          },
           currentIndex: controller.currentIndex,
-          onIndexChanged: controller.changeIndex,
         ),
       ),
     );
