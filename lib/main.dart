@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tasky/tasky_item.dart';
+import 'package:tasky/colors.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,10 +12,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-        scaffoldBackgroundColor: Colors.white,
+        colorScheme: ColorScheme.fromSeed(seedColor: TaskyColors.white),
+        scaffoldBackgroundColor: TaskyColors.white,
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
@@ -34,43 +37,13 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
+      appBar: AppBar(),
       body: Center(
-        child: taskItem(),
+        child: TaskyItem(
+          description: "Design sign up flow for the app",
+          title: "Design sign up flow",
+        ),
       ),
     );
   }
-}
-
-Widget taskItem() {
-  return Container(
-    padding: const EdgeInsets.all(10),
-    margin: const EdgeInsets.all(10),
-    decoration: BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(10),
-      boxShadow: const [
-        BoxShadow(
-          color: Colors.grey,
-          blurRadius: 5,
-          offset: Offset(0, 3),
-        ),
-      ],
-    ),
-    child: Row(
-      children: [
-        const Icon(Icons.check_box_outline_blank),
-        const SizedBox(width: 10),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Text('Task Title'),
-            Text('Task Description'),
-          ],
-        ),
-      ],
-    ),
-  );
 }
