@@ -51,18 +51,21 @@ class TaskyItem extends StatelessWidget {
   Widget _title() {
     return Row(
       children: [
-        Checkbox(
-          visualDensity: const VisualDensity(vertical: -4),
-          activeColor: TaskyColors.blue,
-          checkColor: TaskyColors.white,
-          onChanged: (_) {},
-          value: false,
-          side: const BorderSide(
-            color: TaskyColors.mutedAzure,
-            width: 2,
-          ),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(4),
+        Transform.scale(
+          scale: 1.2,
+          child: Checkbox(
+            visualDensity: const VisualDensity(vertical: -4),
+            activeColor: TaskyColors.blue,
+            checkColor: TaskyColors.white,
+            onChanged: (_) {},
+            value: false,
+            side: const BorderSide(
+              color: TaskyColors.mutedAzure,
+              width: 2,
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(4),
+            ),
           ),
         ),
         Text(
