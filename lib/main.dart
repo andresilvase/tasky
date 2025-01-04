@@ -1,6 +1,5 @@
+import 'package:tasky/core/constants/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:tasky/header.dart';
-import 'package:tasky/colors.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -19,25 +18,6 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: const MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: AppHeader(),
-      ),
     );
   }
 }

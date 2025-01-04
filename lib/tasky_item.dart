@@ -1,6 +1,6 @@
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
-import 'package:tasky/colors.dart';
+import 'package:tasky/core/constants/colors.dart';
 import 'package:get/get.dart';
 
 class TaskyItem extends StatelessWidget {
