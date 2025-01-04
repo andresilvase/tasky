@@ -1,5 +1,5 @@
 import 'package:tasky/core/constants/colors.dart';
-import 'package:tasky/core/routes/bindings.dart';
+import 'package:tasky/core/bindings.dart';
 import 'package:tasky/core/routes/router.dart';
 import 'package:tasky/core/routes/routes.dart';
 import 'package:flutter/material.dart';

@@ -23,17 +23,21 @@ class Home extends StatelessWidget {
     return Scaffold(
       backgroundColor: TaskyColors.white,
       body: SafeArea(
-        child: Column(
-          children: [
-            AppHeader(),
-            SizedBox(
-              height: Get.height * .8,
-              child: IndexedStack(
-                index: controller.currentIndex,
-                children: pages,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              AppHeader(),
+              SizedBox(
+                height: Get.height,
+                child: Obx(
+                  () => IndexedStack(
+                    index: controller.currentIndex,
+                    children: pages,
+                  ),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: Obx(

@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:tasky/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,13 @@ class TaskList extends StatelessWidget {
               TaskyItem(title: 'Call mom', description: 'Call mom to wish her a happy birthday'),
               TaskyItem(title: 'Go to the gym', description: 'Work out for 1 hour'),
               TaskyItem(title: 'Read a book', description: 'Read 50 pages of "Atomic Habits"'),
-              TaskyItem(title: 'Watch a movie', description: 'Watch "The Matrix"'),
+              TaskyItem(title: 'Watch a movie', description: ''),
+              TaskyItem(title: 'Go for a walk', description: ''),
+              TaskyItem(title: 'Write a blog post', description: ''),
+              TaskyItem(title: 'Clean the house', description: ''),
+              TaskyItem(title: 'Do the laundry', description: ''),
+              TaskyItem(title: 'Water the plants', description: ''),
+              SizedBox(height: Get.width * 0.5),
             ],
           ),
         ),

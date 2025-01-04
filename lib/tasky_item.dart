@@ -69,7 +69,7 @@ class TaskyItem extends StatelessWidget {
           ),
         ),
         Text(
-          'Design sign up flow',
+          title ?? "",
           style: GoogleFonts.urbanist(
             color: TaskyColors.statePurple,
             fontWeight: FontWeight.w600,
@@ -82,7 +82,7 @@ class TaskyItem extends StatelessWidget {
 
   Widget _description() {
     return Visibility(
-      visible: description != null,
+      visible: description != null && description!.isNotEmpty,
       child: Column(
         children: [
           Container(

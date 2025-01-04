@@ -1,3 +1,4 @@
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tasky/core/constants/assets.dart';
 import 'package:tasky/core/constants/colors.dart';
 import 'package:tasky/core/widgets/icon_svg.dart';
@@ -40,19 +41,38 @@ class CustomBottomNavigator extends StatelessWidget {
       ),
     ];
 
+    List<String> labels = ['Todo', 'Create', 'Search', 'Done'];
+
     return SafeArea(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: icons.map(
-          (icon) {
-            return GestureDetector(
-              onTap: () {
-                onIndexChanged?.call(icons.indexOf(icon));
-              },
-              child: icon,
-            );
-          },
-        ).toList(),
+      child: Padding(
+        padding: const EdgeInsets.only(top: 8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: icons.map(
+            (icon) {
+              return GestureDetector(
+                onTap: () {
+                  onIndexChanged?.call(icons.indexOf(icon));
+                },
+                child: Column(
+                  spacing: 8,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    icon,
+                    Text(
+                      labels[icons.indexOf(icon)],
+                      style: GoogleFonts.urbanist(
+                        color: iconColor(currentIndex == icons.indexOf(icon)),
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ).toList(),
+        ),
       ),
     );
   }
