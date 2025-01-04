@@ -1,20 +1,35 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:tasky/core/constants/colors.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/material.dart';
+import 'package:tasky/tasky_item.dart';
 
 class TaskList extends StatelessWidget {
   const TaskList({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return _welcomeHeader();
+    return Column(
+      children: [
+        _welcomeHeader(),
+        Expanded(
+          child: ListView(
+            children: [
+              TaskyItem(title: 'Buy groceries', description: 'Buy milk, eggs, and bread'),
+              TaskyItem(title: 'Call mom', description: 'Call mom to wish her a happy birthday'),
+              TaskyItem(title: 'Go to the gym', description: 'Work out for 1 hour'),
+              TaskyItem(title: 'Read a book', description: 'Read 50 pages of "Atomic Habits"'),
+              TaskyItem(title: 'Watch a movie', description: 'Watch "The Matrix"'),
+            ],
+          ),
+        ),
+      ],
+    );
   }
 
   Widget _welcomeHeader() {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       margin: const EdgeInsets.symmetric(horizontal: 8.0),
-      color: TaskyColors.redShade,
       child: Column(
         spacing: 8,
         crossAxisAlignment: CrossAxisAlignment.start,
