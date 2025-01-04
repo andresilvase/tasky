@@ -1,6 +1,10 @@
+import 'package:get/get.dart';
 import 'package:tasky/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:tasky/features/tasks/model/task.dart';
+
+import '../viewModel/task_view_model.dart';
 
 class CreateTask extends StatefulWidget {
   const CreateTask({super.key});
@@ -23,7 +27,18 @@ class _CreateTaskState extends State<CreateTask> {
   }
 
   void createTask() {
-    // Create task
+    if (_titleController.text.isEmpty) {
+      return;
+    } else {
+      final Task task = Task(
+        description: _descriptionController.text,
+        title: _titleController.text,
+        isCompleted: false,
+      );
+
+      final TaskViewModel taskViewModel = Get.find();
+      taskViewModel.addTask(task);
+    }
   }
 
   @override
@@ -69,8 +84,8 @@ class _CreateTaskState extends State<CreateTask> {
           ),
         ),
         labelStyle: GoogleFonts.urbanist(
-          fontWeight: FontWeight.normal,
           color: TaskyColors.mutedAzure,
+          fontWeight: FontWeight.normal,
           fontSize: 16,
         ),
         labelText: 'What\'s in your mind?',
@@ -97,8 +112,8 @@ class _CreateTaskState extends State<CreateTask> {
       decoration: InputDecoration(
         prefixIcon: Icon(Icons.edit, color: TaskyColors.mutedAzure),
         labelStyle: GoogleFonts.urbanist(
-          fontWeight: FontWeight.normal,
           color: TaskyColors.mutedAzure,
+          fontWeight: FontWeight.normal,
           fontSize: 16,
         ),
         labelText: 'Add a note',
