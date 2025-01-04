@@ -1,7 +1,7 @@
 import 'package:tasky/features/home/home_controller.dart';
 import 'package:tasky/custom_bottom_navigator.dart';
 import 'package:tasky/core/constants/colors.dart';
-import 'package:tasky/features/task_list.dart';
+import 'package:tasky/features/tasks/views/task_list.dart';
 import 'package:flutter/material.dart';
 import 'package:tasky/header.dart';
 import 'package:get/get.dart';

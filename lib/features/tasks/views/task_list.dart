@@ -1,34 +1,21 @@
-import 'package:get/get.dart';
+import 'package:tasky/features/tasks/widgets/no_task.dart';
 import 'package:tasky/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
-import 'package:tasky/tasky_item.dart';
+import 'package:get/get.dart';
 
 class TaskList extends StatelessWidget {
   const TaskList({super.key});
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> tasks = <Widget>[];
+
     return Column(
+      crossAxisAlignment: tasks.isNotEmpty ? CrossAxisAlignment.start : CrossAxisAlignment.center,
       children: [
         _welcomeHeader(),
-        Expanded(
-          child: ListView(
-            children: [
-              TaskyItem(title: 'Buy groceries', description: 'Buy milk, eggs, and bread'),
-              TaskyItem(title: 'Call mom', description: 'Call mom to wish her a happy birthday'),
-              TaskyItem(title: 'Go to the gym', description: 'Work out for 1 hour'),
-              TaskyItem(title: 'Read a book', description: 'Read 50 pages of "Atomic Habits"'),
-              TaskyItem(title: 'Watch a movie', description: ''),
-              TaskyItem(title: 'Go for a walk', description: ''),
-              TaskyItem(title: 'Write a blog post', description: ''),
-              TaskyItem(title: 'Clean the house', description: ''),
-              TaskyItem(title: 'Do the laundry', description: ''),
-              TaskyItem(title: 'Water the plants', description: ''),
-              SizedBox(height: Get.width * 0.5),
-            ],
-          ),
-        ),
+        taskList(tasks),
       ],
     );
   }
@@ -102,6 +89,25 @@ class TaskList extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  Widget taskList(List<Widget> tasks) {
+    return Visibility(
+      visible: tasks.isNotEmpty,
+      replacement: Container(
+        margin: EdgeInsets.only(top: Get.height * 0.2),
+        alignment: Alignment.center,
+        child: NoTask(),
+      ),
+      child: Expanded(
+        child: ListView(
+          children: [
+            ...tasks,
+            SizedBox(height: Get.width * 0.5),
+          ],
+        ),
+      ),
     );
   }
 }
