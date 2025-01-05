@@ -65,7 +65,7 @@ class TodoList extends StatelessWidget {
 
   Widget _taskSummary() {
     return Obx(() {
-      final int taskCount = taskViewModel.uncompletedTasks;
+      final int taskCount = taskViewModel.todoTasks.length;
       String summaryText = '';
 
       if (taskCount == 0) {
@@ -87,26 +87,18 @@ class TodoList extends StatelessWidget {
   }
 
   Widget _list() {
-    return StreamBuilder<List<Task>>(
-      stream: taskViewModel.todoListStream,
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          final tasks = snapshot.data!;
-          tasks.sort((a, b) => a.date.compareTo(b.date));
-          tasks.removeWhere((task) => task.isCompleted);
+    return Obx(() {
+      final List<Task> tasks = taskViewModel.todoTasks;
+      tasks.sort((a, b) => a.date.compareTo(b.date));
+      tasks.removeWhere((task) => task.isCompleted);
 
-          return TaskList(
-            onTaskComplete: (task) {
-              taskViewModel.completeTask(task);
-            },
-            showCreateTaskButton: true,
-            tasks: tasks,
-          );
-        } else if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}');
-        }
-        return Center(child: CircularProgressIndicator());
-      },
-    );
+      return TaskList(
+        onTaskComplete: (task) {
+          taskViewModel.completeTask(task);
+        },
+        showCreateTaskButton: true,
+        tasks: tasks,
+      );
+    });
   }
 }

@@ -135,20 +135,12 @@ class _SearchTaskState extends State<SearchTask> {
   }
 
   Widget _list() {
-    return StreamBuilder<List<Task>>(
-      stream: taskViewModel.searchTasksResult(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          final tasks = snapshot.data!;
-          tasks.sort((a, b) => a.date.compareTo(b.date));
-          tasks.removeWhere((task) => task.isCompleted);
+    return Obx(() {
+      List<Task> tasks = taskViewModel.searchTasksResult;
 
-          return TaskList(tasks: tasks, emptyTasksMessage: 'No results found');
-        } else if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}');
-        }
-        return Center(child: CircularProgressIndicator());
-      },
-    );
+      tasks.sort((a, b) => a.date.compareTo(b.date));
+
+      return TaskList(tasks: tasks, emptyTasksMessage: 'No results found');
+    });
   }
 }

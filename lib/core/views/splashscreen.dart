@@ -17,10 +17,8 @@ class Splashscreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('begin');
     return FutureBuilder<void>(
       future: hiveInit().then((value) {
-        print('done');
         Get.offAllNamed(Routes.home);
       }),
       builder: (context, snapshot) {

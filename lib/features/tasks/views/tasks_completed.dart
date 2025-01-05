@@ -30,7 +30,7 @@ class TasksCompleted extends StatelessWidget {
 
   Widget _title() {
     return Visibility(
-      visible: taskViewModel.completedTasks > 0,
+      visible: taskViewModel.completedTasks.isNotEmpty,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -61,19 +61,14 @@ class TasksCompleted extends StatelessWidget {
   }
 
   Widget _list() {
-    return StreamBuilder<List<Task>>(
-      stream: taskViewModel.getCompletedTasksStream(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          final tasks = snapshot.data!;
-          tasks.sort((a, b) => a.date.compareTo(b.date));
-          tasks.removeWhere((task) => !task.isCompleted);
+    return Obx(
+      () {
+        final List<Task> tasks = taskViewModel.completedTasks;
 
-          return TaskList(tasks: tasks, emptyTasksMessage: 'No completed tasks.');
-        } else if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}');
-        }
-        return Center(child: CircularProgressIndicator());
+        tasks.sort((a, b) => a.date.compareTo(b.date));
+        tasks.removeWhere((task) => !task.isCompleted);
+
+        return TaskList(tasks: tasks, emptyTasksMessage: 'No completed tasks.');
       },
     );
   }

@@ -1,10 +1,9 @@
-import 'dart:async';
-
 import 'package:taski/features/tasks/repository/task_repository.dart';
 import 'package:taski/features/tasks/model/task.dart';
 import 'package:taski/core/utils/extensions.dart';
 import 'package:uuid/uuid.dart';
 import 'package:get/get.dart';
+import 'dart:async';
 
 class TaskViewModel extends GetxController {
   TaskViewModel(this.taskRepository);
@@ -15,26 +14,19 @@ class TaskViewModel extends GetxController {
 
   Future<void> getAllTasks() async {
     _tasks(await taskRepository.getTasks());
-    _todoListStream.add(_tasks.where((task) => !task.isCompleted).toList());
   }
 
-  final _todoListStream = StreamController<List<Task>>.broadcast();
-  Stream<List<Task>> get todoListStream => _todoListStream.stream;
-
-  Stream<List<Task>> getCompletedTasksStream() async* {
-    await getAllTasks();
-    yield _tasks.where((task) => task.isCompleted).toList();
-  }
+  List<Task> get completedTasks => _tasks.where((task) => task.isCompleted).toList();
+  List<Task> get todoTasks => _tasks.where((task) => !task.isCompleted).toList();
 
   void addSearchQuery(String query) {
     _queryString(query);
   }
 
-  Stream<List<Task>> searchTasksResult() async* {
-    await getAllTasks();
+  List<Task> get searchTasksResult {
     final queryString = _queryString.value;
 
-    yield _tasks.where((task) {
+    return _tasks.where((task) {
       final String? taskDescriptionLowerCase = task.description?.toLowerCase().trim().removeAccents();
       final String queryStringLowerCase = queryString.toLowerCase().trim().removeAccents();
       final String taskTitleLowerCase = task.title.toLowerCase().trim().removeAccents();
@@ -45,9 +37,6 @@ class TaskViewModel extends GetxController {
       return queryStringLowerCase.isNotEmpty && (isTaskTitleMatch || isTaskDescriptionMatch);
     }).toList();
   }
-
-  int get uncompletedTasks => _tasks.where((task) => !task.isCompleted).length;
-  int get completedTasks => _tasks.where((task) => task.isCompleted).length;
 
   Future addTask(Task task) async {
     final uuid = Uuid().v4();
