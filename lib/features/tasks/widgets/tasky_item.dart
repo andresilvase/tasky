@@ -7,13 +7,13 @@ import 'package:get/get.dart';
 class TaskiItem extends StatelessWidget {
   const TaskiItem({
     super.key,
-    this.onTaskComplete,
-    this.uncompleteTask,
+    this.changeTaskStatus,
+    this.deleteTask,
     required this.task,
   });
 
-  final Function()? onTaskComplete;
-  final Function()? uncompleteTask;
+  final Function()? changeTaskStatus;
+  final Function()? deleteTask;
   final Task task;
 
   @override
@@ -56,7 +56,7 @@ class TaskiItem extends StatelessWidget {
           child: Checkbox(
             visualDensity: const VisualDensity(vertical: -4),
             activeColor: task.isCompleted ? TaskiColors.mutedAzure : TaskiColors.blue,
-            onChanged: (_) => onTaskComplete?.call(),
+            onChanged: (_) => changeTaskStatus?.call(),
             checkColor: TaskiColors.paleWhite,
             value: task.isCompleted,
             side: const BorderSide(
@@ -81,7 +81,7 @@ class TaskiItem extends StatelessWidget {
           visible: task.isCompleted,
           child: IconButton(
             icon: Icon(Icons.delete, color: TaskiColors.fireRed),
-            onPressed: uncompleteTask,
+            onPressed: deleteTask,
           ),
         )
       ],

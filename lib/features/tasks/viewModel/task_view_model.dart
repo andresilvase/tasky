@@ -55,8 +55,8 @@ class TaskViewModel extends GetxController {
     await getAllTasks();
   }
 
-  Future completeTask(Task task) async {
-    await taskRepository.updateTask(task.copyWith(isCompleted: true));
+  Future changeTaskStatus(Task task) async {
+    await taskRepository.updateTask(task.copyWith(isCompleted: !task.isCompleted));
     await getAllTasks();
   }
 

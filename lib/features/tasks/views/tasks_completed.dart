@@ -68,7 +68,12 @@ class TasksCompleted extends StatelessWidget {
         tasks.sort((a, b) => a.date.compareTo(b.date));
         tasks.removeWhere((task) => !task.isCompleted);
 
-        return TaskList(tasks: tasks, emptyTasksMessage: 'No completed tasks.');
+        return TaskList(
+          changeTaskStatus: (task) => taskViewModel.changeTaskStatus(task),
+          deleteTask: (task) => taskViewModel.deleteTask(task),
+          emptyTasksMessage: 'No completed tasks.',
+          tasks: tasks,
+        );
       },
     );
   }

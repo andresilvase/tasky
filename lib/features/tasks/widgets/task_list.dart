@@ -9,11 +9,13 @@ class TaskList extends StatelessWidget {
     super.key,
     this.showCreateTaskButton = false,
     this.emptyTasksMessage,
-    this.onTaskComplete,
+    this.changeTaskStatus,
     required this.tasks,
+    this.deleteTask,
   });
 
-  final Function(Task task)? onTaskComplete;
+  final Function(Task task)? changeTaskStatus;
+  final Function(Task task)? deleteTask;
   final String? emptyTasksMessage;
   final bool showCreateTaskButton;
   final List<Task> tasks;
@@ -36,7 +38,11 @@ class TaskList extends StatelessWidget {
         final task = tasks[index];
         return Column(
           children: [
-            TaskiItem(task: task, onTaskComplete: () => onTaskComplete?.call(task)),
+            TaskiItem(
+              task: task,
+              changeTaskStatus: () => changeTaskStatus?.call(task),
+              deleteTask: () => deleteTask?.call(task),
+            ),
             Visibility(
               visible: index == tasks.length - 1,
               child: SizedBox(height: Get.width * 0.5),

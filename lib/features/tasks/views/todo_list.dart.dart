@@ -93,8 +93,8 @@ class TodoList extends StatelessWidget {
       tasks.removeWhere((task) => task.isCompleted);
 
       return TaskList(
-        onTaskComplete: (task) {
-          taskViewModel.completeTask(task);
+        changeTaskStatus: (task) {
+          taskViewModel.changeTaskStatus(task);
         },
         showCreateTaskButton: true,
         tasks: tasks,

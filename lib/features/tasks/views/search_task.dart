@@ -57,7 +57,6 @@ class _SearchTaskState extends State<SearchTask> {
         _searchFocusNode.unfocus();
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
         margin: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Column(
           spacing: 8,
@@ -140,7 +139,12 @@ class _SearchTaskState extends State<SearchTask> {
 
       tasks.sort((a, b) => a.date.compareTo(b.date));
 
-      return TaskList(tasks: tasks, emptyTasksMessage: 'No results found');
+      return TaskList(
+        changeTaskStatus: (task) => taskViewModel.changeTaskStatus(task),
+        deleteTask: (task) => taskViewModel.deleteTask(task),
+        emptyTasksMessage: 'No results found',
+        tasks: tasks,
+      );
     });
   }
 }
