@@ -9,7 +9,10 @@ class TaskiBindings implements Bindings {
 
   @override
   void dependencies() {
-    Get.lazyPut(() => TaskRepository(HiveDB.init(name: 'tasks')));
+    final String username = 'default';
+
+    Get.lazyPut(() => HiveDB.init(name: username));
+    Get.lazyPut(() => TaskRepository(Get.find(), username));
     Get.lazyPut(() => HomeController());
     Get.lazyPut(() => TaskViewModel(Get.find()));
   }

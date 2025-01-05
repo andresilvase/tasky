@@ -27,12 +27,7 @@ class TaskViewModel extends GetxController {
   }
 
   void completeTask(Task task) async {
-    await taskRepository.completeTask(task);
-    getTasks();
-  }
-
-  void uncompleteTask(Task task) async {
-    await taskRepository.uncompleteTask(task);
+    await taskRepository.updateTask(task);
     getTasks();
   }
 }

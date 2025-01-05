@@ -2,19 +2,28 @@ import 'package:taski/features/tasks/model/task.dart';
 import 'package:taski/core/db/abstract_db.dart';
 
 class TaskRepository {
-  TaskRepository(this.db);
+  TaskRepository(this.db, this.username);
 
+  final String username;
   final Database db;
 
   Future<List<Task>> getTasks() async {
-    return [];
+    final List<Map<String, dynamic>> maps = await db.getAll(username);
+
+    return List.generate(maps.length, (index) {
+      return Task.fromMap(maps[index]);
+    });
   }
 
-  Future<void> addTask(Task task) async {}
+  Future<void> addTask(Task task) async {
+    await db.insert(username, task.toMap());
+  }
 
-  Future<void> deleteTask(Task task) async {}
+  Future<void> deleteTask(Task task) async {
+    await db.delete(username, task.id);
+  }
 
-  Future<void> completeTask(Task task) async {}
-
-  Future<void> uncompleteTask(Task task) async {}
+  Future<void> updateTask(Task task) async {
+    await db.update(username, task.toMap(), task.id);
+  }
 }
