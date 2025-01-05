@@ -86,7 +86,7 @@ class TodoList extends StatelessWidget {
           tasks.sort((a, b) => a.date.compareTo(b.date));
           tasks.removeWhere((task) => task.isCompleted);
 
-          return TaskList(tasks: tasks);
+          return TaskList(tasks: tasks, showCreateTaskButton: true);
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         }

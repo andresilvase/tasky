@@ -5,10 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class TaskList extends StatelessWidget {
-  const TaskList({super.key, required this.tasks, this.emptyTasksMessage});
+  const TaskList({
+    super.key,
+    this.showCreateTaskButton = false,
+    this.emptyTasksMessage,
+    required this.tasks,
+  });
 
   final String? emptyTasksMessage;
-
+  final bool showCreateTaskButton;
   final List<Task> tasks;
 
   @override
@@ -42,9 +47,9 @@ class TaskList extends StatelessWidget {
 
   Widget _noTask() {
     return Container(
-      margin: EdgeInsets.only(top: Get.height * 0.2),
+      margin: EdgeInsets.only(top: Get.height * (showCreateTaskButton ? 0.2 : 0.25)),
       alignment: Alignment.center,
-      child: NoTask(feedback: emptyTasksMessage),
+      child: NoTask(feedback: emptyTasksMessage, showCreateTaskButton: showCreateTaskButton),
     );
   }
 }

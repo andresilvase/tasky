@@ -25,6 +25,7 @@ class NoTask extends StatelessWidget {
 
   Column feedbackImage() {
     return Column(
+      spacing: 24,
       children: [
         // TODO: add image to assets constants
         Image.asset('assets/images/no-task.png'),
