@@ -17,7 +17,7 @@ class CustomBottomNavigator extends StatelessWidget {
   final int currentIndex;
 
   Color? iconColor(bool active) {
-    return active ? TaskiColors.blue : null;
+    return active ? TaskiColors.blue : TaskiColors.mutedAzure;
   }
 
   @override

@@ -19,12 +19,21 @@ class TaskRepository {
     await db.insert(username, task.toMap());
   }
 
+  Future<void> updateTask(Task task) async {
+    await db.update(username, task.toMap(), task.id);
+  }
+
   Future<void> deleteTask(Task task) async {
     await db.delete(username, task.id);
   }
 
-  Future<void> updateTask(Task task) async {
-    await db.update(username, task.toMap(), task.id);
+  Future<void> deleteCompletedTasks() async {
+    final List<Task> tasks = await getTasks();
+    final List<Task> completedTasks = tasks.where((task) => task.isCompleted).toList();
+
+    for (final task in completedTasks) {
+      await deleteTask(task);
+    }
   }
 
   Future<void> deleteAll() async {

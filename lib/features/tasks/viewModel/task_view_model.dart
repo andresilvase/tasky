@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:taski/features/tasks/repository/task_repository.dart';
 import 'package:taski/features/tasks/model/task.dart';
 import 'package:taski/core/utils/extensions.dart';
@@ -13,12 +15,11 @@ class TaskViewModel extends GetxController {
 
   Future<void> getAllTasks() async {
     _tasks(await taskRepository.getTasks());
+    _todoListStream.add(_tasks.where((task) => !task.isCompleted).toList());
   }
 
-  Stream<List<Task>> getTodoListStream() async* {
-    await getAllTasks();
-    yield _tasks.where((task) => !task.isCompleted).toList();
-  }
+  final _todoListStream = StreamController<List<Task>>.broadcast();
+  Stream<List<Task>> get todoListStream => _todoListStream.stream;
 
   Stream<List<Task>> getCompletedTasksStream() async* {
     await getAllTasks();
@@ -48,24 +49,29 @@ class TaskViewModel extends GetxController {
   int get uncompletedTasks => _tasks.where((task) => !task.isCompleted).length;
   int get completedTasks => _tasks.where((task) => task.isCompleted).length;
 
-  void addTask(Task task) async {
+  Future addTask(Task task) async {
     final uuid = Uuid().v4();
     task = task.copyWith(id: uuid);
     await taskRepository.addTask(task);
     await getAllTasks();
   }
 
-  void deleteTask(Task task) async {
+  Future deleteTask(Task task) async {
     await taskRepository.deleteTask(task);
     await getAllTasks();
   }
 
-  void completeTask(Task task) async {
-    await taskRepository.updateTask(task);
+  Future deleteCompletedTasks() async {
+    await taskRepository.deleteCompletedTasks();
     await getAllTasks();
   }
 
-  void deleteAllTasks() async {
+  Future completeTask(Task task) async {
+    await taskRepository.updateTask(task.copyWith(isCompleted: true));
+    await getAllTasks();
+  }
+
+  Future deleteAllTasks() async {
     await taskRepository.deleteAll();
     await getAllTasks();
   }

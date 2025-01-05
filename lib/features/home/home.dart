@@ -47,7 +47,9 @@ class Home extends StatelessWidget {
         () => CustomBottomNavigator(
           onIndexChanged: (index) {
             if (index == 1) {
-              showModalBottomSheet(context: context, builder: (context) => CreateTask());
+              showModalBottomSheet(context: context, builder: (context) => CreateTask()).then((_) {
+                controller.backToHome();
+              });
             } else {
               controller.changeIndex(index);
             }

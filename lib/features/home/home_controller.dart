@@ -7,4 +7,8 @@ class HomeController extends GetxController {
   void changeIndex(int index) {
     _currentIndex.value = index;
   }
+
+  void backToHome() {
+    changeIndex(0);
+  }
 }

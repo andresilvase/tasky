@@ -64,29 +64,44 @@ class TodoList extends StatelessWidget {
   }
 
   Widget _taskSummary() {
-    return Obx(
-      () => Text(
+    return Obx(() {
+      final int taskCount = taskViewModel.uncompletedTasks;
+      String summaryText = '';
+
+      if (taskCount == 0) {
+        summaryText = 'Create tasks to achieve more.';
+      } else {
+        summaryText = 'You have $taskCount tasks to do';
+      }
+
+      return Text(
         // TODO: get task count from task model
-        'You\'ve got ${taskViewModel.uncompletedTasks} tasks todo',
+        summaryText,
         style: GoogleFonts.urbanist(
           color: TaskiColors.stateBlue,
           fontWeight: FontWeight.normal,
           fontSize: 16,
         ),
-      ),
-    );
+      );
+    });
   }
 
   Widget _list() {
     return StreamBuilder<List<Task>>(
-      stream: taskViewModel.getTodoListStream(),
+      stream: taskViewModel.todoListStream,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           final tasks = snapshot.data!;
           tasks.sort((a, b) => a.date.compareTo(b.date));
           tasks.removeWhere((task) => task.isCompleted);
 
-          return TaskList(tasks: tasks, showCreateTaskButton: true);
+          return TaskList(
+            onTaskComplete: (task) {
+              taskViewModel.completeTask(task);
+            },
+            showCreateTaskButton: true,
+            tasks: tasks,
+          );
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         }

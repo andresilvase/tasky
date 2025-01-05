@@ -40,7 +40,6 @@ class _CreateTaskState extends State<CreateTask> {
       );
 
       final TaskViewModel taskViewModel = Get.find();
-      // taskViewModel.deleteAllTasks();
       taskViewModel.addTask(task);
 
       _titleController.clear();

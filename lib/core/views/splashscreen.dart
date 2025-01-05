@@ -9,11 +9,10 @@ class Splashscreen extends StatelessWidget {
   const Splashscreen({super.key});
 
   Future hiveInit() async {
-    print('hive init begin');
     final dir = await getApplicationDocumentsDirectory();
     Hive.init(dir.path);
-    await TaskiBindings().init();
-    print('hive init done');
+
+    await TaskiDepependencies.init();
   }
 
   @override

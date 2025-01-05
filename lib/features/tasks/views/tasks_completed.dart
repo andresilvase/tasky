@@ -43,7 +43,9 @@ class TasksCompleted extends StatelessWidget {
             ),
           ),
           TextButton(
-            onPressed: () {},
+            onPressed: () async {
+              await taskViewModel.deleteCompletedTasks();
+            },
             child: Text(
               'Delete All',
               style: GoogleFonts.urbanist(
@@ -65,7 +67,7 @@ class TasksCompleted extends StatelessWidget {
         if (snapshot.hasData) {
           final tasks = snapshot.data!;
           tasks.sort((a, b) => a.date.compareTo(b.date));
-          tasks.removeWhere((task) => task.isCompleted);
+          tasks.removeWhere((task) => !task.isCompleted);
 
           return TaskList(tasks: tasks, emptyTasksMessage: 'No completed tasks.');
         } else if (snapshot.hasError) {

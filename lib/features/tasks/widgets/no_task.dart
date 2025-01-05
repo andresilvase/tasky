@@ -72,6 +72,7 @@ class NoTask extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
+      elevation: 0,
     );
   }
 }
