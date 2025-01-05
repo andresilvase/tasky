@@ -1,6 +1,6 @@
 {
-    "name": "tasky",
-    "short_name": "tasky",
+    "name": "taski",
+    "short_name": "taski",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

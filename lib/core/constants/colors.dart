@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class TaskyColors {
+class TaskiColors {
   static const int _paleWhite50 = 0xFFC6CFDC;
   static const int _statePurple = 0xFF3F3D56;
   static const int _mutedAzure = 0xFFC6CFDC;

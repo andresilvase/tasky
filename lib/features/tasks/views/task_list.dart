@@ -1,5 +1,5 @@
-import 'package:tasky/features/tasks/widgets/no_task.dart';
-import 'package:tasky/core/constants/colors.dart';
+import 'package:taski/features/tasks/widgets/no_task.dart';
+import 'package:taski/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -43,7 +43,7 @@ class TaskList extends StatelessWidget {
         Text(
           'Welcome,',
           style: GoogleFonts.urbanist(
-            color: TaskyColors.statePurple,
+            color: TaskiColors.statePurple,
             fontWeight: FontWeight.bold,
             fontSize: 20,
           ),
@@ -51,7 +51,7 @@ class TaskList extends StatelessWidget {
         Text(
           'André',
           style: GoogleFonts.urbanist(
-            color: TaskyColors.blue,
+            color: TaskiColors.blue,
             fontWeight: FontWeight.bold,
             fontSize: 20,
           ),
@@ -67,7 +67,7 @@ class TaskList extends StatelessWidget {
         Text(
           'You\'ve got',
           style: GoogleFonts.urbanist(
-            color: TaskyColors.stateBlue,
+            color: TaskiColors.stateBlue,
             fontWeight: FontWeight.normal,
             fontSize: 16,
           ),
@@ -75,7 +75,7 @@ class TaskList extends StatelessWidget {
         Text(
           '5 tasks',
           style: GoogleFonts.urbanist(
-            color: TaskyColors.stateBlue,
+            color: TaskiColors.stateBlue,
             fontWeight: FontWeight.normal,
             fontSize: 16,
           ),
@@ -83,7 +83,7 @@ class TaskList extends StatelessWidget {
         Text(
           'to do.',
           style: GoogleFonts.urbanist(
-            color: TaskyColors.stateBlue,
+            color: TaskiColors.stateBlue,
             fontWeight: FontWeight.normal,
             fontSize: 16,
           ),

@@ -1,10 +1,12 @@
-import 'package:tasky/features/tasks/repository/task_repository.dart';
-import 'package:tasky/features/tasks/model/task.dart';
+import 'package:taski/features/tasks/repository/task_repository.dart';
+import 'package:taski/features/tasks/model/task.dart';
 import 'package:uuid/uuid.dart';
 import 'package:get/get.dart';
 
 class TaskViewModel extends GetxController {
-  final TaskRepository taskRepository = TaskRepository();
+  TaskViewModel(this.taskRepository);
+
+  final TaskRepository taskRepository;
 
   List<Task> tasks = [];
 

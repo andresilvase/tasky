@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:taski/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tasky/core/constants/colors.dart';
+import 'package:flutter/material.dart';
 
 class AppHeader extends StatelessWidget {
   const AppHeader({super.key});
@@ -29,13 +29,13 @@ class AppHeader extends StatelessWidget {
         Transform.scale(
           scale: 1.5,
           child: Checkbox(
-            fillColor: WidgetStateProperty.all(TaskyColors.blue),
+            fillColor: WidgetStateProperty.all(TaskiColors.blue),
             visualDensity: VisualDensity(vertical: -4),
-            checkColor: TaskyColors.white,
+            checkColor: TaskiColors.white,
             onChanged: null,
             value: true,
             side: BorderSide(
-              color: TaskyColors.mutedAzure,
+              color: TaskiColors.mutedAzure,
               width: 2,
             ),
             shape: RoundedRectangleBorder(
@@ -46,7 +46,7 @@ class AppHeader extends StatelessWidget {
         Text(
           'Taski',
           style: GoogleFonts.urbanist(
-            color: TaskyColors.statePurple,
+            color: TaskiColors.statePurple,
             fontWeight: FontWeight.w600,
             fontSize: 20,
           ),
@@ -60,15 +60,17 @@ class AppHeader extends StatelessWidget {
       spacing: 16,
       children: [
         Text(
+          // TODO: Change to user name
           'André',
           style: GoogleFonts.urbanist(
-            color: TaskyColors.statePurple,
+            color: TaskiColors.statePurple,
             fontWeight: FontWeight.w600,
             fontSize: 18,
           ),
         ),
         ClipOval(
           child: Image.asset(
+            // TODO: Change to user image
             'assets/images/Linkedin.png',
             width: 40,
             height: 40,

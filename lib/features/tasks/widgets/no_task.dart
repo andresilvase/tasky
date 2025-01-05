@@ -1,5 +1,5 @@
-import 'package:tasky/features/tasks/views/create_task.dart';
-import 'package:tasky/core/constants/colors.dart';
+import 'package:taski/features/tasks/views/create_task.dart';
+import 'package:taski/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +18,7 @@ class NoTask extends StatelessWidget {
             'You have no task listed.',
             style: GoogleFonts.urbanist(
               fontWeight: FontWeight.normal,
-              color: TaskyColors.stateBlue,
+              color: TaskiColors.stateBlue,
               fontSize: 16,
             ),
           ),
@@ -27,16 +27,16 @@ class NoTask extends StatelessWidget {
               'Create Task',
               style: GoogleFonts.urbanist(
                 fontWeight: FontWeight.w600,
-                color: TaskyColors.blue,
+                color: TaskiColors.blue,
                 fontSize: 18,
               ),
             ),
-            icon: Icon(Icons.add, color: TaskyColors.blue),
+            icon: Icon(Icons.add, color: TaskiColors.blue),
             onPressed: () {
               showModalBottomSheet(context: context, builder: (context) => CreateTask());
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: TaskyColors.blue10,
+              backgroundColor: TaskiColors.blue10,
               padding: const EdgeInsets.all(12),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),

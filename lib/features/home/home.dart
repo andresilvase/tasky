@@ -1,10 +1,10 @@
-import 'package:tasky/features/tasks/views/task_list.dart';
-import 'package:tasky/features/home/home_controller.dart';
-import 'package:tasky/features/home/custom_bottom_navigator.dart';
-import 'package:tasky/core/constants/colors.dart';
+import 'package:taski/features/home/custom_bottom_navigator.dart';
+import 'package:taski/features/tasks/views/task_list.dart';
+import 'package:taski/features/home/home_controller.dart';
+import 'package:taski/core/constants/colors.dart';
+import 'package:taski/core/widgets/header.dart';
 import '../tasks/views/create_task.dart';
 import 'package:flutter/material.dart';
-import 'package:tasky/core/widgets/header.dart';
 import 'package:get/get.dart';
 
 class Home extends StatelessWidget {
@@ -22,7 +22,7 @@ class Home extends StatelessWidget {
     ];
 
     return Scaffold(
-      backgroundColor: TaskyColors.white,
+      backgroundColor: TaskiColors.white,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(

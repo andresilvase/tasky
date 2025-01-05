@@ -1,6 +1,6 @@
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
-import 'package:tasky/core/constants/colors.dart';
+import 'package:taski/core/constants/colors.dart';
 
 class IconSvg extends StatelessWidget {
   const IconSvg({
@@ -23,7 +23,7 @@ class IconSvg extends StatelessWidget {
       width: size,
       assetName,
       colorFilter: ColorFilter.mode(
-        color ?? TaskyColors.mutedAzure,
+        color ?? TaskiColors.mutedAzure,
         BlendMode.srcIn,
       ),
     );

@@ -1,10 +1,10 @@
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
-import 'package:tasky/core/constants/colors.dart';
+import 'package:taski/core/constants/colors.dart';
 import 'package:get/get.dart';
 
-class TaskyItem extends StatelessWidget {
-  const TaskyItem({super.key, this.description, this.title});
+class TaskiItem extends StatelessWidget {
+  const TaskiItem({super.key, this.description, this.title});
 
   final String? description;
   final String? title;
@@ -24,7 +24,7 @@ class TaskyItem extends StatelessWidget {
       margin: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: TaskyColors.paleWhite,
+        color: TaskiColors.paleWhite,
       ),
       child: _contentBuilder(),
     );
@@ -55,12 +55,12 @@ class TaskyItem extends StatelessWidget {
           scale: 1.2,
           child: Checkbox(
             visualDensity: const VisualDensity(vertical: -4),
-            activeColor: TaskyColors.blue,
-            checkColor: TaskyColors.white,
+            activeColor: TaskiColors.blue,
+            checkColor: TaskiColors.white,
             onChanged: (_) {},
             value: false,
             side: const BorderSide(
-              color: TaskyColors.mutedAzure,
+              color: TaskiColors.mutedAzure,
               width: 2,
             ),
             shape: RoundedRectangleBorder(
@@ -71,7 +71,7 @@ class TaskyItem extends StatelessWidget {
         Text(
           title ?? "",
           style: GoogleFonts.urbanist(
-            color: TaskyColors.statePurple,
+            color: TaskiColors.statePurple,
             fontWeight: FontWeight.w600,
             fontSize: 16,
           ),
@@ -91,7 +91,7 @@ class TaskyItem extends StatelessWidget {
             child: Text(
               description ?? "",
               style: GoogleFonts.urbanist(
-                color: TaskyColors.stateBlue,
+                color: TaskiColors.stateBlue,
                 fontWeight: FontWeight.normal,
                 fontSize: 14,
               ),

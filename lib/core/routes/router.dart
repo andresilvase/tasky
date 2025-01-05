@@ -1,5 +1,5 @@
-import 'package:tasky/features/home/home.dart';
-import 'package:tasky/core/routes/routes.dart';
+import 'package:taski/features/home/home.dart';
+import 'package:taski/core/routes/routes.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {

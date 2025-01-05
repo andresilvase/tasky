@@ -1,5 +1,5 @@
-import 'package:tasky/features/tasks/model/task.dart';
-import 'package:tasky/core/constants/colors.dart';
+import 'package:taski/features/tasks/model/task.dart';
+import 'package:taski/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../viewModel/task_view_model.dart';
 import 'package:flutter/material.dart';
@@ -71,7 +71,7 @@ class _CreateTaskState extends State<CreateTask> {
       child: TextFormField(
         controller: _titleController,
         style: GoogleFonts.urbanist(
-          color: TaskyColors.statePurple,
+          color: TaskiColors.statePurple,
           fontWeight: FontWeight.normal,
           fontSize: 18,
         ),
@@ -86,11 +86,11 @@ class _CreateTaskState extends State<CreateTask> {
             scale: 1.25,
             child: Checkbox(
               visualDensity: VisualDensity(vertical: -4),
-              checkColor: TaskyColors.white,
+              checkColor: TaskiColors.white,
               onChanged: null,
               value: false,
               side: BorderSide(
-                color: TaskyColors.mutedAzure,
+                color: TaskiColors.mutedAzure,
                 width: 2,
               ),
               shape: RoundedRectangleBorder(
@@ -99,7 +99,7 @@ class _CreateTaskState extends State<CreateTask> {
             ),
           ),
           labelStyle: GoogleFonts.urbanist(
-            color: TaskyColors.mutedAzure,
+            color: TaskiColors.mutedAzure,
             fontWeight: FontWeight.normal,
             fontSize: 16,
           ),
@@ -110,7 +110,7 @@ class _CreateTaskState extends State<CreateTask> {
           focusedBorder: _noBorder(),
           errorBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color: TaskyColors.redShade,
+              color: TaskiColors.redShade,
               width: 2,
             ),
           ),
@@ -125,15 +125,15 @@ class _CreateTaskState extends State<CreateTask> {
       controller: _descriptionController,
       focusNode: _descriptionFocus,
       style: GoogleFonts.urbanist(
-        color: TaskyColors.statePurple,
+        color: TaskiColors.statePurple,
         fontWeight: FontWeight.normal,
         fontSize: 18,
       ),
       maxLines: 2,
       decoration: InputDecoration(
-        prefixIcon: Icon(Icons.edit, color: TaskyColors.mutedAzure),
+        prefixIcon: Icon(Icons.edit, color: TaskiColors.mutedAzure),
         labelStyle: GoogleFonts.urbanist(
-          color: TaskyColors.mutedAzure,
+          color: TaskiColors.mutedAzure,
           fontWeight: FontWeight.normal,
           fontSize: 16,
         ),
@@ -164,7 +164,7 @@ class _CreateTaskState extends State<CreateTask> {
           'Create',
           style: GoogleFonts.urbanist(
             fontWeight: FontWeight.bold,
-            color: TaskyColors.blue,
+            color: TaskiColors.blue,
             fontSize: 18,
           ),
         ),
