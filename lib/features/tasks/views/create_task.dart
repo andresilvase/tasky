@@ -1,3 +1,4 @@
+import 'package:taski/features/tasks/widgets/text_field_no_border.dart';
 import 'package:taski/features/tasks/model/task.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -106,17 +107,17 @@ class _CreateTaskState extends State<CreateTask> {
             fontSize: 16,
           ),
           labelText: 'What\'s in your mind?',
-          focusedErrorBorder: _noBorder(),
-          disabledBorder: _noBorder(),
-          enabledBorder: _noBorder(),
-          focusedBorder: _noBorder(),
+          focusedErrorBorder: noBorder(),
+          disabledBorder: noBorder(),
+          enabledBorder: noBorder(),
+          focusedBorder: noBorder(),
           errorBorder: OutlineInputBorder(
             borderSide: BorderSide(
               color: TaskiColors.redShade,
               width: 2,
             ),
           ),
-          border: _noBorder(),
+          border: noBorder(),
         ),
       ),
     );
@@ -140,20 +141,13 @@ class _CreateTaskState extends State<CreateTask> {
           fontSize: 16,
         ),
         labelText: 'Add a note',
-        focusedErrorBorder: _noBorder(),
-        disabledBorder: _noBorder(),
-        enabledBorder: _noBorder(),
-        focusedBorder: _noBorder(),
-        errorBorder: _noBorder(),
-        border: _noBorder(),
+        focusedErrorBorder: noBorder(),
+        disabledBorder: noBorder(),
+        enabledBorder: noBorder(),
+        focusedBorder: noBorder(),
+        errorBorder: noBorder(),
+        border: noBorder(),
       ),
-    );
-  }
-
-  OutlineInputBorder _noBorder() {
-    return OutlineInputBorder(
-      borderSide: BorderSide(style: BorderStyle.none),
-      borderRadius: BorderRadius.zero,
     );
   }
 

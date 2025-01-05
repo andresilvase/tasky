@@ -20,6 +20,7 @@ class IconSvg extends StatelessWidget {
   Widget build(BuildContext context) {
     return SvgPicture.asset(
       semanticsLabel: semanticsLabel,
+      height: size,
       width: size,
       assetName,
       colorFilter: ColorFilter.mode(
