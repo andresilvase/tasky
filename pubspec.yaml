@@ -37,6 +37,10 @@ dependencies:
   google_fonts: ^6.2.1
   get: ^4.6.6
   flutter_svg: ^2.0.16
+  hive: ^2.2.3
+  isar_flutter_libs: ^3.1.0+1
+  path_provider: ^2.1.5
+  uuid: ^4.5.1
 
 dev_dependencies:
   flutter_test:

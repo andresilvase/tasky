@@ -1,14 +1,16 @@
-enum TaskProperty { description, isCompleted, title }
+enum TaskProperty { description, isCompleted, title, id }
 
 class Task {
   final String description;
   final bool isCompleted;
   final String title;
+  final String id;
 
   Task({
     required this.description,
     required this.isCompleted,
     required this.title,
+    required this.id,
   });
 
   factory Task.fromMap(Map<String, dynamic> map) {
@@ -16,6 +18,7 @@ class Task {
       description: map[TaskProperty.description.name],
       isCompleted: map[TaskProperty.isCompleted.name],
       title: map[TaskProperty.title.name],
+      id: map[TaskProperty.id.name],
     );
   }
 
@@ -24,6 +27,7 @@ class Task {
       TaskProperty.description.name: description,
       TaskProperty.isCompleted.name: isCompleted,
       TaskProperty.title.name: title,
+      TaskProperty.id.name: id,
     };
   }
 
@@ -31,11 +35,13 @@ class Task {
     String? description,
     bool? isCompleted,
     String? title,
+    String? id,
   }) {
     return Task(
       description: description ?? this.description,
       isCompleted: isCompleted ?? this.isCompleted,
       title: title ?? this.title,
+      id: id ?? this.id,
     );
   }
 
@@ -46,12 +52,13 @@ class Task {
     return other is Task &&
         other.description == description &&
         other.isCompleted == isCompleted &&
-        other.title == title;
+        other.title == title &&
+        other.id == id;
   }
 
   @override
-  int get hashCode => description.hashCode ^ isCompleted.hashCode ^ title.hashCode;
+  int get hashCode => description.hashCode ^ isCompleted.hashCode ^ title.hashCode ^ id.hashCode;
 
   @override
-  String toString() => 'Task(description: $description, isCompleted: $isCompleted, title: $title)';
+  String toString() => 'Task(description: $description, isCompleted: $isCompleted, title: $title, id: $id)';
 }

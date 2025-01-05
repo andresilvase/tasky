@@ -1,5 +1,6 @@
 import 'package:tasky/features/tasks/repository/task_repository.dart';
 import 'package:tasky/features/tasks/model/task.dart';
+import 'package:uuid/uuid.dart';
 import 'package:get/get.dart';
 
 class TaskViewModel extends GetxController {
@@ -12,6 +13,8 @@ class TaskViewModel extends GetxController {
   }
 
   void addTask(Task task) async {
+    final uuid = Uuid().v4();
+    task = task.copyWith(id: uuid);
     await taskRepository.addTask(task);
     getTasks();
   }

@@ -1,10 +1,10 @@
 import 'package:tasky/features/tasks/views/task_list.dart';
 import 'package:tasky/features/home/home_controller.dart';
-import 'package:tasky/custom_bottom_navigator.dart';
+import 'package:tasky/features/home/custom_bottom_navigator.dart';
 import 'package:tasky/core/constants/colors.dart';
 import '../tasks/views/create_task.dart';
 import 'package:flutter/material.dart';
-import 'package:tasky/header.dart';
+import 'package:tasky/core/widgets/header.dart';
 import 'package:get/get.dart';
 
 class Home extends StatelessWidget {
