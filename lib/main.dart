@@ -1,20 +1,25 @@
+import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:taski/core/bindings.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:taski/core/routes/router.dart';
 import 'package:taski/core/routes/routes.dart';
-import 'package:taski/core/bindings.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:get/get.dart';
 
-void hiveInit() async {
+Future hiveInit() async {
+  print('hive init begin');
   final dir = await getApplicationDocumentsDirectory();
   Hive.init(dir.path);
+
+  await TaskiBindings().init();
+  print('hive init done');
 }
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  hiveInit();
+
+  // await hiveInit();
 
   runApp(const MyApp());
 }
@@ -25,7 +30,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialBinding: TaskiBindings(),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: TaskiColors.white),
         scaffoldBackgroundColor: TaskiColors.white,
@@ -33,7 +37,7 @@ class MyApp extends StatelessWidget {
       ),
       onGenerateRoute: AppRouter.onGenerateroute,
       debugShowCheckedModeBanner: false,
-      initialRoute: Routes.home,
+      initialRoute: Routes.root,
     );
   }
 }

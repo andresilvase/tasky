@@ -1,0 +1,32 @@
+import 'package:path_provider/path_provider.dart';
+import 'package:taski/core/routes/routes.dart';
+import 'package:taski/core/bindings.dart';
+import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:get/get.dart';
+
+class Splashscreen extends StatelessWidget {
+  const Splashscreen({super.key});
+
+  Future hiveInit() async {
+    print('hive init begin');
+    final dir = await getApplicationDocumentsDirectory();
+    Hive.init(dir.path);
+    await TaskiBindings().init();
+    print('hive init done');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    print('begin');
+    return FutureBuilder<void>(
+      future: hiveInit().then((value) {
+        print('done');
+        Get.offAllNamed(Routes.home);
+      }),
+      builder: (context, snapshot) {
+        return Center(child: const CircularProgressIndicator());
+      },
+    );
+  }
+}

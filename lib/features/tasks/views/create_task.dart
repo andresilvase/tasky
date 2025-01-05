@@ -33,11 +33,13 @@ class _CreateTaskState extends State<CreateTask> {
       final Task task = Task(
         description: _descriptionController.text,
         title: _titleController.text,
+        date: DateTime.now(),
         isCompleted: false,
         id: '',
       );
 
       final TaskViewModel taskViewModel = Get.find();
+      // taskViewModel.deleteAllTasks();
       taskViewModel.addTask(task);
 
       _titleController.clear();

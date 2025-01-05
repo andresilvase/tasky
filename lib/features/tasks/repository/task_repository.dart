@@ -8,7 +8,7 @@ class TaskRepository {
   final Database db;
 
   Future<List<Task>> getTasks() async {
-    final List<Map<String, dynamic>> maps = await db.getAll(username);
+    final List<Map> maps = await db.getAll(username);
 
     return List.generate(maps.length, (index) {
       return Task.fromMap(maps[index]);
@@ -25,5 +25,9 @@ class TaskRepository {
 
   Future<void> updateTask(Task task) async {
     await db.update(username, task.toMap(), task.id);
+  }
+
+  Future<void> deleteAll() async {
+    await db.clear(username);
   }
 }

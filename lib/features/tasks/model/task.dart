@@ -1,23 +1,26 @@
-enum TaskProperty { description, isCompleted, title, id }
+enum TaskProperty { description, isCompleted, title, id, date }
 
 class Task {
-  final String description;
+  final String? description;
   final bool isCompleted;
+  final DateTime date;
   final String title;
   final String id;
 
   Task({
-    required this.description,
     required this.isCompleted,
     required this.title,
+    required this.date,
     required this.id,
+    this.description,
   });
 
-  factory Task.fromMap(Map<String, dynamic> map) {
+  factory Task.fromMap(Map map) {
     return Task(
       description: map[TaskProperty.description.name],
       isCompleted: map[TaskProperty.isCompleted.name],
       title: map[TaskProperty.title.name],
+      date: map[TaskProperty.date.name],
       id: map[TaskProperty.id.name],
     );
   }
@@ -27,6 +30,7 @@ class Task {
       TaskProperty.description.name: description,
       TaskProperty.isCompleted.name: isCompleted,
       TaskProperty.title.name: title,
+      TaskProperty.date.name: date,
       TaskProperty.id.name: id,
     };
   }
@@ -34,6 +38,7 @@ class Task {
   Task copyWith({
     String? description,
     bool? isCompleted,
+    DateTime? date,
     String? title,
     String? id,
   }) {
@@ -41,6 +46,7 @@ class Task {
       description: description ?? this.description,
       isCompleted: isCompleted ?? this.isCompleted,
       title: title ?? this.title,
+      date: date ?? this.date,
       id: id ?? this.id,
     );
   }
@@ -53,12 +59,14 @@ class Task {
         other.description == description &&
         other.isCompleted == isCompleted &&
         other.title == title &&
+        other.date == date &&
         other.id == id;
   }
 
   @override
-  int get hashCode => description.hashCode ^ isCompleted.hashCode ^ title.hashCode ^ id.hashCode;
+  int get hashCode => description.hashCode ^ isCompleted.hashCode ^ title.hashCode ^ id.hashCode ^ date.hashCode;
 
   @override
-  String toString() => 'Task(description: $description, isCompleted: $isCompleted, title: $title, id: $id)';
+  String toString() =>
+      'Task(description: $description, isCompleted: $isCompleted, title: $title, id: $id, date: $date)';
 }

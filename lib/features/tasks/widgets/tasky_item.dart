@@ -2,12 +2,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:get/get.dart';
+import 'package:taski/features/tasks/model/task.dart';
 
 class TaskiItem extends StatelessWidget {
-  const TaskiItem({super.key, this.description, this.title});
+  const TaskiItem({super.key, required this.task});
 
-  final String? description;
-  final String? title;
+  final Task task;
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +69,7 @@ class TaskiItem extends StatelessWidget {
           ),
         ),
         Text(
-          title ?? "",
+          task.title,
           style: GoogleFonts.urbanist(
             color: TaskiColors.statePurple,
             fontWeight: FontWeight.w600,
@@ -82,14 +82,14 @@ class TaskiItem extends StatelessWidget {
 
   Widget _description() {
     return Visibility(
-      visible: description != null && description!.isNotEmpty,
+      visible: task.description != null && task.description!.isNotEmpty,
       child: Column(
         children: [
           Container(
             margin: const EdgeInsets.only(left: 32),
             width: Get.width * 0.76,
             child: Text(
-              description ?? "",
+              task.description ?? "",
               style: GoogleFonts.urbanist(
                 color: TaskiColors.stateBlue,
                 fontWeight: FontWeight.normal,

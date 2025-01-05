@@ -13,6 +13,9 @@ class NoTask extends StatelessWidget {
         spacing: 24,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          // TODO: add image to assets constants
+          // TODO: remount screen
+
           Image.asset('assets/images/no-task.png'),
           Text(
             'You have no task listed.',

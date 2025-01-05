@@ -2,46 +2,30 @@ import 'package:taski/core/db/abstract_db.dart';
 import 'package:hive/hive.dart';
 
 class HiveDB extends Database {
-  HiveDB._(this.boxName);
-
-  final String boxName;
-
-  static HiveDB? _instance;
+  HiveDB._();
 
   factory HiveDB.init({required String name}) {
-    _instance ??= HiveDB._(name);
-
-    return _instance!;
-  }
-
-  static HiveDB get instance {
-    if (_instance == null) {
-      throw Exception(
-        'Database is not initialized yet. Call initialize() first.',
-      );
-    }
-
-    return _instance!;
+    return HiveDB._();
   }
 
   @override
   Future<int> insert(String table, Map<String, dynamic> values) async {
-    final Box box = await _openBox(table);
+    final Box box = await openBox(table);
     await box.put(values['id'], values);
 
     return box.length;
   }
 
   @override
-  Future<Map<String, dynamic>> get(String table, String where) {
-    final Box box = Hive.box(table);
+  Future<Map<String, dynamic>> get(String table, String where) async {
+    final Box box = await openBox(table);
     return box.get(where);
   }
 
   @override
-  Future<List<Map<String, dynamic>>> getAll(String table) async {
-    final Box box = Hive.box(table);
-    List<Map<String, dynamic>> list = [];
+  Future<List<Map>> getAll(String table) async {
+    final Box box = await openBox(table);
+    List<Map> list = [];
     Map map = box.toMap();
 
     map.forEach((key, value) {
@@ -53,26 +37,26 @@ class HiveDB extends Database {
 
   @override
   Future<int> update(String table, Map<String, dynamic> values, String id) async {
-    final Box box = Hive.box(table);
+    final Box box = await openBox(table);
     box.put(id, values);
     return box.length;
   }
 
   @override
   Future<int> delete(String table, String where) async {
-    final Box box = await _openBox(table);
+    final Box box = await openBox(table);
     box.delete(where);
     return box.length;
   }
 
   @override
   Future<int> clear(String table) async {
-    final Box box = await _openBox(table);
+    final Box box = await openBox(table);
     await box.clear();
     return box.length;
   }
 
-  Future<Box> _openBox(String boxName) async {
+  Future<Box> openBox(String boxName) async {
     return await Hive.openBox(boxName);
   }
 }
