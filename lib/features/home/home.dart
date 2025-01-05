@@ -1,5 +1,6 @@
 import 'package:taski/features/home/custom_bottom_navigator.dart';
-import 'package:taski/features/tasks/views/task_list.dart';
+import 'package:taski/features/tasks/views/tasks_completed.dart';
+import 'package:taski/features/tasks/views/todo_list.dart.dart';
 import 'package:taski/features/home/home_controller.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:taski/core/widgets/header.dart';
@@ -15,10 +16,10 @@ class Home extends StatelessWidget {
     final HomeController controller = Get.find();
 
     final pages = <Widget>[
-      TaskList(),
+      TodoList(),
       CreateTask(),
       Container(),
-      Container(),
+      TasksCompleted(),
     ];
 
     return Scaffold(

@@ -13,12 +13,18 @@ class TaskViewModel extends GetxController {
     _tasks(await taskRepository.getTasks());
   }
 
-  Stream<List<Task>> getTasksStream() async* {
+  Stream<List<Task>> getTodoListStream() async* {
     await getAllTasks();
-    yield _tasks.where((task) => task.isCompleted == false).toList();
+    yield _tasks.where((task) => !task.isCompleted).toList();
+  }
+
+  Stream<List<Task>> getCompletedTasksStream() async* {
+    await getAllTasks();
+    yield _tasks.where((task) => task.isCompleted).toList();
   }
 
   int get uncompletedTasks => _tasks.where((task) => !task.isCompleted).length;
+  int get completedTasks => _tasks.where((task) => task.isCompleted).length;
 
   void addTask(Task task) async {
     final uuid = Uuid().v4();
