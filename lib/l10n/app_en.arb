@@ -40,5 +40,15 @@
     "whatsInYourMind": "What's in your mind?",
     "@whatsInYourMind": {},
     "addNote": "Add a note",
-    "@addNote": {}
+    "@addNote": {},
+    "language": "Language",
+    "@language": {},
+    "english": "English",
+    "@english": {},
+    "spanish": "Spanish",
+    "@spanish": {},
+    "portuguese": "Portuguese",
+    "@portuguese": {},
+    "account": "Account",
+    "@account": {}
 }
