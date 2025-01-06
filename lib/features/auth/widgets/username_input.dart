@@ -1,13 +1,13 @@
 import 'package:taski/core/widgets/text_field_common_widgets.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taski/core/constants/colors.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 
 class UsernameInput extends StatelessWidget {
   const UsernameInput({
     super.key,
     required this.usernameController,
+    this.isInErrorState = false,
     required this.focusNode,
     this.onInputClear,
     this.validator,
@@ -18,6 +18,7 @@ class UsernameInput extends StatelessWidget {
   final String? Function(String?)? validator;
   final Function(String)? onChanged;
   final Function()? onInputClear;
+  final bool isInErrorState;
   final FocusNode focusNode;
 
   @override
@@ -27,53 +28,34 @@ class UsernameInput extends StatelessWidget {
       autofocus: true,
       focusNode: focusNode,
       onChanged: onChanged,
-      style: GoogleFonts.urbanist(
-        color: TaskiColors.statePurple,
-        fontWeight: FontWeight.normal,
-        fontSize: 16,
-      ),
+      style: inputTextHelperTextStyle(TaskiColors.statePurple),
+      cursorErrorColor: TaskiColors.redShade,
+      cursorColor: TaskiColors.mutedAzure,
       validator: validator,
       decoration: InputDecoration(
+        errorStyle: inputTextHelperTextStyle(
+          TaskiColors.fireRed,
+          fontSize: 12,
+        ),
         suffixIconConstraints: BoxConstraints(maxHeight: 42, maxWidth: 42),
         suffixIcon: suffixIcon(
           visible: usernameController.text.isNotEmpty,
           onPressed: onInputClear,
         ),
         prefixIcon: Icon(
-          color: _inputBorderColor(),
+          color: inputBorderColor(isInErrorState, focusNode.hasFocus),
           Icons.person_3_outlined,
         ),
-        labelStyle: GoogleFonts.urbanist(
-          fontWeight: FontWeight.normal,
-          color: TaskiColors.mutedAzure,
-          fontSize: 16,
-        ),
+        floatingLabelStyle: inputTextHelperTextStyle(inputBorderColor(isInErrorState, focusNode.hasFocus)),
+        labelStyle: inputTextHelperTextStyle(inputBorderColor(isInErrorState, focusNode.hasFocus)),
+        focusedErrorBorder: activeBorder(inputBorderColor(isInErrorState, focusNode.hasFocus)),
+        enabledBorder: activeBorder(inputBorderColor(isInErrorState, focusNode.hasFocus)),
+        focusedBorder: activeBorder(inputBorderColor(isInErrorState, focusNode.hasFocus)),
         labelText: AppLocalizations.of(context)!.username,
-        floatingLabelStyle: GoogleFonts.urbanist(
-          fontWeight: FontWeight.normal,
-          color: _inputBorderColor(),
-          fontSize: 16,
-        ),
-        enabledBorder: activeBorder(_inputBorderColor()),
-        focusedBorder: activeBorder(_inputBorderColor()),
-        focusedErrorBorder: noBorder(),
         disabledBorder: noBorder(),
-        errorBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: TaskiColors.redShade,
-            width: 2,
-          ),
-        ),
+        errorBorder: errorBorder(),
         border: noBorder(),
       ),
     );
-  }
-
-  Color _inputBorderColor() {
-    if (focusNode.hasFocus) {
-      return TaskiColors.blue;
-    } else {
-      return TaskiColors.mutedAzure;
-    }
   }
 }

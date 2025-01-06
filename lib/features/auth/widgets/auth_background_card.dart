@@ -5,12 +5,12 @@ import 'package:get/get.dart';
 class AuthBackgroundCard extends StatelessWidget {
   const AuthBackgroundCard({
     super.key,
+    required this.isToExpand,
     required this.children,
-    required this.isLogin,
   });
 
   final List<Widget> children;
-  final bool isLogin;
+  final bool isToExpand;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class AuthBackgroundCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         margin: const EdgeInsets.all(32),
-        height: (isLogin ? Get.width * .85 : Get.width),
+        height: (isToExpand ? Get.width * 1.2 : Get.width),
         width: Get.width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),

@@ -1,4 +1,6 @@
+import 'package:google_fonts/google_fonts.dart';
 import 'package:taski/core/constants/assets.dart';
+import 'package:taski/core/constants/colors.dart';
 import 'package:taski/core/widgets/icon_svg.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +22,16 @@ OutlineInputBorder activeBorder(Color color) {
   );
 }
 
+OutlineInputBorder errorBorder() {
+  return OutlineInputBorder(
+    borderRadius: BorderRadius.circular(12),
+    borderSide: BorderSide(
+      color: TaskiColors.redShade,
+      width: 2,
+    ),
+  );
+}
+
 Widget suffixIcon({bool visible = true, void Function()? onPressed}) {
   return Visibility(
     visible: visible,
@@ -33,5 +45,23 @@ Widget suffixIcon({bool visible = true, void Function()? onPressed}) {
         ),
       ),
     ),
+  );
+}
+
+Color inputBorderColor(bool isInErrorState, bool focusNodeHasFocus) {
+  if (isInErrorState) {
+    return TaskiColors.redShade;
+  } else if (focusNodeHasFocus) {
+    return TaskiColors.blue;
+  } else {
+    return TaskiColors.mutedAzure;
+  }
+}
+
+TextStyle inputTextHelperTextStyle(Color color, {double fontSize = 16}) {
+  return GoogleFonts.urbanist(
+    fontWeight: FontWeight.normal,
+    fontSize: fontSize,
+    color: color,
   );
 }

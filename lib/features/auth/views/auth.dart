@@ -2,6 +2,7 @@ import 'package:taski/features/auth/widgets/auth_background_card.dart';
 import 'package:taski/features/auth/widgets/password_input.dart';
 import 'package:taski/features/auth/widgets/username_input.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:taski/features/auth/utils/validators.dart';
 import 'package:taski/core/widgets/loading_blur.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -28,8 +29,10 @@ class _AuthScreenState extends State<AuthScreen> {
   final FocusNode passwordFocusNode = FocusNode();
 
   bool isPasswordVisible = false;
-  bool isLoading = false;
   bool isLogin = true;
+
+  bool isInErrorState = false;
+  bool isLoading = false;
 
   void _setState() => setState(() {});
 
@@ -44,15 +47,18 @@ class _AuthScreenState extends State<AuthScreen> {
 
   Future<void> submit() async {
     if (formKey.currentState!.validate()) {
+      isInErrorState = false;
+      _setState();
       if (isLogin) {
       } else {}
-      setState(() {
-        isLoading = true;
-      });
+      isLoading = true;
+      _setState();
       await Future.delayed(const Duration(seconds: 2));
-      setState(() {
-        isLoading = false;
-      });
+      _setState();
+      isLoading = false;
+    } else {
+      isInErrorState = true;
+      _setState();
     }
   }
 
@@ -69,7 +75,7 @@ class _AuthScreenState extends State<AuthScreen> {
       body: Stack(
         children: [
           AuthBackgroundCard(
-            isLogin: isLogin,
+            isToExpand: !isLogin || isInErrorState,
             children: [
               Logo(),
               SizedBox(height: 16),
@@ -87,6 +93,7 @@ class _AuthScreenState extends State<AuthScreen> {
 
   Widget _authForm() {
     return Form(
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       key: formKey,
       child: Column(
         children: [
@@ -103,7 +110,9 @@ class _AuthScreenState extends State<AuthScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0),
       child: UsernameInput(
+        validator: AuthValidators.usernameInputValidator,
         usernameController: usernameController,
+        isInErrorState: isInErrorState,
         focusNode: usernameFocusNode,
         onChanged: (value) {},
         onInputClear: () {
@@ -120,8 +129,10 @@ class _AuthScreenState extends State<AuthScreen> {
       padding: const EdgeInsets.symmetric(vertical: 4.0),
       child: PasswordInput(
         labelText: AppLocalizations.of(context)!.password,
+        validator: AuthValidators.passwordInputValidator,
         passwordController: passwordController,
         obscureText: !isPasswordVisible,
+        isInErrorState: isInErrorState,
         focusNode: passwordFocusNode,
         showPassword: showPassword,
         onChanged: (value) {},
@@ -135,10 +146,17 @@ class _AuthScreenState extends State<AuthScreen> {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 4.0),
         child: PasswordInput(
+          validator: (value) {
+            return AuthValidators.repeatPasswordInputValidator(
+              value,
+              passwordController.text,
+            );
+          },
           labelText: AppLocalizations.of(context)!.repeatPassword,
           passwordController: repeatPasswordController,
           focusNode: repeatPasswordFocusNode,
           obscureText: !isPasswordVisible,
+          isInErrorState: isInErrorState,
           showPassword: showPassword,
           onChanged: (value) {},
         ),
