@@ -1,5 +1,6 @@
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:taski/core/widgets/logo.dart';
 import 'package:taski/features/home/viewModel/home_view_model.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taski/core/constants/languages.dart';
 import 'package:country_flags/country_flags.dart';
 import 'package:taski/core/constants/assets.dart';
@@ -28,40 +29,8 @@ class _AppHeaderState extends State<AppHeader> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        _logo(),
+        Logo(),
         _menuProfile(),
-      ],
-    );
-  }
-
-  Widget _logo() {
-    return Row(
-      children: [
-        Transform.scale(
-          scale: 1.5,
-          child: Checkbox(
-            fillColor: WidgetStateProperty.all(TaskiColors.blue),
-            visualDensity: VisualDensity(vertical: -4),
-            checkColor: TaskiColors.white,
-            onChanged: null,
-            value: true,
-            side: BorderSide(
-              color: TaskiColors.mutedAzure,
-              width: 2,
-            ),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(4),
-            ),
-          ),
-        ),
-        Text(
-          AppLocalizations.of(Get.context!)!.appName,
-          style: GoogleFonts.urbanist(
-            color: TaskiColors.statePurple,
-            fontWeight: FontWeight.w600,
-            fontSize: 20,
-          ),
-        ),
       ],
     );
   }

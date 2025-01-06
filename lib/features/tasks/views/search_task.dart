@@ -1,11 +1,9 @@
-import 'package:taski/features/tasks/widgets/text_field_no_border.dart';
+import 'package:taski/core/widgets/text_field_common_widgets.dart';
 import 'package:taski/features/tasks/viewModel/task_view_model.dart';
 import 'package:taski/features/tasks/widgets/base_screen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taski/features/tasks/widgets/task_list.dart';
 import 'package:taski/features/tasks/model/task.dart';
-import 'package:taski/core/widgets/icon_svg.dart';
-import 'package:taski/core/constants/assets.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
@@ -75,27 +73,6 @@ class _SearchTaskState extends State<SearchTask> {
     );
   }
 
-  Widget _suffixIcon() {
-    return Visibility(
-      visible: _searchController.text.isNotEmpty,
-      child: IconButton(
-        onPressed: () {
-          setState(() {
-            _onSearchChanged('');
-            _searchController.clear();
-          });
-        },
-        icon: Container(
-          margin: const EdgeInsets.only(right: 4),
-          child: IconSvg(
-            assetName: TaskiAssets.close,
-            size: 32,
-          ),
-        ),
-      ),
-    );
-  }
-
   Color inputBorderColor() {
     if (_searchFocusNode.hasFocus) {
       return TaskiColors.blue;
@@ -118,7 +95,15 @@ class _SearchTaskState extends State<SearchTask> {
         ),
         decoration: InputDecoration(
           suffixIconConstraints: BoxConstraints(maxHeight: 36, maxWidth: 36),
-          suffixIcon: _suffixIcon(),
+          suffixIcon: suffixIcon(
+            visible: _searchController.text.isNotEmpty,
+            onPressed: () {
+              setState(() {
+                _onSearchChanged('');
+                _searchController.clear();
+              });
+            },
+          ),
           prefixIcon: Icon(
             color: inputBorderColor(),
             Icons.search,

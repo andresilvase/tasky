@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
       ),
       onGenerateRoute: AppRouter.onGenerateroute,
       debugShowCheckedModeBanner: false,
-      initialRoute: Routes.home,
+      initialRoute: Routes.auth,
     );
   }
 }

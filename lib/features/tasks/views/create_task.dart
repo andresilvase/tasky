@@ -1,4 +1,4 @@
-import 'package:taski/features/tasks/widgets/text_field_no_border.dart';
+import 'package:taski/core/widgets/text_field_common_widgets.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taski/features/tasks/model/task.dart';
 import 'package:taski/core/constants/colors.dart';
