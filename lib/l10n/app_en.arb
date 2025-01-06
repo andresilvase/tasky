@@ -66,5 +66,42 @@
     "alreadyHaveAnAccount": "Already have an account? Login.",
     "@alreadyHaveAnAccount": {},
     "repeatPassword": "Repeat password",
-    "@repeatPassword": {}
+    "@repeatPassword": {},
+    "usernameRequired": "Username is required",
+    "@usernameRequired": {},
+    "usernameMinLength": "Username must be at least {n} characters",
+    "@usernameMinLength": {
+        "placeholders": {
+            "n": {
+                "type": "int",
+                "example": "5"
+            }
+        }
+    },
+    "usernameMaxLength": "Username must be at most {n} characters",
+    "@usernameMaxLength": {
+        "placeholders": {
+            "n": {
+                "type": "int",
+                "example": "16"
+            }
+        }
+    },
+    "usernameMustBeAlphanumeric": "Username must be alphanumeric",
+    "@usernameMustBeAlphanumeric": {},
+    "passwordRequired": "Password is required",
+    "@passwordRequired": {},
+    "passwordMinLength": "Password must be at least {n} characters",
+    "@passwordMinLength": {
+        "placeholders": {
+            "n": {
+                "type": "int",
+                "example": "4"
+            }
+        }
+    },
+    "repeatPasswordRequired": "Repeat password is required",
+    "@repeatPasswordRequired": {},
+    "passwordsMustMatch": "Passwords must match",
+    "@passwordsMustMatch": {}
 }

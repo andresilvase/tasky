@@ -1,47 +1,52 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taski/core/utils/extensions.dart';
+import 'package:flutter/material.dart';
 
 class AuthValidators {
-  static String? usernameInputValidator(String? value) {
+  AuthValidators(this.context);
+
+  final BuildContext context;
+
+  String? usernameInputValidator(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Username is required';
+      return AppLocalizations.of(context)!.usernameRequired;
     }
 
     value = value.removeAccents();
 
     if (value.length < 5) {
-      return 'Username must be at least 5 characters';
+      return AppLocalizations.of(context)!.usernameMinLength(5);
     }
 
     if (value.length > 16) {
-      return 'Username must be less than 16 characters';
+      return AppLocalizations.of(context)!.usernameMaxLength(16);
     }
 
     if (!RegExp(r'^[a-zA-Z0-9]+$').hasMatch(value)) {
-      return 'Username must be alphanumeric';
+      return AppLocalizations.of(context)!.usernameMustBeAlphanumeric;
     }
 
     return null;
   }
 
-  static String? passwordInputValidator(String? value) {
+  String? passwordInputValidator(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Password is required';
+      return AppLocalizations.of(context)!.passwordRequired;
     }
 
-    if (value.length < 6) {
-      return 'Password must be at least 6 characters';
+    if (value.length < 4) {
+      return AppLocalizations.of(context)!.passwordMinLength(4);
     }
-
     return null;
   }
 
-  static String? repeatPasswordInputValidator(String? value, String? password) {
+  String? repeatPasswordInputValidator(String? value, String? password) {
     if (value == null || value.isEmpty) {
-      return 'Repeat password is required';
+      return AppLocalizations.of(context)!.repeatPasswordRequired;
     }
 
     if (value != password) {
-      return 'Passwords do not match';
+      return AppLocalizations.of(context)!.passwordsMustMatch;
     }
 
     return null;

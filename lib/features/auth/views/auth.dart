@@ -28,10 +28,12 @@ class _AuthScreenState extends State<AuthScreen> {
   final FocusNode usernameFocusNode = FocusNode();
   final FocusNode passwordFocusNode = FocusNode();
 
+  late AuthValidators authValidators;
+
   bool isPasswordVisible = false;
+  bool isInErrorState = false;
   bool isLogin = true;
 
-  bool isInErrorState = false;
   bool isLoading = false;
 
   void _setState() => setState(() {});
@@ -41,6 +43,8 @@ class _AuthScreenState extends State<AuthScreen> {
     repeatPasswordFocusNode.addListener(_setState);
     usernameFocusNode.addListener(_setState);
     passwordFocusNode.addListener(_setState);
+
+    authValidators = AuthValidators(context);
 
     super.initState();
   }
@@ -109,12 +113,12 @@ class _AuthScreenState extends State<AuthScreen> {
 
   Widget _usernameInput() {
     bool usernameInputHasError = isInErrorState;
-    usernameInputHasError &= AuthValidators.usernameInputValidator(usernameController.text) != null;
+    usernameInputHasError &= authValidators.usernameInputValidator(usernameController.text) != null;
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0),
       child: UsernameInput(
-        validator: AuthValidators.usernameInputValidator,
+        validator: authValidators.usernameInputValidator,
         usernameController: usernameController,
         isInErrorState: usernameInputHasError,
         focusNode: usernameFocusNode,
@@ -130,13 +134,13 @@ class _AuthScreenState extends State<AuthScreen> {
 
   Widget _passwordInput() {
     bool passwordInputHasError = isInErrorState;
-    passwordInputHasError &= AuthValidators.passwordInputValidator(passwordController.text) != null;
+    passwordInputHasError &= authValidators.passwordInputValidator(passwordController.text) != null;
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0),
       child: PasswordInput(
         labelText: AppLocalizations.of(context)!.password,
-        validator: AuthValidators.passwordInputValidator,
+        validator: authValidators.passwordInputValidator,
         passwordController: passwordController,
         obscureText: !isPasswordVisible,
         isInErrorState: passwordInputHasError,
@@ -151,7 +155,7 @@ class _AuthScreenState extends State<AuthScreen> {
 
   Widget _repeatPasswordInput() {
     bool repeatPasswordInputHasError =
-        AuthValidators.repeatPasswordInputValidator(repeatPasswordController.text, passwordController.text) != null;
+        authValidators.repeatPasswordInputValidator(repeatPasswordController.text, passwordController.text) != null;
 
     repeatPasswordInputHasError &= isInErrorState;
 
@@ -161,7 +165,7 @@ class _AuthScreenState extends State<AuthScreen> {
         padding: const EdgeInsets.symmetric(vertical: 4.0),
         child: PasswordInput(
           validator: (value) {
-            return AuthValidators.repeatPasswordInputValidator(
+            return authValidators.repeatPasswordInputValidator(
               value,
               passwordController.text,
             );

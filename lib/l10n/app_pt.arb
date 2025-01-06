@@ -66,5 +66,42 @@
     "alreadyHaveAnAccount": "Você já tem uma conta? Entrar.",
     "@alreadyHaveAnAccount": {},
     "repeatPassword": "Repetir senha",
-    "@repeatPassword": {}
+    "@repeatPassword": {},
+    "usernameRequired": "O nome de usuário é obrigatório",
+    "@usernameRequired": {},
+    "usernameMinLength": "O nome de usuário deve ter pelo menos {n} caracteres",
+    "@usernameMinLength": {
+        "placeholders": {
+            "n": {
+                "type": "int",
+                "example": "5"
+            }
+        }
+    },
+    "usernameMaxLength": "O nome de usuário deve ter no máximo {n} caracteres",
+    "@usernameMaxLength": {
+        "placeholders": {
+            "n": {
+                "type": "int",
+                "example": "16"
+            }
+        }
+    },
+    "usernameMustBeAlphanumeric": "O nome de usuário deve ser alfanumérico",
+    "@usernameMustBeAlphanumeric": {},
+    "passwordRequired": "A senha é obrigatória",
+    "@passwordRequired": {},
+    "passwordMinLength": "A senha deve ter pelo menos {n} caracteres",
+    "@passwordMinLength": {
+        "placeholders": {
+            "n": {
+                "type": "int",
+                "example": "4"
+            }
+        }
+    },
+    "repeatPasswordRequired": "Repetir a senha é obrigatório",
+    "@repeatPasswordRequired": {},
+    "passwordsMustMatch": "As senhas devem corresponder",
+    "@passwordsMustMatch": {}
 }
