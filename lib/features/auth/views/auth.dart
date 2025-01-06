@@ -1,11 +1,14 @@
 import 'package:taski/features/auth/widgets/auth_background_card.dart';
+import 'package:taski/features/auth/viewModel/auth_view_model.dart';
 import 'package:taski/features/auth/widgets/password_input.dart';
 import 'package:taski/features/auth/widgets/username_input.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:taski/features/auth/model/auth_result.dart';
 import 'package:taski/features/auth/utils/validators.dart';
 import 'package:taski/core/widgets/loading_blur.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:taski/core/routes/routes.dart';
 import 'package:taski/core/widgets/logo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,16 +33,16 @@ class _AuthScreenState extends State<AuthScreen> {
 
   late AuthValidators authValidators;
 
-  bool isPasswordVisible = false;
-  bool isInErrorState = false;
-  bool isLogin = true;
-
-  bool isLoading = false;
+  final AuthViewModel authViewModel = Get.find();
 
   void _setState() => setState(() {});
 
   @override
   void initState() {
+    repeatPasswordController.addListener(_setState);
+    usernameController.addListener(_setState);
+    passwordController.addListener(_setState);
+
     repeatPasswordFocusNode.addListener(_setState);
     usernameFocusNode.addListener(_setState);
     passwordFocusNode.addListener(_setState);
@@ -49,28 +52,29 @@ class _AuthScreenState extends State<AuthScreen> {
     super.initState();
   }
 
-  Future<void> submit() async {
-    if (formKey.currentState!.validate()) {
-      isInErrorState = false;
-      _setState();
-      if (isLogin) {
-      } else {}
-      isLoading = true;
-      _setState();
-      await Future.delayed(const Duration(seconds: 2));
-      _setState();
-      isLoading = false;
+  Future<void> _submitAction() async {
+    AuthResult result;
+
+    if (authViewModel.isLogin) {
+      result = await authViewModel.login(usernameController.text, passwordController.text);
     } else {
-      isInErrorState = true;
-      _setState();
+      result = await authViewModel.register(usernameController.text, passwordController.text);
+    }
+
+    if (result.ok) {
+      Get.offAllNamed(Routes.home);
+    } else {
+      Get.snackbar(
+        'Error',
+        result.message,
+        backgroundColor: TaskiColors.fireRed,
+        snackPosition: SnackPosition.TOP,
+        colorText: TaskiColors.white,
+      );
     }
   }
 
-  void showPassword() {
-    setState(() {
-      isPasswordVisible = !isPasswordVisible;
-    });
-  }
+  Future<void> submit() async => await _submitAction();
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +83,7 @@ class _AuthScreenState extends State<AuthScreen> {
       body: Stack(
         children: [
           AuthBackgroundCard(
-            isToExpand: !isLogin || isInErrorState,
+            isToExpand: !authViewModel.isLogin || authViewModel.isInErrorState,
             children: [
               Logo(),
               SizedBox(height: 16),
@@ -89,51 +93,51 @@ class _AuthScreenState extends State<AuthScreen> {
               _createAccount(),
             ],
           ),
-          Visibility(visible: isLoading, child: LoadingBlur()),
+          Visibility(visible: authViewModel.isLoading, child: LoadingBlur()),
         ],
       ),
     );
   }
 
   Widget _authForm() {
-    return Form(
-      autovalidateMode: AutovalidateMode.onUserInteraction,
-      key: formKey,
-      child: Column(
-        children: [
-          _usernameInput(),
-          SizedBox(height: 8),
-          _passwordInput(),
-          _repeatPasswordInput(),
-          SizedBox(height: 8),
-        ],
+    return Obx(
+      () => Form(
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        key: formKey,
+        child: Column(
+          children: [
+            _usernameInput(),
+            SizedBox(height: 8),
+            _passwordInput(),
+            _repeatPasswordInput(),
+            SizedBox(height: 8),
+          ],
+        ),
       ),
     );
   }
 
   Widget _usernameInput() {
-    bool usernameInputHasError = isInErrorState;
+    bool usernameInputHasError = authViewModel.isInErrorState;
     usernameInputHasError &= authValidators.usernameInputValidator(usernameController.text) != null;
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0),
       child: UsernameInput(
         validator: authValidators.usernameInputValidator,
+        onInputClear: usernameController.clear,
         usernameController: usernameController,
         isInErrorState: usernameInputHasError,
         focusNode: usernameFocusNode,
-        onChanged: (value) {},
-        onInputClear: () {
-          setState(() {
-            usernameController.clear();
-          });
+        onChanged: (value) {
+          usernameController.text = value.trim();
         },
       ),
     );
   }
 
   Widget _passwordInput() {
-    bool passwordInputHasError = isInErrorState;
+    bool passwordInputHasError = authViewModel.isInErrorState;
     passwordInputHasError &= authValidators.passwordInputValidator(passwordController.text) != null;
 
     return Padding(
@@ -141,11 +145,11 @@ class _AuthScreenState extends State<AuthScreen> {
       child: PasswordInput(
         labelText: AppLocalizations.of(context)!.password,
         validator: authValidators.passwordInputValidator,
+        showPassword: authViewModel.setPasswordVisible,
+        obscureText: !authViewModel.isPasswordVisible,
         passwordController: passwordController,
-        obscureText: !isPasswordVisible,
         isInErrorState: passwordInputHasError,
         focusNode: passwordFocusNode,
-        showPassword: showPassword,
         onChanged: (value) {
           passwordController.text = value.trim();
         },
@@ -157,10 +161,10 @@ class _AuthScreenState extends State<AuthScreen> {
     bool repeatPasswordInputHasError =
         authValidators.repeatPasswordInputValidator(repeatPasswordController.text, passwordController.text) != null;
 
-    repeatPasswordInputHasError &= isInErrorState;
+    repeatPasswordInputHasError &= authViewModel.isInErrorState;
 
     return Visibility(
-      visible: !isLogin,
+      visible: !authViewModel.isLogin,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 4.0),
         child: PasswordInput(
@@ -171,11 +175,11 @@ class _AuthScreenState extends State<AuthScreen> {
             );
           },
           labelText: AppLocalizations.of(context)!.repeatPassword,
+          showPassword: authViewModel.setPasswordVisible,
+          obscureText: !authViewModel.isPasswordVisible,
           passwordController: repeatPasswordController,
           isInErrorState: repeatPasswordInputHasError,
           focusNode: repeatPasswordFocusNode,
-          obscureText: !isPasswordVisible,
-          showPassword: showPassword,
           onChanged: (value) {
             repeatPasswordController.text = value.trim();
           },
@@ -193,13 +197,21 @@ class _AuthScreenState extends State<AuthScreen> {
         color: TaskiColors.blue,
       ),
       child: TextButton(
-        onPressed: submit,
-        child: Text(
-          isLogin ? AppLocalizations.of(context)!.login : AppLocalizations.of(context)!.createAccount,
-          style: TextStyle(
-            color: TaskiColors.white,
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
+        onPressed: () {
+          if (formKey.currentState!.validate()) {
+            submit();
+          } else {
+            authViewModel.setErrorState(true);
+          }
+        },
+        child: Obx(
+          () => Text(
+            authViewModel.isLogin ? AppLocalizations.of(context)!.login : AppLocalizations.of(context)!.createAccount,
+            style: TextStyle(
+              color: TaskiColors.white,
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
       ),
@@ -212,13 +224,13 @@ class _AuthScreenState extends State<AuthScreen> {
         padding: WidgetStateProperty.all(EdgeInsets.zero),
       ),
       child: Text(
-        isLogin ? AppLocalizations.of(context)!.createAccount : AppLocalizations.of(context)!.alreadyHaveAnAccount,
+        authViewModel.isLogin
+            ? AppLocalizations.of(context)!.createAccount
+            : AppLocalizations.of(context)!.alreadyHaveAnAccount,
         style: textButtonStyle(),
       ),
       onPressed: () {
-        setState(() {
-          isLogin = !isLogin;
-        });
+        authViewModel.toggleAuthMode();
       },
     );
   }

@@ -1,38 +1,40 @@
-import 'package:taski/features/home/repository/home_repository.dart';
+import 'package:taski/features/auth/respository/auth_repository.dart';
 import 'package:taski/features/tasks/repository/task_repository.dart';
+import 'package:taski/features/home/repository/home_repository.dart';
 import 'package:taski/features/tasks/viewModel/task_view_model.dart';
 import 'package:taski/features/home/viewModel/home_view_model.dart';
-import 'package:taski/core/db/abstract_db.dart';
+import 'package:taski/features/auth/viewModel/auth_view_model.dart';
+import 'package:taski/core/db/hive/hive_boxes.dart';
 import 'package:taski/core/db/hive/hive.dart';
 import 'package:get/get.dart';
 
 class TaskiDependencies {
-  static Future<Database> _initDatabaseDependencies(String username) async {
-    final String locale = 'locale';
-
-    return await Get.putAsync(() async {
-      await HiveDB.instance.openBoxes([username, locale]);
-      return HiveDB.instance as Database;
-    });
+  static Future<void> _initDatabase() async {
+    await HiveDB.instance.openBoxes([HiveBoxes.auth, HiveBoxes.locale]);
   }
 
-  static Future _initHomeDependencies(String username, Database databaseInstance) async {
-    Get.lazyPut(() => HomeRepository(databaseInstance));
+  static Future _initAuthDependencies() async {
+    Get.lazyPut(() => AuthRepository(HiveDB.instance));
+    Get.lazyPut(() => AuthViewModel(Get.find()));
+  }
+
+  static Future _initHomeDependencies() async {
+    Get.lazyPut(() => HomeRepository(HiveDB.instance));
     Get.lazyPut(() => HomeViewModel(Get.find()));
     await Get.find<HomeViewModel>().getLocale();
   }
 
-  static Future _initTaskDependencies(String username, Database databaseInstance) async {
-    Get.lazyPut(() => TaskRepository(databaseInstance, username));
+  static Future _initTaskDependencies() async {
+    Get.lazyPut(() => TaskRepository(HiveDB.instance));
     await Get.putAsync(() async => TaskViewModel(Get.find()));
     await Get.find<TaskViewModel>().getAllTasks();
   }
 
   static Future<void> init() async {
-    final String username = 'default';
+    await _initDatabase();
 
-    final databaseInstance = await _initDatabaseDependencies(username);
-    await _initHomeDependencies(username, databaseInstance);
-    await _initTaskDependencies(username, databaseInstance);
+    await _initAuthDependencies();
+    await _initHomeDependencies();
+    await _initTaskDependencies();
   }
 }

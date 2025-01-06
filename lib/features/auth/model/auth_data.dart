@@ -24,6 +24,7 @@ class AuthData {
     return <String, dynamic>{
       AuthDataProperty.username.name: username,
       AuthDataProperty.password.name: password,
+      'id': username,
     };
   }
 

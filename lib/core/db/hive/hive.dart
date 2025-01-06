@@ -9,15 +9,18 @@ class HiveDB extends Database {
   @override
   Future<int> insert(String table, Map<String, dynamic> values) async {
     final Box box = await openBox(table);
+    final prevLength = box.length;
+
     await box.put(values['id'], values);
 
-    return box.length;
+    final newLength = box.length;
+    return newLength > prevLength ? 1 : 0;
   }
 
   @override
-  Future<Map<String, dynamic>> get(String table, String where) async {
+  Future<Map<dynamic, dynamic>> get(String table, String where) async {
     final Box box = await openBox(table);
-    return box.get(where);
+    return box.get(where) ?? {};
   }
 
   @override
@@ -36,22 +39,35 @@ class HiveDB extends Database {
   @override
   Future<int> update(String table, Map<String, dynamic> values, String id) async {
     final Box box = await openBox(table);
+    final prevLength = box.length;
+
     box.put(id, values);
-    return box.length;
+
+    final newLength = box.length;
+
+    return newLength > prevLength ? 1 : 0;
   }
 
   @override
   Future<int> delete(String table, String where) async {
     final Box box = await openBox(table);
+    final prevLength = box.length;
+
     box.delete(where);
-    return box.length;
+
+    final newLength = box.length;
+    return newLength > prevLength ? 1 : 0;
   }
 
   @override
   Future<int> clear(String table) async {
     final Box box = await openBox(table);
+    final prevLength = box.length;
+
     await box.clear();
-    return box.length;
+
+    final newLength = box.length;
+    return newLength > prevLength ? 1 : 0;
   }
 
   Future<Box> openBox(String boxName) async {
