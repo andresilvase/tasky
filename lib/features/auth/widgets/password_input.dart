@@ -1,5 +1,4 @@
 import 'package:taski/core/widgets/text_field_common_widgets.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +8,8 @@ class PasswordInput extends StatelessWidget {
     super.key,
     required this.usernameController,
     this.obscureText = true,
-    this.onInputClear,
+    required this.labelText,
+    this.showPassword,
     this.validator,
     this.onChanged,
     this.focusNode,
@@ -18,9 +18,10 @@ class PasswordInput extends StatelessWidget {
   final TextEditingController usernameController;
   final String? Function(String?)? validator;
   final Function(String)? onChanged;
-  final Function()? onInputClear;
+  final Function()? showPassword;
   final FocusNode? focusNode;
   final bool obscureText;
+  final String labelText;
 
   @override
   Widget build(BuildContext context) {
@@ -36,10 +37,13 @@ class PasswordInput extends StatelessWidget {
         fontSize: 16,
       ),
       decoration: InputDecoration(
-        suffixIconConstraints: BoxConstraints(maxHeight: 36, maxWidth: 36),
-        suffixIcon: suffixIcon(
-          visible: usernameController.text.isNotEmpty,
-          onPressed: onInputClear,
+        // suffixIconConstraints: BoxConstraints(maxHeight: 36, maxWidth: 36),
+        suffixIcon: IconButton(
+          onPressed: showPassword,
+          icon: Icon(
+            obscureText ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+            color: TaskiColors.mutedAzure,
+          ),
         ),
         prefixIcon: Icon(
           color: inputBorderColor(),
@@ -50,7 +54,7 @@ class PasswordInput extends StatelessWidget {
           color: TaskiColors.mutedAzure,
           fontSize: 16,
         ),
-        labelText: AppLocalizations.of(context)!.searchForATask,
+        labelText: labelText,
         floatingLabelStyle: GoogleFonts.urbanist(
           fontWeight: FontWeight.normal,
           color: inputBorderColor(),

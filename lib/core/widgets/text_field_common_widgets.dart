@@ -26,10 +26,10 @@ Widget suffixIcon({bool visible = true, void Function()? onPressed}) {
     child: IconButton(
       onPressed: onPressed,
       icon: Container(
-        margin: const EdgeInsets.only(right: 4),
+        margin: const EdgeInsets.only(right: 8),
         child: IconSvg(
           assetName: TaskiAssets.close,
-          size: 32,
+          size: 40,
         ),
       ),
     ),

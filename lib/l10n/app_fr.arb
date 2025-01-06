@@ -54,5 +54,17 @@
     "@italian": {},
     "@portuguese": {},
     "account": "Compte",
-    "@account": {}
+    "@account": {},
+    "username": "Nom d'utilisateur",
+    "@username": {},
+    "password": "Mot de passe",
+    "@password": {},
+    "login": "Se connecter",
+    "@login": {},
+    "createAccount": "Créer un compte",
+    "@createAccount": {},
+    "alreadyHaveAnAccount": "Vous avez déjà un compte? Se connecter.",
+    "@alreadyHaveAnAccount": {},
+    "repeatPassword": "Répéter le mot de passe",
+    "@repeatPassword": {}
 }

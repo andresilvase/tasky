@@ -1,5 +1,5 @@
-import 'package:taski/core/widgets/text_field_common_widgets.dart';
 import 'package:taski/features/tasks/viewModel/task_view_model.dart';
+import 'package:taski/core/widgets/text_field_common_widgets.dart';
 import 'package:taski/features/tasks/widgets/base_screen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taski/features/tasks/widgets/task_list.dart';
@@ -94,7 +94,7 @@ class _SearchTaskState extends State<SearchTask> {
           fontSize: 16,
         ),
         decoration: InputDecoration(
-          suffixIconConstraints: BoxConstraints(maxHeight: 36, maxWidth: 36),
+          suffixIconConstraints: BoxConstraints(maxHeight: 42, maxWidth: 42),
           suffixIcon: suffixIcon(
             visible: _searchController.text.isNotEmpty,
             onPressed: () {

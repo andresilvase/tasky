@@ -33,7 +33,7 @@ class UsernameInput extends StatelessWidget {
       ),
       validator: validator,
       decoration: InputDecoration(
-        suffixIconConstraints: BoxConstraints(maxHeight: 36, maxWidth: 36),
+        suffixIconConstraints: BoxConstraints(maxHeight: 42, maxWidth: 42),
         suffixIcon: suffixIcon(
           visible: usernameController.text.isNotEmpty,
           onPressed: onInputClear,
@@ -47,7 +47,7 @@ class UsernameInput extends StatelessWidget {
           color: TaskiColors.mutedAzure,
           fontSize: 16,
         ),
-        labelText: AppLocalizations.of(context)!.searchForATask,
+        labelText: AppLocalizations.of(context)!.username,
         floatingLabelStyle: GoogleFonts.urbanist(
           fontWeight: FontWeight.normal,
           color: inputBorderColor(),

@@ -54,5 +54,17 @@
     "italian": "Italiano",
     "@italian": {},
     "account": "Account",
-    "@account": {}
+    "@account": {},
+    "username": "Name di utente",
+    "@username": {},
+    "password": "Password",
+    "@password": {},
+    "login": "Entra",
+    "@login": {},
+    "createAccount": "Crea un account",
+    "@createAccount": {},
+    "alreadyHaveAnAccount": "Jà possiedi un account? Entra.",
+    "@alreadyHaveAnAccount": {},
+    "repeatPassword": "Ripeti la password",
+    "@repeatPassword": {}
 }

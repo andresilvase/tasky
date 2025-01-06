@@ -34,7 +34,7 @@ class Logo extends StatelessWidget {
           style: GoogleFonts.urbanist(
             color: TaskiColors.statePurple,
             fontWeight: FontWeight.w600,
-            fontSize: 20,
+            fontSize: 22,
           ),
         ),
       ],
