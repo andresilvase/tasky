@@ -1,0 +1,42 @@
+{
+    "@@locale": "es",
+    "appName": "Taski",
+    "@appName": {},
+    "welcome": "Bienvenido",
+    "@welcome": {},
+    "youveGot": "Tienes {n} tareas por hacer.",
+    "@youveGot": {
+        "placeholders": {
+            "n": {
+                "type": "int",
+                "example": "1"
+            }
+        }
+    },
+    "noResultsFound": "No se encontraron resultados",
+    "@noResultsFound": {},
+    "createTasks": "Crea tareas para lograr más.",
+    "@createTasks": {},
+    "createTask": "Crear tarea",
+    "@createTask": {},
+    "create": "Crear",
+    "@create": {},
+    "youHaveNoTaskListed": "No tienes ninguna tarea listada.",
+    "@youHaveNoTaskListed": {},
+    "completedTasks": "Tareas completadas",
+    "@completedTasks": {},
+    "deleteAll": "Eliminar todo",
+    "@deleteAll": {},
+    "todo": "Por hacer",
+    "@todo": {},
+    "search": "Buscar",
+    "@search": {},
+    "done": "Hecho",
+    "@done": {},
+    "searchForATask": "Busca una tarea",
+    "@searchForATask": {},
+    "whatsInYourMind": "¿Qué tienes en mente?",
+    "@whatsInYourMind": {},
+    "addNote": "Agregar una nota",
+    "@addNote": {}
+}

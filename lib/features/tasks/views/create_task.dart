@@ -1,4 +1,5 @@
 import 'package:taski/features/tasks/widgets/text_field_no_border.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taski/features/tasks/model/task.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -110,7 +111,7 @@ class _CreateTaskState extends State<CreateTask> {
               fontWeight: FontWeight.normal,
               fontSize: 16,
             ),
-            labelText: 'What\'s in your mind?',
+            labelText: AppLocalizations.of(context)!.whatsInYourMind,
             errorStyle: GoogleFonts.urbanist(
               color: TaskiColors.fireRed,
               fontWeight: FontWeight.normal,
@@ -164,7 +165,7 @@ class _CreateTaskState extends State<CreateTask> {
       child: TextButton(
         onPressed: createTask,
         child: Text(
-          'Create',
+          AppLocalizations.of(context)!.create,
           style: GoogleFonts.urbanist(
             fontWeight: FontWeight.bold,
             color: TaskiColors.blue,

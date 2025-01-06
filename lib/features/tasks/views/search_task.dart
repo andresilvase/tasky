@@ -1,6 +1,7 @@
 import 'package:taski/features/tasks/widgets/text_field_no_border.dart';
 import 'package:taski/features/tasks/viewModel/task_view_model.dart';
 import 'package:taski/features/tasks/widgets/base_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taski/features/tasks/widgets/task_list.dart';
 import 'package:taski/features/tasks/model/task.dart';
 import 'package:taski/core/widgets/icon_svg.dart';
@@ -127,7 +128,7 @@ class _SearchTaskState extends State<SearchTask> {
             color: TaskiColors.mutedAzure,
             fontSize: 16,
           ),
-          labelText: 'Search for a task',
+          labelText: AppLocalizations.of(context)!.searchForATask,
           floatingLabelStyle: GoogleFonts.urbanist(
             fontWeight: FontWeight.normal,
             color: inputBorderColor(),

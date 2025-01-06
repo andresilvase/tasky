@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:taski/core/routes/router.dart';
 import 'package:taski/core/routes/routes.dart';
@@ -16,6 +17,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: TaskiColors.white),
         scaffoldBackgroundColor: TaskiColors.white,

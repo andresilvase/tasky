@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taski/core/constants/assets.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:taski/core/widgets/icon_svg.dart';
@@ -41,7 +42,12 @@ class CustomBottomNavigator extends StatelessWidget {
       ),
     ];
 
-    List<String> labels = ['Todo', 'Create', 'Search', 'Done'];
+    List<String> labels = [
+      AppLocalizations.of(context)!.todo,
+      AppLocalizations.of(context)!.create,
+      AppLocalizations.of(context)!.search,
+      AppLocalizations.of(context)!.done,
+    ];
 
     return SafeArea(
       child: Padding(

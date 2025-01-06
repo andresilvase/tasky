@@ -1,5 +1,6 @@
 import 'package:taski/features/tasks/viewModel/task_view_model.dart';
 import 'package:taski/features/tasks/widgets/base_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taski/features/tasks/widgets/task_list.dart';
 import 'package:taski/features/tasks/model/task.dart';
 import 'package:taski/core/constants/colors.dart';
@@ -32,7 +33,7 @@ class TasksCompleted extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Completed Tasks',
+                AppLocalizations.of(Get.context!)!.completedTasks,
                 style: GoogleFonts.urbanist(
                   color: TaskiColors.statePurple,
                   fontWeight: FontWeight.bold,
@@ -44,7 +45,7 @@ class TasksCompleted extends StatelessWidget {
                   await taskViewModel.deleteCompletedTasks();
                 },
                 child: Text(
-                  'Delete All',
+                  AppLocalizations.of(Get.context!)!.deleteAll,
                   style: GoogleFonts.urbanist(
                     color: TaskiColors.fireRed,
                     fontWeight: FontWeight.w600,

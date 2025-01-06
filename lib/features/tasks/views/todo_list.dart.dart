@@ -1,6 +1,7 @@
 import 'package:taski/features/tasks/viewModel/task_view_model.dart';
 import 'package:taski/features/tasks/widgets/base_screen.dart';
 import 'package:taski/features/tasks/widgets/task_list.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taski/features/tasks/model/task.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -39,8 +40,7 @@ class TodoList extends StatelessWidget {
       spacing: 8,
       children: [
         Text(
-          // TODO: get username from user model
-          'Welcome,',
+          AppLocalizations.of(Get.context!)!.welcome,
           style: GoogleFonts.urbanist(
             color: TaskiColors.statePurple,
             fontWeight: FontWeight.bold,
@@ -66,9 +66,9 @@ class TodoList extends StatelessWidget {
       String summaryText = '';
 
       if (taskCount == 0) {
-        summaryText = 'Create tasks to achieve more.';
+        summaryText = AppLocalizations.of(Get.context!)!.createTasks;
       } else {
-        summaryText = 'You have $taskCount tasks to do';
+        summaryText = AppLocalizations.of(Get.context!)!.youveGot(taskCount);
       }
 
       return Text(

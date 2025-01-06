@@ -1,7 +1,9 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taski/core/constants/assets.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AppHeader extends StatelessWidget {
   const AppHeader({super.key});
@@ -45,7 +47,7 @@ class AppHeader extends StatelessWidget {
           ),
         ),
         Text(
-          'Taski',
+          AppLocalizations.of(Get.context!)!.appName,
           style: GoogleFonts.urbanist(
             color: TaskiColors.statePurple,
             fontWeight: FontWeight.w600,
