@@ -8,6 +8,7 @@ class TaskList extends StatelessWidget {
   const TaskList({
     super.key,
     this.showCreateTaskButton = false,
+    required this.marginTop,
     this.emptyTasksMessage,
     this.changeTaskStatus,
     required this.tasks,
@@ -19,6 +20,7 @@ class TaskList extends StatelessWidget {
   final String? emptyTasksMessage;
   final bool showCreateTaskButton;
   final List<Task> tasks;
+  final double marginTop;
 
   @override
   Widget build(BuildContext context) {
@@ -56,8 +58,8 @@ class TaskList extends StatelessWidget {
 
   Widget _noTask() {
     return Container(
-      margin: EdgeInsets.only(top: Get.height * (showCreateTaskButton ? 0.2 : 0.25)),
       alignment: Alignment.center,
+      margin: EdgeInsets.only(top: marginTop),
       child: NoTask(feedback: emptyTasksMessage, showCreateTaskButton: showCreateTaskButton),
     );
   }

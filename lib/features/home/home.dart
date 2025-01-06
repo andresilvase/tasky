@@ -1,3 +1,4 @@
+import 'package:taski/features/tasks/widgets/create_task_bottom_sheet.dart';
 import 'package:taski/features/home/custom_bottom_navigator.dart';
 import 'package:taski/features/tasks/views/tasks_completed.dart';
 import 'package:taski/features/tasks/views/todo_list.dart.dart';
@@ -45,11 +46,10 @@ class Home extends StatelessWidget {
       ),
       bottomNavigationBar: Obx(
         () => CustomBottomNavigator(
-          onIndexChanged: (index) {
+          onIndexChanged: (index) async {
             if (index == 1) {
-              showModalBottomSheet(context: context, builder: (context) => CreateTask()).then((_) {
-                controller.backToHome();
-              });
+              await createTaskBottomSheet(context);
+              controller.backToHome();
             } else {
               controller.changeIndex(index);
             }

@@ -22,12 +22,15 @@ class TaskiItem extends StatelessWidget {
   }
 
   Widget _builder() {
-    return _background();
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16.0),
+      child: _background(),
+    );
   }
 
   Widget _background() {
     return Container(
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: TaskiColors.paleWhite,
@@ -78,10 +81,14 @@ class TaskiItem extends StatelessWidget {
         Spacer(),
         Visibility(
           visible: task.isCompleted,
-          child: IconButton(
-            icon: Icon(Icons.delete, color: TaskiColors.fireRed),
-            onPressed: deleteTask,
+          child: GestureDetector(
+            onTap: deleteTask,
+            child: Icon(Icons.delete, color: TaskiColors.fireRed),
           ),
+        ),
+        Visibility(
+          visible: !task.isCompleted && (task.description == null || task.description!.isEmpty),
+          child: Icon(Icons.more_horiz, color: TaskiColors.mutedAzure),
         )
       ],
     );

@@ -94,6 +94,7 @@ class TodoList extends StatelessWidget {
           taskViewModel.changeTaskStatus(task);
         },
         showCreateTaskButton: true,
+        marginTop: Get.height * 0.15,
         tasks: tasks,
       );
     });

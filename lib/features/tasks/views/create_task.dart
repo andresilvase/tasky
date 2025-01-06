@@ -53,13 +53,15 @@ class _CreateTaskState extends State<CreateTask> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(left: 40, top: 32, right: 40),
+      margin: EdgeInsets.only(
+        right: 40,
+        left: 40,
+        top: 16,
+      ),
       child: Column(
         children: [
           _title(),
-          SizedBox(
-            height: _descriptionFocus.hasFocus ? 32 : 0,
-          ),
+          SizedBox(height: _descriptionFocus.hasFocus ? 32 : 0),
           _description(),
           _createButton(),
         ],
@@ -68,62 +70,66 @@ class _CreateTaskState extends State<CreateTask> {
   }
 
   Widget _title() {
-    return Form(
-      key: _formKey,
-      child: TextFormField(
-        controller: _titleController,
-        style: GoogleFonts.urbanist(
-          color: TaskiColors.statePurple,
-          fontWeight: FontWeight.normal,
-          fontSize: 18,
-        ),
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return 'Title is required';
-          }
-          return null;
-        },
-        decoration: InputDecoration(
-          prefixIcon: Transform.scale(
-            scale: 1.25,
-            child: Checkbox(
-              visualDensity: VisualDensity(vertical: -4),
-              checkColor: TaskiColors.white,
-              onChanged: null,
-              value: false,
-              side: BorderSide(
-                color: TaskiColors.mutedAzure,
-                width: 2,
-              ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(4),
-              ),
-            ),
-          ),
-          labelStyle: GoogleFonts.urbanist(
-            color: TaskiColors.mutedAzure,
+    return Padding(
+      padding: const EdgeInsets.only(top: 16.0),
+      child: Form(
+        key: _formKey,
+        child: TextFormField(
+          controller: _titleController,
+          style: GoogleFonts.urbanist(
+            color: TaskiColors.statePurple,
             fontWeight: FontWeight.normal,
-            fontSize: 16,
+            fontSize: 18,
           ),
-          labelText: 'What\'s in your mind?',
-          focusedErrorBorder: noBorder(),
-          disabledBorder: noBorder(),
-          enabledBorder: noBorder(),
-          focusedBorder: noBorder(),
-          errorBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: TaskiColors.redShade,
-              width: 2,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Title is required';
+            }
+            return null;
+          },
+          cursorErrorColor: TaskiColors.redShade,
+          decoration: InputDecoration(
+            prefixIcon: Transform.scale(
+              scale: 1.25,
+              child: Checkbox(
+                visualDensity: VisualDensity(vertical: -4),
+                checkColor: TaskiColors.white,
+                onChanged: null,
+                value: false,
+                side: BorderSide(
+                  color: TaskiColors.mutedAzure,
+                  width: 2,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(4),
+                ),
+              ),
             ),
+            labelStyle: GoogleFonts.urbanist(
+              color: TaskiColors.mutedAzure,
+              fontWeight: FontWeight.normal,
+              fontSize: 16,
+            ),
+            labelText: 'What\'s in your mind?',
+            errorStyle: GoogleFonts.urbanist(
+              color: TaskiColors.fireRed,
+              fontWeight: FontWeight.normal,
+              fontSize: 14,
+            ),
+            focusedErrorBorder: noBorder(),
+            disabledBorder: noBorder(),
+            enabledBorder: noBorder(),
+            focusedBorder: noBorder(),
+            errorBorder: activeBorder(TaskiColors.redShade),
+            border: noBorder(),
           ),
-          border: noBorder(),
         ),
       ),
     );
   }
 
   Widget _description() {
-    return TextFormField(
+    return TextField(
       controller: _descriptionController,
       focusNode: _descriptionFocus,
       style: GoogleFonts.urbanist(
@@ -132,6 +138,7 @@ class _CreateTaskState extends State<CreateTask> {
         fontSize: 18,
       ),
       maxLines: 2,
+      textInputAction: TextInputAction.done,
       decoration: InputDecoration(
         prefixIcon: Icon(Icons.edit, color: TaskiColors.mutedAzure),
         labelStyle: GoogleFonts.urbanist(
@@ -151,7 +158,8 @@ class _CreateTaskState extends State<CreateTask> {
   }
 
   Widget _createButton() {
-    return Align(
+    return Container(
+      margin: EdgeInsets.only(top: 16),
       alignment: Alignment.centerRight,
       child: TextButton(
         onPressed: createTask,

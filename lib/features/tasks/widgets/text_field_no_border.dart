@@ -6,3 +6,14 @@ OutlineInputBorder noBorder() {
     borderRadius: BorderRadius.zero,
   );
 }
+
+OutlineInputBorder activeBorder(Color color) {
+  return OutlineInputBorder(
+    borderRadius: BorderRadius.circular(12),
+    borderSide: BorderSide(
+      style: BorderStyle.solid,
+      color: color,
+      width: 2,
+    ),
+  );
+}

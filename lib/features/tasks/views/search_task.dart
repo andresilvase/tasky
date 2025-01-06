@@ -46,6 +46,14 @@ class _SearchTaskState extends State<SearchTask> {
   }
 
   @override
+  void initState() {
+    _searchFocusNode.addListener(() {
+      setState(() {});
+    });
+    super.initState();
+  }
+
+  @override
   void dispose() {
     _debounce?.cancel();
     super.dispose();
@@ -73,24 +81,26 @@ class _SearchTaskState extends State<SearchTask> {
         onPressed: () {
           setState(() {
             _onSearchChanged('');
-            _searchFocusNode.unfocus();
             _searchController.clear();
           });
         },
-        icon: IconSvg(assetName: TaskiAssets.close, size: 34),
+        icon: Container(
+          margin: const EdgeInsets.only(right: 4),
+          child: IconSvg(
+            assetName: TaskiAssets.close,
+            size: 32,
+          ),
+        ),
       ),
     );
   }
 
-  OutlineInputBorder _activeBorder() {
-    return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(12),
-      borderSide: BorderSide(
-        color: TaskiColors.blue,
-        style: BorderStyle.solid,
-        width: 2,
-      ),
-    );
+  Color inputBorderColor() {
+    if (_searchFocusNode.hasFocus) {
+      return TaskiColors.blue;
+    } else {
+      return TaskiColors.mutedAzure;
+    }
   }
 
   Widget _inputSearch() {
@@ -106,18 +116,26 @@ class _SearchTaskState extends State<SearchTask> {
           fontSize: 16,
         ),
         decoration: InputDecoration(
-          suffixIconConstraints: BoxConstraints(maxHeight: 34, maxWidth: 34),
+          suffixIconConstraints: BoxConstraints(maxHeight: 36, maxWidth: 36),
           suffixIcon: _suffixIcon(),
-          prefixIcon: Icon(Icons.search, color: TaskiColors.blue),
+          prefixIcon: Icon(
+            color: inputBorderColor(),
+            Icons.search,
+          ),
           labelStyle: GoogleFonts.urbanist(
             fontWeight: FontWeight.normal,
             color: TaskiColors.mutedAzure,
             fontSize: 16,
           ),
           labelText: 'Search for a task',
+          floatingLabelStyle: GoogleFonts.urbanist(
+            fontWeight: FontWeight.normal,
+            color: inputBorderColor(),
+            fontSize: 16,
+          ),
+          enabledBorder: activeBorder(inputBorderColor()),
+          focusedBorder: activeBorder(inputBorderColor()),
           focusedErrorBorder: noBorder(),
-          focusedBorder: _activeBorder(),
-          enabledBorder: _activeBorder(),
           disabledBorder: noBorder(),
           errorBorder: OutlineInputBorder(
             borderSide: BorderSide(
@@ -141,6 +159,7 @@ class _SearchTaskState extends State<SearchTask> {
         changeTaskStatus: (task) => taskViewModel.changeTaskStatus(task),
         deleteTask: (task) => taskViewModel.deleteTask(task),
         emptyTasksMessage: 'No results found',
+        marginTop: Get.height * 0.1,
         tasks: tasks,
       );
     });

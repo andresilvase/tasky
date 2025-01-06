@@ -71,6 +71,7 @@ class TasksCompleted extends StatelessWidget {
           changeTaskStatus: (task) => taskViewModel.changeTaskStatus(task),
           deleteTask: (task) => taskViewModel.deleteTask(task),
           emptyTasksMessage: 'No completed tasks.',
+          marginTop: Get.height * 0.25,
           tasks: tasks,
         );
       },

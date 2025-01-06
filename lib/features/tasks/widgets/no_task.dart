@@ -1,4 +1,4 @@
-import 'package:taski/features/tasks/views/create_task.dart';
+import 'package:taski/features/tasks/widgets/create_task_bottom_sheet.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
@@ -41,9 +41,7 @@ class NoTask extends StatelessWidget {
     );
   }
 
-  void onNewTask(BuildContext context) {
-    showModalBottomSheet(context: context, builder: (context) => CreateTask());
-  }
+  void onNewTask(BuildContext context) => createTaskBottomSheet(context);
 
   Visibility createTaskButton(BuildContext context) {
     return Visibility(
