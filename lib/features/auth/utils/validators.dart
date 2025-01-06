@@ -8,8 +8,8 @@ class AuthValidators {
 
     value = value.removeAccents();
 
-    if (value.length < 6) {
-      return 'Username must be at least 3 characters';
+    if (value.length < 5) {
+      return 'Username must be at least 5 characters';
     }
 
     if (value.length > 16) {

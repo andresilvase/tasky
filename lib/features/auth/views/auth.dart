@@ -98,6 +98,7 @@ class _AuthScreenState extends State<AuthScreen> {
       child: Column(
         children: [
           _usernameInput(),
+          SizedBox(height: 8),
           _passwordInput(),
           _repeatPasswordInput(),
           SizedBox(height: 8),
@@ -107,12 +108,15 @@ class _AuthScreenState extends State<AuthScreen> {
   }
 
   Widget _usernameInput() {
+    bool usernameInputHasError = isInErrorState;
+    usernameInputHasError &= AuthValidators.usernameInputValidator(usernameController.text) != null;
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0),
       child: UsernameInput(
         validator: AuthValidators.usernameInputValidator,
         usernameController: usernameController,
-        isInErrorState: isInErrorState,
+        isInErrorState: usernameInputHasError,
         focusNode: usernameFocusNode,
         onChanged: (value) {},
         onInputClear: () {
@@ -125,6 +129,9 @@ class _AuthScreenState extends State<AuthScreen> {
   }
 
   Widget _passwordInput() {
+    bool passwordInputHasError = isInErrorState;
+    passwordInputHasError &= AuthValidators.passwordInputValidator(passwordController.text) != null;
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0),
       child: PasswordInput(
@@ -132,15 +139,22 @@ class _AuthScreenState extends State<AuthScreen> {
         validator: AuthValidators.passwordInputValidator,
         passwordController: passwordController,
         obscureText: !isPasswordVisible,
-        isInErrorState: isInErrorState,
+        isInErrorState: passwordInputHasError,
         focusNode: passwordFocusNode,
         showPassword: showPassword,
-        onChanged: (value) {},
+        onChanged: (value) {
+          passwordController.text = value.trim();
+        },
       ),
     );
   }
 
   Widget _repeatPasswordInput() {
+    bool repeatPasswordInputHasError =
+        AuthValidators.repeatPasswordInputValidator(repeatPasswordController.text, passwordController.text) != null;
+
+    repeatPasswordInputHasError &= isInErrorState;
+
     return Visibility(
       visible: !isLogin,
       child: Padding(
@@ -154,11 +168,13 @@ class _AuthScreenState extends State<AuthScreen> {
           },
           labelText: AppLocalizations.of(context)!.repeatPassword,
           passwordController: repeatPasswordController,
+          isInErrorState: repeatPasswordInputHasError,
           focusNode: repeatPasswordFocusNode,
           obscureText: !isPasswordVisible,
-          isInErrorState: isInErrorState,
           showPassword: showPassword,
-          onChanged: (value) {},
+          onChanged: (value) {
+            repeatPasswordController.text = value.trim();
+          },
         ),
       ),
     );
