@@ -6,27 +6,27 @@ import 'package:flutter/material.dart';
 class PasswordInput extends StatelessWidget {
   const PasswordInput({
     super.key,
-    required this.usernameController,
+    required this.passwordController,
     this.obscureText = true,
     required this.labelText,
+    required this.focusNode,
     this.showPassword,
     this.validator,
     this.onChanged,
-    this.focusNode,
   });
 
-  final TextEditingController usernameController;
+  final TextEditingController passwordController;
   final String? Function(String?)? validator;
   final Function(String)? onChanged;
   final Function()? showPassword;
-  final FocusNode? focusNode;
+  final FocusNode focusNode;
   final bool obscureText;
   final String labelText;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: usernameController,
+      controller: passwordController,
       focusNode: focusNode,
       onChanged: onChanged,
       validator: validator,
@@ -37,16 +37,18 @@ class PasswordInput extends StatelessWidget {
         fontSize: 16,
       ),
       decoration: InputDecoration(
-        // suffixIconConstraints: BoxConstraints(maxHeight: 36, maxWidth: 36),
-        suffixIcon: IconButton(
-          onPressed: showPassword,
-          icon: Icon(
-            obscureText ? Icons.visibility_off_outlined : Icons.visibility_outlined,
-            color: TaskiColors.mutedAzure,
+        suffixIcon: Visibility(
+          visible: passwordController.text.isNotEmpty,
+          child: IconButton(
+            onPressed: showPassword,
+            icon: Icon(
+              obscureText ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+              color: _inputBorderColor(),
+            ),
           ),
         ),
         prefixIcon: Icon(
-          color: inputBorderColor(),
+          color: _inputBorderColor(),
           Icons.lock_outline_rounded,
         ),
         labelStyle: GoogleFonts.urbanist(
@@ -57,11 +59,11 @@ class PasswordInput extends StatelessWidget {
         labelText: labelText,
         floatingLabelStyle: GoogleFonts.urbanist(
           fontWeight: FontWeight.normal,
-          color: inputBorderColor(),
+          color: _inputBorderColor(),
           fontSize: 16,
         ),
-        enabledBorder: activeBorder(inputBorderColor()),
-        focusedBorder: activeBorder(inputBorderColor()),
+        enabledBorder: activeBorder(_inputBorderColor()),
+        focusedBorder: activeBorder(_inputBorderColor()),
         focusedErrorBorder: noBorder(),
         disabledBorder: noBorder(),
         errorBorder: OutlineInputBorder(
@@ -75,8 +77,8 @@ class PasswordInput extends StatelessWidget {
     );
   }
 
-  Color inputBorderColor() {
-    if (focusNode?.hasFocus ?? false) {
+  Color _inputBorderColor() {
+    if (focusNode.hasFocus) {
       return TaskiColors.blue;
     } else {
       return TaskiColors.mutedAzure;

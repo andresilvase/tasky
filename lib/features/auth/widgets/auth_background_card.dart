@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AuthBackgroundCard extends StatelessWidget {
-  const AuthBackgroundCard({super.key, required this.children, required this.isLogin});
+  const AuthBackgroundCard({
+    super.key,
+    required this.children,
+    required this.isLogin,
+  });
 
   final List<Widget> children;
   final bool isLogin;

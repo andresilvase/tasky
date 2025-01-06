@@ -8,22 +8,23 @@ class UsernameInput extends StatelessWidget {
   const UsernameInput({
     super.key,
     required this.usernameController,
+    required this.focusNode,
     this.onInputClear,
     this.validator,
     this.onChanged,
-    this.focusNode,
   });
 
   final TextEditingController usernameController;
   final String? Function(String?)? validator;
   final Function(String)? onChanged;
   final Function()? onInputClear;
-  final FocusNode? focusNode;
+  final FocusNode focusNode;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: usernameController,
+      autofocus: true,
       focusNode: focusNode,
       onChanged: onChanged,
       style: GoogleFonts.urbanist(
@@ -39,7 +40,7 @@ class UsernameInput extends StatelessWidget {
           onPressed: onInputClear,
         ),
         prefixIcon: Icon(
-          color: inputBorderColor(),
+          color: _inputBorderColor(),
           Icons.person_3_outlined,
         ),
         labelStyle: GoogleFonts.urbanist(
@@ -50,11 +51,11 @@ class UsernameInput extends StatelessWidget {
         labelText: AppLocalizations.of(context)!.username,
         floatingLabelStyle: GoogleFonts.urbanist(
           fontWeight: FontWeight.normal,
-          color: inputBorderColor(),
+          color: _inputBorderColor(),
           fontSize: 16,
         ),
-        enabledBorder: activeBorder(inputBorderColor()),
-        focusedBorder: activeBorder(inputBorderColor()),
+        enabledBorder: activeBorder(_inputBorderColor()),
+        focusedBorder: activeBorder(_inputBorderColor()),
         focusedErrorBorder: noBorder(),
         disabledBorder: noBorder(),
         errorBorder: OutlineInputBorder(
@@ -68,8 +69,8 @@ class UsernameInput extends StatelessWidget {
     );
   }
 
-  Color inputBorderColor() {
-    if (focusNode?.hasFocus ?? false) {
+  Color _inputBorderColor() {
+    if (focusNode.hasFocus) {
       return TaskiColors.blue;
     } else {
       return TaskiColors.mutedAzure;

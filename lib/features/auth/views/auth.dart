@@ -2,6 +2,7 @@ import 'package:taski/features/auth/widgets/auth_background_card.dart';
 import 'package:taski/features/auth/widgets/password_input.dart';
 import 'package:taski/features/auth/widgets/username_input.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:taski/core/widgets/loading_blur.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:taski/core/widgets/logo.dart';
@@ -27,7 +28,33 @@ class _AuthScreenState extends State<AuthScreen> {
   final FocusNode passwordFocusNode = FocusNode();
 
   bool isPasswordVisible = false;
-  bool isLogin = false;
+  bool isLoading = false;
+  bool isLogin = true;
+
+  void _setState() => setState(() {});
+
+  @override
+  void initState() {
+    repeatPasswordFocusNode.addListener(_setState);
+    usernameFocusNode.addListener(_setState);
+    passwordFocusNode.addListener(_setState);
+
+    super.initState();
+  }
+
+  Future<void> submit() async {
+    if (formKey.currentState!.validate()) {
+      if (isLogin) {
+      } else {}
+      setState(() {
+        isLoading = true;
+      });
+      await Future.delayed(const Duration(seconds: 2));
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
 
   void showPassword() {
     setState(() {
@@ -39,15 +66,20 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: TaskiColors.blue,
-      body: AuthBackgroundCard(
-        isLogin: isLogin,
+      body: Stack(
         children: [
-          Logo(),
-          SizedBox(height: 16),
-          _authForm(),
-          _submitButton(),
-          SizedBox(height: 16),
-          _createAccount(),
+          AuthBackgroundCard(
+            isLogin: isLogin,
+            children: [
+              Logo(),
+              SizedBox(height: 16),
+              _authForm(),
+              _submitButton(),
+              SizedBox(height: 16),
+              _createAccount(),
+            ],
+          ),
+          Visibility(visible: isLoading, child: LoadingBlur()),
         ],
       ),
     );
@@ -55,7 +87,6 @@ class _AuthScreenState extends State<AuthScreen> {
 
   Widget _authForm() {
     return Form(
-      autovalidateMode: AutovalidateMode.onUserInteraction,
       key: formKey,
       child: Column(
         children: [
@@ -89,7 +120,7 @@ class _AuthScreenState extends State<AuthScreen> {
       padding: const EdgeInsets.symmetric(vertical: 4.0),
       child: PasswordInput(
         labelText: AppLocalizations.of(context)!.password,
-        usernameController: passwordController,
+        passwordController: passwordController,
         obscureText: !isPasswordVisible,
         focusNode: passwordFocusNode,
         showPassword: showPassword,
@@ -105,7 +136,7 @@ class _AuthScreenState extends State<AuthScreen> {
         padding: const EdgeInsets.symmetric(vertical: 4.0),
         child: PasswordInput(
           labelText: AppLocalizations.of(context)!.repeatPassword,
-          usernameController: repeatPasswordController,
+          passwordController: repeatPasswordController,
           focusNode: repeatPasswordFocusNode,
           obscureText: !isPasswordVisible,
           showPassword: showPassword,
@@ -124,7 +155,7 @@ class _AuthScreenState extends State<AuthScreen> {
         color: TaskiColors.blue,
       ),
       child: TextButton(
-        onPressed: () {},
+        onPressed: submit,
         child: Text(
           isLogin ? AppLocalizations.of(context)!.login : AppLocalizations.of(context)!.createAccount,
           style: TextStyle(
