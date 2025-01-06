@@ -3,7 +3,7 @@ import 'package:taski/features/home/custom_bottom_navigator.dart';
 import 'package:taski/features/tasks/views/tasks_completed.dart';
 import 'package:taski/features/tasks/views/todo_list.dart.dart';
 import 'package:taski/features/tasks/views/search_task.dart';
-import 'package:taski/features/home/home_controller.dart';
+import 'package:taski/features/home/viewModel/home_view_model.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:taski/core/widgets/header.dart';
 import '../tasks/views/create_task.dart';
@@ -15,7 +15,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final HomeController controller = Get.find();
+    final HomeViewModel controller = Get.find();
 
     final pages = <Widget>[
       TodoList(),

@@ -4,9 +4,7 @@ import 'package:hive/hive.dart';
 class HiveDB extends Database {
   HiveDB._();
 
-  factory HiveDB.init({required String name}) {
-    return HiveDB._();
-  }
+  static HiveDB get instance => HiveDB._();
 
   @override
   Future<int> insert(String table, Map<String, dynamic> values) async {
@@ -58,5 +56,11 @@ class HiveDB extends Database {
 
   Future<Box> openBox(String boxName) async {
     return await Hive.openBox(boxName);
+  }
+
+  Future openBoxes(List<String> boxesName) async {
+    return await Future.wait(boxesName.map((boxName) async {
+      return await openBox(boxName);
+    }));
   }
 }

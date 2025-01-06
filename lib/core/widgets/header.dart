@@ -1,5 +1,5 @@
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:taski/features/home/home_controller.dart';
+import 'package:taski/features/home/viewModel/home_view_model.dart';
 import 'package:taski/core/constants/languages.dart';
 import 'package:country_flags/country_flags.dart';
 import 'package:taski/core/constants/assets.dart';
@@ -142,7 +142,7 @@ class _AppHeaderState extends State<AppHeader> {
     return languages.map((language) {
       return MenuItemButton(
         onPressed: () {
-          Get.find<HomeController>().changeLocale(locales[languages.indexOf(language)]);
+          Get.find<HomeViewModel>().changeLocale(locales[languages.indexOf(language)]);
         },
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
