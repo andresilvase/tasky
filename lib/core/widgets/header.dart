@@ -1,5 +1,6 @@
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taski/features/home/home_controller.dart';
+import 'package:taski/core/constants/languages.dart';
 import 'package:country_flags/country_flags.dart';
 import 'package:taski/core/constants/assets.dart';
 import 'package:taski/core/constants/colors.dart';
@@ -136,17 +137,6 @@ class _AppHeaderState extends State<AppHeader> {
       ),
     );
   }
-
-  final List<String> countries = ['US', 'BR', 'ES', 'FR', 'IT'];
-  final List<String> locales = ['en', 'pt', 'es', 'fr', 'it'];
-
-  final List<String> languages = [
-    AppLocalizations.of(Get.context!)!.english,
-    AppLocalizations.of(Get.context!)!.portuguese,
-    AppLocalizations.of(Get.context!)!.spanish,
-    AppLocalizations.of(Get.context!)!.french,
-    AppLocalizations.of(Get.context!)!.italian,
-  ];
 
   List<MenuItemButton> languageSettings() {
     return languages.map((language) {
