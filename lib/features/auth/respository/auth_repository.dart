@@ -1,21 +1,32 @@
-import 'dart:convert';
-
 import 'package:taski/features/auth/model/auth_result.dart';
-import 'package:taski/features/auth/model/auth_data.dart';
+import 'package:taski/features/auth/model/user.dart';
 import 'package:taski/core/db/hive/hive_boxes.dart';
 import 'package:taski/core/db/abstract_db.dart';
+import 'dart:convert';
 
 class AuthRepository {
   final Database _db;
 
   AuthRepository(this._db);
 
-  Future<AuthResult> login(AuthData auth) async {
-    final Map authData = await _db.get(HiveBoxes.auth, auth.username);
-    if (authData.isNotEmpty) {
+  Future<User?> getActiveUser() async {
+    final list = await _db.getAll(HiveBoxes.activeUser);
+
+    if (list.isEmpty) return null;
+
+    final map = list.first;
+
+    return map.isNotEmpty ? User.fromMap(map) : null;
+  }
+
+  Future<AuthResult> login(User auth) async {
+    final Map user = await _db.get(HiveBoxes.auth, auth.username);
+
+    if (user.isNotEmpty) {
       final encryptedPassword = base64Encode(utf8.encode(auth.password));
 
-      if (authData['password'] == encryptedPassword) {
+      if (user['password'] == encryptedPassword) {
+        await _db.update(HiveBoxes.activeUser, auth.toMap(), auth.username);
         return AuthResult.successfulLogin;
       } else {
         return AuthResult.wrongPassword;
@@ -25,10 +36,10 @@ class AuthRepository {
     }
   }
 
-  Future<AuthResult> register(AuthData auth) async {
-    final Map authData = await _db.get(HiveBoxes.auth, auth.username);
+  Future<AuthResult> register(User auth) async {
+    final Map user = await _db.get(HiveBoxes.auth, auth.username);
 
-    if (authData.isNotEmpty) {
+    if (user.isNotEmpty) {
       return AuthResult.registrationFailed;
     }
 

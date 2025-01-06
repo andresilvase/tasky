@@ -10,7 +10,12 @@ import 'package:get/get.dart';
 
 class TaskiDependencies {
   static Future<void> _initDatabase() async {
-    await HiveDB.instance.openBoxes([HiveBoxes.auth, HiveBoxes.locale]);
+    await HiveDB.instance.openBoxes([
+      HiveBoxes.locale,
+      HiveBoxes.activeUser,
+      HiveBoxes.auth,
+      HiveBoxes.defaulT,
+    ]);
   }
 
   static Future _initAuthDependencies() async {

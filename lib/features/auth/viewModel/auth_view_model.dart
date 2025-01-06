@@ -1,10 +1,9 @@
-import 'dart:convert';
-
-import 'package:taski/core/utils/extensions.dart';
-import 'package:taski/features/auth/model/auth_result.dart';
 import 'package:taski/features/auth/respository/auth_repository.dart';
-import 'package:taski/features/auth/model/auth_data.dart';
+import 'package:taski/features/auth/model/auth_result.dart';
+import 'package:taski/features/auth/model/user.dart';
+import 'package:taski/core/utils/extensions.dart';
 import 'package:get/get.dart';
+import 'dart:convert';
 
 class AuthViewModel extends GetxController {
   AuthViewModel(this._repository);
@@ -16,6 +15,11 @@ class AuthViewModel extends GetxController {
   final RxBool _isLoading = false.obs;
   final RxBool _isLogin = true.obs;
 
+  final Rx<User?> _activeUser = null.obs;
+  User? get activeUser => _activeUser.value;
+
+  void setActiveUser(User? user) => _activeUser.value = user;
+
   bool get isPasswordVisible => _isPasswordVisible.value;
   bool get isInErrorState => _isInErrorState.value;
   bool get isLoading => _isLoading.value;
@@ -26,18 +30,23 @@ class AuthViewModel extends GetxController {
   void toggleAuthMode() => _isLogin.value = !_isLogin.value;
   void setLoading(bool value) => _isLoading.value = value;
 
+  Future<void> init() async {
+    final activeUser = await _repository.getActiveUser();
+    setActiveUser(activeUser);
+  }
+
   Future<AuthResult> login(String username, String password) async {
-    AuthData authData = AuthData(username: username, password: password);
+    User user = User(username: username, password: password);
 
     setLoading(true);
-    final result = await _repository.login(authData);
+    final result = await _repository.login(user);
     setLoading(false);
 
     return result;
   }
 
   Future<AuthResult> register(String username, String password) async {
-    AuthData authData = AuthData(
+    User user = User(
       username: username.trim().removeAccents(),
       password: base64Encode(
         utf8.encode(password),
@@ -45,7 +54,7 @@ class AuthViewModel extends GetxController {
     );
 
     setLoading(true);
-    final result = await _repository.register(authData);
+    final result = await _repository.register(user);
     setLoading(false);
 
     return result;
