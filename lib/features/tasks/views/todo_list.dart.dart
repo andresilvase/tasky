@@ -1,4 +1,5 @@
 import 'package:taski/features/tasks/viewModel/task_view_model.dart';
+import 'package:taski/features/tasks/widgets/base_screen.dart';
 import 'package:taski/features/tasks/widgets/task_list.dart';
 import 'package:taski/features/tasks/model/task.dart';
 import 'package:taski/core/constants/colors.dart';
@@ -13,7 +14,7 @@ class TodoList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return BaseScreen(
       children: [
         _welcomeHeader(),
         _list(),
@@ -22,18 +23,14 @@ class TodoList extends StatelessWidget {
   }
 
   Widget _welcomeHeader() {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      margin: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: Column(
-        spacing: 8,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(height: 32),
-          _welcomeMessage(),
-          _taskSummary(),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: 8,
+      children: [
+        SizedBox(height: 32),
+        _welcomeMessage(),
+        _taskSummary(),
+      ],
     );
   }
 

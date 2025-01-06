@@ -1,5 +1,6 @@
 import 'package:taski/features/tasks/widgets/text_field_no_border.dart';
 import 'package:taski/features/tasks/viewModel/task_view_model.dart';
+import 'package:taski/features/tasks/widgets/base_screen.dart';
 import 'package:taski/features/tasks/widgets/task_list.dart';
 import 'package:taski/features/tasks/model/task.dart';
 import 'package:taski/core/widgets/icon_svg.dart';
@@ -56,17 +57,11 @@ class _SearchTaskState extends State<SearchTask> {
       onTap: () {
         _searchFocusNode.unfocus();
       },
-      child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: Column(
-          spacing: 8,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 32),
-            _inputSearch(),
-            _list(),
-          ],
-        ),
+      child: BaseScreen(
+        children: [
+          _inputSearch(),
+          _list(),
+        ],
       ),
     );
   }
@@ -99,36 +94,39 @@ class _SearchTaskState extends State<SearchTask> {
   }
 
   Widget _inputSearch() {
-    return TextFormField(
-      controller: _searchController,
-      focusNode: _searchFocusNode,
-      onChanged: _onSearchChanged,
-      style: GoogleFonts.urbanist(
-        color: TaskiColors.statePurple,
-        fontWeight: FontWeight.normal,
-        fontSize: 16,
-      ),
-      decoration: InputDecoration(
-        suffixIconConstraints: BoxConstraints(maxHeight: 34, maxWidth: 34),
-        suffixIcon: _suffixIcon(),
-        prefixIcon: Icon(Icons.search, color: TaskiColors.blue),
-        labelStyle: GoogleFonts.urbanist(
+    return Padding(
+      padding: const EdgeInsets.only(top: 32.0),
+      child: TextFormField(
+        controller: _searchController,
+        focusNode: _searchFocusNode,
+        onChanged: _onSearchChanged,
+        style: GoogleFonts.urbanist(
+          color: TaskiColors.statePurple,
           fontWeight: FontWeight.normal,
-          color: TaskiColors.mutedAzure,
           fontSize: 16,
         ),
-        labelText: 'Search for a task',
-        focusedErrorBorder: noBorder(),
-        focusedBorder: _activeBorder(),
-        enabledBorder: _activeBorder(),
-        disabledBorder: noBorder(),
-        errorBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: TaskiColors.redShade,
-            width: 2,
+        decoration: InputDecoration(
+          suffixIconConstraints: BoxConstraints(maxHeight: 34, maxWidth: 34),
+          suffixIcon: _suffixIcon(),
+          prefixIcon: Icon(Icons.search, color: TaskiColors.blue),
+          labelStyle: GoogleFonts.urbanist(
+            fontWeight: FontWeight.normal,
+            color: TaskiColors.mutedAzure,
+            fontSize: 16,
           ),
+          labelText: 'Search for a task',
+          focusedErrorBorder: noBorder(),
+          focusedBorder: _activeBorder(),
+          enabledBorder: _activeBorder(),
+          disabledBorder: noBorder(),
+          errorBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: TaskiColors.redShade,
+              width: 2,
+            ),
+          ),
+          border: noBorder(),
         ),
-        border: noBorder(),
       ),
     );
   }

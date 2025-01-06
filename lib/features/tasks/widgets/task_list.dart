@@ -33,6 +33,7 @@ class TaskList extends StatelessWidget {
 
   Widget _taskList(List<Task> tasks) {
     return ListView.builder(
+      padding: EdgeInsets.zero,
       itemCount: tasks.length,
       itemBuilder: (context, index) {
         final task = tasks[index];

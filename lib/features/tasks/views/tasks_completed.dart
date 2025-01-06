@@ -1,4 +1,5 @@
 import 'package:taski/features/tasks/viewModel/task_view_model.dart';
+import 'package:taski/features/tasks/widgets/base_screen.dart';
 import 'package:taski/features/tasks/widgets/task_list.dart';
 import 'package:taski/features/tasks/model/task.dart';
 import 'package:taski/core/constants/colors.dart';
@@ -13,49 +14,47 @@ class TasksCompleted extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      margin: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: Column(
-        spacing: 8,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(height: 32),
-          _title(),
-          _list(),
-        ],
-      ),
+    return BaseScreen(
+      children: [
+        _title(),
+        _list(),
+      ],
     );
   }
 
   Widget _title() {
-    return Visibility(
-      visible: taskViewModel.completedTasks.isNotEmpty,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            'Completed Tasks',
-            style: GoogleFonts.urbanist(
-              color: TaskiColors.statePurple,
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-            ),
-          ),
-          TextButton(
-            onPressed: () async {
-              await taskViewModel.deleteCompletedTasks();
-            },
-            child: Text(
-              'Delete All',
-              style: GoogleFonts.urbanist(
-                color: TaskiColors.fireRed,
-                fontWeight: FontWeight.w600,
-                fontSize: 18,
+    return Obx(
+      () => Visibility(
+        visible: taskViewModel.completedTasks.isNotEmpty,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 32.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Completed Tasks',
+                style: GoogleFonts.urbanist(
+                  color: TaskiColors.statePurple,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
               ),
-            ),
-          )
-        ],
+              TextButton(
+                onPressed: () async {
+                  await taskViewModel.deleteCompletedTasks();
+                },
+                child: Text(
+                  'Delete All',
+                  style: GoogleFonts.urbanist(
+                    color: TaskiColors.fireRed,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 18,
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
