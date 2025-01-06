@@ -1,3 +1,4 @@
+import 'package:taski/core/constants/assets.dart';
 import 'package:taski/features/tasks/widgets/create_task_bottom_sheet.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -27,8 +28,8 @@ class NoTask extends StatelessWidget {
     return Column(
       spacing: 24,
       children: [
-        // TODO: add image to assets constants
-        Image.asset('assets/images/no-task.png'),
+        Image.asset(TaskiAssets.noTask),
+        // TODO: internalize feedback
         Text(
           feedback ?? 'You have no task listed.',
           style: GoogleFonts.urbanist(

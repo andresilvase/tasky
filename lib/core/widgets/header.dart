@@ -1,3 +1,4 @@
+import 'package:taski/core/constants/assets.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
@@ -70,8 +71,7 @@ class AppHeader extends StatelessWidget {
         ),
         ClipOval(
           child: Image.asset(
-            // TODO: Change to user image
-            'assets/images/Linkedin.png',
+            TaskiAssets.imageProfile,
             width: 40,
             height: 40,
             fit: BoxFit.cover,

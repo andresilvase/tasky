@@ -4,4 +4,7 @@ class TaskiAssets {
   static const String done = 'assets/svg/done.svg';
   static const String todo = 'assets/svg/todo.svg';
   static const String add = 'assets/svg/add.svg';
+
+  static const String imageProfile = 'assets/images/image-profile.png';
+  static const String noTask = 'assets/images/no-task.png';
 }

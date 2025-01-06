@@ -72,7 +72,6 @@ class TodoList extends StatelessWidget {
       }
 
       return Text(
-        // TODO: get task count from task model
         summaryText,
         style: GoogleFonts.urbanist(
           color: TaskiColors.stateBlue,
