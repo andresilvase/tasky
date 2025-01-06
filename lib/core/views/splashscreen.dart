@@ -1,6 +1,6 @@
 import 'package:path_provider/path_provider.dart';
 import 'package:taski/core/routes/routes.dart';
-import 'package:taski/core/bindings.dart';
+import 'package:taski/core/dependencies.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:get/get.dart';
@@ -12,7 +12,7 @@ class Splashscreen extends StatelessWidget {
     final dir = await getApplicationDocumentsDirectory();
     Hive.init(dir.path);
 
-    await TaskiDepependencies.init();
+    await TaskiDepependencies.initAsyncDependencies();
   }
 
   @override

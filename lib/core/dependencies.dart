@@ -8,17 +8,20 @@ import 'package:get/get.dart';
 final String _username = 'default';
 
 class TaskiDepependencies {
-  static Future<void> init() async {
+  static Future<void> initAsyncDependencies() async {
     await Get.putAsync(() async {
       final hiveInstance = HiveDB.init(name: _username);
       await hiveInstance.openBox(_username);
       return hiveInstance as Database;
     }).then((database) {
-      Get.lazyPut(() => HomeController());
       Get.lazyPut(() => TaskRepository(database, _username));
       Get.putAsync(() async => TaskViewModel(Get.find())).then((taskViewModel) {
         taskViewModel.getAllTasks();
       });
     });
+  }
+
+  static void initSyncDependencies() {
+    Get.lazyPut(() => HomeController());
   }
 }

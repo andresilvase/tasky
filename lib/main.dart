@@ -1,4 +1,6 @@
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:taski/core/dependencies.dart';
+import 'package:taski/features/home/home_controller.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:taski/core/routes/router.dart';
 import 'package:taski/core/routes/routes.dart';
@@ -7,6 +9,7 @@ import 'package:get/get.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  TaskiDepependencies.initSyncDependencies();
 
   runApp(const MyApp());
 }
@@ -19,7 +22,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      locale: const Locale('pt'),
+      locale: Locale(Get.find<HomeController>().locale),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: TaskiColors.white),
         scaffoldBackgroundColor: TaskiColors.white,

@@ -26,21 +26,27 @@ class Home extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: TaskiColors.white,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              AppHeader(),
-              SizedBox(
-                height: Get.height,
-                child: Obx(
-                  () => IndexedStack(
-                    index: controller.currentIndex,
-                    children: pages,
+      body: Obx(
+        () => Localizations.override(
+          locale: Locale(controller.locale),
+          context: context,
+          child: SafeArea(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  AppHeader(),
+                  SizedBox(
+                    height: Get.height,
+                    child: Obx(
+                      () => IndexedStack(
+                        index: controller.currentIndex,
+                        children: pages,
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),

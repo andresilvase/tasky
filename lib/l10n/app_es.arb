@@ -2,7 +2,7 @@
     "@@locale": "es",
     "appName": "Taski",
     "@appName": {},
-    "welcome": "Bienvenido, ",
+    "welcome": "Bienvenido,",
     "@welcome": {},
     "youveGot": "Tienes {n} tareas por hacer.",
     "@youveGot": {
