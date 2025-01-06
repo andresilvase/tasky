@@ -137,13 +137,15 @@ class _AppHeaderState extends State<AppHeader> {
     );
   }
 
-  final List<String> countries = ['US', 'BR', 'ES'];
-  final List<String> locales = ['en', 'pt', 'es'];
+  final List<String> countries = ['US', 'BR', 'ES', 'FR', 'IT'];
+  final List<String> locales = ['en', 'pt', 'es', 'fr', 'it'];
 
   final List<String> languages = [
     AppLocalizations.of(Get.context!)!.english,
     AppLocalizations.of(Get.context!)!.portuguese,
     AppLocalizations.of(Get.context!)!.spanish,
+    AppLocalizations.of(Get.context!)!.french,
+    AppLocalizations.of(Get.context!)!.italian,
   ];
 
   List<MenuItemButton> languageSettings() {

@@ -49,6 +49,10 @@
     "@spanish": {},
     "portuguese": "Português",
     "@portuguese": {},
+    "french": "French",
+    "@french": {},
+    "italian": "Italiano",
+    "@italian": {},
     "account": "Conta",
     "@account": {}
 }
