@@ -2,7 +2,7 @@
     "@@locale": "es",
     "appName": "Taski",
     "@appName": {},
-    "welcome": "Bienvenido",
+    "welcome": "Bienvenido, ",
     "@welcome": {},
     "youveGot": "Tienes {n} tareas por hacer.",
     "@youveGot": {
@@ -15,6 +15,8 @@
     },
     "noResultsFound": "No se encontraron resultados",
     "@noResultsFound": {},
+    "noCompletedTasks": "No hay tareas completadas",
+    "@noCompletedTasks": {},
     "createTasks": "Crea tareas para lograr más.",
     "@createTasks": {},
     "createTask": "Crear tarea",

@@ -147,7 +147,7 @@ class _CreateTaskState extends State<CreateTask> {
           fontWeight: FontWeight.normal,
           fontSize: 16,
         ),
-        labelText: 'Add a note',
+        labelText: AppLocalizations.of(context)!.addNote,
         focusedErrorBorder: noBorder(),
         disabledBorder: noBorder(),
         enabledBorder: noBorder(),

@@ -157,9 +157,9 @@ class _SearchTaskState extends State<SearchTask> {
       tasks.sort((a, b) => a.date.compareTo(b.date));
 
       return TaskList(
+        emptyTasksMessage: AppLocalizations.of(Get.context!)!.noResultsFound,
         changeTaskStatus: (task) => taskViewModel.changeTaskStatus(task),
         deleteTask: (task) => taskViewModel.deleteTask(task),
-        emptyTasksMessage: 'No results found',
         marginTop: Get.height * 0.1,
         tasks: tasks,
       );

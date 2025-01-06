@@ -69,9 +69,9 @@ class TasksCompleted extends StatelessWidget {
         tasks.removeWhere((task) => !task.isCompleted);
 
         return TaskList(
+          emptyTasksMessage: AppLocalizations.of(Get.context!)!.noCompletedTasks,
           changeTaskStatus: (task) => taskViewModel.changeTaskStatus(task),
           deleteTask: (task) => taskViewModel.deleteTask(task),
-          emptyTasksMessage: 'No completed tasks.',
           marginTop: Get.height * 0.25,
           tasks: tasks,
         );

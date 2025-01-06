@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
+      locale: const Locale('pt'),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: TaskiColors.white),
         scaffoldBackgroundColor: TaskiColors.white,
