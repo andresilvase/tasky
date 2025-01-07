@@ -25,7 +25,7 @@ mixin Pickers {
       builder: (context) {
         return AlertDialog(
           content: SizedBox(
-            height: 64,
+            height: 68,
             child: Column(
               children: [
                 selectResourceText(
@@ -73,7 +73,7 @@ mixin Pickers {
     return GestureDetector(
       onTap: onTap,
       child: SizedBox(
-        height: 16,
+        height: 18,
         width: Get.width,
         child: Text(
           text,

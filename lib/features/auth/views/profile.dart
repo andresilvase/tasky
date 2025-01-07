@@ -98,7 +98,19 @@ class _ProfileState extends State<Profile> with Pickers {
   }
 
   Widget _changePhoto() {
-    return TextButton(
+    return TextButton.icon(
+      icon: Icon(
+        Icons.camera_alt_outlined,
+        color: TaskiColors.statePurple,
+      ),
+      label: Text(
+        AppLocalizations.of(Get.context!)!.changePhoto,
+        style: GoogleFonts.urbanist(
+          color: TaskiColors.statePurple,
+          fontWeight: FontWeight.w500,
+          fontSize: 16,
+        ),
+      ),
       onPressed: () {
         pickAnAsset(
           onAssetPicked: (file) {
@@ -110,21 +122,6 @@ class _ProfileState extends State<Profile> with Pickers {
           context: context,
         );
       },
-      child: TextButton.icon(
-        icon: Icon(
-          Icons.camera_alt_outlined,
-          color: TaskiColors.statePurple,
-        ),
-        label: Text(
-          AppLocalizations.of(Get.context!)!.changePhoto,
-          style: GoogleFonts.urbanist(
-            color: TaskiColors.statePurple,
-            fontWeight: FontWeight.w500,
-            fontSize: 16,
-          ),
-        ),
-        onPressed: () {},
-      ),
     );
   }
 

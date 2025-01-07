@@ -6,6 +6,6 @@ Future<String> saveToAppDirectory(String path) async {
   final fileName = path.split('/').last;
   final newPath = '${appDirectory.path}/$fileName';
   final file = File(newPath);
-  await file.writeAsBytes(file.readAsBytesSync());
+  await file.writeAsBytes(await file.readAsBytes());
   return newPath;
 }
