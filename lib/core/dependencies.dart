@@ -1,8 +1,9 @@
-import 'package:taski/features/auth/respository/auth_repository.dart';
+import 'package:taski/features/language/repository/language_repository.dart';
+import 'package:taski/features/language/viewModel/language_view_model.dart';
 import 'package:taski/features/tasks/repository/task_repository.dart';
-import 'package:taski/features/home/repository/home_repository.dart';
+import 'package:taski/features/auth/respository/auth_repository.dart';
 import 'package:taski/features/tasks/viewModel/task_view_model.dart';
-import 'package:taski/features/home/viewModel/home_view_model.dart';
+import 'package:taski/features/home/controller.dart';
 import 'package:taski/features/auth/viewModel/auth_view_model.dart';
 import 'package:taski/core/db/hive/hive_boxes.dart';
 import 'package:taski/core/db/hive/hive.dart';
@@ -24,10 +25,14 @@ class TaskiDependencies {
     await Get.find<AuthViewModel>().init();
   }
 
+  static Future _initLanguageDependencies() async {
+    Get.lazyPut(() => LanguageRepository(HiveDB.instance));
+    Get.lazyPut(() => LanguageViewModel(Get.find()));
+    await Get.find<LanguageViewModel>().getLocale();
+  }
+
   static Future _initHomeDependencies() async {
-    Get.lazyPut(() => HomeRepository(HiveDB.instance));
-    Get.lazyPut(() => HomeViewModel(Get.find()));
-    await Get.find<HomeViewModel>().getLocale();
+    Get.lazyPut(() => HomeController());
   }
 
   static Future _initTaskDependencies() async {
@@ -39,6 +44,7 @@ class TaskiDependencies {
   static Future<void> init() async {
     await _initDatabase();
 
+    await _initLanguageDependencies();
     await _initAuthDependencies();
     await _initHomeDependencies();
     await _initTaskDependencies();

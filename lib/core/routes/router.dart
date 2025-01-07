@@ -1,3 +1,4 @@
+import 'package:taski/features/language/views/language.dart';
 import 'package:taski/features/auth/views/auth.dart';
 import 'package:taski/features/home/home.dart';
 import 'package:taski/core/routes/routes.dart';
@@ -13,6 +14,8 @@ class AppRouter {
         return _defaultRouter(const Home());
       case Routes.auth:
         return _defaultRouter(const AuthScreen());
+      case Routes.language:
+        return _defaultRouter(const Language());
     }
 
     return null;

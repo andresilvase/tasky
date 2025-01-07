@@ -49,7 +49,7 @@
     "@spanish": {},
     "portuguese": "Português",
     "@portuguese": {},
-    "french": "French",
+    "french": "Français",
     "@french": {},
     "italian": "Italiano",
     "@italian": {},
@@ -105,5 +105,7 @@
     "repeatPasswordRequired": "Repetir la contraseña es obligatorio",
     "@repeatPasswordRequired": {},
     "passwordsMustMatch": "Las contraseñas deben coincidir",
-    "@passwordsMustMatch": {}
+    "@passwordsMustMatch": {},
+    "back": "Volver",
+    "@back": {}
 }

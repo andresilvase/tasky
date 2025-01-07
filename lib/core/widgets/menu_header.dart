@@ -2,6 +2,7 @@ import 'package:taski/features/auth/viewModel/auth_view_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:taski/core/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -39,13 +40,17 @@ class MenuHeader extends StatelessWidget {
     Get.find<AuthViewModel>().logout();
   }
 
+  void languageSettings() {
+    Get.toNamed(Routes.language);
+  }
+
   void onMenuOptionPressed(int index) {
     switch (index) {
       case 0:
         // TODO: Implement account
         break;
       case 1:
-        // TODO: Implement language
+        languageSettings();
         break;
       case 2:
         logout();

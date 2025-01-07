@@ -5,6 +5,7 @@ import 'package:taski/features/auth/widgets/username_input.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taski/features/auth/model/auth_result.dart';
 import 'package:taski/features/auth/utils/validators.dart';
+import 'package:taski/core/widgets/rounded_button.dart';
 import 'package:taski/core/widgets/loading_blur.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -189,32 +190,19 @@ class _AuthScreenState extends State<AuthScreen> {
   }
 
   Widget _submitButton() {
-    return Container(
+    return RoundedButton(
+      text: authViewModel.isLogin ? AppLocalizations.of(context)!.login : AppLocalizations.of(context)!.createAccount,
+      textColor: TaskiColors.white,
+      backgroundColor: TaskiColors.blue,
       width: Get.width,
       height: 48,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        color: TaskiColors.blue,
-      ),
-      child: TextButton(
-        onPressed: () {
-          if (formKey.currentState!.validate()) {
-            submit();
-          } else {
-            authViewModel.setErrorState(true);
-          }
-        },
-        child: Obx(
-          () => Text(
-            authViewModel.isLogin ? AppLocalizations.of(context)!.login : AppLocalizations.of(context)!.createAccount,
-            style: TextStyle(
-              color: TaskiColors.white,
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ),
-      ),
+      onPressed: () {
+        if (formKey.currentState!.validate()) {
+          submit();
+        } else {
+          authViewModel.setErrorState(true);
+        }
+      },
     );
   }
 

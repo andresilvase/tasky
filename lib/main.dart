@@ -1,4 +1,4 @@
-import 'package:taski/features/home/viewModel/home_view_model.dart';
+import 'package:taski/features/language/viewModel/language_view_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:taski/core/constants/colors.dart';
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      locale: Get.find<HomeViewModel>().locale,
+      locale: Get.find<LanguageViewModel>().locale,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: TaskiColors.white),
         scaffoldBackgroundColor: TaskiColors.white,

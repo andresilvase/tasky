@@ -45,13 +45,13 @@
     "@language": {},
     "english": "English",
     "@english": {},
-    "spanish": "Spanish",
+    "spanish": "Español",
     "@spanish": {},
-    "portuguese": "Portuguese",
+    "portuguese": "Português",
     "@portuguese": {},
-    "french": "French",
+    "french": "Français",
     "@french": {},
-    "italian": "Italian",
+    "italian": "Italiano",
     "@italian": {},
     "account": "Account",
     "@account": {},
@@ -105,5 +105,7 @@
     "repeatPasswordRequired": "Repeat password is required",
     "@repeatPasswordRequired": {},
     "passwordsMustMatch": "Passwords must match",
-    "@passwordsMustMatch": {}
+    "@passwordsMustMatch": {},
+    "back": "Back",
+    "@back": {}
 }

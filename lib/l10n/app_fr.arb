@@ -45,12 +45,12 @@
     "@language": {},
     "english": "English",
     "@english": {},
-    "spanish": "Espanol",
+    "spanish": "Español",
     "@spanish": {},
     "portuguese": "Português",
     "french": "Français",
     "@french": {},
-    "italian": "Italien",
+    "italian": "Italiano",
     "@italian": {},
     "@portuguese": {},
     "account": "Compte",
@@ -105,5 +105,7 @@
     "repeatPasswordRequired": "Répéter le mot de passe est requis",
     "@repeatPasswordRequired": {},
     "passwordsMustMatch": "Les mots de passe doivent correspondre",
-    "@passwordsMustMatch": {}
+    "@passwordsMustMatch": {},
+    "back": "Retour",
+    "@back": {}
 }
