@@ -8,6 +8,7 @@ import 'package:taski/core/widgets/logo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:math';
+import 'dart:io';
 
 class AppHeader extends StatefulWidget {
   const AppHeader({super.key});
@@ -20,7 +21,10 @@ class _AppHeaderState extends State<AppHeader> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
+      padding: EdgeInsets.symmetric(
+        vertical: Platform.isAndroid ? 24.0 : 0,
+        horizontal: 16.0,
+      ),
       child: _profile(),
     );
   }

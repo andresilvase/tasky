@@ -9,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:math';
+import 'dart:io';
 
 class TodoList extends StatelessWidget {
   TodoList({super.key});
@@ -31,6 +32,10 @@ class TodoList extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: 8,
       children: [
+        Visibility(
+          visible: Platform.isIOS,
+          child: SizedBox(height: 24),
+        ),
         _welcomeMessage(),
         _taskSummary(),
       ],

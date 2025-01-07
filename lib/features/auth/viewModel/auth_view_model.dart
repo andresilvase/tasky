@@ -89,6 +89,7 @@ class AuthViewModel extends GetxController {
   }
 
   Future<void> logout() async {
+    _isLogin(true);
     await _repository.logout();
     setActiveUser(User.empty());
   }
