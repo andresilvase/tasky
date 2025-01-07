@@ -1,4 +1,3 @@
-import 'package:taski/core/constants/colors.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
@@ -16,7 +15,6 @@ class ScreenBackground extends StatelessWidget {
       width: Get.width,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        color: TaskiColors.paleWhite,
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,

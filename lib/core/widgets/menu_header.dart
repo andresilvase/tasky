@@ -2,6 +2,7 @@ import 'package:taski/features/auth/viewModel/auth_view_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taski/features/home/controller.dart';
 import 'package:taski/core/constants/colors.dart';
+import 'package:taski/core/theme/controller.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:taski/core/routes/routes.dart';
 import 'package:flutter/material.dart';
@@ -10,19 +11,22 @@ import 'package:get/get.dart';
 class MenuHeader extends StatelessWidget {
   MenuHeader({super.key, required this.attachedWidget});
 
+  final themeController = Get.find<ThemeController>();
   final homeController = Get.find<HomeController>();
 
-  final List<String> _menuOptionsTitle = [
-    AppLocalizations.of(Get.context!)!.account,
-    AppLocalizations.of(Get.context!)!.language,
-    AppLocalizations.of(Get.context!)!.logout,
-  ];
+  List<String> _menuOptionsTitle(bool darkMode) => [
+        AppLocalizations.of(Get.context!)!.account,
+        AppLocalizations.of(Get.context!)!.language,
+        darkMode ? AppLocalizations.of(Get.context!)!.lightMode : AppLocalizations.of(Get.context!)!.darkMode,
+        AppLocalizations.of(Get.context!)!.logout,
+      ];
 
-  final List<IconData> _menuOptionsIcons = [
-    Icons.person,
-    Icons.language,
-    Icons.logout,
-  ];
+  List<IconData> _menuOptionsIcons(bool darkMode) => [
+        Icons.person,
+        Icons.language,
+        darkMode ? Icons.light_mode : Icons.dark_mode,
+        Icons.logout,
+      ];
 
   final Widget attachedWidget;
 
@@ -65,6 +69,9 @@ class MenuHeader extends StatelessWidget {
         languageSettings();
         break;
       case 2:
+        themeController.toggleTheme();
+        break;
+      case 3:
         logout();
         break;
     }
@@ -72,25 +79,30 @@ class MenuHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MenuAnchor(
-      style: MenuStyle(
-        padding: WidgetStateProperty.all(EdgeInsets.zero),
-        elevation: WidgetStateProperty.all(4),
+    return Obx(
+      () => MenuAnchor(
+        style: MenuStyle(
+          padding: WidgetStateProperty.all(EdgeInsets.zero),
+          elevation: WidgetStateProperty.all(4),
+        ),
+        menuChildren: _menuChildren(),
+        alignmentOffset: const Offset(0, 8),
+        builder: menuBuilder,
+        child: attachedWidget,
       ),
-      menuChildren: _menuChildren(),
-      alignmentOffset: const Offset(0, 8),
-      builder: menuBuilder,
-      child: attachedWidget,
     );
   }
 
   List<Widget> _menuChildren() {
+    final menuOptionsTitle = _menuOptionsTitle(themeController.isDarkMode.value);
+    final menuOptionsIcons = _menuOptionsIcons(themeController.isDarkMode.value);
+
     return List.generate(
-      _menuOptionsTitle.length,
+      menuOptionsTitle.length,
       (index) => menuOption(
         onPressed: () => onMenuOptionPressed(index),
-        optionTitle: _menuOptionsTitle[index],
-        icon: _menuOptionsIcons[index],
+        optionTitle: menuOptionsTitle[index],
+        icon: menuOptionsIcons[index],
       ),
     );
   }

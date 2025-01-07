@@ -133,5 +133,9 @@
     "yes": "Yes",
     "@yes": {},
     "no": "No",
-    "@no": {}
+    "@no": {},
+    "darkMode": "Dark mode",
+    "@darkMode": {},
+    "lightMode": "Light mode",
+    "@lightMode": {}
 }

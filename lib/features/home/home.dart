@@ -4,7 +4,6 @@ import 'package:taski/features/tasks/views/tasks_completed.dart';
 import 'package:taski/features/tasks/views/todo_list.dart.dart';
 import 'package:taski/features/tasks/views/search_task.dart';
 import 'package:taski/features/home/controller.dart';
-import 'package:taski/core/constants/colors.dart';
 import 'package:taski/core/widgets/header.dart';
 import '../tasks/views/create_task.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +25,6 @@ class Home extends StatelessWidget {
     ];
 
     return Scaffold(
-      backgroundColor: TaskiColors.white,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(

@@ -1,3 +1,4 @@
+import 'package:taski/core/theme/controller.dart';
 import 'package:taski/features/language/repository/language_repository.dart';
 import 'package:taski/features/language/viewModel/language_view_model.dart';
 import 'package:taski/features/tasks/repository/task_repository.dart';
@@ -17,6 +18,12 @@ class TaskiDependencies {
       HiveBoxes.auth,
       HiveBoxes.defaulT,
     ]);
+  }
+
+  static Future _initThemeDependencies() async {
+    Get.lazyPut(() => ThemeController());
+    ThemeController themeController = Get.find();
+    themeController.initializeTheme();
   }
 
   static Future _initAuthDependencies() async {
@@ -44,6 +51,7 @@ class TaskiDependencies {
   static Future<void> init() async {
     await _initDatabase();
 
+    await _initThemeDependencies();
     await _initLanguageDependencies();
     await _initAuthDependencies();
     await _initHomeDependencies();
