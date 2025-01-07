@@ -1,5 +1,6 @@
 import 'package:taski/features/auth/viewModel/auth_view_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:taski/features/home/controller.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:taski/core/routes/routes.dart';
@@ -38,6 +39,7 @@ class MenuHeader extends StatelessWidget {
 
   void logout() {
     Get.find<AuthViewModel>().logout();
+    Get.find<HomeController>().backToHome();
   }
 
   void languageSettings() {

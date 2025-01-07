@@ -17,7 +17,7 @@ class _AuthOrHomeState extends State<AuthOrHome> {
   Widget build(BuildContext context) {
     return Obx(() {
       return Visibility(
-        visible: Get.find<AuthViewModel>().activeUser == User.empty(),
+        visible: Get.find<AuthViewModel>().activeUser.value == User.empty(),
         replacement: Home(),
         child: const AuthScreen(),
       );

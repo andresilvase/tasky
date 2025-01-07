@@ -15,10 +15,9 @@ class AuthViewModel extends GetxController {
   final RxBool _isLoading = false.obs;
   final RxBool _isLogin = true.obs;
 
-  final Rx<User?> _activeUser = User.empty().obs;
-  User? get activeUser => _activeUser.value;
+  final Rx<User> activeUser = User.empty().obs;
 
-  void setActiveUser(User? user) => _activeUser.value = user;
+  void setActiveUser(User user) => activeUser.value = user;
 
   bool get isPasswordVisible => _isPasswordVisible.value;
   bool get isInErrorState => _isInErrorState.value;
@@ -30,7 +29,7 @@ class AuthViewModel extends GetxController {
   void toggleAuthMode() => _isLogin.value = !_isLogin.value;
   void setLoading(bool value) => _isLoading.value = value;
 
-  Future<void> init() async {
+  Future<void> initSession() async {
     final activeUser = await _repository.getActiveUser();
 
     if (activeUser != null) {
@@ -58,6 +57,11 @@ class AuthViewModel extends GetxController {
 
     setLoading(true);
     final result = await _repository.login(user);
+
+    if (result.ok) {
+      await initSession();
+    }
+
     setLoading(false);
 
     return result;

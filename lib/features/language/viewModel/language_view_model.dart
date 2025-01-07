@@ -4,23 +4,23 @@ import 'package:get/get.dart';
 import 'dart:ui';
 
 class LanguageViewModel extends GetxController {
-  LanguageViewModel(this.repository);
+  LanguageViewModel(this._repository);
 
   final Rx<Locale> _locale = Locale('en', 'US').obs;
 
-  final LanguageRepository repository;
+  final LanguageRepository _repository;
 
   Locale get locale => _locale.value;
 
   Future<void> getLocale() async {
-    final locale = await repository.getLocale();
+    final locale = await _repository.getLocale();
     _locale.value = Locale(locale.languageCode);
   }
 
   void changeLocale(String countryCode) {
     _locale.value = Locale(countryCode);
     Get.updateLocale(_locale.value);
-    repository.saveLocale(
+    _repository.saveLocale(
       LocaleModel(languageCode: locale.languageCode),
     );
   }

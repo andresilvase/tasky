@@ -63,10 +63,10 @@ class _AuthScreenState extends State<AuthScreen> {
     }
 
     if (result.ok) {
-      Get.offAllNamed(Routes.home);
+      Get.offAllNamed(Routes.root);
     } else {
       Get.snackbar(
-        AppLocalizations.of(context)!.error,
+        AppLocalizations.of(Get.context!)!.error,
         result.message,
         backgroundColor: TaskiColors.fireRed,
         snackPosition: SnackPosition.TOP,

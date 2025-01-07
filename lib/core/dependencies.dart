@@ -3,8 +3,8 @@ import 'package:taski/features/language/viewModel/language_view_model.dart';
 import 'package:taski/features/tasks/repository/task_repository.dart';
 import 'package:taski/features/auth/respository/auth_repository.dart';
 import 'package:taski/features/tasks/viewModel/task_view_model.dart';
-import 'package:taski/features/home/controller.dart';
 import 'package:taski/features/auth/viewModel/auth_view_model.dart';
+import 'package:taski/features/home/controller.dart';
 import 'package:taski/core/db/hive/hive_boxes.dart';
 import 'package:taski/core/db/hive/hive.dart';
 import 'package:get/get.dart';
@@ -22,7 +22,7 @@ class TaskiDependencies {
   static Future _initAuthDependencies() async {
     Get.lazyPut(() => AuthRepository(HiveDB.instance));
     Get.lazyPut(() => AuthViewModel(Get.find()));
-    await Get.find<AuthViewModel>().init();
+    await Get.find<AuthViewModel>().initSession();
   }
 
   static Future _initLanguageDependencies() async {
@@ -36,7 +36,7 @@ class TaskiDependencies {
   }
 
   static Future _initTaskDependencies() async {
-    Get.lazyPut(() => TaskRepository(HiveDB.instance));
+    Get.lazyPut(() => TaskRepository(HiveDB.instance, Get.find<AuthViewModel>().activeUser.value.username));
     await Get.putAsync(() async => TaskViewModel(Get.find()));
     await Get.find<TaskViewModel>().getAllTasks();
   }

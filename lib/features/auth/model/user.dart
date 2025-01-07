@@ -14,7 +14,7 @@ class User {
     this.photoURL,
   });
 
-  factory User.empty() => User(username: '', password: '');
+  factory User.empty() => User(username: 'default', password: '');
 
   User copyWith({
     String? displayName,

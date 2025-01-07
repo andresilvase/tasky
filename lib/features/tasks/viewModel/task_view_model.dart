@@ -1,4 +1,5 @@
 import 'package:taski/features/tasks/repository/task_repository.dart';
+import 'package:taski/features/auth/viewModel/auth_view_model.dart';
 import 'package:taski/features/tasks/model/task.dart';
 import 'package:taski/core/utils/extensions.dart';
 import 'package:uuid/uuid.dart';
@@ -6,14 +7,26 @@ import 'package:get/get.dart';
 import 'dart:async';
 
 class TaskViewModel extends GetxController {
-  TaskViewModel(this.taskRepository);
+  TaskViewModel(this._taskRepository);
+
+  final AuthViewModel authViewModel = Get.find();
 
   final RxList<Task> _tasks = RxList<Task>();
   final RxString _queryString = ''.obs;
-  final TaskRepository taskRepository;
+  TaskRepository _taskRepository;
+
+  @override
+  void onInit() {
+    super.onInit();
+
+    ever(authViewModel.activeUser, (value) {
+      _taskRepository = TaskRepository(_taskRepository.db, authViewModel.activeUser.value.username);
+      getAllTasks();
+    });
+  }
 
   Future<void> getAllTasks() async {
-    _tasks(await taskRepository.getTasks());
+    _tasks(await _taskRepository.getTasks());
   }
 
   List<Task> get completedTasks => _tasks.where((task) => task.isCompleted).toList();
@@ -41,27 +54,27 @@ class TaskViewModel extends GetxController {
   Future addTask(Task task) async {
     final uuid = Uuid().v4();
     task = task.copyWith(id: uuid);
-    await taskRepository.addTask(task);
+    await _taskRepository.addTask(task);
     await getAllTasks();
   }
 
   Future deleteTask(Task task) async {
-    await taskRepository.deleteTask(task);
+    await _taskRepository.deleteTask(task);
     await getAllTasks();
   }
 
   Future deleteCompletedTasks() async {
-    await taskRepository.deleteCompletedTasks();
+    await _taskRepository.deleteCompletedTasks();
     await getAllTasks();
   }
 
   Future changeTaskStatus(Task task) async {
-    await taskRepository.updateTask(task.copyWith(isCompleted: !task.isCompleted));
+    await _taskRepository.updateTask(task.copyWith(isCompleted: !task.isCompleted));
     await getAllTasks();
   }
 
   Future deleteAllTasks() async {
-    await taskRepository.deleteAll();
+    await _taskRepository.deleteAll();
     await getAllTasks();
   }
 }
