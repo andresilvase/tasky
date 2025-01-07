@@ -5,9 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Logo extends StatelessWidget {
-  const Logo({super.key, required this.logoColor});
-
-  final Color logoColor;
+  const Logo({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +15,7 @@ class Logo extends StatelessWidget {
         Transform.scale(
           scale: 1.5,
           child: Checkbox(
-            fillColor: WidgetStateProperty.all(logoColor),
+            fillColor: WidgetStateProperty.all(TaskiColors.blue),
             visualDensity: VisualDensity(vertical: -4),
             checkColor: TaskiColors.white,
             onChanged: null,

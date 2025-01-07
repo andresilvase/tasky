@@ -83,22 +83,20 @@ class _AuthScreenState extends State<AuthScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final bool darkMode = Theme.of(context).brightness == Brightness.dark;
-
     return Scaffold(
-      backgroundColor: darkMode ? TaskiColors.statePurple : TaskiColors.blue,
+      backgroundColor: TaskiColors.blue,
       body: Stack(
         children: [
           Obx(
             () => AuthBackgroundCard(
               isToExpand: !authViewModel.isLogin || authViewModel.isInErrorState,
               children: [
-                Logo(logoColor: darkMode ? TaskiColors.statePurple : TaskiColors.blue),
+                Logo(),
                 SizedBox(height: 16),
                 _authForm(),
-                _submitButton(darkMode: darkMode),
+                _submitButton(),
                 SizedBox(height: 16),
-                _createAccount(darkMode: darkMode),
+                _createAccount(),
               ],
             ),
           ),
@@ -196,11 +194,11 @@ class _AuthScreenState extends State<AuthScreen> {
     );
   }
 
-  Widget _submitButton({bool darkMode = false}) {
+  Widget _submitButton() {
     return RoundedButton(
       text: authViewModel.isLogin ? AppLocalizations.of(context)!.login : AppLocalizations.of(context)!.createAccount,
       textColor: TaskiColors.white,
-      backgroundColor: darkMode ? TaskiColors.statePurple : TaskiColors.blue,
+      backgroundColor: TaskiColors.blue,
       width: Get.width,
       height: 48,
       onPressed: () {
@@ -213,7 +211,7 @@ class _AuthScreenState extends State<AuthScreen> {
     );
   }
 
-  Widget _createAccount({bool darkMode = false}) {
+  Widget _createAccount() {
     return TextButton(
       onPressed: authViewModel.toggleAuthMode,
       style: ButtonStyle(
@@ -223,7 +221,7 @@ class _AuthScreenState extends State<AuthScreen> {
         authViewModel.isLogin
             ? AppLocalizations.of(context)!.createAccount
             : AppLocalizations.of(context)!.alreadyHaveAnAccount,
-        style: textButtonStyle(darkMode ? TaskiColors.statePurple : TaskiColors.blue),
+        style: textButtonStyle(TaskiColors.blue),
       ),
     );
   }

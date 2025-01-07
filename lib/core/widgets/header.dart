@@ -34,7 +34,7 @@ class _AppHeaderState extends State<AppHeader> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Center(child: Logo(logoColor: darkMode ? TaskiColors.statePurple : TaskiColors.blue)),
+        Logo(),
         _nameAndPhoto(),
       ],
     );
