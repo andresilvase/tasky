@@ -61,6 +61,8 @@
     "@password": {},
     "login": "Se connecter",
     "@login": {},
+    "logout": "Se déconnecter",
+    "@logout": {},
     "createAccount": "Créer un compte",
     "@createAccount": {},
     "alreadyHaveAnAccount": "Vous avez déjà un compte? Se connecter.",
