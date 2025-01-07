@@ -107,5 +107,17 @@
     "passwordsMustMatch": "Le password devono corrispondere",
     "@passwordsMustMatch": {},
     "back": "Indietro",
-    "@back": {}
+    "@back": {},
+    "registrationSuccessful": "Registrazione riuscita",
+    "@registrationSuccessful": {},
+    "loginSuccessful": "Login riuscita",
+    "@loginSuccessful": {},
+    "registrationFailed": "Registrazione fallita",
+    "@registrationFailed": {},
+    "wrongPassword": "Password errata",
+    "@wrongPassword": {},
+    "userNotFound": "Utente non trovato",
+    "@userNotFound": {},
+    "error": "Errore",
+    "@error": {}
 }

@@ -1,9 +1,9 @@
-import 'package:get/get.dart';
-import 'package:taski/core/routes/routes.dart';
 import 'package:taski/features/auth/model/auth_result.dart';
 import 'package:taski/features/auth/model/user.dart';
 import 'package:taski/core/db/hive/hive_boxes.dart';
 import 'package:taski/core/db/abstract_db.dart';
+import 'package:taski/core/routes/routes.dart';
+import 'package:get/get.dart';
 import 'dart:convert';
 
 class AuthRepository {
@@ -25,15 +25,15 @@ class AuthRepository {
     final Map user = await _db.get(HiveBoxes.auth, auth.username);
 
     if (user.isNotEmpty) {
-      return AuthResult.registrationFailed;
+      return AuthResult.registrationFailed();
     }
 
     final affectedRows = await _db.insert(HiveBoxes.auth, auth.toMap());
 
     if (affectedRows > 0) {
-      return AuthResult.successfulRegistration;
+      return AuthResult.successfulRegistration();
     } else {
-      return AuthResult.registrationFailed;
+      return AuthResult.registrationFailed();
     }
   }
 
@@ -45,12 +45,12 @@ class AuthRepository {
 
       if (user['password'] == encryptedPassword) {
         await _db.update(HiveBoxes.activeUser, auth.toMap(), auth.username);
-        return AuthResult.successfulLogin;
+        return AuthResult.successfulLogin();
       } else {
-        return AuthResult.wrongPassword;
+        return AuthResult.wrongPassword();
       }
     } else {
-      return AuthResult.userNotFound;
+      return AuthResult.userNotFound();
     }
   }
 

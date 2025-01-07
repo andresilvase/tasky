@@ -107,5 +107,17 @@
     "passwordsMustMatch": "Passwords must match",
     "@passwordsMustMatch": {},
     "back": "Back",
-    "@back": {}
+    "@back": {},
+    "registrationSuccessful": "Registration successful",
+    "@registrationSuccessful": {},
+    "loginSuccessful": "Login successful",
+    "@loginSuccessful": {},
+    "registrationFailed": "Registration failed",
+    "@registrationFailed": {},
+    "wrongPassword": "Wrong password",
+    "@wrongPassword": {},
+    "userNotFound": "User not found",
+    "@userNotFound": {},
+    "error": "Error",
+    "@error": {}
 }

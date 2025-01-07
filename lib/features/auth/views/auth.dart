@@ -66,7 +66,7 @@ class _AuthScreenState extends State<AuthScreen> {
       Get.offAllNamed(Routes.home);
     } else {
       Get.snackbar(
-        'Error',
+        AppLocalizations.of(context)!.error,
         result.message,
         backgroundColor: TaskiColors.fireRed,
         snackPosition: SnackPosition.TOP,
@@ -83,16 +83,18 @@ class _AuthScreenState extends State<AuthScreen> {
       backgroundColor: TaskiColors.blue,
       body: Stack(
         children: [
-          AuthBackgroundCard(
-            isToExpand: !authViewModel.isLogin || authViewModel.isInErrorState,
-            children: [
-              Logo(),
-              SizedBox(height: 16),
-              _authForm(),
-              _submitButton(),
-              SizedBox(height: 16),
-              _createAccount(),
-            ],
+          Obx(
+            () => AuthBackgroundCard(
+              isToExpand: !authViewModel.isLogin || authViewModel.isInErrorState,
+              children: [
+                Logo(),
+                SizedBox(height: 16),
+                _authForm(),
+                _submitButton(),
+                SizedBox(height: 16),
+                _createAccount(),
+              ],
+            ),
           ),
           Visibility(visible: authViewModel.isLoading, child: LoadingBlur()),
         ],
@@ -101,19 +103,17 @@ class _AuthScreenState extends State<AuthScreen> {
   }
 
   Widget _authForm() {
-    return Obx(
-      () => Form(
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        key: formKey,
-        child: Column(
-          children: [
-            _usernameInput(),
-            SizedBox(height: 8),
-            _passwordInput(),
-            _repeatPasswordInput(),
-            SizedBox(height: 8),
-          ],
-        ),
+    return Form(
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      key: formKey,
+      child: Column(
+        children: [
+          _usernameInput(),
+          SizedBox(height: 8),
+          _passwordInput(),
+          _repeatPasswordInput(),
+          SizedBox(height: 8),
+        ],
       ),
     );
   }
