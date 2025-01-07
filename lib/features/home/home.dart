@@ -15,7 +15,8 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final HomeController controller = Get.find();
+    final HomeController homeController = Get.find();
+    homeController.setStatusBarColor();
 
     final pages = <Widget>[
       TodoList(),
@@ -35,7 +36,7 @@ class Home extends StatelessWidget {
                 height: Get.height,
                 child: Obx(
                   () => IndexedStack(
-                    index: controller.currentIndex,
+                    index: homeController.currentIndex,
                     children: pages,
                   ),
                 ),
@@ -49,12 +50,12 @@ class Home extends StatelessWidget {
           onIndexChanged: (index) async {
             if (index == 1) {
               await createTaskBottomSheet(context);
-              controller.backToHome();
+              homeController.backToHome();
             } else {
-              controller.changeIndex(index);
+              homeController.changeIndex(index);
             }
           },
-          currentIndex: controller.currentIndex,
+          currentIndex: homeController.currentIndex,
         ),
       ),
     );

@@ -31,7 +31,6 @@ class TodoList extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: 8,
       children: [
-        SizedBox(height: 24),
         _welcomeMessage(),
         _taskSummary(),
       ],

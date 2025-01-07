@@ -10,6 +10,8 @@ import 'package:get/get.dart';
 class MenuHeader extends StatelessWidget {
   MenuHeader({super.key, required this.attachedWidget});
 
+  final homeController = Get.find<HomeController>();
+
   final List<String> _menuOptionsTitle = [
     AppLocalizations.of(Get.context!)!.account,
     AppLocalizations.of(Get.context!)!.language,
@@ -38,16 +40,20 @@ class MenuHeader extends StatelessWidget {
   }
 
   void accountSettings() {
-    Get.toNamed(Routes.profile);
+    Get.toNamed(Routes.profile)?.whenComplete(() {
+      Future.delayed(Duration(milliseconds: 500)).then((_) => homeController.setStatusBarColor());
+    });
   }
 
   void languageSettings() {
-    Get.toNamed(Routes.language);
+    Get.toNamed(Routes.language)?.whenComplete(() {
+      Future.delayed(Duration(milliseconds: 500)).then((_) => homeController.setStatusBarColor());
+    });
   }
 
   void logout() {
     Get.find<AuthViewModel>().logout();
-    Get.find<HomeController>().backToHome();
+    homeController.backToHome();
   }
 
   void onMenuOptionPressed(int index) {

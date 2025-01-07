@@ -26,7 +26,6 @@ class InputText extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
-      autofocus: true,
       focusNode: focusNode,
       onChanged: onChanged,
       style: inputTextHelperTextStyle(TaskiColors.statePurple),

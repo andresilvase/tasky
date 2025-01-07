@@ -1,3 +1,5 @@
+import 'package:taski/core/constants/colors.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
@@ -11,5 +13,14 @@ class HomeController extends GetxController {
 
   void backToHome() {
     changeIndex(0);
+  }
+
+  void setStatusBarColor() {
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarIconBrightness: Brightness.light,
+        statusBarColor: TaskiColors.blue,
+      ),
+    );
   }
 }
