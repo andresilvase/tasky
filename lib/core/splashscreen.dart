@@ -1,42 +1,25 @@
 import 'package:taski/features/auth/viewModel/auth_view_model.dart';
-import 'package:taski/features/auth/model/user.dart';
-import 'package:taski/core/routes/routes.dart';
+import 'package:taski/features/auth/views/auth.dart';
+import 'package:taski/features/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class Splashscreen extends StatelessWidget {
+class Splashscreen extends StatefulWidget {
   const Splashscreen({super.key});
 
-  Future<User?> init() async {
-    final AuthViewModel authViewModel = Get.find<AuthViewModel>();
-    await authViewModel.init();
+  @override
+  State<Splashscreen> createState() => _SplashscreenState();
+}
 
-    return authViewModel.activeUser;
-  }
-
-  void navigate(User? user) {
-    print(user);
-    if (user != null) {
-      Get.offAllNamed(Routes.home);
-    } else {
-      Get.offAllNamed(Routes.auth);
-    }
-  }
-
+class _SplashscreenState extends State<Splashscreen> {
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: init().then(navigate),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          return const SizedBox();
-        }
-        return Scaffold(
-          body: Center(
-            child: CircularProgressIndicator(),
-          ),
-        );
-      },
-    );
+    return Obx(() {
+      return Visibility(
+        visible: Get.find<AuthViewModel>().activeUser == null,
+        replacement: Home(),
+        child: const AuthScreen(),
+      );
+    });
   }
 }

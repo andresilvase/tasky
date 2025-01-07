@@ -14,6 +14,8 @@ class User {
     this.photoURL,
   });
 
+  factory User.initial() => User(username: '', password: '');
+
   User copyWith({
     String? displayName,
     String? username,
@@ -39,10 +41,10 @@ class User {
 
   factory User.fromMap(Map<dynamic, dynamic> map) {
     return User(
-      displayName: map[UserProperty.displayName.name] as String,
-      username: map[UserProperty.username.name] as String,
-      password: map[UserProperty.password.name] as String,
-      photoURL: map[UserProperty.photoURL.name] as String,
+      displayName: map[UserProperty.displayName.name],
+      username: map[UserProperty.username.name],
+      password: map[UserProperty.password.name],
+      photoURL: map[UserProperty.photoURL.name],
     );
   }
 

@@ -21,6 +21,7 @@ class TaskiDependencies {
   static Future _initAuthDependencies() async {
     Get.lazyPut(() => AuthRepository(HiveDB.instance));
     Get.lazyPut(() => AuthViewModel(Get.find()));
+    await Get.find<AuthViewModel>().init();
   }
 
   static Future _initHomeDependencies() async {

@@ -15,7 +15,7 @@ class AuthViewModel extends GetxController {
   final RxBool _isLoading = false.obs;
   final RxBool _isLogin = true.obs;
 
-  final Rx<User?> _activeUser = null.obs;
+  final Rx<User?> _activeUser = User.initial().obs;
   User? get activeUser => _activeUser.value;
 
   void setActiveUser(User? user) => _activeUser.value = user;
@@ -32,6 +32,7 @@ class AuthViewModel extends GetxController {
 
   Future<void> init() async {
     final activeUser = await _repository.getActiveUser();
+
     setActiveUser(activeUser);
   }
 

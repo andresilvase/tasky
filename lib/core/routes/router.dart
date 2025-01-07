@@ -8,7 +8,7 @@ class AppRouter {
   static Route<dynamic>? onGenerateroute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.root:
-        return _defaultRouter(const Splashscreen());
+        return _defaultRouter(Splashscreen());
       case Routes.home:
         return _defaultRouter(const Home());
       case Routes.auth:

@@ -100,7 +100,7 @@ class TaskiItem extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            margin: const EdgeInsets.only(left: 50),
+            margin: const EdgeInsets.only(left: 48),
             width: Get.width * 0.76,
             child: Text(
               task.description ?? "",
