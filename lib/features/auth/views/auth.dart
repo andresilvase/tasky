@@ -97,6 +97,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 _submitButton(),
                 SizedBox(height: 16),
                 _createAccount(),
+                _continueAnonymous(),
               ],
             ),
           ),
@@ -221,6 +222,21 @@ class _AuthScreenState extends State<AuthScreen> {
         authViewModel.isLogin
             ? AppLocalizations.of(context)!.createAccount
             : AppLocalizations.of(context)!.alreadyHaveAnAccount,
+        style: textButtonStyle(TaskiColors.blue),
+      ),
+    );
+  }
+
+  Widget _continueAnonymous() {
+    return TextButton(
+      onPressed: () {
+        Get.toNamed(Routes.home);
+      },
+      style: ButtonStyle(
+        padding: WidgetStateProperty.all(EdgeInsets.zero),
+      ),
+      child: Text(
+        AppLocalizations.of(context)!.continueAnonymously,
         style: textButtonStyle(TaskiColors.blue),
       ),
     );

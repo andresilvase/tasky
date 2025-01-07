@@ -18,7 +18,7 @@ class AuthBackgroundCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         margin: const EdgeInsets.all(32),
-        height: (isToExpand ? Get.width * 1.2 : Get.width),
+        height: (isToExpand ? Get.width * 1.3 : Get.width * 1.1),
         width: Get.width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),

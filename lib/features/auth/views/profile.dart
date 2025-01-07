@@ -29,6 +29,18 @@ class _ProfileState extends State<Profile> with Pickers {
 
   void _setState() => setState(() {});
 
+  void changePhoto() {
+    pickAnAsset(
+      onAssetPicked: (file) {
+        if (file != null) {
+          authViewModel.updateUserPhoto(file.path);
+        }
+      },
+      pickerAssetType: PickerAssetType.photo,
+      context: context,
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -66,13 +78,16 @@ class _ProfileState extends State<Profile> with Pickers {
   }
 
   Widget _profileImage() {
-    return SizedBox(
-      height: 100,
-      width: 100,
-      child: ProfileImage(
-        imagePath: authViewModel.activeUser.value.photoPath != null
-            ? authViewModel.activeUser.value.photoPath!
-            : TaskiAssets.imageProfile,
+    return GestureDetector(
+      onTap: changePhoto,
+      child: SizedBox(
+        height: 100,
+        width: 100,
+        child: ProfileImage(
+          imagePath: authViewModel.activeUser.value.photoPath != null
+              ? authViewModel.activeUser.value.photoPath!
+              : TaskiAssets.imageProfile,
+        ),
       ),
     );
   }
@@ -116,17 +131,7 @@ class _ProfileState extends State<Profile> with Pickers {
           fontSize: 16,
         ),
       ),
-      onPressed: () {
-        pickAnAsset(
-          onAssetPicked: (file) {
-            if (file != null) {
-              authViewModel.updateUserPhoto(file.path);
-            }
-          },
-          pickerAssetType: PickerAssetType.photo,
-          context: context,
-        );
-      },
+      onPressed: changePhoto,
     );
   }
 

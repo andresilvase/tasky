@@ -137,5 +137,7 @@
     "darkMode": "Dark mode",
     "@darkMode": {},
     "lightMode": "Light mode",
-    "@lightMode": {}
+    "@lightMode": {},
+    "continueAnonymously": "Continue anonymously",
+    "@continueAnonymously": {}
 }

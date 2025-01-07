@@ -29,14 +29,14 @@ class AuthRepository {
     await _db.update(HiveBoxes.auth, user.toMap(), user.username);
   }
 
-  Future<AuthResult> register(User auth) async {
-    final Map user = await _db.get(HiveBoxes.auth, auth.username);
+  Future<AuthResult> register(User user) async {
+    final Map existentUser = await _db.get(HiveBoxes.auth, user.username);
 
-    if (user.isNotEmpty) {
+    if (existentUser.isNotEmpty) {
       return AuthResult.registrationFailed();
     }
 
-    final affectedRows = await _db.insert(HiveBoxes.auth, auth.toMap());
+    final affectedRows = await _db.insert(HiveBoxes.auth, user.toMap());
 
     if (affectedRows > 0) {
       return AuthResult.successfulRegistration();
@@ -45,14 +45,14 @@ class AuthRepository {
     }
   }
 
-  Future<AuthResult> login(User auth) async {
-    final Map user = await _db.get(HiveBoxes.auth, auth.username);
+  Future<AuthResult> login(User user) async {
+    final Map existentUser = await _db.get(HiveBoxes.auth, user.username);
 
-    if (user.isNotEmpty) {
-      final encryptedPassword = base64Encode(utf8.encode(auth.password));
+    if (existentUser.isNotEmpty) {
+      final encryptedPassword = base64Encode(utf8.encode(user.password));
 
-      if (user['password'] == encryptedPassword) {
-        await _db.update(HiveBoxes.activeUser, auth.toMap(), auth.username);
+      if (existentUser['password'] == encryptedPassword) {
+        await _db.update(HiveBoxes.activeUser, user.toMap(), user.username);
         return AuthResult.successfulLogin();
       } else {
         return AuthResult.wrongPassword();
@@ -64,6 +64,6 @@ class AuthRepository {
 
   Future<void> logout() async {
     await _db.clear(HiveBoxes.activeUser);
-    Get.offAllNamed(Routes.root);
+    Get.offAllNamed(Routes.home);
   }
 }

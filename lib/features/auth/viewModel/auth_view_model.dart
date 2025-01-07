@@ -62,19 +62,27 @@ class AuthViewModel extends GetxController {
     User user = User(
       username: username.trim().removeAccents(),
       password: base64Encode(
-        utf8.encode(password),
+        utf8.encode(password.trim().removeAccents()),
       ),
     );
 
     setLoading(true);
     final result = await _repository.register(user);
+
+    if (result.ok) {
+      await initSession();
+    }
+
     setLoading(false);
 
     return result;
   }
 
   Future<AuthResult> login(String username, String password) async {
-    User user = User(username: username, password: password);
+    User user = User(
+      username: username.trim().removeAccents(),
+      password: password.trim().removeAccents(),
+    );
 
     setLoading(true);
     final result = await _repository.login(user);
