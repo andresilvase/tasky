@@ -125,5 +125,13 @@
     "changePhoto": "Changer la photo",
     "@changePhoto": {},
     "save": "Enregistrer",
-    "@save": {}
+    "@save": {},
+    "takePhoto": "Prendre une photo",
+    "@takePhoto": {},
+    "chooseFromGallery": "Choisir dans la galerie",
+    "@chooseFromGallery": {},
+    "yes": "Oui",
+    "@yes": {},
+    "no": "Non",
+    "@no": {}
 }

@@ -2,6 +2,7 @@ import 'package:taski/features/auth/respository/auth_repository.dart';
 import 'package:taski/features/auth/model/auth_result.dart';
 import 'package:taski/features/auth/model/user.dart';
 import 'package:taski/core/utils/extensions.dart';
+import 'package:taski/core/utils/functions.dart';
 import 'package:get/get.dart';
 import 'dart:convert';
 
@@ -29,7 +30,12 @@ class AuthViewModel extends GetxController {
   void toggleAuthMode() => _isLogin.value = !_isLogin.value;
   void setLoading(bool value) => _isLoading.value = value;
 
-  void _updateUserPersistentData() {
+  Future<void> _updateUserPersistentData() async {
+    if (activeUser.value.photoPath != null && activeUser.value.photoPath!.isNotEmpty) {
+      final newPath = await saveToAppDirectory(activeUser.value.photoPath!);
+      activeUser.value = activeUser.value.copyWith(photoPath: newPath);
+    }
+
     _repository.updateActiveUser(activeUser.value);
     _repository.updateUserAccount(activeUser.value);
   }

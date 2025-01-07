@@ -5,6 +5,7 @@ import 'package:taski/core/widgets/screen_background.dart';
 import 'package:taski/core/widgets/rounded_button.dart';
 import 'package:taski/core/widgets/common_widgets.dart';
 import 'package:taski/core/widgets/profile_image.dart';
+import 'package:taski/core/utils/image_picker.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:taski/core/constants/assets.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,7 +19,7 @@ class Profile extends StatefulWidget {
   State<Profile> createState() => _ProfileState();
 }
 
-class _ProfileState extends State<Profile> {
+class _ProfileState extends State<Profile> with Pickers {
   final AuthViewModel authViewModel = Get.find();
 
   late TextEditingController displayNameController;
@@ -98,7 +99,17 @@ class _ProfileState extends State<Profile> {
 
   Widget _changePhoto() {
     return TextButton(
-      onPressed: () {},
+      onPressed: () {
+        pickAnAsset(
+          onAssetPicked: (file) {
+            if (file != null) {
+              authViewModel.updateUserPhoto(file.path);
+            }
+          },
+          pickerAssetType: PickerAssetType.photo,
+          context: context,
+        );
+      },
       child: TextButton.icon(
         icon: Icon(
           Icons.camera_alt_outlined,
