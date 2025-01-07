@@ -23,6 +23,8 @@ mixin Pickers {
     showDialog(
       context: context,
       builder: (context) {
+        final bool isDarkMode = Theme.of(Get.context!).brightness == Brightness.dark;
+
         return AlertDialog(
           content: SizedBox(
             height: 68,
@@ -47,7 +49,7 @@ mixin Pickers {
                 Divider(height: 32),
                 selectResourceText(
                   text: AppLocalizations.of(context)!.chooseFromGallery,
-                  color: TaskiColors.statePurple,
+                  color: isDarkMode ? TaskiColors.paleWhite : TaskiColors.statePurple,
                   onTap: () async {
                     Get.back();
                     final photosAccessPermission = await Permission.photos.request();

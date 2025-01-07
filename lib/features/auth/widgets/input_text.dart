@@ -7,6 +7,7 @@ class InputText extends StatelessWidget {
     super.key,
     this.isInErrorState = false,
     required this.controller,
+    required this.isDarkMode,
     required this.focusNode,
     required this.labelText,
     this.onInputClear,
@@ -21,6 +22,7 @@ class InputText extends StatelessWidget {
   final bool isInErrorState;
   final FocusNode focusNode;
   final String labelText;
+  final bool isDarkMode;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,7 @@ class InputText extends StatelessWidget {
       controller: controller,
       focusNode: focusNode,
       onChanged: onChanged,
-      style: inputTextHelperTextStyle(TaskiColors.statePurple),
+      style: inputTextHelperTextStyle(isDarkMode ? TaskiColors.paleWhite : TaskiColors.statePurple),
       cursorErrorColor: TaskiColors.redShade,
       cursorColor: TaskiColors.mutedAzure,
       validator: validator,

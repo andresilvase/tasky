@@ -137,6 +137,7 @@ class _AuthScreenState extends State<AuthScreen> {
         isInErrorState: usernameInputHasError,
         controller: usernameController,
         focusNode: usernameFocusNode,
+        isDarkMode: false,
         onChanged: (value) {
           usernameController.text = value.trim();
         },

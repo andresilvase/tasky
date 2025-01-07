@@ -63,13 +63,13 @@ class _ProfileState extends State<Profile> with Pickers {
               SizedBox(height: 16),
               _profileImage(),
               SizedBox(height: 16),
-              _displayName(),
-              _username(),
-              _changePhoto(),
+              _displayName(isDarkMode),
+              _username(isDarkMode),
+              _changePhoto(isDarkMode),
               SizedBox(height: 32),
-              _editDisplayName(),
+              _editDisplayName(isDarkMode),
               Spacer(),
-              _saveButton(darkMode: isDarkMode),
+              _saveButton(isDarkMode),
             ],
           ),
         ),
@@ -92,13 +92,13 @@ class _ProfileState extends State<Profile> with Pickers {
     );
   }
 
-  Widget _displayName() {
+  Widget _displayName(bool isDarkMode) {
     return Visibility(
       visible: displayNameController.text.isNotEmpty,
       child: Text(
         displayNameController.text,
         style: GoogleFonts.urbanist(
-          color: TaskiColors.statePurple,
+          color: isDarkMode ? TaskiColors.paleWhite : TaskiColors.statePurple,
           fontWeight: FontWeight.bold,
           fontSize: 20,
         ),
@@ -106,27 +106,27 @@ class _ProfileState extends State<Profile> with Pickers {
     );
   }
 
-  Widget _username() {
+  Widget _username(bool isDarkMode) {
     return Text(
       authViewModel.activeUser.value.username,
       style: GoogleFonts.urbanist(
-        color: TaskiColors.statePurple,
+        color: isDarkMode ? TaskiColors.paleWhite : TaskiColors.statePurple,
         fontWeight: FontWeight.w500,
         fontSize: 16,
       ),
     );
   }
 
-  Widget _changePhoto() {
+  Widget _changePhoto(bool isDarkMode) {
     return TextButton.icon(
       icon: Icon(
+        color: isDarkMode ? TaskiColors.paleWhite : TaskiColors.statePurple,
         Icons.camera_alt_outlined,
-        color: TaskiColors.statePurple,
       ),
       label: Text(
         AppLocalizations.of(Get.context!)!.changePhoto,
         style: GoogleFonts.urbanist(
-          color: TaskiColors.statePurple,
+          color: isDarkMode ? TaskiColors.paleWhite : TaskiColors.statePurple,
           fontWeight: FontWeight.w500,
           fontSize: 16,
         ),
@@ -135,16 +135,17 @@ class _ProfileState extends State<Profile> with Pickers {
     );
   }
 
-  Widget _editDisplayName() {
+  Widget _editDisplayName(bool isDarkMode) {
     return InputText(
       labelText: AppLocalizations.of(Get.context!)!.displayName,
       onInputClear: displayNameController.clear,
       controller: displayNameController,
       focusNode: displayNameFocusNode,
+      isDarkMode: isDarkMode,
     );
   }
 
-  Widget _saveButton({bool darkMode = false}) {
+  Widget _saveButton(bool darkMode) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: RoundedButton(
