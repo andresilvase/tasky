@@ -56,6 +56,7 @@ class _AuthScreenState extends State<AuthScreen> {
   void _submitActionResult(AuthResult result) {
     if (result.ok) {
       Get.offAllNamed(Routes.home);
+      authViewModel.toggleAuthMode(value: true);
     } else {
       Get.snackbar(
         AppLocalizations.of(Get.context!)!.error,
@@ -202,9 +203,10 @@ class _AuthScreenState extends State<AuthScreen> {
       backgroundColor: TaskiColors.blue,
       width: Get.width,
       height: 48,
-      onPressed: () {
+      onPressed: () async {
         if (formKey.currentState!.validate()) {
-          submit();
+          await submit();
+          authViewModel.setErrorState(false);
         } else {
           authViewModel.setErrorState(true);
         }

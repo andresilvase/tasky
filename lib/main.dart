@@ -32,11 +32,11 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       locale: Get.find<LanguageViewModel>().locale,
+      theme: ThemeData.light(useMaterial3: true),
       onGenerateRoute: AppRouter.onGenerateroute,
       debugShowCheckedModeBanner: false,
       darkTheme: ThemeData.dark(),
       initialRoute: Routes.home,
-      theme: ThemeData.light(),
     );
   }
 }

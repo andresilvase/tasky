@@ -1,3 +1,4 @@
+import 'package:taski/core/constants/colors.dart';
 import 'package:taski/features/tasks/widgets/create_task_bottom_sheet.dart';
 import 'package:taski/features/home/custom_bottom_navigator.dart';
 import 'package:taski/features/tasks/views/tasks_completed.dart';
@@ -17,6 +18,8 @@ class Home extends StatelessWidget {
     final HomeController homeController = Get.find();
     homeController.setStatusBarColor();
 
+    final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
     final pages = <Widget>[
       TodoList(),
       CreateTask(),
@@ -25,6 +28,7 @@ class Home extends StatelessWidget {
     ];
 
     return Scaffold(
+      backgroundColor: isDarkMode ? null : TaskiColors.white,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(

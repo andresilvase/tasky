@@ -24,10 +24,8 @@ class AuthBackgroundCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
           color: TaskiColors.blue10,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
+        child: ListView(
+          physics: NeverScrollableScrollPhysics(),
           children: children,
         ),
       ),

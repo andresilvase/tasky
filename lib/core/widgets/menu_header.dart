@@ -55,9 +55,10 @@ class MenuHeader extends StatelessWidget {
     });
   }
 
-  void logout() {
-    Get.find<AuthViewModel>().logout();
+  void logout() async {
     homeController.backToHome();
+    await Get.find<AuthViewModel>().logout();
+    await Get.offAllNamed(Routes.auth);
   }
 
   void onMenuOptionPressed(int index) {

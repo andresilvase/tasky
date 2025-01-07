@@ -26,8 +26,8 @@ class AuthViewModel extends GetxController {
   bool get isLogin => _isLogin.value;
 
   void setPasswordVisible() => _isPasswordVisible.value = !_isPasswordVisible.value;
+  void toggleAuthMode({bool? value}) => _isLogin.value = value ?? !_isLogin.value;
   void setErrorState(bool value) => _isInErrorState.value = value;
-  void toggleAuthMode() => _isLogin.value = !_isLogin.value;
   void setLoading(bool value) => _isLoading.value = value;
 
   Future<void> _updateUserPersistentData() async {
@@ -70,7 +70,7 @@ class AuthViewModel extends GetxController {
     final result = await _repository.register(user);
 
     if (result.ok) {
-      await initSession();
+      await login(username, password);
     }
 
     setLoading(false);
@@ -81,7 +81,9 @@ class AuthViewModel extends GetxController {
   Future<AuthResult> login(String username, String password) async {
     User user = User(
       username: username.trim().removeAccents(),
-      password: password.trim().removeAccents(),
+      password: base64Encode(
+        utf8.encode(password.trim().removeAccents()),
+      ),
     );
 
     setLoading(true);

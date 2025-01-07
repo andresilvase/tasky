@@ -4,7 +4,6 @@ import 'package:taski/core/db/hive/hive_boxes.dart';
 import 'package:taski/core/db/abstract_db.dart';
 import 'package:taski/core/routes/routes.dart';
 import 'package:get/get.dart';
-import 'dart:convert';
 
 class AuthRepository {
   final Database _db;
@@ -49,9 +48,7 @@ class AuthRepository {
     final Map existentUser = await _db.get(HiveBoxes.auth, user.username);
 
     if (existentUser.isNotEmpty) {
-      final encryptedPassword = base64Encode(utf8.encode(user.password));
-
-      if (existentUser['password'] == encryptedPassword) {
+      if (existentUser['password'] == user.password) {
         await _db.update(HiveBoxes.activeUser, user.toMap(), user.username);
         return AuthResult.successfulLogin();
       } else {
