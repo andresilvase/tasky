@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+import 'package:taski/core/routes/routes.dart';
 import 'package:taski/features/auth/model/auth_result.dart';
 import 'package:taski/features/auth/model/user.dart';
 import 'package:taski/core/db/hive/hive_boxes.dart';
@@ -19,6 +21,22 @@ class AuthRepository {
     return map.isNotEmpty ? User.fromMap(map) : null;
   }
 
+  Future<AuthResult> register(User auth) async {
+    final Map user = await _db.get(HiveBoxes.auth, auth.username);
+
+    if (user.isNotEmpty) {
+      return AuthResult.registrationFailed;
+    }
+
+    final affectedRows = await _db.insert(HiveBoxes.auth, auth.toMap());
+
+    if (affectedRows > 0) {
+      return AuthResult.successfulRegistration;
+    } else {
+      return AuthResult.registrationFailed;
+    }
+  }
+
   Future<AuthResult> login(User auth) async {
     final Map user = await _db.get(HiveBoxes.auth, auth.username);
 
@@ -36,19 +54,8 @@ class AuthRepository {
     }
   }
 
-  Future<AuthResult> register(User auth) async {
-    final Map user = await _db.get(HiveBoxes.auth, auth.username);
-
-    if (user.isNotEmpty) {
-      return AuthResult.registrationFailed;
-    }
-
-    final affectedRows = await _db.insert(HiveBoxes.auth, auth.toMap());
-
-    if (affectedRows > 0) {
-      return AuthResult.successfulRegistration;
-    } else {
-      return AuthResult.registrationFailed;
-    }
+  Future<void> logout() async {
+    await _db.clear(HiveBoxes.activeUser);
+    Get.offAllNamed(Routes.root);
   }
 }

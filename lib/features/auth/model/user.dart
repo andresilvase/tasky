@@ -14,7 +14,7 @@ class User {
     this.photoURL,
   });
 
-  factory User.initial() => User(username: '', password: '');
+  factory User.empty() => User(username: '', password: '');
 
   User copyWith({
     String? displayName,
@@ -36,6 +36,7 @@ class User {
       UserProperty.username.name: username,
       UserProperty.password.name: password,
       UserProperty.photoURL.name: photoURL,
+      'id': username,
     };
   }
 

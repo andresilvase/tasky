@@ -1,4 +1,4 @@
-import 'package:taski/core/widgets/header/menu_header.dart';
+import 'package:taski/core/widgets/menu_header.dart';
 import 'package:taski/core/constants/assets.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -26,33 +26,35 @@ class _AppHeaderState extends State<AppHeader> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Logo(),
-        MenuHeader(attachedWidget: _nameAndPhoto()),
+        _nameAndPhoto(),
       ],
     );
   }
 
-  Row _nameAndPhoto() {
-    return Row(
-      spacing: 16,
-      children: [
-        Text(
-          // TODO: Change to user name
-          'André',
-          style: GoogleFonts.urbanist(
-            color: TaskiColors.statePurple,
-            fontWeight: FontWeight.w600,
-            fontSize: 18,
+  Widget _nameAndPhoto() {
+    return MenuHeader(
+      attachedWidget: Row(
+        spacing: 16,
+        children: [
+          Text(
+            // TODO: Change to user name
+            'André',
+            style: GoogleFonts.urbanist(
+              color: TaskiColors.statePurple,
+              fontWeight: FontWeight.w600,
+              fontSize: 18,
+            ),
           ),
-        ),
-        ClipOval(
-          child: Image.asset(
-            TaskiAssets.imageProfile,
-            width: 40,
-            height: 40,
-            fit: BoxFit.cover,
+          ClipOval(
+            child: Image.asset(
+              TaskiAssets.imageProfile,
+              width: 40,
+              height: 40,
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

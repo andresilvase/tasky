@@ -1,3 +1,4 @@
+import 'package:taski/features/auth/viewModel/auth_view_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -34,6 +35,24 @@ class MenuHeader extends StatelessWidget {
     );
   }
 
+  void logout() {
+    Get.find<AuthViewModel>().logout();
+  }
+
+  void onMenuOptionPressed(int index) {
+    switch (index) {
+      case 0:
+        // TODO: Implement account
+        break;
+      case 1:
+        // TODO: Implement language
+        break;
+      case 2:
+        logout();
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MenuAnchor(
@@ -52,9 +71,9 @@ class MenuHeader extends StatelessWidget {
     return List.generate(
       _menuOptionsTitle.length,
       (index) => menuOption(
+        onPressed: () => onMenuOptionPressed(index),
         optionTitle: _menuOptionsTitle[index],
         icon: _menuOptionsIcons[index],
-        onPressed: () {},
       ),
     );
   }
