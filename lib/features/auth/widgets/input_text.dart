@@ -1,30 +1,31 @@
 import 'package:taski/core/widgets/text_field_common_widgets.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 
-class UsernameInput extends StatelessWidget {
-  const UsernameInput({
+class InputText extends StatelessWidget {
+  const InputText({
     super.key,
-    required this.usernameController,
     this.isInErrorState = false,
+    required this.controller,
     required this.focusNode,
+    required this.labelText,
     this.onInputClear,
     this.validator,
     this.onChanged,
   });
 
-  final TextEditingController usernameController;
   final String? Function(String?)? validator;
+  final TextEditingController controller;
   final Function(String)? onChanged;
   final Function()? onInputClear;
   final bool isInErrorState;
   final FocusNode focusNode;
+  final String labelText;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: usernameController,
+      controller: controller,
       autofocus: true,
       focusNode: focusNode,
       onChanged: onChanged,
@@ -39,7 +40,7 @@ class UsernameInput extends StatelessWidget {
         ),
         suffixIconConstraints: BoxConstraints(maxHeight: 42, maxWidth: 42),
         suffixIcon: suffixIcon(
-          visible: usernameController.text.isNotEmpty,
+          visible: controller.text.isNotEmpty,
           onPressed: onInputClear,
         ),
         prefixIcon: Icon(
@@ -51,9 +52,9 @@ class UsernameInput extends StatelessWidget {
         focusedErrorBorder: activeBorder(inputBorderColor(isInErrorState, focusNode.hasFocus)),
         enabledBorder: activeBorder(inputBorderColor(isInErrorState, focusNode.hasFocus)),
         focusedBorder: activeBorder(inputBorderColor(isInErrorState, focusNode.hasFocus)),
-        labelText: AppLocalizations.of(context)!.username,
         disabledBorder: noBorder(),
         errorBorder: errorBorder(),
+        labelText: labelText,
         border: noBorder(),
       ),
     );

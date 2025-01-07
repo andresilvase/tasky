@@ -119,5 +119,11 @@
     "userNotFound": "Utilisateur non trouvé",
     "@userNotFound": {},
     "error": "Erreur",
-    "@error": {}
+    "@error": {},
+    "displayName": "Nom d'affichage",
+    "@displayName": {},
+    "changePhoto": "Changer la photo",
+    "@changePhoto": {},
+    "save": "Enregistrer",
+    "@save": {}
 }

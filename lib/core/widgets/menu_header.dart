@@ -37,19 +37,23 @@ class MenuHeader extends StatelessWidget {
     );
   }
 
-  void logout() {
-    Get.find<AuthViewModel>().logout();
-    Get.find<HomeController>().backToHome();
+  void accountSettings() {
+    Get.toNamed(Routes.profile);
   }
 
   void languageSettings() {
     Get.toNamed(Routes.language);
   }
 
+  void logout() {
+    Get.find<AuthViewModel>().logout();
+    Get.find<HomeController>().backToHome();
+  }
+
   void onMenuOptionPressed(int index) {
     switch (index) {
       case 0:
-        // TODO: Implement account
+        accountSettings();
         break;
       case 1:
         languageSettings();

@@ -1,7 +1,7 @@
 import 'package:taski/features/auth/widgets/auth_background_card.dart';
 import 'package:taski/features/auth/viewModel/auth_view_model.dart';
 import 'package:taski/features/auth/widgets/password_input.dart';
-import 'package:taski/features/auth/widgets/username_input.dart';
+import 'package:taski/features/auth/widgets/input_text.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taski/features/auth/model/auth_result.dart';
 import 'package:taski/features/auth/utils/validators.dart';
@@ -53,17 +53,9 @@ class _AuthScreenState extends State<AuthScreen> {
     super.initState();
   }
 
-  Future<void> _submitAction() async {
-    AuthResult result;
-
-    if (authViewModel.isLogin) {
-      result = await authViewModel.login(usernameController.text, passwordController.text);
-    } else {
-      result = await authViewModel.register(usernameController.text, passwordController.text);
-    }
-
+  void _submitActionResult(AuthResult result) {
     if (result.ok) {
-      Get.offAllNamed(Routes.root);
+      Get.offAllNamed(Routes.home);
     } else {
       Get.snackbar(
         AppLocalizations.of(Get.context!)!.error,
@@ -73,6 +65,18 @@ class _AuthScreenState extends State<AuthScreen> {
         colorText: TaskiColors.white,
       );
     }
+  }
+
+  Future<void> _submitAction() async {
+    AuthResult result;
+
+    if (authViewModel.isLogin) {
+      result = await authViewModel.login(usernameController.text, passwordController.text);
+    } else {
+      result = await authViewModel.register(usernameController.text, passwordController.text);
+    }
+
+    _submitActionResult(result);
   }
 
   Future<void> submit() async => await _submitAction();
@@ -124,11 +128,12 @@ class _AuthScreenState extends State<AuthScreen> {
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0),
-      child: UsernameInput(
+      child: InputText(
+        labelText: AppLocalizations.of(context)!.username,
         validator: authValidators.usernameInputValidator,
         onInputClear: usernameController.clear,
-        usernameController: usernameController,
         isInErrorState: usernameInputHasError,
+        controller: usernameController,
         focusNode: usernameFocusNode,
         onChanged: (value) {
           usernameController.text = value.trim();
@@ -208,6 +213,7 @@ class _AuthScreenState extends State<AuthScreen> {
 
   Widget _createAccount() {
     return TextButton(
+      onPressed: authViewModel.toggleAuthMode,
       style: ButtonStyle(
         padding: WidgetStateProperty.all(EdgeInsets.zero),
       ),
@@ -217,16 +223,13 @@ class _AuthScreenState extends State<AuthScreen> {
             : AppLocalizations.of(context)!.alreadyHaveAnAccount,
         style: textButtonStyle(),
       ),
-      onPressed: () {
-        authViewModel.toggleAuthMode();
-      },
     );
   }
 
   TextStyle textButtonStyle() {
     return GoogleFonts.urbanist(
-      color: TaskiColors.blue,
       fontWeight: FontWeight.w600,
+      color: TaskiColors.blue,
       fontSize: 16,
     );
   }

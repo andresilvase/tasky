@@ -1,5 +1,7 @@
+import 'package:taski/core/widgets/screen_background.dart';
 import 'package:taski/features/language/viewModel/language_view_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:taski/core/widgets/common_widgets.dart';
 import 'package:taski/core/widgets/rounded_button.dart';
 import 'package:country_flags/country_flags.dart';
 import 'package:taski/core/constants/colors.dart';
@@ -24,80 +26,47 @@ class Language extends StatelessWidget {
     ];
 
     return Scaffold(
-      backgroundColor: TaskiColors.paleWhite,
-      appBar: AppBar(
-        backgroundColor: TaskiColors.paleWhite,
-        elevation: 0.2,
-        leading: _closeButton(),
-        title: Text(
-          AppLocalizations.of(Get.context!)!.language,
-          style: GoogleFonts.urbanist(
-            color: TaskiColors.statePurple,
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-          ),
-        ),
-      ),
+      appBar: commonAppBar(AppLocalizations.of(Get.context!)!.language),
       body: SafeArea(
-        child: Container(
-          padding: EdgeInsets.only(top: 32),
-          child: Column(
-            children: [
-              SizedBox(
-                height: Get.height * 0.5,
-                child: ListView.builder(
-                  itemCount: languages.length,
-                  itemBuilder: (context, index) {
-                    final LanguageViewModel languageViewModel = Get.find();
+        child: ScreenBackground(
+          screenContent: [
+            SizedBox(
+              height: Get.height * 0.5,
+              child: ListView.builder(
+                itemCount: languages.length,
+                itemBuilder: (context, index) {
+                  final LanguageViewModel languageViewModel = Get.find();
 
-                    return ListTile(
-                      title: Text(
-                        languages[index],
-                        style: GoogleFonts.urbanist(
-                          color: TaskiColors.statePurple,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18,
-                        ),
+                  return ListTile(
+                    title: Text(
+                      languages[index],
+                      style: GoogleFonts.urbanist(
+                        color: TaskiColors.statePurple,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18,
                       ),
-                      leading: CountryFlag.fromCountryCode(
-                        countries[index],
-                        height: 32,
-                        width: 32,
-                        shape: Circle(),
-                      ),
-                      onTap: () {
-                        languageViewModel.changeLocale(locales[index]);
-                      },
-                      trailing: _checkIcon(
-                        languageViewModel.locale.languageCode == locales[index],
-                      ),
-                    );
-                  },
-                ),
+                    ),
+                    leading: CountryFlag.fromCountryCode(
+                      countries[index],
+                      height: 32,
+                      width: 32,
+                      shape: Circle(),
+                    ),
+                    onTap: () {
+                      languageViewModel.changeLocale(locales[index]);
+                    },
+                    trailing: _checkIcon(
+                      languageViewModel.locale.languageCode == locales[index],
+                    ),
+                  );
+                },
               ),
-              Spacer(),
-              _backButton(),
-            ],
-          ),
+            ),
+            Spacer(),
+            _backButton(),
+          ],
         ),
       ),
-    );
-  }
-
-  Widget _closeButton() {
-    return IconButton(
-      icon: Container(
-        padding: EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          border: Border.all(
-            color: TaskiColors.mutedAzure,
-            width: 1,
-          ),
-        ),
-        child: Icon(Icons.close, color: TaskiColors.mutedAzure),
-      ),
-      onPressed: Get.back,
     );
   }
 
@@ -110,7 +79,7 @@ class Language extends StatelessWidget {
 
   Widget _backButton() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: RoundedButton(
         text: AppLocalizations.of(Get.context!)!.back,
         backgroundColor: TaskiColors.blue,
