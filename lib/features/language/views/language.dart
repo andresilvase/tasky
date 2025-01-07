@@ -45,7 +45,7 @@ class Language extends StatelessWidget {
                     title: Text(
                       languages[index],
                       style: GoogleFonts.urbanist(
-                        color: TaskiColors.statePurple,
+                        color: isDarkMode ? TaskiColors.paleWhite : TaskiColors.statePurple,
                         fontWeight: FontWeight.w600,
                         fontSize: 18,
                       ),

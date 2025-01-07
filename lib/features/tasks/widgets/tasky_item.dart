@@ -35,7 +35,7 @@ class TaskiItem extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: isDarkMode ? TaskiColors.stateBlue : TaskiColors.paleWhite,
+        color: isDarkMode ? TaskiColors.statePurple : TaskiColors.paleWhite,
       ),
       child: _contentBuilder(),
     );
@@ -68,7 +68,7 @@ class TaskiItem extends StatelessWidget {
           scale: 1.2,
           child: Checkbox(
             visualDensity: const VisualDensity(vertical: -4),
-            activeColor: task.isCompleted ? TaskiColors.mutedAzure : TaskiColors.blue,
+            activeColor: task.isCompleted ? TaskiColors.black : TaskiColors.blue,
             onChanged: (_) => changeTaskStatus?.call(),
             checkColor: TaskiColors.paleWhite,
             value: task.isCompleted,

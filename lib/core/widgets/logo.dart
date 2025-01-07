@@ -17,7 +17,7 @@ class Logo extends StatelessWidget {
         Transform.scale(
           scale: 1.5,
           child: Checkbox(
-            fillColor: WidgetStateProperty.all(TaskiColors.blue),
+            fillColor: WidgetStateProperty.all(isDarkMode ? TaskiColors.statePurple : TaskiColors.blue),
             visualDensity: VisualDensity(vertical: -4),
             checkColor: TaskiColors.white,
             onChanged: null,
@@ -34,7 +34,7 @@ class Logo extends StatelessWidget {
         Text(
           AppLocalizations.of(Get.context!)!.appName,
           style: GoogleFonts.urbanist(
-            color: isDarkMode ? TaskiColors.paleWhite : TaskiColors.statePurple,
+            color: isDarkMode ? TaskiColors.blue10 : TaskiColors.statePurple,
             fontWeight: FontWeight.w600,
             fontSize: 22,
           ),

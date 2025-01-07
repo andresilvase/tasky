@@ -8,6 +8,7 @@ class TaskiColors {
   static const int _stateBlue = 0xFF8D9CB8;
   static const int _redShade = 0xFFFFB4AB;
   static const int _fireRed = 0xFFFF5E5E;
+  static const int _black = 0xFFD1161111;
   static const int _blue10 = 0xFFE5F2FF;
   static const int _white = 0xFFFFFFFF;
   static const int _blue = 0xFF007FFF;
@@ -21,5 +22,6 @@ class TaskiColors {
   static const Color fireRed = Color(_fireRed);
   static const Color blue10 = Color(_blue10);
   static const Color white = Color(_white);
+  static const Color black = Color(_black);
   static const Color blue = Color(_blue);
 }

@@ -8,7 +8,6 @@ import 'package:taski/core/widgets/logo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:math';
-import 'dart:io';
 
 class AppHeader extends StatefulWidget {
   const AppHeader({super.key});
@@ -21,10 +20,7 @@ class _AppHeaderState extends State<AppHeader> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(
-        vertical: Platform.isAndroid ? 24.0 : 0,
-        horizontal: 16.0,
-      ),
+      padding: EdgeInsets.symmetric(horizontal: 16.0),
       child: Obx(() => _profile()),
     );
   }
@@ -52,7 +48,7 @@ class _AppHeaderState extends State<AppHeader> {
           Text(
             displayName.substring(0, min(displayName.length, 12)),
             style: GoogleFonts.urbanist(
-              color: isDarkMode ? TaskiColors.paleWhite : TaskiColors.statePurple,
+              color: isDarkMode ? TaskiColors.blue10 : TaskiColors.statePurple,
               fontWeight: FontWeight.w600,
               fontSize: 18,
             ),

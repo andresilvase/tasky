@@ -43,16 +43,16 @@ class MenuHeader extends StatelessWidget {
     );
   }
 
+  void _setStatusBarColor() {
+    Future.delayed(Duration(milliseconds: 500)).then((_) => themeController.setStatusBarColor());
+  }
+
   void accountSettings() {
-    Get.toNamed(Routes.profile)?.whenComplete(() {
-      Future.delayed(Duration(milliseconds: 500)).then((_) => homeController.setStatusBarColor());
-    });
+    Get.toNamed(Routes.profile)?.whenComplete(_setStatusBarColor);
   }
 
   void languageSettings() {
-    Get.toNamed(Routes.language)?.whenComplete(() {
-      Future.delayed(Duration(milliseconds: 500)).then((_) => homeController.setStatusBarColor());
-    });
+    Get.toNamed(Routes.language)?.whenComplete(_setStatusBarColor);
   }
 
   void logout() async {
@@ -80,11 +80,14 @@ class MenuHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isDarkMode = Theme.of(Get.context!).brightness == Brightness.dark;
+
     return Obx(
       () => MenuAnchor(
         style: MenuStyle(
           padding: WidgetStateProperty.all(EdgeInsets.zero),
           elevation: WidgetStateProperty.all(4),
+          backgroundColor: WidgetStateProperty.all(isDarkMode ? null : TaskiColors.white),
         ),
         menuChildren: _menuChildren(),
         alignmentOffset: const Offset(0, 8),
