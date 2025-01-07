@@ -1,7 +1,6 @@
 import 'package:taski/features/tasks/widgets/create_task_bottom_sheet.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taski/core/constants/assets.dart';
-import 'package:taski/core/theme/controller.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
@@ -48,8 +47,7 @@ class NoTask extends StatelessWidget {
 
   Widget createTaskButton(BuildContext context) {
     return Obx(() {
-      final ThemeController themeController = Get.find();
-      final bool isDarkMode = themeController.isDarkMode.value;
+      final bool isDarkMode = Theme.of(Get.context!).brightness == Brightness.dark;
 
       return Visibility(
         visible: showCreateTaskButton,

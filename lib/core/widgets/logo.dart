@@ -9,6 +9,8 @@ class Logo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isDarkMode = Theme.of(Get.context!).brightness == Brightness.dark;
+
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -32,7 +34,7 @@ class Logo extends StatelessWidget {
         Text(
           AppLocalizations.of(Get.context!)!.appName,
           style: GoogleFonts.urbanist(
-            color: TaskiColors.statePurple,
+            color: isDarkMode ? TaskiColors.paleWhite : TaskiColors.statePurple,
             fontWeight: FontWeight.w600,
             fontSize: 22,
           ),

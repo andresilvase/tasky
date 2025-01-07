@@ -4,7 +4,6 @@ import 'package:taski/core/widgets/screen_background.dart';
 import 'package:taski/core/widgets/common_widgets.dart';
 import 'package:taski/core/widgets/rounded_button.dart';
 import 'package:country_flags/country_flags.dart';
-import 'package:taski/core/theme/controller.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +14,7 @@ class Language extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeController themeController = Get.find();
+    final bool isDarkMode = Theme.of(Get.context!).brightness == Brightness.dark;
     final List<String> countries = ['US', 'BR', 'ES', 'FR', 'IT'];
     final List<String> locales = ['en', 'pt', 'es', 'fr', 'it'];
 
@@ -30,7 +29,7 @@ class Language extends StatelessWidget {
     return Scaffold(
       appBar: commonAppBar(
         title: AppLocalizations.of(Get.context!)!.language,
-        darkMode: themeController.isDarkMode.value,
+        darkMode: isDarkMode,
       ),
       body: SafeArea(
         child: ScreenBackground(
@@ -68,7 +67,7 @@ class Language extends StatelessWidget {
               ),
             ),
             Spacer(),
-            _backButton(darkMode: themeController.isDarkMode.value),
+            _backButton(darkMode: isDarkMode),
           ],
         ),
       ),

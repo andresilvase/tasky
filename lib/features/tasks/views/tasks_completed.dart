@@ -15,15 +15,17 @@ class TasksCompleted extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
     return BaseScreen(
       children: [
-        _title(),
+        _title(isDarkMode),
         _list(),
       ],
     );
   }
 
-  Widget _title() {
+  Widget _title(bool isDarkMode) {
     return Obx(
       () => Visibility(
         visible: taskViewModel.completedTasks.isNotEmpty,
@@ -35,7 +37,7 @@ class TasksCompleted extends StatelessWidget {
               Text(
                 AppLocalizations.of(Get.context!)!.completedTasks,
                 style: GoogleFonts.urbanist(
-                  color: TaskiColors.statePurple,
+                  color: isDarkMode ? TaskiColors.paleWhite : TaskiColors.statePurple,
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
                 ),
@@ -47,7 +49,7 @@ class TasksCompleted extends StatelessWidget {
                 child: Text(
                   AppLocalizations.of(Get.context!)!.deleteAll,
                   style: GoogleFonts.urbanist(
-                    color: TaskiColors.fireRed,
+                    color: isDarkMode ? TaskiColors.redShade : TaskiColors.fireRed,
                     fontWeight: FontWeight.w600,
                     fontSize: 18,
                   ),

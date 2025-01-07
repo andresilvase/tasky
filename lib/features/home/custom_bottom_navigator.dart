@@ -4,6 +4,7 @@ import 'package:taski/core/constants/colors.dart';
 import 'package:taski/core/widgets/icon_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CustomBottomNavigator extends StatelessWidget {
   const CustomBottomNavigator({
@@ -18,7 +19,13 @@ class CustomBottomNavigator extends StatelessWidget {
   final int currentIndex;
 
   Color? iconColor(bool active) {
-    return active ? TaskiColors.blue : TaskiColors.mutedAzure;
+    final bool isDarkMode = Theme.of(Get.context!).brightness == Brightness.dark;
+
+    return active
+        ? TaskiColors.blue
+        : isDarkMode
+            ? TaskiColors.blue10
+            : TaskiColors.mutedAzure;
   }
 
   @override

@@ -43,6 +43,7 @@ class TodoList extends StatelessWidget {
   }
 
   Widget _welcomeMessage() {
+    final bool isDarkMode = Theme.of(Get.context!).brightness == Brightness.dark;
     final String displayName = authViewModel.activeUser.value.displayName;
 
     return Row(
@@ -51,7 +52,7 @@ class TodoList extends StatelessWidget {
         Text(
           AppLocalizations.of(Get.context!)!.welcome,
           style: GoogleFonts.urbanist(
-            color: TaskiColors.statePurple,
+            color: isDarkMode ? TaskiColors.paleWhite : TaskiColors.statePurple,
             fontWeight: FontWeight.bold,
             fontSize: 20,
           ),
@@ -70,6 +71,7 @@ class TodoList extends StatelessWidget {
 
   Widget _taskSummary() {
     return Obx(() {
+      final bool isDarkMode = Theme.of(Get.context!).brightness == Brightness.dark;
       final int taskCount = taskViewModel.todoTasks.length;
       String summaryText = '';
 
@@ -82,7 +84,7 @@ class TodoList extends StatelessWidget {
       return Text(
         summaryText,
         style: GoogleFonts.urbanist(
-          color: TaskiColors.stateBlue,
+          color: isDarkMode ? TaskiColors.blue10 : TaskiColors.stateBlue,
           fontWeight: FontWeight.normal,
           fontSize: 16,
         ),

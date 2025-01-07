@@ -2,7 +2,6 @@ import 'package:taski/features/auth/viewModel/auth_view_model.dart';
 import 'package:taski/core/widgets/profile_image.dart';
 import 'package:taski/core/widgets/menu_header.dart';
 import 'package:taski/core/constants/assets.dart';
-import 'package:taski/core/theme/controller.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:taski/core/widgets/logo.dart';
@@ -26,11 +25,11 @@ class _AppHeaderState extends State<AppHeader> {
         vertical: Platform.isAndroid ? 24.0 : 0,
         horizontal: 16.0,
       ),
-      child: Obx(() => _profile(darkMode: Get.find<ThemeController>().isDarkMode.value)),
+      child: Obx(() => _profile()),
     );
   }
 
-  Widget _profile({bool darkMode = false}) {
+  Widget _profile() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -42,6 +41,8 @@ class _AppHeaderState extends State<AppHeader> {
 
   Widget _nameAndPhoto() {
     final AuthViewModel authViewModel = Get.find();
+
+    final bool isDarkMode = Theme.of(Get.context!).brightness == Brightness.dark;
     final String displayName = authViewModel.activeUser.value.displayName;
 
     return MenuHeader(
@@ -51,7 +52,7 @@ class _AppHeaderState extends State<AppHeader> {
           Text(
             displayName.substring(0, min(displayName.length, 12)),
             style: GoogleFonts.urbanist(
-              color: TaskiColors.statePurple,
+              color: isDarkMode ? TaskiColors.paleWhite : TaskiColors.statePurple,
               fontWeight: FontWeight.w600,
               fontSize: 18,
             ),

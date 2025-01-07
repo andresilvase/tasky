@@ -4,7 +4,7 @@
     "@appName": {},
     "welcome": "Bienvenue,",
     "@welcome": {},
-    "youveGot": "Vous avez {n} tâches à faire.",
+    "youveGot": "Vous avez {n, plural, =1{1 tâche à faire} other{des tâches à faire}}.",
     "@youveGot": {
         "placeholders": {
             "n": {
