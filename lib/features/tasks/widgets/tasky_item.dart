@@ -29,11 +29,13 @@ class TaskiItem extends StatelessWidget {
   }
 
   Widget _background() {
+    final bool isDarkMode = Theme.of(Get.context!).brightness == Brightness.dark;
+
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: TaskiColors.paleWhite,
+        color: isDarkMode ? TaskiColors.stateBlue : TaskiColors.paleWhite,
       ),
       child: _contentBuilder(),
     );
@@ -51,6 +53,15 @@ class TaskiItem extends StatelessWidget {
   }
 
   Widget _title() {
+    final bool isDarkMode = Theme.of(Get.context!).brightness == Brightness.dark;
+    late final Color textColor;
+
+    if (task.isCompleted) {
+      textColor = isDarkMode ? TaskiColors.mutedAzure : TaskiColors.mutedAzure;
+    } else {
+      textColor = isDarkMode ? TaskiColors.paleWhite : TaskiColors.statePurple;
+    }
+
     return Row(
       children: [
         Transform.scale(
@@ -61,8 +72,8 @@ class TaskiItem extends StatelessWidget {
             onChanged: (_) => changeTaskStatus?.call(),
             checkColor: TaskiColors.paleWhite,
             value: task.isCompleted,
-            side: const BorderSide(
-              color: TaskiColors.mutedAzure,
+            side: BorderSide(
+              color: isDarkMode ? TaskiColors.paleWhite50 : TaskiColors.mutedAzure,
               width: 2,
             ),
             shape: RoundedRectangleBorder(
@@ -73,8 +84,8 @@ class TaskiItem extends StatelessWidget {
         Text(
           task.title,
           style: GoogleFonts.urbanist(
-            color: task.isCompleted ? TaskiColors.stateBlue : TaskiColors.statePurple,
             fontWeight: FontWeight.w600,
+            color: textColor,
             fontSize: 16,
           ),
         ),
@@ -83,7 +94,7 @@ class TaskiItem extends StatelessWidget {
           visible: task.isCompleted,
           child: GestureDetector(
             onTap: deleteTask,
-            child: Icon(Icons.delete, color: TaskiColors.fireRed),
+            child: Icon(Icons.delete, color: isDarkMode ? TaskiColors.redShade : TaskiColors.fireRed),
           ),
         ),
         Visibility(
@@ -95,6 +106,15 @@ class TaskiItem extends StatelessWidget {
   }
 
   Widget _description() {
+    final bool isDarkMode = Theme.of(Get.context!).brightness == Brightness.dark;
+    late final Color textColor;
+
+    if (task.isCompleted) {
+      textColor = isDarkMode ? TaskiColors.mutedAzure : TaskiColors.mutedAzure;
+    } else {
+      textColor = isDarkMode ? TaskiColors.paleWhite : TaskiColors.statePurple;
+    }
+
     return Visibility(
       visible: task.description != null && task.description!.isNotEmpty,
       child: Column(
@@ -105,7 +125,7 @@ class TaskiItem extends StatelessWidget {
             child: Text(
               task.description ?? "",
               style: GoogleFonts.urbanist(
-                color: TaskiColors.stateBlue,
+                color: textColor,
                 fontWeight: FontWeight.normal,
                 fontSize: 14,
               ),

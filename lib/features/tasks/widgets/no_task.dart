@@ -46,26 +46,24 @@ class NoTask extends StatelessWidget {
   void onNewTask(BuildContext context) => createTaskBottomSheet(context);
 
   Widget createTaskButton(BuildContext context) {
-    return Obx(() {
-      final bool isDarkMode = Theme.of(Get.context!).brightness == Brightness.dark;
+    final bool isDarkMode = Theme.of(Get.context!).brightness == Brightness.dark;
 
-      return Visibility(
-        visible: showCreateTaskButton,
-        child: ElevatedButton.icon(
-          label: Text(
-            AppLocalizations.of(Get.context!)!.createTask,
-            style: GoogleFonts.urbanist(
-              fontWeight: FontWeight.w600,
-              color: isDarkMode ? TaskiColors.blue10 : TaskiColors.blue,
-              fontSize: 18,
-            ),
+    return Visibility(
+      visible: showCreateTaskButton,
+      child: ElevatedButton.icon(
+        label: Text(
+          AppLocalizations.of(Get.context!)!.createTask,
+          style: GoogleFonts.urbanist(
+            fontWeight: FontWeight.w600,
+            color: isDarkMode ? TaskiColors.blue10 : TaskiColors.blue,
+            fontSize: 18,
           ),
-          icon: Icon(Icons.add, color: isDarkMode ? TaskiColors.blue10 : TaskiColors.blue),
-          onPressed: () => onNewTask(context),
-          style: buttonStyle(isDarkMode),
         ),
-      );
-    });
+        icon: Icon(Icons.add, color: isDarkMode ? TaskiColors.blue10 : TaskiColors.blue),
+        onPressed: () => onNewTask(context),
+        style: buttonStyle(isDarkMode),
+      ),
+    );
   }
 
   ButtonStyle buttonStyle(bool isDarkMode) {

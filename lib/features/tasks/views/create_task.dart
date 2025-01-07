@@ -53,6 +53,8 @@ class _CreateTaskState extends State<CreateTask> {
 
   @override
   Widget build(BuildContext context) {
+    final bool isDarkMode = Theme.of(Get.context!).brightness == Brightness.dark;
+
     return Container(
       margin: EdgeInsets.only(
         right: 40,
@@ -61,16 +63,16 @@ class _CreateTaskState extends State<CreateTask> {
       ),
       child: Column(
         children: [
-          _title(),
+          _title(isDarkMode),
           SizedBox(height: _descriptionFocus.hasFocus ? 32 : 0),
-          _description(),
+          _description(isDarkMode),
           _createButton(),
         ],
       ),
     );
   }
 
-  Widget _title() {
+  Widget _title(bool isDarkMode) {
     return Padding(
       padding: const EdgeInsets.only(top: 16.0),
       child: Form(
@@ -78,7 +80,7 @@ class _CreateTaskState extends State<CreateTask> {
         child: TextFormField(
           controller: _titleController,
           style: GoogleFonts.urbanist(
-            color: TaskiColors.statePurple,
+            color: isDarkMode ? TaskiColors.paleWhite : TaskiColors.statePurple,
             fontWeight: FontWeight.normal,
             fontSize: 18,
           ),
@@ -129,12 +131,12 @@ class _CreateTaskState extends State<CreateTask> {
     );
   }
 
-  Widget _description() {
+  Widget _description(bool isDarkMode) {
     return TextField(
       controller: _descriptionController,
       focusNode: _descriptionFocus,
       style: GoogleFonts.urbanist(
-        color: TaskiColors.statePurple,
+        color: isDarkMode ? TaskiColors.paleWhite : TaskiColors.statePurple,
         fontWeight: FontWeight.normal,
         fontSize: 18,
       ),
