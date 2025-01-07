@@ -1,4 +1,5 @@
 import 'package:taski/features/tasks/viewModel/task_view_model.dart';
+import 'package:taski/features/auth/viewModel/auth_view_model.dart';
 import 'package:taski/features/tasks/widgets/base_screen.dart';
 import 'package:taski/features/tasks/widgets/task_list.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -7,11 +8,13 @@ import 'package:taski/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'dart:math';
 
 class TodoList extends StatelessWidget {
   TodoList({super.key});
 
   final TaskViewModel taskViewModel = Get.find();
+  final AuthViewModel authViewModel = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +39,8 @@ class TodoList extends StatelessWidget {
   }
 
   Widget _welcomeMessage() {
+    final String displayName = authViewModel.activeUser.value.displayName;
+
     return Row(
       spacing: 8,
       children: [
@@ -48,8 +53,7 @@ class TodoList extends StatelessWidget {
           ),
         ),
         Text(
-          // TODO: get username from user model
-          'André',
+          displayName.substring(0, min(displayName.length, 12)),
           style: GoogleFonts.urbanist(
             color: TaskiColors.blue,
             fontWeight: FontWeight.bold,

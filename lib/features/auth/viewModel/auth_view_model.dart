@@ -29,6 +29,21 @@ class AuthViewModel extends GetxController {
   void toggleAuthMode() => _isLogin.value = !_isLogin.value;
   void setLoading(bool value) => _isLoading.value = value;
 
+  void _updateUserPersistentData() {
+    _repository.updateActiveUser(activeUser.value);
+    _repository.updateUserAccount(activeUser.value);
+  }
+
+  void updateUserDisplayName(String displayName) {
+    setActiveUser(activeUser.value.copyWith(displayName: displayName));
+    _updateUserPersistentData();
+  }
+
+  void updateUserPhoto(String photoPath) {
+    setActiveUser(activeUser.value.copyWith(photoPath: photoPath));
+    _updateUserPersistentData();
+  }
+
   Future<void> initSession() async {
     final activeUser = await _repository.getActiveUser();
 

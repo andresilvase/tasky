@@ -21,6 +21,14 @@ class AuthRepository {
     return map.isNotEmpty ? User.fromMap(map) : null;
   }
 
+  Future updateActiveUser(User user) async {
+    await _db.insert(HiveBoxes.activeUser, user.toMap());
+  }
+
+  Future updateUserAccount(User user) async {
+    await _db.update(HiveBoxes.auth, user.toMap(), user.username);
+  }
+
   Future<AuthResult> register(User auth) async {
     final Map user = await _db.get(HiveBoxes.auth, auth.username);
 

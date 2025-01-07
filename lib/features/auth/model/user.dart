@@ -1,17 +1,17 @@
 import 'dart:convert';
 
-enum UserProperty { username, password, photoURL, displayName }
+enum UserProperty { username, password, photoPath, displayName }
 
 class User {
   final String displayName;
   final String username;
   final String password;
-  final String? photoURL;
+  final String? photoPath;
   User({
     this.displayName = '',
     required this.username,
     required this.password,
-    this.photoURL,
+    this.photoPath,
   });
 
   factory User.empty() => User(username: 'default', password: '');
@@ -20,13 +20,13 @@ class User {
     String? displayName,
     String? username,
     String? password,
-    String? photoURL,
+    String? photoPath,
   }) {
     return User(
       displayName: displayName ?? this.displayName,
       username: username ?? this.username,
       password: password ?? this.password,
-      photoURL: photoURL ?? this.photoURL,
+      photoPath: photoPath ?? this.photoPath,
     );
   }
 
@@ -35,7 +35,7 @@ class User {
       UserProperty.displayName.name: displayName,
       UserProperty.username.name: username,
       UserProperty.password.name: password,
-      UserProperty.photoURL.name: photoURL,
+      UserProperty.photoPath.name: photoPath,
       'id': username,
     };
   }
@@ -45,7 +45,7 @@ class User {
       displayName: map[UserProperty.displayName.name],
       username: map[UserProperty.username.name],
       password: map[UserProperty.password.name],
-      photoURL: map[UserProperty.photoURL.name],
+      photoPath: map[UserProperty.photoPath.name],
     );
   }
 
@@ -55,7 +55,7 @@ class User {
 
   @override
   String toString() {
-    return 'User(displayName: $displayName, username: $username, password: $password, photoURL: $photoURL)';
+    return 'User(displayName: $displayName, username: $username, password: $password, photoPath: $photoPath)';
   }
 
   @override
@@ -65,11 +65,11 @@ class User {
     return other.displayName == displayName &&
         other.username == username &&
         other.password == password &&
-        other.photoURL == photoURL;
+        other.photoPath == photoPath;
   }
 
   @override
   int get hashCode {
-    return displayName.hashCode ^ username.hashCode ^ password.hashCode ^ photoURL.hashCode;
+    return displayName.hashCode ^ username.hashCode ^ password.hashCode ^ photoPath.hashCode;
   }
 }

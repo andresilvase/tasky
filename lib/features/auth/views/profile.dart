@@ -4,7 +4,9 @@ import 'package:taski/features/auth/widgets/input_text.dart';
 import 'package:taski/core/widgets/screen_background.dart';
 import 'package:taski/core/widgets/rounded_button.dart';
 import 'package:taski/core/widgets/common_widgets.dart';
+import 'package:taski/core/widgets/profile_image.dart';
 import 'package:taski/core/constants/colors.dart';
+import 'package:taski/core/constants/assets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -58,16 +60,13 @@ class _ProfileState extends State<Profile> {
   }
 
   Widget _profileImage() {
-    return Container(
+    return SizedBox(
       height: 100,
       width: 100,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(100),
-        color: TaskiColors.blue,
-        image: DecorationImage(
-          image: NetworkImage(authViewModel.activeUser.value.photoURL ?? ''),
-          fit: BoxFit.cover,
-        ),
+      child: ProfileImage(
+        imagePath: authViewModel.activeUser.value.photoPath != null
+            ? authViewModel.activeUser.value.photoPath!
+            : TaskiAssets.imageProfile,
       ),
     );
   }
@@ -135,7 +134,7 @@ class _ProfileState extends State<Profile> {
         backgroundColor: TaskiColors.blue,
         textColor: TaskiColors.white,
         onPressed: () {
-          // authViewModel.updateDisplayName(displayNameController.text);
+          authViewModel.updateUserDisplayName(displayNameController.text);
           Get.back();
         },
         width: Get.width,
