@@ -2,6 +2,7 @@ import 'package:taski/features/auth/viewModel/auth_view_model.dart';
 import 'package:taski/core/widgets/profile_image.dart';
 import 'package:taski/core/widgets/menu_header.dart';
 import 'package:taski/core/constants/assets.dart';
+import 'package:taski/core/theme/controller.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:taski/core/widgets/logo.dart';
@@ -25,15 +26,15 @@ class _AppHeaderState extends State<AppHeader> {
         vertical: Platform.isAndroid ? 24.0 : 0,
         horizontal: 16.0,
       ),
-      child: _profile(),
+      child: Obx(() => _profile(darkMode: Get.find<ThemeController>().isDarkMode.value)),
     );
   }
 
-  Widget _profile() {
+  Widget _profile({bool darkMode = false}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Logo(),
+        Center(child: Logo(logoColor: darkMode ? TaskiColors.statePurple : TaskiColors.blue)),
         _nameAndPhoto(),
       ],
     );

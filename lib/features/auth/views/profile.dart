@@ -8,6 +8,7 @@ import 'package:taski/core/widgets/profile_image.dart';
 import 'package:taski/core/utils/image_picker.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:taski/core/constants/assets.dart';
+import 'package:taski/core/theme/controller.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,6 +21,7 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> with Pickers {
+  final ThemeController themeController = Get.find();
   final AuthViewModel authViewModel = Get.find();
 
   late TextEditingController displayNameController;
@@ -38,7 +40,10 @@ class _ProfileState extends State<Profile> with Pickers {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: commonAppBar(AppLocalizations.of(Get.context!)!.account),
+      appBar: commonAppBar(
+        title: AppLocalizations.of(Get.context!)!.account,
+        darkMode: themeController.isDarkMode.value,
+      ),
       body: SafeArea(
         child: Obx(
           () => ScreenBackground(
@@ -52,7 +57,7 @@ class _ProfileState extends State<Profile> with Pickers {
               SizedBox(height: 32),
               _editDisplayName(),
               Spacer(),
-              _saveButton(),
+              _saveButton(darkMode: themeController.isDarkMode.value),
             ],
           ),
         ),
@@ -134,12 +139,12 @@ class _ProfileState extends State<Profile> with Pickers {
     );
   }
 
-  Widget _saveButton() {
+  Widget _saveButton({bool darkMode = false}) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: RoundedButton(
         text: AppLocalizations.of(Get.context!)!.save,
-        backgroundColor: TaskiColors.blue,
+        backgroundColor: darkMode ? TaskiColors.statePurple : TaskiColors.blue,
         textColor: TaskiColors.white,
         onPressed: () {
           authViewModel.updateUserDisplayName(displayNameController.text);

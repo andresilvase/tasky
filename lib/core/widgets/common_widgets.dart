@@ -3,14 +3,16 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-AppBar commonAppBar(String title) {
+AppBar commonAppBar({required String title, bool darkMode = false}) {
+  final titleColor = darkMode ? TaskiColors.stateBlue : TaskiColors.paleWhite;
+
   return AppBar(
-    backgroundColor: TaskiColors.blue,
-    leading: _closeButton(),
+    backgroundColor: darkMode ? TaskiColors.statePurple : TaskiColors.blue,
+    leading: _closeButton(titleColor),
     title: Text(
       title,
       style: GoogleFonts.urbanist(
-        color: TaskiColors.paleWhite,
+        color: titleColor,
         fontWeight: FontWeight.bold,
         fontSize: 20,
       ),
@@ -18,18 +20,18 @@ AppBar commonAppBar(String title) {
   );
 }
 
-Widget _closeButton() {
+Widget _closeButton(Color color) {
   return IconButton(
     icon: Container(
       padding: EdgeInsets.all(8),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         border: Border.all(
-          color: TaskiColors.paleWhite,
+          color: color,
           width: 1,
         ),
       ),
-      child: Icon(Icons.close, color: TaskiColors.paleWhite),
+      child: Icon(Icons.close, color: color),
     ),
     onPressed: Get.back,
   );

@@ -83,20 +83,22 @@ class _AuthScreenState extends State<AuthScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final bool darkMode = Theme.of(context).brightness == Brightness.dark;
+
     return Scaffold(
-      backgroundColor: TaskiColors.blue,
+      backgroundColor: darkMode ? TaskiColors.statePurple : TaskiColors.blue,
       body: Stack(
         children: [
           Obx(
             () => AuthBackgroundCard(
               isToExpand: !authViewModel.isLogin || authViewModel.isInErrorState,
               children: [
-                Logo(),
+                Logo(logoColor: darkMode ? TaskiColors.statePurple : TaskiColors.blue),
                 SizedBox(height: 16),
                 _authForm(),
-                _submitButton(),
+                _submitButton(darkMode: darkMode),
                 SizedBox(height: 16),
-                _createAccount(),
+                _createAccount(darkMode: darkMode),
               ],
             ),
           ),
@@ -194,11 +196,11 @@ class _AuthScreenState extends State<AuthScreen> {
     );
   }
 
-  Widget _submitButton() {
+  Widget _submitButton({bool darkMode = false}) {
     return RoundedButton(
       text: authViewModel.isLogin ? AppLocalizations.of(context)!.login : AppLocalizations.of(context)!.createAccount,
       textColor: TaskiColors.white,
-      backgroundColor: TaskiColors.blue,
+      backgroundColor: darkMode ? TaskiColors.statePurple : TaskiColors.blue,
       width: Get.width,
       height: 48,
       onPressed: () {
@@ -211,7 +213,7 @@ class _AuthScreenState extends State<AuthScreen> {
     );
   }
 
-  Widget _createAccount() {
+  Widget _createAccount({bool darkMode = false}) {
     return TextButton(
       onPressed: authViewModel.toggleAuthMode,
       style: ButtonStyle(
@@ -221,15 +223,15 @@ class _AuthScreenState extends State<AuthScreen> {
         authViewModel.isLogin
             ? AppLocalizations.of(context)!.createAccount
             : AppLocalizations.of(context)!.alreadyHaveAnAccount,
-        style: textButtonStyle(),
+        style: textButtonStyle(darkMode ? TaskiColors.statePurple : TaskiColors.blue),
       ),
     );
   }
 
-  TextStyle textButtonStyle() {
+  TextStyle textButtonStyle(Color color) {
     return GoogleFonts.urbanist(
       fontWeight: FontWeight.w600,
-      color: TaskiColors.blue,
+      color: color,
       fontSize: 16,
     );
   }

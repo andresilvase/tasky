@@ -1,6 +1,7 @@
 import 'package:taski/features/tasks/widgets/create_task_bottom_sheet.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taski/core/constants/assets.dart';
+import 'package:taski/core/theme/controller.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
@@ -45,28 +46,33 @@ class NoTask extends StatelessWidget {
 
   void onNewTask(BuildContext context) => createTaskBottomSheet(context);
 
-  Visibility createTaskButton(BuildContext context) {
-    return Visibility(
-      visible: showCreateTaskButton,
-      child: ElevatedButton.icon(
-        label: Text(
-          AppLocalizations.of(Get.context!)!.createTask,
-          style: GoogleFonts.urbanist(
-            fontWeight: FontWeight.w600,
-            color: TaskiColors.blue,
-            fontSize: 18,
+  Widget createTaskButton(BuildContext context) {
+    return Obx(() {
+      final ThemeController themeController = Get.find();
+      final bool isDarkMode = themeController.isDarkMode.value;
+
+      return Visibility(
+        visible: showCreateTaskButton,
+        child: ElevatedButton.icon(
+          label: Text(
+            AppLocalizations.of(Get.context!)!.createTask,
+            style: GoogleFonts.urbanist(
+              fontWeight: FontWeight.w600,
+              color: isDarkMode ? TaskiColors.blue10 : TaskiColors.blue,
+              fontSize: 18,
+            ),
           ),
+          icon: Icon(Icons.add, color: isDarkMode ? TaskiColors.blue10 : TaskiColors.blue),
+          onPressed: () => onNewTask(context),
+          style: buttonStyle(isDarkMode),
         ),
-        icon: Icon(Icons.add, color: TaskiColors.blue),
-        onPressed: () => onNewTask(context),
-        style: buttonStyle(),
-      ),
-    );
+      );
+    });
   }
 
-  ButtonStyle buttonStyle() {
+  ButtonStyle buttonStyle(bool isDarkMode) {
     return ElevatedButton.styleFrom(
-      backgroundColor: TaskiColors.blue10,
+      backgroundColor: isDarkMode ? TaskiColors.statePurple : TaskiColors.blue10,
       padding: const EdgeInsets.all(12),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),

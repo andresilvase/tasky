@@ -4,6 +4,7 @@ import 'package:taski/core/widgets/screen_background.dart';
 import 'package:taski/core/widgets/common_widgets.dart';
 import 'package:taski/core/widgets/rounded_button.dart';
 import 'package:country_flags/country_flags.dart';
+import 'package:taski/core/theme/controller.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
@@ -14,8 +15,9 @@ class Language extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> locales = ['en', 'pt', 'es', 'fr', 'it'];
+    final ThemeController themeController = Get.find();
     final List<String> countries = ['US', 'BR', 'ES', 'FR', 'IT'];
+    final List<String> locales = ['en', 'pt', 'es', 'fr', 'it'];
 
     final List<String> languages = [
       AppLocalizations.of(Get.context!)!.english,
@@ -26,7 +28,10 @@ class Language extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: commonAppBar(AppLocalizations.of(Get.context!)!.language),
+      appBar: commonAppBar(
+        title: AppLocalizations.of(Get.context!)!.language,
+        darkMode: themeController.isDarkMode.value,
+      ),
       body: SafeArea(
         child: ScreenBackground(
           screenContent: [
@@ -63,7 +68,7 @@ class Language extends StatelessWidget {
               ),
             ),
             Spacer(),
-            _backButton(),
+            _backButton(darkMode: themeController.isDarkMode.value),
           ],
         ),
       ),
@@ -77,12 +82,12 @@ class Language extends StatelessWidget {
     );
   }
 
-  Widget _backButton() {
+  Widget _backButton({bool darkMode = false}) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: RoundedButton(
+        backgroundColor: darkMode ? TaskiColors.statePurple : TaskiColors.blue,
         text: AppLocalizations.of(Get.context!)!.back,
-        backgroundColor: TaskiColors.blue,
         textColor: TaskiColors.white,
         onPressed: Get.back,
         width: Get.width,
