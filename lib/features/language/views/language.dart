@@ -12,8 +12,8 @@ import 'package:get/get.dart';
 class Language extends StatelessWidget {
   Language({super.key});
 
-  final List<String> countries = ['US', 'BR', 'ES', 'FR', 'IT'];
-  final List<String> locales = ['en', 'pt', 'es', 'fr', 'it'];
+  final List<String> countries = ['US', 'BR', 'ES', 'FR', 'IT', 'IN', 'CN'];
+  final List<String> locales = ['en', 'pt', 'es', 'fr', 'it', 'hi', 'zh'];
 
   final List<String> languages = [
     AppLocalizations.of(Get.context!)!.english,
@@ -21,6 +21,8 @@ class Language extends StatelessWidget {
     AppLocalizations.of(Get.context!)!.spanish,
     AppLocalizations.of(Get.context!)!.french,
     AppLocalizations.of(Get.context!)!.italian,
+    AppLocalizations.of(Get.context!)!.indian,
+    AppLocalizations.of(Get.context!)!.chinese,
   ];
 
   @override
