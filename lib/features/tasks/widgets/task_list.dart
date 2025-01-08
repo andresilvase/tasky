@@ -42,14 +42,11 @@ class TaskList extends StatelessWidget {
         return Column(
           children: [
             TaskiItem(
-              task: task,
               changeTaskStatus: () => changeTaskStatus?.call(task),
               deleteTask: () => deleteTask?.call(task),
+              task: task,
             ),
-            Visibility(
-              visible: index == tasks.length - 1,
-              child: SizedBox(height: Get.width * 0.5),
-            ),
+            _listBottomPadding(index, tasks),
           ],
         );
       },
@@ -61,6 +58,13 @@ class TaskList extends StatelessWidget {
       alignment: Alignment.center,
       margin: EdgeInsets.only(top: marginTop),
       child: NoTask(feedback: emptyTasksMessage, showCreateTaskButton: showCreateTaskButton),
+    );
+  }
+
+  Visibility _listBottomPadding(int index, List<Task> tasks) {
+    return Visibility(
+      visible: index == tasks.length - 1,
+      child: SizedBox(height: Get.width * 0.5),
     );
   }
 }

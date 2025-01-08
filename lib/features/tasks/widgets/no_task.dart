@@ -12,6 +12,8 @@ class NoTask extends StatelessWidget {
   final bool showCreateTaskButton;
   final String? feedback;
 
+  void onNewTask(BuildContext context) => createTaskBottomSheet(context);
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -26,7 +28,7 @@ class NoTask extends StatelessWidget {
     );
   }
 
-  Column feedbackImage() {
+  Widget feedbackImage() {
     return Column(
       spacing: 24,
       children: [
@@ -42,8 +44,6 @@ class NoTask extends StatelessWidget {
       ],
     );
   }
-
-  void onNewTask(BuildContext context) => createTaskBottomSheet(context);
 
   Widget createTaskButton(BuildContext context) {
     final bool isDarkMode = Theme.of(Get.context!).brightness == Brightness.dark;
