@@ -1,10 +1,10 @@
 import 'package:taski/features/tasks/widgets/tasky_item.dart';
 import 'package:taski/core/constants/widgets_keys.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'common/complete_task_flow.dart';
 import 'package:flutter/material.dart';
+import 'common/create_task_flow.dart';
 import 'package:taski/main.dart';
-
-import 'complete_task_test.dart';
 
 Future<void> _initApp(WidgetTester tester) async {
   await tester.pumpWidget(const MyApp());
@@ -12,18 +12,15 @@ Future<void> _initApp(WidgetTester tester) async {
 }
 
 void deleteAllTasksAtOnce() {
-  final String taskTitle = 'Task to delete';
-
-  for (int i = 1; i <= 3; i++) {
-    completeTask(title: '$taskTitle $i');
-  }
-
-  _deleteAllAtOnce();
-}
-
-void _deleteAllAtOnce() {
   testWidgets('delete all tasks at once', (tester) async {
     await _initApp(tester);
+
+    for (int i = 1; i <= 3; i++) {
+      final String taskTitle = 'Task to delete $i';
+
+      await createTaskCommon(tester, title: taskTitle);
+      await completeTaskCommon(tester, taskTitle);
+    }
 
     final deleteAllButton = find.byKey(Key(WidgetKeys.deleteAllCompletedTasksButton));
     expect(deleteAllButton, findsOneWidget);

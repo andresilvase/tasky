@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
 import 'package:taski/main.dart';
 
-import 'create_task_test.dart';
+import 'common/create_task_flow.dart';
 
 Future<void> _initApp(WidgetTester tester) async {
   await tester.pumpWidget(const MyApp());
@@ -12,15 +12,12 @@ Future<void> _initApp(WidgetTester tester) async {
 }
 
 void searchTaskByTitle() {
-  final String taskTitle = 'Task to search';
-
-  createTask(title: taskTitle);
-  _searchTaskByTitle(taskTitle);
-}
-
-void _searchTaskByTitle(String taskTitle) {
   testWidgets('search task', (tester) async {
     await _initApp(tester);
+
+    final String taskTitle = 'Task to search';
+
+    await createTaskCommon(tester, title: taskTitle);
 
     final taskCard = find.text(taskTitle);
     expect(taskCard, findsOneWidget);
