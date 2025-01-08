@@ -59,6 +59,44 @@ class MenuHeader extends StatelessWidget {
     }
   }
 
+  @override
+  Widget build(BuildContext context) {
+    final bool isDarkMode = Theme.of(Get.context!).brightness == Brightness.dark;
+
+    return MenuAnchor(
+      style: MenuStyle(
+        backgroundColor: WidgetStateProperty.all(isDarkMode ? null : TaskiColors.white),
+        padding: WidgetStateProperty.all(EdgeInsets.zero),
+        elevation: WidgetStateProperty.all(4),
+      ),
+      alignmentOffset: const Offset(0, 8),
+      menuChildren: _menuChildren(),
+      builder: menuBuilder,
+      child: attachedWidget,
+    );
+  }
+
+  List<Widget> _menuChildren() {
+    final menuOptionsTitle = _menuOptionsTitle(Get.isDarkMode);
+    final menuOptionsIcons = _menuOptionsIcons(Get.isDarkMode);
+
+    return List.generate(
+      menuOptionsTitle.length,
+      (index) => menuOption(
+        onPressed: () => onMenuOptionPressed(index),
+        optionTitle: menuOptionsTitle[index],
+        icon: menuOptionsIcons[index],
+      ),
+    );
+  }
+
+  Widget menuBuilder(context, controller, child) {
+    return GestureDetector(
+      onTap: () => onOptionSelected(controller),
+      child: child!,
+    );
+  }
+
   List<String> _menuOptionsTitle(bool darkMode) => [
         AppLocalizations.of(Get.context!)!.account,
         AppLocalizations.of(Get.context!)!.language,
@@ -72,13 +110,6 @@ class MenuHeader extends StatelessWidget {
         darkMode ? Icons.light_mode : Icons.dark_mode,
         Icons.logout,
       ];
-
-  Widget menuBuilder(context, controller, child) {
-    return GestureDetector(
-      onTap: () => onOptionSelected(controller),
-      child: child!,
-    );
-  }
 
   MenuItemButton menuOption({
     required Function()? onPressed,
@@ -109,37 +140,6 @@ class MenuHeader extends StatelessWidget {
       color: TaskiColors.stateBlue,
       fontWeight: FontWeight.w600,
       fontSize: 16,
-    );
-  }
-
-  List<Widget> _menuChildren() {
-    final menuOptionsTitle = _menuOptionsTitle(Get.isDarkMode);
-    final menuOptionsIcons = _menuOptionsIcons(Get.isDarkMode);
-
-    return List.generate(
-      menuOptionsTitle.length,
-      (index) => menuOption(
-        onPressed: () => onMenuOptionPressed(index),
-        optionTitle: menuOptionsTitle[index],
-        icon: menuOptionsIcons[index],
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final bool isDarkMode = Theme.of(Get.context!).brightness == Brightness.dark;
-
-    return MenuAnchor(
-      style: MenuStyle(
-        padding: WidgetStateProperty.all(EdgeInsets.zero),
-        elevation: WidgetStateProperty.all(4),
-        backgroundColor: WidgetStateProperty.all(isDarkMode ? null : TaskiColors.white),
-      ),
-      menuChildren: _menuChildren(),
-      alignmentOffset: const Offset(0, 8),
-      builder: menuBuilder,
-      child: attachedWidget,
     );
   }
 }

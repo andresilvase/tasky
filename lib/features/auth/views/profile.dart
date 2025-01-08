@@ -47,6 +47,32 @@ class _ProfileState extends State<Profile> with Pickers {
     displayNameController.addListener(_setState);
   }
 
+  @override
+  Widget build(BuildContext context) {
+    final bool isDarkMode = Theme.of(Get.context!).brightness == Brightness.dark;
+
+    return Scaffold(
+      appBar: commonAppBar(
+        title: AppLocalizations.of(Get.context!)!.account,
+        darkMode: isDarkMode,
+      ),
+      body: SafeArea(
+        child: Obx(
+          () => ScreenBackground(
+            screenContent: [
+              SizedBox(height: 16),
+              _buildProfileSection(isDarkMode),
+              SizedBox(height: 32),
+              _editDisplayName(isDarkMode),
+              Spacer(),
+              _saveButton(isDarkMode),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget _buildProfileSection(bool isDarkMode) {
     return Column(
       children: [
@@ -140,32 +166,6 @@ class _ProfileState extends State<Profile> with Pickers {
         },
         width: Get.width,
         height: 48,
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final bool isDarkMode = Theme.of(Get.context!).brightness == Brightness.dark;
-
-    return Scaffold(
-      appBar: commonAppBar(
-        title: AppLocalizations.of(Get.context!)!.account,
-        darkMode: isDarkMode,
-      ),
-      body: SafeArea(
-        child: Obx(
-          () => ScreenBackground(
-            screenContent: [
-              SizedBox(height: 16),
-              _buildProfileSection(isDarkMode),
-              SizedBox(height: 32),
-              _editDisplayName(isDarkMode),
-              Spacer(),
-              _saveButton(isDarkMode),
-            ],
-          ),
-        ),
       ),
     );
   }

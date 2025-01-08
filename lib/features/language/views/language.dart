@@ -10,27 +10,25 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Language extends StatelessWidget {
-  const Language({super.key});
+  Language({super.key});
+
+  final List<String> countries = ['US', 'BR', 'ES', 'FR', 'IT'];
+  final List<String> locales = ['en', 'pt', 'es', 'fr', 'it'];
+
+  final List<String> languages = [
+    AppLocalizations.of(Get.context!)!.english,
+    AppLocalizations.of(Get.context!)!.portuguese,
+    AppLocalizations.of(Get.context!)!.spanish,
+    AppLocalizations.of(Get.context!)!.french,
+    AppLocalizations.of(Get.context!)!.italian,
+  ];
 
   @override
   Widget build(BuildContext context) {
     final bool isDarkMode = Theme.of(Get.context!).brightness == Brightness.dark;
-    final List<String> countries = ['US', 'BR', 'ES', 'FR', 'IT'];
-    final List<String> locales = ['en', 'pt', 'es', 'fr', 'it'];
-
-    final List<String> languages = [
-      AppLocalizations.of(Get.context!)!.english,
-      AppLocalizations.of(Get.context!)!.portuguese,
-      AppLocalizations.of(Get.context!)!.spanish,
-      AppLocalizations.of(Get.context!)!.french,
-      AppLocalizations.of(Get.context!)!.italian,
-    ];
 
     return Scaffold(
-      appBar: commonAppBar(
-        title: AppLocalizations.of(Get.context!)!.language,
-        darkMode: isDarkMode,
-      ),
+      appBar: _appBar(isDarkMode),
       body: SafeArea(
         child: ScreenBackground(
           screenContent: [
@@ -41,27 +39,10 @@ class Language extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final LanguageViewModel languageViewModel = Get.find();
 
-                  return ListTile(
-                    title: Text(
-                      languages[index],
-                      style: GoogleFonts.urbanist(
-                        color: isDarkMode ? TaskiColors.paleWhite : TaskiColors.statePurple,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18,
-                      ),
-                    ),
-                    leading: CountryFlag.fromCountryCode(
-                      countries[index],
-                      height: 32,
-                      width: 32,
-                      shape: Circle(),
-                    ),
-                    onTap: () {
-                      languageViewModel.changeLocale(locales[index]);
-                    },
-                    trailing: _checkIcon(
-                      languageViewModel.locale.languageCode == locales[index],
-                    ),
+                  return _languageItem(
+                    languageViewModel: languageViewModel,
+                    isDarkMode: isDarkMode,
+                    index: index,
                   );
                 },
               ),
@@ -71,13 +52,6 @@ class Language extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  Widget _checkIcon(bool selected) {
-    return Icon(
-      Icons.check,
-      color: selected ? TaskiColors.blue : Colors.transparent,
     );
   }
 
@@ -92,6 +66,53 @@ class Language extends StatelessWidget {
         width: Get.width,
         height: 48,
       ),
+    );
+  }
+
+  AppBar _appBar(bool isDarkMode) {
+    return commonAppBar(
+      title: AppLocalizations.of(Get.context!)!.language,
+      darkMode: isDarkMode,
+    );
+  }
+
+  ListTile _languageItem({
+    required LanguageViewModel languageViewModel,
+    required bool isDarkMode,
+    required int index,
+  }) {
+    return ListTile(
+      trailing: _checkIcon(languageViewModel.locale.languageCode == locales[index]),
+      onTap: () => languageViewModel.changeLocale(locales[index]),
+      title: _languageName(index, isDarkMode),
+      leading: _countryFlag(index),
+    );
+  }
+
+  Widget _checkIcon(bool selected) {
+    return Icon(
+      Icons.check,
+      color: selected ? TaskiColors.blue : Colors.transparent,
+    );
+  }
+
+  Text _languageName(int index, bool isDarkMode) {
+    return Text(
+      languages[index],
+      style: GoogleFonts.urbanist(
+        color: isDarkMode ? TaskiColors.paleWhite : TaskiColors.statePurple,
+        fontWeight: FontWeight.w600,
+        fontSize: 18,
+      ),
+    );
+  }
+
+  CountryFlag _countryFlag(int index) {
+    return CountryFlag.fromCountryCode(
+      countries[index],
+      shape: Circle(),
+      height: 32,
+      width: 32,
     );
   }
 }

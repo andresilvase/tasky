@@ -1,6 +1,6 @@
 import 'package:taski/features/language/views/language.dart';
-import 'package:taski/features/auth/views/auth.dart';
 import 'package:taski/core/widgets/auth_or_profile.dart';
+import 'package:taski/features/auth/views/auth.dart';
 import 'package:taski/features/home/home.dart';
 import 'package:taski/core/routes/routes.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +15,7 @@ class AppRouter {
       case Routes.profile:
         return _defaultRouter(const AuthOrProfile());
       case Routes.language:
-        return _defaultRouter(const Language());
+        return _defaultRouter(Language());
     }
 
     return null;

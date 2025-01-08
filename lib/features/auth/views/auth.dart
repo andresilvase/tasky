@@ -82,6 +82,34 @@ class _AuthScreenState extends State<AuthScreen> {
 
   Future<void> submit() async => await _submitAction();
 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: TaskiColors.blue,
+      body: Stack(
+        children: [
+          Obx(
+            () {
+              final bool expandCard = !authViewModel.isLogin || authViewModel.isInErrorState;
+
+              return AuthBackgroundCard(
+                isToExpand: expandCard,
+                spacing: 16,
+                children: [
+                  _logo(),
+                  _authForm(),
+                  _submitButton(),
+                  _secondaryButtons(),
+                ],
+              );
+            },
+          ),
+          Visibility(visible: authViewModel.isLoading, child: LoadingBlur()),
+        ],
+      ),
+    );
+  }
+
   Logo _logo() {
     return Logo(
       textColor: TaskiColors.statePurple,
@@ -248,34 +276,6 @@ class _AuthScreenState extends State<AuthScreen> {
       fontWeight: FontWeight.w600,
       color: color,
       fontSize: 16,
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: TaskiColors.blue,
-      body: Stack(
-        children: [
-          Obx(
-            () {
-              final bool expandCard = !authViewModel.isLogin || authViewModel.isInErrorState;
-
-              return AuthBackgroundCard(
-                isToExpand: expandCard,
-                spacing: 16,
-                children: [
-                  _logo(),
-                  _authForm(),
-                  _submitButton(),
-                  _secondaryButtons(),
-                ],
-              );
-            },
-          ),
-          Visibility(visible: authViewModel.isLoading, child: LoadingBlur()),
-        ],
-      ),
     );
   }
 }

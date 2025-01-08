@@ -17,6 +17,14 @@ class AppHeader extends StatefulWidget {
 }
 
 class _AppHeaderState extends State<AppHeader> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16.0),
+      child: Obx(() => _profile()),
+    );
+  }
+
   Widget _profile() {
     final bool isDarkMode = Theme.of(Get.context!).brightness == Brightness.dark;
 
@@ -65,14 +73,6 @@ class _AppHeaderState extends State<AppHeader> {
       imagePath: authViewModel.activeUser.value.photoPath != null
           ? authViewModel.activeUser.value.photoPath!
           : TaskiAssets.imageProfile,
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.0),
-      child: Obx(() => _profile()),
     );
   }
 }

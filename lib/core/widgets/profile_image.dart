@@ -15,6 +15,13 @@ class ProfileImage extends StatelessWidget {
   final double? width;
   final BoxFit? fit;
 
+  @override
+  Widget build(BuildContext context) {
+    return ClipOval(
+      child: imagePath.contains('assets') ? assetImage(imagePath) : fileImage(imagePath),
+    );
+  }
+
   Widget fileImage(String imagePath) {
     return Image.file(
       fit: fit ?? BoxFit.cover,
@@ -30,13 +37,6 @@ class ProfileImage extends StatelessWidget {
       height: height ?? 40,
       width: width ?? 40,
       imagePath,
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ClipOval(
-      child: imagePath.contains('assets') ? assetImage(imagePath) : fileImage(imagePath),
     );
   }
 }

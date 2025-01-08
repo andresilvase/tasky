@@ -14,6 +14,17 @@ class Logo extends StatelessWidget {
   final Color iconColor;
   final Color textColor;
 
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        _appIcon(),
+        _appName(),
+      ],
+    );
+  }
+
   Transform _appIcon() {
     return Transform.scale(
       scale: 1.5,
@@ -42,17 +53,6 @@ class Logo extends StatelessWidget {
         fontWeight: FontWeight.w600,
         fontSize: 22,
       ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        _appIcon(),
-        _appName(),
-      ],
     );
   }
 }
