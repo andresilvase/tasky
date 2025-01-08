@@ -1,5 +1,6 @@
 import 'package:taski/core/widgets/text_field_common_widgets.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:taski/core/constants/widgets_keys.dart';
 import 'package:taski/features/tasks/model/task.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -77,7 +78,7 @@ class _CreateTaskState extends State<CreateTask> {
       child: Form(
         key: _formKey,
         child: TextFormField(
-          key: Key('createTaskTitleInput'),
+          key: Key(WidgetsKeys.createTaskTitleInput),
           cursorErrorColor: TaskiColors.redShade,
           decoration: _titleInputDecoration(),
           style: _titleTextStyle(isDarkMode),
@@ -150,7 +151,7 @@ class _CreateTaskState extends State<CreateTask> {
     return Container(
       margin: EdgeInsets.only(top: _descriptionFocus.hasFocus ? 32 : 0),
       child: TextField(
-        key: Key('createTaskDescriptionInput'),
+        key: Key(WidgetsKeys.createTaskDescriptionInput),
         decoration: _descriptionInputDecoration(),
         style: _descriptionTextstyle(isDarkMode),
         textInputAction: TextInputAction.done,
@@ -196,7 +197,7 @@ class _CreateTaskState extends State<CreateTask> {
       margin: EdgeInsets.only(top: 16),
       alignment: Alignment.centerRight,
       child: TextButton(
-        key: Key('createTaskSubmitButton'),
+        key: Key(WidgetsKeys.createTaskSubmitButton),
         onPressed: () {
           if (_formKey.currentState!.validate()) {
             createTask();

@@ -1,3 +1,4 @@
+import 'package:taski/core/constants/widgets_keys.dart';
 import 'package:taski/features/tasks/model/task.dart';
 import 'package:taski/core/utils/extensions.dart';
 import 'package:taski/core/constants/colors.dart';
@@ -85,6 +86,7 @@ class TaskiItem extends StatelessWidget {
     return Transform.scale(
       scale: 1.2,
       child: Checkbox(
+        key: Key(WidgetsKeys.taskiItemCheckbox),
         visualDensity: const VisualDensity(vertical: -4),
         activeColor: iconColor,
         onChanged: (_) => changeTaskStatus?.call(),

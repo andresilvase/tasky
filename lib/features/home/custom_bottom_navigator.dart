@@ -1,4 +1,5 @@
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:taski/core/constants/widgets_keys.dart';
 import 'package:taski/core/constants/assets.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:taski/core/widgets/icon_svg.dart';
@@ -56,36 +57,50 @@ class CustomBottomNavigator extends StatelessWidget {
       AppLocalizations.of(context)!.done,
     ];
 
+    List<String> keys = [
+      WidgetsKeys.navBarTodoIcon,
+      WidgetsKeys.navBarAddIcon,
+      WidgetsKeys.navBarSearchIcon,
+      WidgetsKeys.navBarDoneIcon,
+    ];
+
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: icons.map(
-            (icon) {
-              return GestureDetector(
-                onTap: () {
-                  onIndexChanged?.call(icons.indexOf(icon));
-                },
-                child: Column(
-                  spacing: 8,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    icon,
-                    Text(
-                      labels[icons.indexOf(icon)],
-                      style: GoogleFonts.urbanist(
-                        color: iconColor(currentIndex == icons.indexOf(icon)),
-                        fontWeight: FontWeight.w600,
-                        fontSize: 14,
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            },
-          ).toList(),
+          children: icons.map((icon) => _navBarIcon(keys, icons, icon, labels)).toList(),
         ),
+      ),
+    );
+  }
+
+  Widget _navBarIcon(List<String> keys, List<Widget> icons, Widget icon, List<String> labels) {
+    final int index = icons.indexOf(icon);
+
+    return InkWell(
+      key: Key(keys[index]),
+      onTap: () {
+        onIndexChanged?.call(index);
+      },
+      child: Column(
+        spacing: 8,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          icon,
+          _navLabel(labels, index),
+        ],
+      ),
+    );
+  }
+
+  Text _navLabel(List<String> labels, int index) {
+    return Text(
+      labels[index],
+      style: GoogleFonts.urbanist(
+        color: iconColor(currentIndex == index),
+        fontWeight: FontWeight.w600,
+        fontSize: 14,
       ),
     );
   }
