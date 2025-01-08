@@ -12,7 +12,6 @@ class BaseScreen extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        spacing: 32,
         children: children,
       ),
     );

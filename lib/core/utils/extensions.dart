@@ -81,3 +81,9 @@ extension RemoveAccents on String {
     return normalized;
   }
 }
+
+extension NullableStringExtension on dynamic {
+  bool isNotEmptyNeighterNull() {
+    return this != null && this!.toString().isNotEmpty && this != '-' && this != 'null';
+  }
+}

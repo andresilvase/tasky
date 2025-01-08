@@ -1,3 +1,4 @@
+import 'package:taski/core/utils/extensions.dart';
 import 'package:taski/features/tasks/model/task.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -66,7 +67,8 @@ class TaskiItem extends StatelessWidget {
     }
 
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment:
+          !task.description.isNotEmptyNeighterNull() ? CrossAxisAlignment.center : CrossAxisAlignment.start,
       children: [
         Transform.scale(
           scale: 1.2,
