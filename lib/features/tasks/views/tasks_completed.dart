@@ -35,34 +35,44 @@ class TasksCompleted extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                AppLocalizations.of(Get.context!)!.completedTasks,
-                style: GoogleFonts.urbanist(
-                  color: isDarkMode ? TaskiColors.paleWhite : TaskiColors.statePurple,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                ),
-              ),
-              InkWell(
-                onTap: () async {
-                  await taskViewModel.deleteCompletedTasks();
-                },
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Text(
-                    AppLocalizations.of(Get.context!)!.deleteAll,
-                    style: GoogleFonts.urbanist(
-                      color: isDarkMode ? TaskiColors.redShade : TaskiColors.fireRed,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18,
-                    ),
-                  ),
-                ),
-              )
+              _completedTasksTitle(isDarkMode),
+              _deleteAllButton(isDarkMode),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Text _completedTasksTitle(bool isDarkMode) {
+    return Text(
+      AppLocalizations.of(Get.context!)!.completedTasks,
+      style: GoogleFonts.urbanist(
+        color: isDarkMode ? TaskiColors.paleWhite : TaskiColors.statePurple,
+        fontWeight: FontWeight.bold,
+        fontSize: 20,
+      ),
+    );
+  }
+
+  InkWell _deleteAllButton(bool isDarkMode) {
+    return InkWell(
+      onTap: taskViewModel.deleteCompletedTasks,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: Text(
+          AppLocalizations.of(Get.context!)!.deleteAll,
+          style: _deleteAllTextStyle(isDarkMode),
+        ),
+      ),
+    );
+  }
+
+  TextStyle _deleteAllTextStyle(bool isDarkMode) {
+    return GoogleFonts.urbanist(
+      color: isDarkMode ? TaskiColors.redShade : TaskiColors.fireRed,
+      fontWeight: FontWeight.w600,
+      fontSize: 18,
     );
   }
 
