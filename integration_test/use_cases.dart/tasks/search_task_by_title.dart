@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
 import 'package:taski/main.dart';
 
-import 'create_task_when_list_is_not_empty_test.dart';
+import 'create_task_test.dart';
 
 Future<void> initApp(WidgetTester tester) async {
   await tester.pumpWidget(const MyApp());
@@ -14,15 +14,13 @@ Future<void> initApp(WidgetTester tester) async {
 void searchTaskByTitle() {
   final String taskTitle = 'Task to search';
 
-  createTaskWhenListIsNotEmpty(tastTitle: taskTitle);
+  createTask(title: taskTitle);
   _searchTaskByTitle(taskTitle);
 }
 
 void _searchTaskByTitle(String taskTitle) {
   testWidgets('search task', (tester) async {
     await initApp(tester);
-
-    await tester.pumpAndSettle();
 
     final taskCard = find.text(taskTitle);
     expect(taskCard, findsOneWidget);

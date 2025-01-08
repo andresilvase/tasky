@@ -8,8 +8,8 @@ Future<void> initApp(WidgetTester tester) async {
   await tester.pumpAndSettle();
 }
 
-void createTaskWhenListIsNotEmpty({String? tastTitle, String? taskDescription}) {
-  testWidgets('create a new task if the list is NOT empty', (tester) async {
+void createTask({String? title, String? taskDescription}) {
+  testWidgets('create a new task', (tester) async {
     await initApp(tester);
 
     final createTaskButton = find.byKey(const Key(WidgetsKeys.navBarAddIcon));
@@ -18,7 +18,7 @@ void createTaskWhenListIsNotEmpty({String? tastTitle, String? taskDescription}) 
     await tester.tap(createTaskButton);
     await tester.pumpAndSettle();
 
-    final taskTitle = tastTitle ?? 'Test Task 2';
+    final taskTitle = title ?? 'Test Task 2';
 
     final titleField = find.byKey(const Key(WidgetsKeys.createTaskTitleInput));
     expect(titleField, findsOneWidget);

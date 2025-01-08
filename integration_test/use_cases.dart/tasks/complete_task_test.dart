@@ -4,25 +4,23 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
 import 'package:taski/main.dart';
 
-import 'create_task_when_list_is_not_empty_test.dart';
+import 'create_task_test.dart';
 
 Future<void> initApp(WidgetTester tester) async {
   await tester.pumpWidget(const MyApp());
   await tester.pumpAndSettle();
 }
 
-void completeTask() {
-  final String taskTitle = 'Task to complete';
+void completeTask({String? title}) {
+  final String taskTitle = title ?? 'Task to complete';
 
-  createTaskWhenListIsNotEmpty(tastTitle: taskTitle);
+  createTask(title: taskTitle);
   _completeTask(taskTitle);
 }
 
 void _completeTask(String taskTitle) {
   testWidgets('complete task', (tester) async {
     await initApp(tester);
-
-    await tester.pumpAndSettle();
 
     final taskCard = find.text(taskTitle);
     expect(taskCard, findsOneWidget);

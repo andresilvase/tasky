@@ -123,6 +123,7 @@ class TaskiItem extends StatelessWidget {
     return Visibility(
       visible: task.isCompleted,
       child: InkWell(
+        key: Key(WidgetsKeys.taskiItemDeleteButton(task.id)),
         onTap: deleteTask,
         child: Icon(Icons.delete, color: isDarkMode ? TaskiColors.redShade : TaskiColors.fireRed),
       ),
