@@ -8,7 +8,7 @@ import 'use_cases.dart/auth/auth_test.dart';
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  group('authentication tests', () {
+  group('end-to-end tests', () {
     setUp(() async {
       await init();
     });

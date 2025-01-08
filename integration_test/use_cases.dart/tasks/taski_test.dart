@@ -9,7 +9,7 @@ import 'search_task_by_description.dart';
 import 'search_task_by_title.dart';
 
 void taskTests() {
-  group('tasks tests', () {
+  group('tasks tests should', () {
     createTaskWhenListIsEmpty();
     createTask();
     completeTask();
