@@ -5,7 +5,8 @@ import 'package:taski/main.dart';
 import 'use_cases.dart/tasks/complete_task_test.dart';
 import 'use_cases.dart/tasks/create_task_when_list_is_empty_test.dart';
 import 'use_cases.dart/tasks/create_task_when_list_is_not_empty_test.dart';
-import 'use_cases.dart/tasks/search_task.dart';
+import 'use_cases.dart/tasks/search_task_by_description.dart';
+import 'use_cases.dart/tasks/search_task_by_title.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
@@ -19,5 +20,6 @@ void main() {
     createTaskWhenListIsNotEmpty();
     completeTask();
     searchTaskByTitle();
+    searchTaskByDescription();
   });
 }
