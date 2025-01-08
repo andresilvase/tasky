@@ -92,7 +92,10 @@ class _AuthScreenState extends State<AuthScreen> {
             () => AuthBackgroundCard(
               isToExpand: !authViewModel.isLogin || authViewModel.isInErrorState,
               children: [
-                Logo(),
+                Logo(
+                  textColor: TaskiColors.statePurple,
+                  iconColor: TaskiColors.blue,
+                ),
                 SizedBox(height: 16),
                 _authForm(),
                 _submitButton(),

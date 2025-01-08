@@ -55,11 +55,14 @@ class TaskiItem extends StatelessWidget {
   Widget _title() {
     final bool isDarkMode = Theme.of(Get.context!).brightness == Brightness.dark;
     late final Color textColor;
+    late final Color iconColor;
 
     if (task.isCompleted) {
-      textColor = isDarkMode ? TaskiColors.mutedAzure : TaskiColors.mutedAzure;
+      textColor = isDarkMode ? TaskiColors.mutedAzure : TaskiColors.stateBlue;
+      iconColor = isDarkMode ? TaskiColors.black : TaskiColors.mutedAzure;
     } else {
       textColor = isDarkMode ? TaskiColors.paleWhite : TaskiColors.statePurple;
+      iconColor = task.isCompleted ? TaskiColors.black : TaskiColors.blue;
     }
 
     return Row(
@@ -68,7 +71,7 @@ class TaskiItem extends StatelessWidget {
           scale: 1.2,
           child: Checkbox(
             visualDensity: const VisualDensity(vertical: -4),
-            activeColor: task.isCompleted ? TaskiColors.black : TaskiColors.blue,
+            activeColor: iconColor,
             onChanged: (_) => changeTaskStatus?.call(),
             checkColor: TaskiColors.paleWhite,
             value: task.isCompleted,
@@ -110,7 +113,7 @@ class TaskiItem extends StatelessWidget {
     late final Color textColor;
 
     if (task.isCompleted) {
-      textColor = isDarkMode ? TaskiColors.mutedAzure : TaskiColors.mutedAzure;
+      textColor = isDarkMode ? TaskiColors.mutedAzure : TaskiColors.stateBlue;
     } else {
       textColor = isDarkMode ? TaskiColors.paleWhite : TaskiColors.statePurple;
     }

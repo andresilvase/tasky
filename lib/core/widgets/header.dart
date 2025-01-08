@@ -26,10 +26,15 @@ class _AppHeaderState extends State<AppHeader> {
   }
 
   Widget _profile() {
+    final bool isDarkMode = Theme.of(Get.context!).brightness == Brightness.dark;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Logo(),
+        Logo(
+          textColor: isDarkMode ? TaskiColors.blue10 : TaskiColors.statePurple,
+          iconColor: isDarkMode ? TaskiColors.statePurple : TaskiColors.blue,
+        ),
         _nameAndPhoto(),
       ],
     );

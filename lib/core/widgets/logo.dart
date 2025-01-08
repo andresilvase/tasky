@@ -5,19 +5,24 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Logo extends StatelessWidget {
-  const Logo({super.key});
+  const Logo({
+    super.key,
+    required this.iconColor,
+    required this.textColor,
+  });
+
+  final Color iconColor;
+  final Color textColor;
 
   @override
   Widget build(BuildContext context) {
-    final bool isDarkMode = Theme.of(Get.context!).brightness == Brightness.dark;
-
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
         Transform.scale(
           scale: 1.5,
           child: Checkbox(
-            fillColor: WidgetStateProperty.all(isDarkMode ? TaskiColors.statePurple : TaskiColors.blue),
+            fillColor: WidgetStateProperty.all(iconColor),
             visualDensity: VisualDensity(vertical: -4),
             checkColor: TaskiColors.white,
             onChanged: null,
@@ -34,7 +39,7 @@ class Logo extends StatelessWidget {
         Text(
           AppLocalizations.of(Get.context!)!.appName,
           style: GoogleFonts.urbanist(
-            color: isDarkMode ? TaskiColors.blue10 : TaskiColors.statePurple,
+            color: textColor,
             fontWeight: FontWeight.w600,
             fontSize: 22,
           ),
