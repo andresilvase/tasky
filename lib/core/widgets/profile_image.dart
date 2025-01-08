@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'dart:io';
 
 class ProfileImage extends StatelessWidget {
   const ProfileImage({
@@ -17,9 +18,9 @@ class ProfileImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipOval(
-      child: Image.asset(
+      child: Image.file(
         fit: fit ?? BoxFit.cover,
-        imagePath,
+        File(imagePath),
         height: height ?? 40,
         width: width ?? 40,
       ),
