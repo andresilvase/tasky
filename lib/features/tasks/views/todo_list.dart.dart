@@ -40,7 +40,6 @@ class TodoList extends StatelessWidget {
 
   Widget _welcomeMessage() {
     final bool isDarkMode = Theme.of(Get.context!).brightness == Brightness.dark;
-    final String displayName = authViewModel.activeUser.value.displayName;
 
     return Row(
       spacing: 8,
@@ -53,13 +52,19 @@ class TodoList extends StatelessWidget {
             fontSize: 20,
           ),
         ),
-        Text(
-          displayName.substring(0, min(displayName.length, 12)),
-          style: GoogleFonts.urbanist(
-            color: TaskiColors.blue,
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-          ),
+        Obx(
+          () {
+            final String displayName = authViewModel.activeUser.value.displayName;
+
+            return Text(
+              displayName.substring(0, min(displayName.length, 12)),
+              style: GoogleFonts.urbanist(
+                color: TaskiColors.blue,
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
+            );
+          },
         ),
       ],
     );

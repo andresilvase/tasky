@@ -82,32 +82,10 @@ class _AuthScreenState extends State<AuthScreen> {
 
   Future<void> submit() async => await _submitAction();
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: TaskiColors.blue,
-      body: Stack(
-        children: [
-          Obx(
-            () => AuthBackgroundCard(
-              isToExpand: !authViewModel.isLogin || authViewModel.isInErrorState,
-              children: [
-                Logo(
-                  textColor: TaskiColors.statePurple,
-                  iconColor: TaskiColors.blue,
-                ),
-                SizedBox(height: 16),
-                _authForm(),
-                _submitButton(),
-                SizedBox(height: 16),
-                _createAccount(),
-                _continueAnonymous(),
-              ],
-            ),
-          ),
-          Visibility(visible: authViewModel.isLoading, child: LoadingBlur()),
-        ],
-      ),
+  Logo _logo() {
+    return Logo(
+      textColor: TaskiColors.statePurple,
+      iconColor: TaskiColors.blue,
     );
   }
 
@@ -116,12 +94,10 @@ class _AuthScreenState extends State<AuthScreen> {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       key: formKey,
       child: Column(
+        spacing: 8,
         children: [
           _usernameInput(),
-          SizedBox(height: 8),
           _passwordInput(),
-          _repeatPasswordInput(),
-          SizedBox(height: 8),
         ],
       ),
     );
@@ -149,6 +125,15 @@ class _AuthScreenState extends State<AuthScreen> {
   }
 
   Widget _passwordInput() {
+    return Column(
+      children: [
+        _password(),
+        _repeatPassword(),
+      ],
+    );
+  }
+
+  Widget _password() {
     bool passwordInputHasError = authViewModel.isInErrorState;
     passwordInputHasError &= authValidators.passwordInputValidator(passwordController.text) != null;
 
@@ -169,7 +154,7 @@ class _AuthScreenState extends State<AuthScreen> {
     );
   }
 
-  Widget _repeatPasswordInput() {
+  Widget _repeatPassword() {
     bool repeatPasswordInputHasError =
         authValidators.repeatPasswordInputValidator(repeatPasswordController.text, passwordController.text) != null;
 
@@ -218,6 +203,15 @@ class _AuthScreenState extends State<AuthScreen> {
     );
   }
 
+  Widget _secondaryButtons() {
+    return Column(
+      children: [
+        _createAccount(),
+        _continueAnonymous(),
+      ],
+    );
+  }
+
   Widget _createAccount() {
     return TextButton(
       onPressed: authViewModel.toggleAuthMode,
@@ -254,6 +248,34 @@ class _AuthScreenState extends State<AuthScreen> {
       fontWeight: FontWeight.w600,
       color: color,
       fontSize: 16,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: TaskiColors.blue,
+      body: Stack(
+        children: [
+          Obx(
+            () {
+              final bool expandCard = !authViewModel.isLogin || authViewModel.isInErrorState;
+
+              return AuthBackgroundCard(
+                isToExpand: expandCard,
+                spacing: 16,
+                children: [
+                  _logo(),
+                  _authForm(),
+                  _submitButton(),
+                  _secondaryButtons(),
+                ],
+              );
+            },
+          ),
+          Visibility(visible: authViewModel.isLoading, child: LoadingBlur()),
+        ],
+      ),
     );
   }
 }

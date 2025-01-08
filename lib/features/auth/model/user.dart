@@ -4,9 +4,10 @@ enum UserProperty { username, password, photoPath, displayName }
 
 class User {
   final String displayName;
+  final String? photoPath;
   final String username;
   final String password;
-  final String? photoPath;
+
   User({
     this.displayName = '',
     required this.username,
@@ -18,24 +19,24 @@ class User {
 
   User copyWith({
     String? displayName,
+    String? photoPath,
     String? username,
     String? password,
-    String? photoPath,
   }) {
     return User(
       displayName: displayName ?? this.displayName,
+      photoPath: photoPath ?? this.photoPath,
       username: username ?? this.username,
       password: password ?? this.password,
-      photoPath: photoPath ?? this.photoPath,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       UserProperty.displayName.name: displayName,
+      UserProperty.photoPath.name: photoPath,
       UserProperty.username.name: username,
       UserProperty.password.name: password,
-      UserProperty.photoPath.name: photoPath,
       'id': username,
     };
   }

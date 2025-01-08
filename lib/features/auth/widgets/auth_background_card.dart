@@ -7,10 +7,12 @@ class AuthBackgroundCard extends StatelessWidget {
     super.key,
     required this.isToExpand,
     required this.children,
+    this.spacing = 0,
   });
 
   final List<Widget> children;
   final bool isToExpand;
+  final double spacing;
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +26,11 @@ class AuthBackgroundCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
           color: TaskiColors.blue10,
         ),
-        child: ListView(
+        child: ListView.separated(
           physics: NeverScrollableScrollPhysics(),
-          children: children,
+          separatorBuilder: (context, index) => SizedBox(height: spacing),
+          itemBuilder: (context, index) => children[index],
+          itemCount: children.length,
         ),
       ),
     );
