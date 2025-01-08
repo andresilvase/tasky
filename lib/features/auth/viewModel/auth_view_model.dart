@@ -20,6 +20,8 @@ class AuthViewModel extends GetxController {
 
   void setActiveUser(User user) => activeUser.value = user;
 
+  bool get isLoggedIn => activeUser.value != User.empty();
+
   bool get isPasswordVisible => _isPasswordVisible.value;
   bool get isInErrorState => _isInErrorState.value;
   bool get isLoading => _isLoading.value;

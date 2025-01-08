@@ -11,6 +11,8 @@ import 'package:get/get.dart';
 class MenuHeader extends StatelessWidget {
   MenuHeader({super.key, required this.attachedWidget});
 
+  final authViewModel = Get.find<AuthViewModel>();
+
   final Widget attachedWidget;
 
   final themeController = Get.find<ThemeController>();
@@ -38,7 +40,7 @@ class MenuHeader extends StatelessWidget {
 
   void logout() async {
     homeController.backToHome();
-    await Get.find<AuthViewModel>().logout();
+    await authViewModel.logout();
     await Get.offAllNamed(Routes.auth);
   }
 
@@ -97,19 +99,39 @@ class MenuHeader extends StatelessWidget {
     );
   }
 
-  List<String> _menuOptionsTitle(bool darkMode) => [
+  List<String> _menuOptionsTitle(bool darkMode) {
+    if (authViewModel.isLoggedIn) {
+      return [
         AppLocalizations.of(Get.context!)!.account,
         AppLocalizations.of(Get.context!)!.language,
         darkMode ? AppLocalizations.of(Get.context!)!.lightMode : AppLocalizations.of(Get.context!)!.darkMode,
         AppLocalizations.of(Get.context!)!.logout,
       ];
+    } else {
+      return [
+        AppLocalizations.of(Get.context!)!.login,
+        AppLocalizations.of(Get.context!)!.language,
+        darkMode ? AppLocalizations.of(Get.context!)!.lightMode : AppLocalizations.of(Get.context!)!.darkMode,
+      ];
+    }
+  }
 
-  List<IconData> _menuOptionsIcons(bool darkMode) => [
+  List<IconData> _menuOptionsIcons(bool darkMode) {
+    if (authViewModel.isLoggedIn) {
+      return [
         Icons.person,
         Icons.language,
         darkMode ? Icons.light_mode : Icons.dark_mode,
         Icons.logout,
       ];
+    } else {
+      return [
+        Icons.login,
+        Icons.language,
+        darkMode ? Icons.light_mode : Icons.dark_mode,
+      ];
+    }
+  }
 
   MenuItemButton menuOption({
     required Function()? onPressed,
