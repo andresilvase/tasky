@@ -48,7 +48,7 @@ Widget suffixIcon({bool visible = true, void Function()? onPressed}) {
   );
 }
 
-Color inputBorderColor(bool isInErrorState, bool focusNodeHasFocus) {
+Color inputBorderColor({required bool focusNodeHasFocus, required bool isInErrorState}) {
   if (isInErrorState) {
     return TaskiColors.redShade;
   } else if (focusNodeHasFocus) {
@@ -58,7 +58,7 @@ Color inputBorderColor(bool isInErrorState, bool focusNodeHasFocus) {
   }
 }
 
-TextStyle inputTextHelperTextStyle(Color color, {double fontSize = 16}) {
+TextStyle inputTextStyle(Color color, {double fontSize = 16}) {
   return GoogleFonts.urbanist(
     fontWeight: FontWeight.normal,
     fontSize: fontSize,

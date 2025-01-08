@@ -95,7 +95,7 @@ class _SearchTaskState extends State<SearchTask> {
             _searchController.clear();
           });
         },
-        labelText: '',
+        labelText: AppLocalizations.of(Get.context!)!.searchForATask,
       ),
     );
   }

@@ -28,16 +28,18 @@ class InputText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final inputColor = inputBorderColor(focusNodeHasFocus: focusNode.hasFocus, isInErrorState: isInErrorState);
+
     return TextFormField(
       controller: controller,
       focusNode: focusNode,
       onChanged: onChanged,
-      style: inputTextHelperTextStyle(isDarkMode ? TaskiColors.paleWhite : TaskiColors.statePurple),
+      style: inputTextStyle(isDarkMode ? TaskiColors.paleWhite : TaskiColors.statePurple),
       cursorErrorColor: TaskiColors.redShade,
       cursorColor: TaskiColors.mutedAzure,
       validator: validator,
       decoration: InputDecoration(
-        errorStyle: inputTextHelperTextStyle(
+        errorStyle: inputTextStyle(
           TaskiColors.fireRed,
           fontSize: 12,
         ),
@@ -47,14 +49,14 @@ class InputText extends StatelessWidget {
           onPressed: onInputClear,
         ),
         prefixIcon: Icon(
-          color: inputBorderColor(isInErrorState, focusNode.hasFocus),
           prefixIcon ?? Icons.person_3_outlined,
+          color: inputColor,
         ),
-        floatingLabelStyle: inputTextHelperTextStyle(inputBorderColor(isInErrorState, focusNode.hasFocus)),
-        labelStyle: inputTextHelperTextStyle(inputBorderColor(isInErrorState, focusNode.hasFocus)),
-        focusedErrorBorder: activeBorder(inputBorderColor(isInErrorState, focusNode.hasFocus)),
-        enabledBorder: activeBorder(inputBorderColor(isInErrorState, focusNode.hasFocus)),
-        focusedBorder: activeBorder(inputBorderColor(isInErrorState, focusNode.hasFocus)),
+        floatingLabelStyle: inputTextStyle(inputColor),
+        focusedErrorBorder: activeBorder(inputColor),
+        focusedBorder: activeBorder(inputColor),
+        enabledBorder: activeBorder(inputColor),
+        labelStyle: inputTextStyle(inputColor),
         disabledBorder: noBorder(),
         errorBorder: errorBorder(),
         labelText: labelText,

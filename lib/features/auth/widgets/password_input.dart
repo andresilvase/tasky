@@ -26,17 +26,19 @@ class PasswordInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final inputColor = inputBorderColor(focusNodeHasFocus: focusNode.hasFocus, isInErrorState: isInErrorState);
+
     return TextFormField(
       controller: passwordController,
       focusNode: focusNode,
       onChanged: onChanged,
       validator: validator,
       obscureText: obscureText,
-      style: inputTextHelperTextStyle(TaskiColors.statePurple),
+      style: inputTextStyle(inputColor),
       cursorErrorColor: TaskiColors.redShade,
       cursorColor: TaskiColors.mutedAzure,
       decoration: InputDecoration(
-        errorStyle: inputTextHelperTextStyle(
+        errorStyle: inputTextStyle(
           TaskiColors.fireRed,
           fontSize: 12,
         ),
@@ -46,19 +48,19 @@ class PasswordInput extends StatelessWidget {
             onPressed: showPassword,
             icon: Icon(
               obscureText ? Icons.visibility_off_outlined : Icons.visibility_outlined,
-              color: inputBorderColor(isInErrorState, focusNode.hasFocus),
+              color: inputColor,
             ),
           ),
         ),
         prefixIcon: Icon(
-          color: inputBorderColor(isInErrorState, focusNode.hasFocus),
+          color: inputColor,
           Icons.lock_outline_rounded,
         ),
-        floatingLabelStyle: inputTextHelperTextStyle(inputBorderColor(isInErrorState, focusNode.hasFocus)),
-        labelStyle: inputTextHelperTextStyle(inputBorderColor(isInErrorState, focusNode.hasFocus)),
-        focusedErrorBorder: activeBorder(inputBorderColor(isInErrorState, focusNode.hasFocus)),
-        enabledBorder: activeBorder(inputBorderColor(isInErrorState, focusNode.hasFocus)),
-        focusedBorder: activeBorder(inputBorderColor(isInErrorState, focusNode.hasFocus)),
+        floatingLabelStyle: inputTextStyle(inputColor),
+        focusedErrorBorder: activeBorder(inputColor),
+        enabledBorder: activeBorder(inputColor),
+        focusedBorder: activeBorder(inputColor),
+        labelStyle: inputTextStyle(inputColor),
         disabledBorder: noBorder(),
         errorBorder: errorBorder(),
         labelText: labelText,
