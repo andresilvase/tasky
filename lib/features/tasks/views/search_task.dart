@@ -3,6 +3,7 @@ import 'package:taski/features/tasks/widgets/base_screen.dart';
 import 'package:taski/features/auth/widgets/input_text.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taski/features/tasks/widgets/task_list.dart';
+import 'package:taski/core/constants/widgets_keys.dart';
 import 'package:taski/features/tasks/model/task.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -86,6 +87,7 @@ class _SearchTaskState extends State<SearchTask> {
     return Padding(
       padding: const EdgeInsets.only(top: 32.0),
       child: InputText(
+        key: Key(WidgetsKeys.searchTaskInput),
         isDarkMode: Theme.of(Get.context!).brightness == Brightness.dark,
         controller: _searchController,
         focusNode: _searchFocusNode,
