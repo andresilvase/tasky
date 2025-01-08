@@ -1,3 +1,5 @@
+import 'package:taski/core/constants/widgets_keys.dart';
+import 'package:taski/features/tasks/widgets/tasky_item.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
@@ -6,25 +8,39 @@ import 'package:taski/main.dart';
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  group('end-to-end test', () {
-    testWidgets('tap on the floating action button, verify counter', (tester) async {
-      // Load app widget.
+  group('end-to-end test - unlogged in should be able to', () {
+    setUp(() async {
+      await init();
+    });
+    testWidgets('create a new task if the list is empty', (tester) async {
       await tester.pumpWidget(const MyApp());
 
-      // Verify the counter starts at 0.
-      expect(find.text('0'), findsOneWidget);
+      final createTaskButton = find.byKey(const Key(WidgetsKeys.createTaskButton));
+      expect(createTaskButton, findsOneWidget);
 
-      // Finds the floating action button to tap on.
-      final fab = find.byKey(const ValueKey('increment'));
-
-      // Emulate a tap on the floating action button.
-      await tester.tap(fab);
-
-      // Trigger a frame.
+      await tester.tap(createTaskButton);
       await tester.pumpAndSettle();
 
-      // Verify the counter increments by 1.
-      expect(find.text('1'), findsOneWidget);
+      final titleField = find.byKey(const Key(WidgetsKeys.createTaskTitleInput));
+      expect(titleField, findsOneWidget);
+
+      await tester.enterText(titleField, 'Test Task');
+      await tester.pumpAndSettle();
+
+      final descriptionField = find.byKey(const Key(WidgetsKeys.createTaskDescriptionInput));
+      expect(descriptionField, findsOneWidget);
+
+      await tester.enterText(descriptionField, 'Test Description');
+      await tester.pumpAndSettle();
+
+      final createTaskSubmitButton = find.byKey(const Key(WidgetsKeys.createTaskSubmitButton));
+      expect(createTaskSubmitButton, findsOneWidget);
+
+      await tester.tap(createTaskSubmitButton);
+      await tester.pumpAndSettle();
+
+      final taskCard = find.byType(TaskiItem);
+      expect(taskCard, findsOneWidget);
     });
   });
 }

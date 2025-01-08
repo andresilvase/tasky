@@ -77,6 +77,7 @@ class _CreateTaskState extends State<CreateTask> {
       child: Form(
         key: _formKey,
         child: TextFormField(
+          key: Key('createTaskTitleInput'),
           cursorErrorColor: TaskiColors.redShade,
           decoration: _titleInputDecoration(),
           style: _titleTextStyle(isDarkMode),
@@ -149,6 +150,7 @@ class _CreateTaskState extends State<CreateTask> {
     return Container(
       margin: EdgeInsets.only(top: _descriptionFocus.hasFocus ? 32 : 0),
       child: TextField(
+        key: Key('createTaskDescriptionInput'),
         decoration: _descriptionInputDecoration(),
         style: _descriptionTextstyle(isDarkMode),
         textInputAction: TextInputAction.done,
@@ -194,6 +196,7 @@ class _CreateTaskState extends State<CreateTask> {
       margin: EdgeInsets.only(top: 16),
       alignment: Alignment.centerRight,
       child: TextButton(
+        key: Key('createTaskSubmitButton'),
         onPressed: () {
           if (_formKey.currentState!.validate()) {
             createTask();
