@@ -93,7 +93,7 @@ class MenuHeader extends StatelessWidget {
   }
 
   Widget menuBuilder(context, controller, child) {
-    return GestureDetector(
+    return InkWell(
       onTap: () => onOptionSelected(controller),
       child: child!,
     );

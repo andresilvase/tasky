@@ -71,7 +71,7 @@ class _SearchTaskState extends State<SearchTask> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: _searchFocusNode.unfocus,
       child: BaseScreen(
         children: [

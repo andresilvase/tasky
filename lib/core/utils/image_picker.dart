@@ -72,7 +72,7 @@ mixin Pickers {
   }
 
   Widget selectResourceText({required Function()? onTap, required String text, required Color color}) {
-    return GestureDetector(
+    return InkWell(
       onTap: onTap,
       child: SizedBox(
         height: 18,

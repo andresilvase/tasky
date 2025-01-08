@@ -84,7 +84,7 @@ class _ProfileState extends State<Profile> with Pickers {
   }
 
   Widget _profileImage() {
-    return GestureDetector(
+    return InkWell(
       onTap: changePhoto,
       child: SizedBox(
         height: 100,

@@ -122,7 +122,7 @@ class TaskiItem extends StatelessWidget {
   Visibility _deleteTaskButton(bool isDarkMode) {
     return Visibility(
       visible: task.isCompleted,
-      child: GestureDetector(
+      child: InkWell(
         onTap: deleteTask,
         child: Icon(Icons.delete, color: isDarkMode ? TaskiColors.redShade : TaskiColors.fireRed),
       ),
