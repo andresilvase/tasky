@@ -3,14 +3,14 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
 import 'package:taski/main.dart';
 
-Future<void> initApp(WidgetTester tester) async {
+Future<void> _initApp(WidgetTester tester) async {
   await tester.pumpWidget(const MyApp());
   await tester.pumpAndSettle();
 }
 
 void createTask({String? title, String? taskDescription}) {
   testWidgets('create a new task', (tester) async {
-    await initApp(tester);
+    await _initApp(tester);
 
     final createTaskButton = find.byKey(const Key(WidgetKeys.navBarAddIcon));
     expect(createTaskButton, findsOneWidget);

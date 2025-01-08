@@ -6,7 +6,7 @@ import 'package:taski/main.dart';
 
 import 'complete_task_test.dart';
 
-Future<void> initApp(WidgetTester tester) async {
+Future<void> _initApp(WidgetTester tester) async {
   await tester.pumpWidget(const MyApp());
   await tester.pumpAndSettle();
 }
@@ -23,7 +23,7 @@ void deleteAllTasksAtOnce() {
 
 void _deleteAllAtOnce() {
   testWidgets('delete all tasks at once', (tester) async {
-    await initApp(tester);
+    await _initApp(tester);
 
     final deleteAllButton = find.byKey(Key(WidgetKeys.deleteAllCompletedTasksButton));
     expect(deleteAllButton, findsOneWidget);

@@ -6,7 +6,7 @@ import 'package:taski/main.dart';
 
 import 'complete_task_test.dart';
 
-Future<void> initApp(WidgetTester tester) async {
+Future<void> _initApp(WidgetTester tester) async {
   await tester.pumpWidget(const MyApp());
   await tester.pumpAndSettle();
 }
@@ -20,7 +20,7 @@ void deleteTask() {
 
 void _deleteTask(String taskTitle) {
   testWidgets('delete task', (tester) async {
-    await initApp(tester);
+    await _initApp(tester);
 
     final completedTasksNavIcon = find.byKey(Key(WidgetKeys.navBarDoneIcon));
     expect(completedTasksNavIcon, findsOneWidget);

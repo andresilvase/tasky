@@ -6,7 +6,7 @@ import 'package:taski/main.dart';
 
 import 'create_task_test.dart';
 
-Future<void> initApp(WidgetTester tester) async {
+Future<void> _initApp(WidgetTester tester) async {
   await tester.pumpWidget(const MyApp());
   await tester.pumpAndSettle();
 }
@@ -20,7 +20,7 @@ void searchTaskByTitle() {
 
 void _searchTaskByTitle(String taskTitle) {
   testWidgets('search task', (tester) async {
-    await initApp(tester);
+    await _initApp(tester);
 
     final taskCard = find.text(taskTitle);
     expect(taskCard, findsOneWidget);
