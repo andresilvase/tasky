@@ -17,14 +17,6 @@ class AppHeader extends StatefulWidget {
 }
 
 class _AppHeaderState extends State<AppHeader> {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.0),
-      child: Obx(() => _profile()),
-    );
-  }
-
   Widget _profile() {
     final bool isDarkMode = Theme.of(Get.context!).brightness == Brightness.dark;
 
@@ -50,21 +42,37 @@ class _AppHeaderState extends State<AppHeader> {
       attachedWidget: Row(
         spacing: 16,
         children: [
-          Text(
-            displayName.substring(0, min(displayName.length, 12)),
-            style: GoogleFonts.urbanist(
-              color: isDarkMode ? TaskiColors.blue10 : TaskiColors.statePurple,
-              fontWeight: FontWeight.w600,
-              fontSize: 18,
-            ),
-          ),
-          ProfileImage(
-            imagePath: authViewModel.activeUser.value.photoPath != null
-                ? authViewModel.activeUser.value.photoPath!
-                : TaskiAssets.imageProfile,
-          ),
+          _name(displayName, isDarkMode),
+          _photo(authViewModel),
         ],
       ),
+    );
+  }
+
+  Text _name(String displayName, bool isDarkMode) {
+    return Text(
+      displayName.substring(0, min(displayName.length, 12)),
+      style: GoogleFonts.urbanist(
+        color: isDarkMode ? TaskiColors.blue10 : TaskiColors.statePurple,
+        fontWeight: FontWeight.w600,
+        fontSize: 18,
+      ),
+    );
+  }
+
+  ProfileImage _photo(AuthViewModel authViewModel) {
+    return ProfileImage(
+      imagePath: authViewModel.activeUser.value.photoPath != null
+          ? authViewModel.activeUser.value.photoPath!
+          : TaskiAssets.imageProfile,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16.0),
+      child: Obx(() => _profile()),
     );
   }
 }

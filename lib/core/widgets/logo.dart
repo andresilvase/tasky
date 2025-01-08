@@ -14,36 +14,44 @@ class Logo extends StatelessWidget {
   final Color iconColor;
   final Color textColor;
 
+  Transform _appIcon() {
+    return Transform.scale(
+      scale: 1.5,
+      child: Checkbox(
+        fillColor: WidgetStateProperty.all(iconColor),
+        visualDensity: VisualDensity(vertical: -4),
+        checkColor: TaskiColors.white,
+        onChanged: null,
+        value: true,
+        side: BorderSide(
+          color: TaskiColors.mutedAzure,
+          width: 2,
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(4),
+        ),
+      ),
+    );
+  }
+
+  Text _appName() {
+    return Text(
+      AppLocalizations.of(Get.context!)!.appName,
+      style: GoogleFonts.urbanist(
+        color: textColor,
+        fontWeight: FontWeight.w600,
+        fontSize: 22,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Transform.scale(
-          scale: 1.5,
-          child: Checkbox(
-            fillColor: WidgetStateProperty.all(iconColor),
-            visualDensity: VisualDensity(vertical: -4),
-            checkColor: TaskiColors.white,
-            onChanged: null,
-            value: true,
-            side: BorderSide(
-              color: TaskiColors.mutedAzure,
-              width: 2,
-            ),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(4),
-            ),
-          ),
-        ),
-        Text(
-          AppLocalizations.of(Get.context!)!.appName,
-          style: GoogleFonts.urbanist(
-            color: textColor,
-            fontWeight: FontWeight.w600,
-            fontSize: 22,
-          ),
-        ),
+        _appIcon(),
+        _appName(),
       ],
     );
   }

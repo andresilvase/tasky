@@ -94,8 +94,8 @@ mixin Pickers {
       context: context,
       builder: (ctx) {
         final message = requestAccess == RequestAccess.camera
-            ? 'É necessário acesso a sua câmera para tirar uma foto.\n\nDeseja ir para configurações agora?'
-            : 'É necessário acesso a sua galeria para selecionar uma foto.\n\nDeseja ir para configurações agora?';
+            ? AppLocalizations.of(context)!.requestCameraAccess
+            : AppLocalizations.of(context)!.requestGalleryAccess;
 
         return PopUpMessage(
           confirmAction: () {

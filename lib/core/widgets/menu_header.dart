@@ -11,36 +11,17 @@ import 'package:get/get.dart';
 class MenuHeader extends StatelessWidget {
   MenuHeader({super.key, required this.attachedWidget});
 
+  final Widget attachedWidget;
+
   final themeController = Get.find<ThemeController>();
   final homeController = Get.find<HomeController>();
 
-  List<String> _menuOptionsTitle(bool darkMode) => [
-        AppLocalizations.of(Get.context!)!.account,
-        AppLocalizations.of(Get.context!)!.language,
-        darkMode ? AppLocalizations.of(Get.context!)!.lightMode : AppLocalizations.of(Get.context!)!.darkMode,
-        AppLocalizations.of(Get.context!)!.logout,
-      ];
-
-  List<IconData> _menuOptionsIcons(bool darkMode) => [
-        Icons.person,
-        Icons.language,
-        darkMode ? Icons.light_mode : Icons.dark_mode,
-        Icons.logout,
-      ];
-
-  final Widget attachedWidget;
-
-  Widget menuBuilder(context, controller, child) {
-    return GestureDetector(
-      onTap: () {
-        if (!controller.isOpen) {
-          controller.open();
-        } else {
-          controller.close();
-        }
-      },
-      child: child!,
-    );
+  void onOptionSelected(MenuController controller) {
+    if (!controller.isOpen) {
+      controller.open();
+    } else {
+      controller.close();
+    }
   }
 
   void _setStatusBarColor() {
@@ -78,34 +59,24 @@ class MenuHeader extends StatelessWidget {
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    final bool isDarkMode = Theme.of(Get.context!).brightness == Brightness.dark;
+  List<String> _menuOptionsTitle(bool darkMode) => [
+        AppLocalizations.of(Get.context!)!.account,
+        AppLocalizations.of(Get.context!)!.language,
+        darkMode ? AppLocalizations.of(Get.context!)!.lightMode : AppLocalizations.of(Get.context!)!.darkMode,
+        AppLocalizations.of(Get.context!)!.logout,
+      ];
 
-    return MenuAnchor(
-      style: MenuStyle(
-        padding: WidgetStateProperty.all(EdgeInsets.zero),
-        elevation: WidgetStateProperty.all(4),
-        backgroundColor: WidgetStateProperty.all(isDarkMode ? null : TaskiColors.white),
-      ),
-      menuChildren: _menuChildren(),
-      alignmentOffset: const Offset(0, 8),
-      builder: menuBuilder,
-      child: attachedWidget,
-    );
-  }
+  List<IconData> _menuOptionsIcons(bool darkMode) => [
+        Icons.person,
+        Icons.language,
+        darkMode ? Icons.light_mode : Icons.dark_mode,
+        Icons.logout,
+      ];
 
-  List<Widget> _menuChildren() {
-    final menuOptionsTitle = _menuOptionsTitle(Get.isDarkMode);
-    final menuOptionsIcons = _menuOptionsIcons(Get.isDarkMode);
-
-    return List.generate(
-      menuOptionsTitle.length,
-      (index) => menuOption(
-        onPressed: () => onMenuOptionPressed(index),
-        optionTitle: menuOptionsTitle[index],
-        icon: menuOptionsIcons[index],
-      ),
+  Widget menuBuilder(context, controller, child) {
+    return GestureDetector(
+      onTap: () => onOptionSelected(controller),
+      child: child!,
     );
   }
 
@@ -138,6 +109,37 @@ class MenuHeader extends StatelessWidget {
       color: TaskiColors.stateBlue,
       fontWeight: FontWeight.w600,
       fontSize: 16,
+    );
+  }
+
+  List<Widget> _menuChildren() {
+    final menuOptionsTitle = _menuOptionsTitle(Get.isDarkMode);
+    final menuOptionsIcons = _menuOptionsIcons(Get.isDarkMode);
+
+    return List.generate(
+      menuOptionsTitle.length,
+      (index) => menuOption(
+        onPressed: () => onMenuOptionPressed(index),
+        optionTitle: menuOptionsTitle[index],
+        icon: menuOptionsIcons[index],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final bool isDarkMode = Theme.of(Get.context!).brightness == Brightness.dark;
+
+    return MenuAnchor(
+      style: MenuStyle(
+        padding: WidgetStateProperty.all(EdgeInsets.zero),
+        elevation: WidgetStateProperty.all(4),
+        backgroundColor: WidgetStateProperty.all(isDarkMode ? null : TaskiColors.white),
+      ),
+      menuChildren: _menuChildren(),
+      alignmentOffset: const Offset(0, 8),
+      builder: menuBuilder,
+      child: attachedWidget,
     );
   }
 }

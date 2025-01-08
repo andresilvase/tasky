@@ -139,5 +139,9 @@
     "lightMode": "Modo claro",
     "@lightMode": {},
     "continueAnonymously": "Continuar de forma anônima",
-    "@continueAnonymously": {}
+    "@continueAnonymously": {},
+    "requestCameraAccess": "É necessário acessar sua câmera para tirar uma foto.\n\nVocê deseja ir para as configurações agora?",
+    "@requestCameraAccess": {},
+    "requestGalleryAccess": "É necessário acessar sua galeria para escolher uma foto.\n\nVocê deseja ir para as configurações agora?",
+    "@requestGalleryAccess": {}
 }
