@@ -86,7 +86,7 @@ class TaskiItem extends StatelessWidget {
     return Transform.scale(
       scale: 1.2,
       child: Checkbox(
-        key: Key(WidgetsKeys.taskiItemCheckbox),
+        key: Key(WidgetKeys.taskiItemCheckbox),
         visualDensity: const VisualDensity(vertical: -4),
         activeColor: iconColor,
         onChanged: (_) => changeTaskStatus?.call(),
@@ -123,7 +123,7 @@ class TaskiItem extends StatelessWidget {
     return Visibility(
       visible: task.isCompleted,
       child: InkWell(
-        key: Key(WidgetsKeys.taskiItemDeleteButton(task.id)),
+        key: Key(WidgetKeys.taskiItemDeleteButton(task.id)),
         onTap: deleteTask,
         child: Icon(Icons.delete, color: isDarkMode ? TaskiColors.redShade : TaskiColors.fireRed),
       ),

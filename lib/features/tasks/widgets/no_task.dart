@@ -52,7 +52,7 @@ class NoTask extends StatelessWidget {
     return Visibility(
       visible: showCreateTaskButton,
       child: ElevatedButton.icon(
-        key: Key(WidgetsKeys.createTaskButton),
+        key: Key(WidgetKeys.createTaskButton),
         label: Text(
           AppLocalizations.of(Get.context!)!.createTask,
           style: GoogleFonts.urbanist(

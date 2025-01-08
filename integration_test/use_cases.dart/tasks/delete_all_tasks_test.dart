@@ -25,7 +25,7 @@ void _deleteAllAtOnce() {
   testWidgets('delete all tasks at once', (tester) async {
     await initApp(tester);
 
-    final deleteAllButton = find.byKey(Key(WidgetsKeys.deleteAllCompletedTasksButton));
+    final deleteAllButton = find.byKey(Key(WidgetKeys.deleteAllCompletedTasksButton));
     expect(deleteAllButton, findsOneWidget);
 
     await tester.tap(deleteAllButton);

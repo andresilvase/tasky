@@ -1,5 +1,6 @@
 import 'package:taski/features/auth/viewModel/auth_view_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:taski/core/constants/widgets_keys.dart';
 import 'package:taski/features/home/controller.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:taski/core/theme/controller.dart';
@@ -81,6 +82,7 @@ class MenuHeader extends StatelessWidget {
   List<Widget> _menuChildren() {
     final menuOptionsTitle = _menuOptionsTitle(Get.isDarkMode);
     final menuOptionsIcons = _menuOptionsIcons(Get.isDarkMode);
+    final keys = _menuOptionsKeys();
 
     return List.generate(
       menuOptionsTitle.length,
@@ -88,6 +90,7 @@ class MenuHeader extends StatelessWidget {
         onPressed: () => onMenuOptionPressed(index),
         optionTitle: menuOptionsTitle[index],
         icon: menuOptionsIcons[index],
+        key: keys[index],
       ),
     );
   }
@@ -133,12 +136,23 @@ class MenuHeader extends StatelessWidget {
     }
   }
 
+  List<String> _menuOptionsKeys() {
+    return [
+      WidgetKeys.menuAccountButton,
+      WidgetKeys.menuLanguageSettingsButton,
+      WidgetKeys.menuThemeButton,
+      WidgetKeys.menuLogoutButton,
+    ];
+  }
+
   MenuItemButton menuOption({
     required Function()? onPressed,
     required String optionTitle,
     required IconData icon,
+    required String key,
   }) {
     return MenuItemButton(
+      key: Key(key),
       onPressed: onPressed,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,

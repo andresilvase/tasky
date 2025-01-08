@@ -28,19 +28,19 @@ void _searchTaskByTitle(String taskTitle) {
     final taskCardCheckbox = find.byType(TaskiItem);
     expect(taskCardCheckbox, findsWidgets);
 
-    final taskCardCheckboxIcon = find.byKey(Key(WidgetsKeys.taskiItemCheckbox));
+    final taskCardCheckboxIcon = find.byKey(Key(WidgetKeys.taskiItemCheckbox));
     expect(taskCardCheckboxIcon, findsWidgets);
 
     await tester.tap(taskCardCheckboxIcon.last);
     await tester.pumpAndSettle();
 
-    final searchTasksNavIcon = find.byKey(Key(WidgetsKeys.navBarSearchIcon));
+    final searchTasksNavIcon = find.byKey(Key(WidgetKeys.navBarSearchIcon));
     expect(searchTasksNavIcon, findsOneWidget);
 
     await tester.tap(searchTasksNavIcon);
     await tester.pumpAndSettle();
 
-    final searchTaskInput = find.byKey(Key(WidgetsKeys.searchTaskInput));
+    final searchTaskInput = find.byKey(Key(WidgetKeys.searchTaskInput));
     expect(searchTaskInput, findsOneWidget);
 
     await tester.enterText(searchTaskInput, taskTitle);

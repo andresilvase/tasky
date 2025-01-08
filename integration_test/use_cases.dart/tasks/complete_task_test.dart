@@ -28,13 +28,13 @@ void _completeTask(String taskTitle) {
     final taskCardCheckbox = find.byType(TaskiItem);
     expect(taskCardCheckbox, findsWidgets);
 
-    final taskCardCheckboxIcon = find.byKey(Key(WidgetsKeys.taskiItemCheckbox));
+    final taskCardCheckboxIcon = find.byKey(Key(WidgetKeys.taskiItemCheckbox));
     expect(taskCardCheckboxIcon, findsWidgets);
 
     await tester.tap(taskCardCheckboxIcon.last);
     await tester.pumpAndSettle();
 
-    final completedTasksNavIcon = find.byKey(Key(WidgetsKeys.navBarDoneIcon));
+    final completedTasksNavIcon = find.byKey(Key(WidgetKeys.navBarDoneIcon));
     expect(completedTasksNavIcon, findsOneWidget);
 
     await tester.tap(completedTasksNavIcon);

@@ -6,6 +6,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taski/features/auth/model/auth_result.dart';
 import 'package:taski/features/auth/utils/validators.dart';
 import 'package:taski/core/widgets/rounded_button.dart';
+import 'package:taski/core/constants/widgets_keys.dart';
 import 'package:taski/core/widgets/loading_blur.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -138,6 +139,7 @@ class _AuthScreenState extends State<AuthScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0),
       child: InputText(
+        key: const Key(WidgetKeys.usernameInput),
         labelText: AppLocalizations.of(context)!.username,
         validator: authValidators.usernameInputValidator,
         onInputClear: usernameController.clear,
@@ -168,6 +170,7 @@ class _AuthScreenState extends State<AuthScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0),
       child: PasswordInput(
+        key: const Key(WidgetKeys.passwordInput),
         labelText: AppLocalizations.of(context)!.password,
         validator: authValidators.passwordInputValidator,
         showPassword: authViewModel.setPasswordVisible,
@@ -193,6 +196,7 @@ class _AuthScreenState extends State<AuthScreen> {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 4.0),
         child: PasswordInput(
+          key: const Key(WidgetKeys.repeatPasswordInput),
           validator: (value) {
             return authValidators.repeatPasswordInputValidator(
               value,
@@ -215,6 +219,7 @@ class _AuthScreenState extends State<AuthScreen> {
 
   Widget _submitButton() {
     return RoundedButton(
+      key: const Key(WidgetKeys.authSubmitButton),
       text: authViewModel.isLogin ? AppLocalizations.of(context)!.login : AppLocalizations.of(context)!.createAccount,
       textColor: TaskiColors.white,
       backgroundColor: TaskiColors.blue,
@@ -242,6 +247,7 @@ class _AuthScreenState extends State<AuthScreen> {
 
   Widget _createAccount() {
     return TextButton(
+      key: const Key(WidgetKeys.toggleAuthModeButton),
       onPressed: authViewModel.toggleAuthMode,
       style: ButtonStyle(
         padding: WidgetStateProperty.all(EdgeInsets.zero),
@@ -257,6 +263,7 @@ class _AuthScreenState extends State<AuthScreen> {
 
   Widget _continueAnonymous() {
     return TextButton(
+      key: const Key(WidgetKeys.continueAnnonymousButton),
       onPressed: () {
         Get.toNamed(Routes.home);
         authViewModel.setErrorState(false);

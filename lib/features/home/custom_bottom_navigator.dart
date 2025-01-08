@@ -58,10 +58,10 @@ class CustomBottomNavigator extends StatelessWidget {
     ];
 
     List<String> keys = [
-      WidgetsKeys.navBarTodoIcon,
-      WidgetsKeys.navBarAddIcon,
-      WidgetsKeys.navBarSearchIcon,
-      WidgetsKeys.navBarDoneIcon,
+      WidgetKeys.navBarTodoIcon,
+      WidgetKeys.navBarAddIcon,
+      WidgetKeys.navBarSearchIcon,
+      WidgetKeys.navBarDoneIcon,
     ];
 
     return SafeArea(

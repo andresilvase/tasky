@@ -58,7 +58,7 @@ class TasksCompleted extends StatelessWidget {
 
   InkWell _deleteAllButton(bool isDarkMode) {
     return InkWell(
-      key: Key(WidgetsKeys.deleteAllCompletedTasksButton),
+      key: Key(WidgetKeys.deleteAllCompletedTasksButton),
       onTap: taskViewModel.deleteCompletedTasks,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),

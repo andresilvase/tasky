@@ -12,7 +12,7 @@ void createTask({String? title, String? taskDescription}) {
   testWidgets('create a new task', (tester) async {
     await initApp(tester);
 
-    final createTaskButton = find.byKey(const Key(WidgetsKeys.navBarAddIcon));
+    final createTaskButton = find.byKey(const Key(WidgetKeys.navBarAddIcon));
     expect(createTaskButton, findsOneWidget);
 
     await tester.tap(createTaskButton);
@@ -20,21 +20,21 @@ void createTask({String? title, String? taskDescription}) {
 
     final taskTitle = title ?? 'Test Task 2';
 
-    final titleField = find.byKey(const Key(WidgetsKeys.createTaskTitleInput));
+    final titleField = find.byKey(const Key(WidgetKeys.createTaskTitleInput));
     expect(titleField, findsOneWidget);
 
     await tester.enterText(titleField, taskTitle);
     await tester.pumpAndSettle();
 
     if (taskDescription != null) {
-      final descriptionField = find.byKey(const Key(WidgetsKeys.createTaskDescriptionInput));
+      final descriptionField = find.byKey(const Key(WidgetKeys.createTaskDescriptionInput));
       expect(descriptionField, findsOneWidget);
 
       await tester.enterText(descriptionField, taskDescription);
       await tester.pumpAndSettle();
     }
 
-    final createTaskSubmitButton = find.byKey(const Key(WidgetsKeys.createTaskSubmitButton));
+    final createTaskSubmitButton = find.byKey(const Key(WidgetKeys.createTaskSubmitButton));
     expect(createTaskSubmitButton, findsOneWidget);
 
     await tester.tap(createTaskSubmitButton);

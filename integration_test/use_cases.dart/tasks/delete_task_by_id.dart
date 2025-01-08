@@ -22,7 +22,7 @@ void _deleteTask(String taskTitle) {
   testWidgets('delete task', (tester) async {
     await initApp(tester);
 
-    final completedTasksNavIcon = find.byKey(Key(WidgetsKeys.navBarDoneIcon));
+    final completedTasksNavIcon = find.byKey(Key(WidgetKeys.navBarDoneIcon));
     expect(completedTasksNavIcon, findsOneWidget);
 
     await tester.tap(completedTasksNavIcon);
@@ -40,7 +40,7 @@ void _deleteTask(String taskTitle) {
 
     expect(completedTaskCard, findsOneWidget);
 
-    final completedTaskCardCheckbox = find.byKey(Key(WidgetsKeys.taskiItemDeleteButton(taskToBeDeletedId)));
+    final completedTaskCardCheckbox = find.byKey(Key(WidgetKeys.taskiItemDeleteButton(taskToBeDeletedId)));
 
     await tester.tap(completedTaskCardCheckbox);
     await tester.pumpAndSettle();

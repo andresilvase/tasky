@@ -87,7 +87,7 @@ class _SearchTaskState extends State<SearchTask> {
     return Padding(
       padding: const EdgeInsets.only(top: 32.0),
       child: InputText(
-        key: Key(WidgetsKeys.searchTaskInput),
+        key: Key(WidgetKeys.searchTaskInput),
         isDarkMode: Theme.of(Get.context!).brightness == Brightness.dark,
         controller: _searchController,
         focusNode: _searchFocusNode,

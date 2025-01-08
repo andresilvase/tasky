@@ -78,7 +78,7 @@ class _CreateTaskState extends State<CreateTask> {
       child: Form(
         key: _formKey,
         child: TextFormField(
-          key: Key(WidgetsKeys.createTaskTitleInput),
+          key: Key(WidgetKeys.createTaskTitleInput),
           cursorErrorColor: TaskiColors.redShade,
           decoration: _titleInputDecoration(),
           style: _titleTextStyle(isDarkMode),
@@ -151,7 +151,7 @@ class _CreateTaskState extends State<CreateTask> {
     return Container(
       margin: EdgeInsets.only(top: _descriptionFocus.hasFocus ? 32 : 0),
       child: TextField(
-        key: Key(WidgetsKeys.createTaskDescriptionInput),
+        key: Key(WidgetKeys.createTaskDescriptionInput),
         decoration: _descriptionInputDecoration(),
         style: _descriptionTextstyle(isDarkMode),
         textInputAction: TextInputAction.done,
@@ -197,7 +197,7 @@ class _CreateTaskState extends State<CreateTask> {
       margin: EdgeInsets.only(top: 16),
       alignment: Alignment.centerRight,
       child: TextButton(
-        key: Key(WidgetsKeys.createTaskSubmitButton),
+        key: Key(WidgetKeys.createTaskSubmitButton),
         onPressed: () {
           if (_formKey.currentState!.validate()) {
             createTask();
