@@ -237,6 +237,7 @@ class _AuthScreenState extends State<AuthScreen> {
     return TextButton(
       onPressed: () {
         Get.toNamed(Routes.home);
+        authViewModel.setErrorState(false);
       },
       style: ButtonStyle(
         padding: WidgetStateProperty.all(EdgeInsets.zero),

@@ -87,6 +87,7 @@ class AuthViewModel extends GetxController {
     );
 
     setLoading(true);
+    print(user);
     final result = await _repository.login(user);
 
     if (result.ok) {

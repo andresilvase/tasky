@@ -26,8 +26,6 @@ class LocaleModel {
     );
   }
 
-  String toJson() => json.encode(toMap());
-
   factory LocaleModel.fromJson(String source) => LocaleModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override

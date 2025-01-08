@@ -43,13 +43,11 @@ class User {
   factory User.fromMap(Map<dynamic, dynamic> map) {
     return User(
       displayName: map[UserProperty.displayName.name],
+      photoPath: map[UserProperty.photoPath.name],
       username: map[UserProperty.username.name],
       password: map[UserProperty.password.name],
-      photoPath: map[UserProperty.photoPath.name],
     );
   }
-
-  String toJson() => json.encode(toMap());
 
   factory User.fromJson(String source) => User.fromMap(json.decode(source) as Map<String, dynamic>);
 
