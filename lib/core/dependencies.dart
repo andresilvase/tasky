@@ -22,8 +22,6 @@ class TaskiDependencies {
 
   static Future _initThemeDependencies() async {
     Get.lazyPut(() => ThemeController());
-    ThemeController themeController = Get.find();
-    themeController.initializeTheme();
   }
 
   static Future _initAuthDependencies() async {

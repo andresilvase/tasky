@@ -1,29 +1,24 @@
 import 'package:taski/core/constants/colors.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class ThemeController extends GetxController {
   var isDarkMode = false.obs;
-
-  void initializeTheme() {
-    final brightness = PlatformDispatcher.instance.platformBrightness;
-    isDarkMode.value = brightness == Brightness.dark;
-    setStatusBarColor();
-  }
-
   void toggleTheme() {
-    isDarkMode.value = !isDarkMode.value;
-    Get.changeThemeMode(isDarkMode.value ? ThemeMode.dark : ThemeMode.light);
+    Get.changeThemeMode(Get.isDarkMode ? ThemeMode.light : ThemeMode.dark);
+    isDarkMode.value = Get.isDarkMode;
     setStatusBarColor();
   }
 
   void setStatusBarColor() {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
-        statusBarIconBrightness: isDarkMode.value ? Brightness.light : Brightness.dark,
-        statusBarColor: isDarkMode.value ? TaskiColors.black : TaskiColors.white,
+        systemNavigationBarIconBrightness: Get.isDarkMode ? Brightness.light : Brightness.dark,
+        systemNavigationBarColor: Get.isDarkMode ? TaskiColors.black : TaskiColors.white,
+        statusBarIconBrightness: Get.isDarkMode ? Brightness.light : Brightness.dark,
+        statusBarColor: Get.isDarkMode ? TaskiColors.black : TaskiColors.white,
+        systemNavigationBarContrastEnforced: true,
       ),
     );
   }

@@ -5,6 +5,7 @@ import 'package:taski/features/tasks/views/todo_list.dart.dart';
 import 'package:taski/features/tasks/views/search_task.dart';
 import 'package:taski/features/home/controller.dart';
 import 'package:taski/core/constants/colors.dart';
+import 'package:taski/core/theme/controller.dart';
 import 'package:taski/core/widgets/header.dart';
 import '../tasks/views/create_task.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,10 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeController themeController = Get.find();
     final HomeController homeController = Get.find();
+
+    themeController.setStatusBarColor();
 
     final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
 

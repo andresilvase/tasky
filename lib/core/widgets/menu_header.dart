@@ -82,24 +82,22 @@ class MenuHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool isDarkMode = Theme.of(Get.context!).brightness == Brightness.dark;
 
-    return Obx(
-      () => MenuAnchor(
-        style: MenuStyle(
-          padding: WidgetStateProperty.all(EdgeInsets.zero),
-          elevation: WidgetStateProperty.all(4),
-          backgroundColor: WidgetStateProperty.all(isDarkMode ? null : TaskiColors.white),
-        ),
-        menuChildren: _menuChildren(),
-        alignmentOffset: const Offset(0, 8),
-        builder: menuBuilder,
-        child: attachedWidget,
+    return MenuAnchor(
+      style: MenuStyle(
+        padding: WidgetStateProperty.all(EdgeInsets.zero),
+        elevation: WidgetStateProperty.all(4),
+        backgroundColor: WidgetStateProperty.all(isDarkMode ? null : TaskiColors.white),
       ),
+      menuChildren: _menuChildren(),
+      alignmentOffset: const Offset(0, 8),
+      builder: menuBuilder,
+      child: attachedWidget,
     );
   }
 
   List<Widget> _menuChildren() {
-    final menuOptionsTitle = _menuOptionsTitle(themeController.isDarkMode.value);
-    final menuOptionsIcons = _menuOptionsIcons(themeController.isDarkMode.value);
+    final menuOptionsTitle = _menuOptionsTitle(Get.isDarkMode);
+    final menuOptionsIcons = _menuOptionsIcons(Get.isDarkMode);
 
     return List.generate(
       menuOptionsTitle.length,
