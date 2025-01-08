@@ -1,11 +1,10 @@
 import 'package:taski/features/tasks/viewModel/task_view_model.dart';
-import 'package:taski/core/widgets/text_field_common_widgets.dart';
 import 'package:taski/features/tasks/widgets/base_screen.dart';
+import 'package:taski/features/auth/widgets/input_text.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taski/features/tasks/widgets/task_list.dart';
 import 'package:taski/features/tasks/model/task.dart';
 import 'package:taski/core/constants/colors.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:async';
@@ -84,53 +83,19 @@ class _SearchTaskState extends State<SearchTask> {
   Widget _inputSearch() {
     return Padding(
       padding: const EdgeInsets.only(top: 32.0),
-      child: TextFormField(
+      child: InputText(
+        isDarkMode: Theme.of(Get.context!).brightness == Brightness.dark,
         controller: _searchController,
         focusNode: _searchFocusNode,
         onChanged: _onSearchChanged,
-        style: GoogleFonts.urbanist(
-          color: TaskiColors.statePurple,
-          fontWeight: FontWeight.normal,
-          fontSize: 16,
-        ),
-        decoration: InputDecoration(
-          suffixIconConstraints: BoxConstraints(maxHeight: 42, maxWidth: 42),
-          suffixIcon: suffixIcon(
-            visible: _searchController.text.isNotEmpty,
-            onPressed: () {
-              setState(() {
-                _onSearchChanged('');
-                _searchController.clear();
-              });
-            },
-          ),
-          prefixIcon: Icon(
-            color: inputBorderColor(),
-            Icons.search,
-          ),
-          labelStyle: GoogleFonts.urbanist(
-            fontWeight: FontWeight.normal,
-            color: TaskiColors.mutedAzure,
-            fontSize: 16,
-          ),
-          labelText: AppLocalizations.of(context)!.searchForATask,
-          floatingLabelStyle: GoogleFonts.urbanist(
-            fontWeight: FontWeight.normal,
-            color: inputBorderColor(),
-            fontSize: 16,
-          ),
-          enabledBorder: activeBorder(inputBorderColor()),
-          focusedBorder: activeBorder(inputBorderColor()),
-          focusedErrorBorder: noBorder(),
-          disabledBorder: noBorder(),
-          errorBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: TaskiColors.redShade,
-              width: 2,
-            ),
-          ),
-          border: noBorder(),
-        ),
+        prefixIcon: Icons.search,
+        onInputClear: () {
+          setState(() {
+            _onSearchChanged('');
+            _searchController.clear();
+          });
+        },
+        labelText: '',
       ),
     );
   }

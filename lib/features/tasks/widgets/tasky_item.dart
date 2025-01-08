@@ -66,6 +66,7 @@ class TaskiItem extends StatelessWidget {
     }
 
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Transform.scale(
           scale: 1.2,
@@ -84,12 +85,17 @@ class TaskiItem extends StatelessWidget {
             ),
           ),
         ),
-        Text(
-          task.title,
-          style: GoogleFonts.urbanist(
-            fontWeight: FontWeight.w600,
-            color: textColor,
-            fontSize: 16,
+        Expanded(
+          flex: task.title.length,
+          child: Text(
+            task.title,
+            style: GoogleFonts.urbanist(
+              fontWeight: FontWeight.w600,
+              color: textColor,
+              fontSize: 16,
+            ),
+            overflow: TextOverflow.ellipsis,
+            softWrap: false,
           ),
         ),
         Spacer(),

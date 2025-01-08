@@ -11,6 +11,7 @@ class InputText extends StatelessWidget {
     required this.focusNode,
     required this.labelText,
     this.onInputClear,
+    this.prefixIcon,
     this.validator,
     this.onChanged,
   });
@@ -19,6 +20,7 @@ class InputText extends StatelessWidget {
   final TextEditingController controller;
   final Function(String)? onChanged;
   final Function()? onInputClear;
+  final IconData? prefixIcon;
   final bool isInErrorState;
   final FocusNode focusNode;
   final String labelText;
@@ -46,7 +48,7 @@ class InputText extends StatelessWidget {
         ),
         prefixIcon: Icon(
           color: inputBorderColor(isInErrorState, focusNode.hasFocus),
-          Icons.person_3_outlined,
+          prefixIcon ?? Icons.person_3_outlined,
         ),
         floatingLabelStyle: inputTextHelperTextStyle(inputBorderColor(isInErrorState, focusNode.hasFocus)),
         labelStyle: inputTextHelperTextStyle(inputBorderColor(isInErrorState, focusNode.hasFocus)),
