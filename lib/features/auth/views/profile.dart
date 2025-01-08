@@ -25,8 +25,6 @@ class _ProfileState extends State<Profile> with Pickers {
   late TextEditingController displayNameController;
   final FocusNode displayNameFocusNode = FocusNode();
 
-  void _setState() => setState(() {});
-
   void changePhoto() {
     pickAnAsset(
       onAssetPicked: (file) {
@@ -44,7 +42,7 @@ class _ProfileState extends State<Profile> with Pickers {
     super.initState();
 
     displayNameController = TextEditingController(text: authViewModel.activeUser.value.displayName);
-    displayNameController.addListener(_setState);
+    displayNameController.addListener(() => setState(() {}));
   }
 
   @override

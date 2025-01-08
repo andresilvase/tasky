@@ -4,7 +4,6 @@ import 'package:taski/features/auth/widgets/input_text.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taski/features/tasks/widgets/task_list.dart';
 import 'package:taski/features/tasks/model/task.dart';
-import 'package:taski/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:async';
@@ -29,25 +28,38 @@ class _SearchTaskState extends State<SearchTask> {
     }
 
     if (query.isEmpty) {
-      setState(() {
-        taskViewModel.addSearchQuery('');
-      });
+      _clearSearch();
     } else {
-      _debounce = Timer(Duration(milliseconds: 500), () {
-        setState(() {
-          if (query.length > 2) {
-            taskViewModel.addSearchQuery(query);
-          }
-        });
-      });
+      makeSearchRequest(query);
     }
+  }
+
+  void _clearSearch() {
+    setState(() {
+      taskViewModel.addSearchQuery('');
+    });
+  }
+
+  void makeSearchRequest(String query) {
+    _debounce = Timer(Duration(milliseconds: 500), () {
+      setState(() {
+        if (query.length > 2) {
+          taskViewModel.addSearchQuery(query);
+        }
+      });
+    });
+  }
+
+  void _onInputClear() {
+    setState(() {
+      _onSearchChanged('');
+      _searchController.clear();
+    });
   }
 
   @override
   void initState() {
-    _searchFocusNode.addListener(() {
-      setState(() {});
-    });
+    _searchFocusNode.addListener(() => setState(() {}));
     super.initState();
   }
 
@@ -60,9 +72,7 @@ class _SearchTaskState extends State<SearchTask> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        _searchFocusNode.unfocus();
-      },
+      onTap: _searchFocusNode.unfocus,
       child: BaseScreen(
         children: [
           _inputSearch(),
@@ -72,14 +82,6 @@ class _SearchTaskState extends State<SearchTask> {
     );
   }
 
-  Color inputBorderColor() {
-    if (_searchFocusNode.hasFocus) {
-      return TaskiColors.blue;
-    } else {
-      return TaskiColors.mutedAzure;
-    }
-  }
-
   Widget _inputSearch() {
     return Padding(
       padding: const EdgeInsets.only(top: 32.0),
@@ -87,14 +89,9 @@ class _SearchTaskState extends State<SearchTask> {
         isDarkMode: Theme.of(Get.context!).brightness == Brightness.dark,
         controller: _searchController,
         focusNode: _searchFocusNode,
+        onInputClear: _onInputClear,
         onChanged: _onSearchChanged,
         prefixIcon: Icons.search,
-        onInputClear: () {
-          setState(() {
-            _onSearchChanged('');
-            _searchController.clear();
-          });
-        },
         labelText: '',
       ),
     );

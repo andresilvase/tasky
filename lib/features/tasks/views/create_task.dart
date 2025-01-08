@@ -22,9 +22,7 @@ class _CreateTaskState extends State<CreateTask> {
 
   @override
   void initState() {
-    _descriptionFocus.addListener(() {
-      setState(() {});
-    });
+    _descriptionFocus.addListener(() => setState(() {}));
 
     super.initState();
   }
