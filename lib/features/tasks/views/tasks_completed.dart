@@ -29,8 +29,9 @@ class TasksCompleted extends StatelessWidget {
     return Obx(
       () => Visibility(
         visible: taskViewModel.completedTasks.isNotEmpty,
-        child: Padding(
-          padding: const EdgeInsets.only(top: 32.0),
+        child: Container(
+          margin: const EdgeInsets.only(top: 32.0),
+          padding: EdgeInsets.zero,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -42,16 +43,19 @@ class TasksCompleted extends StatelessWidget {
                   fontSize: 20,
                 ),
               ),
-              TextButton(
-                onPressed: () async {
+              InkWell(
+                onTap: () async {
                   await taskViewModel.deleteCompletedTasks();
                 },
-                child: Text(
-                  AppLocalizations.of(Get.context!)!.deleteAll,
-                  style: GoogleFonts.urbanist(
-                    color: isDarkMode ? TaskiColors.redShade : TaskiColors.fireRed,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 18,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Text(
+                    AppLocalizations.of(Get.context!)!.deleteAll,
+                    style: GoogleFonts.urbanist(
+                      color: isDarkMode ? TaskiColors.redShade : TaskiColors.fireRed,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 18,
+                    ),
                   ),
                 ),
               )
