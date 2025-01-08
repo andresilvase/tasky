@@ -9,7 +9,7 @@ Future<void> initApp(WidgetTester tester) async {
   await tester.pumpAndSettle();
 }
 
-void createTaskWhenListIsEmptyUnlogged() {
+void createTaskWhenListIsEmpty() {
   testWidgets('create a new task if the list is empty', (tester) async {
     await initApp(tester);
 
