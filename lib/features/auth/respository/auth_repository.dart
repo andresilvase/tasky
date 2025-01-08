@@ -48,8 +48,6 @@ class AuthRepository {
     final Map existentUser = await _db.get(HiveBoxes.auth, user.username);
 
     if (existentUser.isNotEmpty) {
-      print(user.password);
-      print(existentUser['password']);
       if (existentUser['password'] == user.password) {
         await _db.update(HiveBoxes.activeUser, user.toMap(), user.username);
         return AuthResult.successfulLogin();
