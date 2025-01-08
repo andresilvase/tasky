@@ -71,6 +71,8 @@
     "@repeatPassword": {},
     "usernameRequired": "O nome de usuário é obrigatório",
     "@usernameRequired": {},
+    "titleRequired": "O título é obrigatório",
+    "@titleRequired": {},
     "usernameMinLength": "O nome de usuário deve ter pelo menos {n} caracteres",
     "@usernameMinLength": {
         "placeholders": {

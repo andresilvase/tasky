@@ -69,6 +69,8 @@
     "@alreadyHaveAnAccount": {},
     "repeatPassword": "Repetir contraseña",
     "@repeatPassword": {},
+    "titleRequired": "El título es obligatorio",
+    "@titleRequired": {},
     "usernameRequired": "El nombre de usuario es obligatorio",
     "@usernameRequired": {},
     "usernameMinLength": "El nombre de usuario debe tener al menos {n} caracteres",
