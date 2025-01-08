@@ -60,7 +60,7 @@ class AuthViewModel extends GetxController {
 
   Future<AuthResult> register(String username, String password) async {
     User user = User(
-      username: username.trim().removeAccents(),
+      username: username.trim().removeAccents().toLowerCase(),
       password: base64Encode(
         utf8.encode(password.trim().removeAccents()),
       ),
@@ -80,7 +80,7 @@ class AuthViewModel extends GetxController {
 
   Future<AuthResult> login(String username, String password) async {
     User user = User(
-      username: username.trim().removeAccents(),
+      username: username.trim().removeAccents().toLowerCase(),
       password: base64Encode(
         utf8.encode(password.trim().removeAccents()),
       ),
