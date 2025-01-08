@@ -1,4 +1,3 @@
-import 'package:taski/features/tasks/widgets/tasky_item.dart';
 import 'package:taski/core/constants/widgets_keys.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +9,39 @@ Future<void> initApp(WidgetTester tester) async {
 }
 
 void createAnAccount() {
-  testWidgets('create an account', (tester) async {
+  testWidgets('create an account when unlogged in', (tester) async {
     await initApp(tester);
+
+    await tester.tap(find.byKey(const Key(WidgetKeys.headerProfilePicture)));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byKey(const Key(WidgetKeys.menuAccountButton)));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byKey(const Key(WidgetKeys.toggleAuthModeButton)));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byKey(const Key(WidgetKeys.usernameInput)));
+    await tester.pumpAndSettle();
+
+    await tester.enterText(find.byKey(const Key(WidgetKeys.usernameInput)), 'testAccount');
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byKey(const Key(WidgetKeys.passwordInput)));
+    await tester.pumpAndSettle();
+
+    await tester.enterText(find.byKey(const Key(WidgetKeys.passwordInput)), 'test');
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byKey(const Key(WidgetKeys.repeatPasswordInput)));
+    await tester.pumpAndSettle();
+
+    await tester.enterText(find.byKey(const Key(WidgetKeys.repeatPasswordInput)), 'test');
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byKey(const Key(WidgetKeys.authSubmitButton)));
+    await tester.pumpAndSettle();
+
+    expect(find.byKey(const Key(WidgetKeys.welcome)), findsOneWidget);
   });
 }

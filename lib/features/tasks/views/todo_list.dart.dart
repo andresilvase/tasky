@@ -3,6 +3,7 @@ import 'package:taski/features/auth/viewModel/auth_view_model.dart';
 import 'package:taski/features/tasks/widgets/base_screen.dart';
 import 'package:taski/features/tasks/widgets/task_list.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:taski/core/constants/widgets_keys.dart';
 import 'package:taski/features/tasks/model/task.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -46,6 +47,7 @@ class TodoList extends StatelessWidget {
       children: [
         Text(
           AppLocalizations.of(Get.context!)!.welcome,
+          key: const Key(WidgetKeys.welcome),
           style: GoogleFonts.urbanist(
             color: isDarkMode ? TaskiColors.blue10 : TaskiColors.statePurple,
             fontWeight: FontWeight.bold,

@@ -1,3 +1,4 @@
+import 'package:taski/core/constants/widgets_keys.dart';
 import 'package:taski/features/auth/viewModel/auth_view_model.dart';
 import 'package:taski/core/widgets/profile_image.dart';
 import 'package:taski/core/widgets/menu_header.dart';
@@ -70,6 +71,7 @@ class _AppHeaderState extends State<AppHeader> {
 
   ProfileImage _photo(AuthViewModel authViewModel) {
     return ProfileImage(
+      key: Key(WidgetKeys.headerProfilePicture),
       imagePath: authViewModel.activeUser.value.photoPath != null
           ? authViewModel.activeUser.value.photoPath!
           : TaskiAssets.imageProfile,

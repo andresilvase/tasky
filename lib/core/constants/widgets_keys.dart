@@ -1,4 +1,6 @@
 class WidgetKeys {
+  static const String welcome = 'welcome';
+
   static const String createTaskButton = 'create-task-button';
   static const String createTaskTitleInput = 'create-task-title-tnput';
   static const String createTaskDescriptionInput = 'create-task-description-input';
