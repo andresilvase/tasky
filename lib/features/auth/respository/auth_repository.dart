@@ -61,6 +61,5 @@ class AuthRepository {
 
   Future<void> logout() async {
     await _db.clear(HiveBoxes.activeUser);
-    Get.offAllNamed(Routes.home);
   }
 }

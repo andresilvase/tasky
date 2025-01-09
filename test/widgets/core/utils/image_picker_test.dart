@@ -7,12 +7,12 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:taski/core/constants/widgets_keys.dart';
 import 'package:taski/core/utils/asset_picker.dart';
 import 'package:taski/core/utils/storage_permission.dart';
-import 'package:taski/features/auth/model/user.dart';
 import 'package:taski/features/auth/views/profile.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
 
 import '../../../mocks/mocks.mocks.dart';
+import '../../../unit/fixtures/fixtures.dart';
 import '../../common/app_wrapper.dart';
 
 void main() {
@@ -121,8 +121,6 @@ void main() {
     });
 
     testWidgets('should update user profile when file path returned is NOT null', (WidgetTester tester) async {
-      final defaultUser = User.empty();
-
       when(mockDevicePermission.requestCameraPermission()).thenAnswer((_) async => PermissionStatus.granted);
       when(mockAssetPicker.pickImage(source: ImageSource.camera)).thenAnswer((_) async => XFile(assetTestPath));
 

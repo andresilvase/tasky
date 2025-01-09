@@ -9,35 +9,35 @@ class AuthResult {
 
   factory AuthResult.successfulRegistration() {
     return AuthResult(
-      message: AppLocalizations.of(Get.context!)!.registrationSuccessful,
+      message: Get.context != null ? AppLocalizations.of(Get.context!)!.registrationSuccessful : '',
       ok: true,
     );
   }
 
   factory AuthResult.successfulLogin() {
     return AuthResult(
-      message: AppLocalizations.of(Get.context!)!.loginSuccessful,
+      message: Get.context != null ? AppLocalizations.of(Get.context!)!.loginSuccessful : '',
       ok: true,
     );
   }
 
   factory AuthResult.registrationFailed() {
     return AuthResult(
-      message: AppLocalizations.of(Get.context!)!.registrationFailed,
+      message: Get.context != null ? AppLocalizations.of(Get.context!)!.registrationFailed : '',
       ok: false,
     );
   }
 
   factory AuthResult.wrongPassword() {
     return AuthResult(
-      message: AppLocalizations.of(Get.context!)!.wrongPassword,
+      message: Get.context != null ? AppLocalizations.of(Get.context!)!.wrongPassword : '',
       ok: false,
     );
   }
 
   factory AuthResult.userNotFound() {
     return AuthResult(
-      message: AppLocalizations.of(Get.context!)!.userNotFound,
+      message: Get.context != null ? AppLocalizations.of(Get.context!)!.userNotFound : '',
       ok: false,
     );
   }
