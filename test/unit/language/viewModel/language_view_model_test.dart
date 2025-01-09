@@ -4,7 +4,7 @@ import 'package:taski/core/db/abstract_db.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
-import '../../fixtures/fixtures.dart';
+import '../../../fixtures/fixtures.dart';
 import '../../mocks/mocks.mocks.dart';
 
 void main() {
