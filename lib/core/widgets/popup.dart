@@ -1,3 +1,4 @@
+import 'package:taski/core/constants/widgets_keys.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -45,6 +46,7 @@ class PopUpMessage extends StatelessWidget {
       actions: <Widget>[
         confirmAction != null
             ? TextButton(
+                key: Key(WidgetKeys.popUpMessageConfirm),
                 onPressed: () => confirmAction?.call(),
                 child: Text(
                   '$confirmText',
@@ -54,6 +56,7 @@ class PopUpMessage extends StatelessWidget {
             : Container(),
         denyAction != null
             ? TextButton(
+                key: Key(WidgetKeys.popUpMessageDeny),
                 onPressed: () => denyAction?.call(),
                 child: Text(
                   denyText,

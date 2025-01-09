@@ -7,9 +7,9 @@ import 'package:path_provider_platform_interface/path_provider_platform_interfac
 import 'package:taski/core/utils/functions.dart';
 
 import '../../fixtures/fixtures.dart';
-import '../../mocks/fake_path_provider.dart';
-import '../../mocks/file_builder.dart';
-import '../../mocks/mocks.mocks.dart';
+import '../../../mocks/fake_path_provider.dart';
+import '../../../mocks/file_builder.dart';
+import '../../../mocks/mocks.mocks.dart';
 
 import 'package:path_provider/path_provider.dart';
 

@@ -4,8 +4,10 @@ import 'package:taski/features/tasks/repository/task_repository.dart';
 import 'package:taski/features/auth/respository/auth_repository.dart';
 import 'package:taski/features/tasks/viewModel/task_view_model.dart';
 import 'package:taski/features/auth/viewModel/auth_view_model.dart';
+import 'package:taski/core/utils/storage_permission.dart';
 import 'package:taski/features/home/controller.dart';
 import 'package:taski/core/db/hive/hive_boxes.dart';
+import 'package:taski/core/utils/asset_picker.dart';
 import 'package:taski/core/theme/controller.dart';
 import 'package:taski/core/db/hive/hive.dart';
 import 'package:get/get.dart';
@@ -40,6 +42,11 @@ class TaskiDependencies {
     Get.lazyPut(() => HomeController());
   }
 
+  static Future _initStoragePermissionDependencies() async {
+    Get.lazyPut(() => StoragePermission());
+    Get.lazyPut(() => AssetPicker());
+  }
+
   static Future _initTaskDependencies() async {
     Get.lazyPut(() => TaskRepository(HiveDB.instance, Get.find<AuthViewModel>().activeUser.value.username));
     await Get.putAsync(() async => TaskViewModel(Get.find()));
@@ -54,5 +61,6 @@ class TaskiDependencies {
     await _initAuthDependencies();
     await _initHomeDependencies();
     await _initTaskDependencies();
+    await _initStoragePermissionDependencies();
   }
 }

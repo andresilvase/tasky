@@ -1,12 +1,14 @@
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:taski/core/utils/storage_permission.dart';
+import 'package:taski/core/constants/widgets_keys.dart';
+import 'package:taski/core/utils/asset_picker.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:app_settings/app_settings.dart';
 import 'package:taski/core/widgets/popup.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'dart:io';
 
 enum PickerAssetType { photo }
 
@@ -14,12 +16,12 @@ enum RequestAccess { galery, camera }
 
 mixin Pickers {
   Future<void> pickAnAsset({
-    required void Function(File?) onAssetPicked,
+    required void Function(String? filePath) onAssetPicked,
+    required StoragePermission storagePermission,
     required PickerAssetType pickerAssetType,
     required BuildContext context,
+    required AssetPicker picker,
   }) async {
-    final ImagePicker picker = ImagePicker();
-
     showDialog(
       context: context,
       builder: (context) {
@@ -31,35 +33,38 @@ mixin Pickers {
             child: Column(
               children: [
                 selectResourceText(
+                  key: const Key(WidgetKeys.pickAssetFromCamera),
                   text: AppLocalizations.of(context)!.takePhoto,
                   color: TaskiColors.blue,
                   onTap: () async {
                     Get.back();
-                    final cameraAccessPermission = await Permission.camera.request();
+
+                    final cameraAccessPermission = await storagePermission.requestCameraPermission();
 
                     if (cameraAccessPermission.isPermanentlyDenied) {
                       requestAccessPopup(Get.context!, RequestAccess.camera);
                     } else {
                       XFile? pic = await picker.pickImage(source: ImageSource.camera);
 
-                      if (pic != null) onAssetPicked(File(pic.path));
+                      onAssetPicked(pic?.path);
                     }
                   },
                 ),
                 Divider(height: 32),
                 selectResourceText(
+                  key: const Key(WidgetKeys.pickAssetFromGalery),
                   text: AppLocalizations.of(context)!.chooseFromGallery,
                   color: isDarkMode ? TaskiColors.paleWhite : TaskiColors.statePurple,
                   onTap: () async {
                     Get.back();
-                    final photosAccessPermission = await Permission.photos.request();
+                    final galleryAccessPermission = await storagePermission.requestGaleryPermission();
 
-                    if (photosAccessPermission.isPermanentlyDenied) {
+                    if (galleryAccessPermission.isPermanentlyDenied) {
                       requestAccessPopup(Get.context!, RequestAccess.galery);
                     } else {
                       XFile? pic = await picker.pickImage(source: ImageSource.gallery);
 
-                      if (pic != null) onAssetPicked(File(pic.path));
+                      onAssetPicked(pic?.path);
                     }
                   },
                 )
@@ -71,8 +76,14 @@ mixin Pickers {
     );
   }
 
-  Widget selectResourceText({required Function()? onTap, required String text, required Color color}) {
+  Widget selectResourceText({
+    required Function()? onTap,
+    required String text,
+    required Color color,
+    required Key key,
+  }) {
     return InkWell(
+      key: key,
       onTap: onTap,
       child: SizedBox(
         height: 18,
@@ -98,6 +109,7 @@ mixin Pickers {
             : AppLocalizations.of(context)!.requestGalleryAccess;
 
         return PopUpMessage(
+          key: Key(WidgetKeys.requestAccessPopup),
           confirmAction: () {
             AppSettings.openAppSettings(type: AppSettingsType.internalStorage);
             Get.back();

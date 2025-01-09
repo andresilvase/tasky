@@ -7,7 +7,7 @@ import 'package:taski/features/auth/views/auth.dart';
 import 'package:taski/core/db/abstract_db.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../unit/mocks/mocks.mocks.dart';
+import '../../../mocks/mocks.mocks.dart';
 
 import 'package:get/get.dart';
 
