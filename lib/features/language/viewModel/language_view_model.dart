@@ -19,6 +19,7 @@ class LanguageViewModel extends GetxController {
 
   void changeLocale(String countryCode) {
     _locale.value = Locale(countryCode);
+
     Get.updateLocale(_locale.value);
     _repository.saveLocale(
       LocaleModel(languageCode: locale.languageCode),
