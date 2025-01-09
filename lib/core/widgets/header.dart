@@ -61,6 +61,7 @@ class _AppHeaderState extends State<AppHeader> {
   Text _name(String displayName, bool isDarkMode) {
     return Text(
       displayName.substring(0, min(displayName.length, 12)),
+      key: Key(WidgetKeys.headerDisplayName),
       style: GoogleFonts.urbanist(
         color: isDarkMode ? TaskiColors.blue10 : TaskiColors.statePurple,
         fontWeight: FontWeight.w600,

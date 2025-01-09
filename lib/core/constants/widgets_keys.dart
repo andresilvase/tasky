@@ -38,4 +38,10 @@ class WidgetKeys {
   static const String indianLanguage = 'indian-language';
   static const String chineseLanguage = 'chinese-language';
   static const String selectedLanguage = 'selected-language';
+
+  static const String toggleDarkModeButton = 'toggle-dark-mode-button';
+
+  static const String changeDisplayNameInput = 'change-display-name-input';
+  static const String saveProfileButton = 'save-profile-button';
+  static const String headerDisplayName = 'header-display-name';
 }

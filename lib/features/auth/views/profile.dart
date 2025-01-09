@@ -4,6 +4,7 @@ import 'package:taski/features/auth/widgets/input_text.dart';
 import 'package:taski/core/widgets/screen_background.dart';
 import 'package:taski/core/widgets/rounded_button.dart';
 import 'package:taski/core/widgets/common_widgets.dart';
+import 'package:taski/core/constants/widgets_keys.dart';
 import 'package:taski/core/widgets/profile_image.dart';
 import 'package:taski/core/utils/image_picker.dart';
 import 'package:taski/core/constants/colors.dart';
@@ -144,6 +145,7 @@ class _ProfileState extends State<Profile> with Pickers {
   Widget _editDisplayName(bool isDarkMode) {
     return InputText(
       labelText: AppLocalizations.of(Get.context!)!.displayName,
+      key: Key(WidgetKeys.changeDisplayNameInput),
       onInputClear: displayNameController.clear,
       controller: displayNameController,
       focusNode: displayNameFocusNode,
@@ -155,6 +157,7 @@ class _ProfileState extends State<Profile> with Pickers {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: RoundedButton(
+        key: Key(WidgetKeys.saveProfileButton),
         text: AppLocalizations.of(Get.context!)!.save,
         backgroundColor: darkMode ? TaskiColors.statePurple : TaskiColors.blue,
         textColor: TaskiColors.white,
