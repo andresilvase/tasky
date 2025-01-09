@@ -1,3 +1,4 @@
+import 'package:taski/features/language/constants/language_constants.dart';
 import 'package:taski/features/language/viewModel/language_view_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taski/core/widgets/screen_background.dart';
@@ -10,20 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Language extends StatelessWidget {
-  Language({super.key});
-
-  final List<String> countries = ['US', 'BR', 'ES', 'FR', 'IT', 'IN', 'CN'];
-  final List<String> locales = ['en', 'pt', 'es', 'fr', 'it', 'hi', 'zh'];
-
-  final List<String> languages = [
-    AppLocalizations.of(Get.context!)!.english,
-    AppLocalizations.of(Get.context!)!.portuguese,
-    AppLocalizations.of(Get.context!)!.spanish,
-    AppLocalizations.of(Get.context!)!.french,
-    AppLocalizations.of(Get.context!)!.italian,
-    AppLocalizations.of(Get.context!)!.indian,
-    AppLocalizations.of(Get.context!)!.chinese,
-  ];
+  const Language({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +25,7 @@ class Language extends StatelessWidget {
             SizedBox(
               height: Get.height * 0.5,
               child: ListView.builder(
-                itemCount: languages.length,
+                itemCount: LanguageConstants.languages.length,
                 itemBuilder: (context, index) {
                   final LanguageViewModel languageViewModel = Get.find();
 
@@ -84,23 +72,34 @@ class Language extends StatelessWidget {
     required int index,
   }) {
     return ListTile(
-      trailing: _checkIcon(languageViewModel.locale.languageCode == locales[index]),
-      onTap: () => languageViewModel.changeLocale(locales[index]),
+      trailing: _checkIcon(
+        selected: languageViewModel.locale.languageCode == LanguageConstants.locales[index],
+        key: LanguageConstants.languageItemKeys[index],
+      ),
+      onTap: () => languageViewModel.changeLocale(LanguageConstants.locales[index]),
+      key: Key(LanguageConstants.locales[index]),
       title: _languageName(index, isDarkMode),
       leading: _countryFlag(index),
     );
   }
 
-  Widget _checkIcon(bool selected) {
-    return Icon(
-      Icons.check,
-      color: selected ? TaskiColors.blue : Colors.transparent,
+  Widget _checkIcon({
+    required bool selected,
+    required String key,
+  }) {
+    return Visibility(
+      key: Key(key),
+      visible: selected,
+      child: Icon(
+        Icons.check,
+        color: TaskiColors.blue,
+      ),
     );
   }
 
   Text _languageName(int index, bool isDarkMode) {
     return Text(
-      languages[index],
+      LanguageConstants.languages[index],
       style: GoogleFonts.urbanist(
         color: isDarkMode ? TaskiColors.paleWhite : TaskiColors.statePurple,
         fontWeight: FontWeight.w600,
@@ -111,7 +110,7 @@ class Language extends StatelessWidget {
 
   CountryFlag _countryFlag(int index) {
     return CountryFlag.fromCountryCode(
-      countries[index],
+      LanguageConstants.countries[index],
       shape: Circle(),
       height: 32,
       width: 32,

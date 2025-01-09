@@ -29,4 +29,13 @@ class WidgetKeys {
   static const String menuLanguageSettingsButton = 'menu-language-settings-button';
   static const String menuThemeButton = 'menu-theme-button';
   static const String menuLogoutButton = 'menu-logout-button';
+
+  static const String englishLanguage = 'english-language';
+  static const String portugueseLanguage = 'portuguese-language';
+  static const String spanishLanguage = 'spanish-language';
+  static const String frenchLanguage = 'french-language';
+  static const String italianLanguage = 'italian-language';
+  static const String indianLanguage = 'indian-language';
+  static const String chineseLanguage = 'chinese-language';
+  static const String selectedLanguage = 'selected-language';
 }
