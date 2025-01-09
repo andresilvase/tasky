@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 enum LocaleModelProperty { languageCode }
 
 class LocaleModel {
@@ -25,11 +23,6 @@ class LocaleModel {
       languageCode: map[LocaleModelProperty.languageCode.name] as String,
     );
   }
-
-  factory LocaleModel.fromJson(String source) => LocaleModel.fromMap(json.decode(source) as Map<String, dynamic>);
-
-  @override
-  String toString() => 'LocaleModel(languageCode: $languageCode)';
 
   @override
   bool operator ==(covariant LocaleModel other) {

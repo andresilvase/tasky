@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 enum UserProperty { username, password, photoPath, displayName }
 
 class User {
@@ -48,13 +46,6 @@ class User {
       username: map[UserProperty.username.name],
       password: map[UserProperty.password.name],
     );
-  }
-
-  factory User.fromJson(String source) => User.fromMap(json.decode(source) as Map<String, dynamic>);
-
-  @override
-  String toString() {
-    return 'User(displayName: $displayName, username: $username, password: $password, photoPath: $photoPath)';
   }
 
   @override
