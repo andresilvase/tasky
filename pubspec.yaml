@@ -52,6 +52,7 @@ dependencies:
   hive_test: ^1.0.1
   plugin_platform_interface: ^2.1.8
   path_provider_platform_interface: ^2.1.2
+  permission_handler_platform_interface: ^4.2.3
 
 flutter_launcher_icons:
   image_path: "assets/icon/icon.png"

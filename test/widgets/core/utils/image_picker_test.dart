@@ -18,7 +18,7 @@ import '../../common/app_wrapper.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  late MockStoragePermission mockStoragePermission;
+  late MockDevicePermission mockDevicePermission;
   late MockAssetPicker mockAssetPicker;
   late AuthRepository authRepository;
   late AuthViewModel authViewModel;
@@ -30,12 +30,12 @@ void main() {
       db = MockDatabase();
       authRepository = AuthRepository(db);
       authViewModel = AuthViewModel(authRepository);
-      mockStoragePermission = MockStoragePermission();
+      mockDevicePermission = MockDevicePermission();
       assetTestPath = 'path/to/test/image';
       mockAssetPicker = MockAssetPicker();
 
       Get.put(authViewModel);
-      Get.put<StoragePermission>(mockStoragePermission);
+      Get.put<DevicePermission>(mockDevicePermission);
       Get.put<AssetPicker>(mockAssetPicker);
     });
 
@@ -50,7 +50,7 @@ void main() {
     });
 
     testWidgets('should select camera option', (WidgetTester tester) async {
-      when(mockStoragePermission.requestCameraPermission()).thenAnswer((_) async => PermissionStatus.granted);
+      when(mockDevicePermission.requestCameraPermission()).thenAnswer((_) async => PermissionStatus.granted);
       when(mockAssetPicker.pickImage(source: ImageSource.camera)).thenAnswer((_) async => XFile(assetTestPath));
       await tester.pumpWidget(AppWrapper(child: const Profile()));
 
@@ -68,7 +68,7 @@ void main() {
 
     testWidgets('should select galery option', (WidgetTester tester) async {
       when(mockAssetPicker.pickImage(source: ImageSource.gallery)).thenAnswer((_) async => XFile(assetTestPath));
-      when(mockStoragePermission.requestGaleryPermission()).thenAnswer((_) async => PermissionStatus.granted);
+      when(mockDevicePermission.requestGaleryPermission()).thenAnswer((_) async => PermissionStatus.granted);
 
       await tester.pumpWidget(AppWrapper(child: const Profile()));
 
@@ -85,7 +85,7 @@ void main() {
     });
 
     testWidgets('should select asset camera', (WidgetTester tester) async {
-      when(mockStoragePermission.requestCameraPermission()).thenAnswer((_) async => PermissionStatus.granted);
+      when(mockDevicePermission.requestCameraPermission()).thenAnswer((_) async => PermissionStatus.granted);
       when(mockAssetPicker.pickImage(source: ImageSource.camera)).thenAnswer((_) async => XFile(assetTestPath));
 
       await tester.pumpWidget(AppWrapper(child: const Profile()));
@@ -98,12 +98,12 @@ void main() {
       await tester.tap(selectAssetFromCamera);
       await tester.pumpAndSettle();
 
-      verify(mockStoragePermission.requestCameraPermission()).called(1);
+      verify(mockDevicePermission.requestCameraPermission()).called(1);
       verify(mockAssetPicker.pickImage(source: ImageSource.camera)).called(1);
     });
 
     testWidgets('should select asset galery', (WidgetTester tester) async {
-      when(mockStoragePermission.requestGaleryPermission()).thenAnswer((_) async => PermissionStatus.granted);
+      when(mockDevicePermission.requestGaleryPermission()).thenAnswer((_) async => PermissionStatus.granted);
       when(mockAssetPicker.pickImage(source: ImageSource.gallery)).thenAnswer((_) async => XFile(assetTestPath));
 
       await tester.pumpWidget(AppWrapper(child: const Profile()));
@@ -116,14 +116,14 @@ void main() {
       await tester.tap(selectAssetFromGalery);
       await tester.pumpAndSettle();
 
-      verify(mockStoragePermission.requestGaleryPermission()).called(1);
+      verify(mockDevicePermission.requestGaleryPermission()).called(1);
       verify(mockAssetPicker.pickImage(source: ImageSource.gallery)).called(1);
     });
 
     testWidgets('should update user profile when file path returned is NOT null', (WidgetTester tester) async {
       final defaultUser = User.empty();
 
-      when(mockStoragePermission.requestCameraPermission()).thenAnswer((_) async => PermissionStatus.granted);
+      when(mockDevicePermission.requestCameraPermission()).thenAnswer((_) async => PermissionStatus.granted);
       when(mockAssetPicker.pickImage(source: ImageSource.camera)).thenAnswer((_) async => XFile(assetTestPath));
 
       when(
@@ -141,12 +141,12 @@ void main() {
       await tester.pumpAndSettle();
 
       verify(mockAssetPicker.pickImage(source: ImageSource.camera)).called(1);
-      verify(mockStoragePermission.requestCameraPermission()).called(1);
+      verify(mockDevicePermission.requestCameraPermission()).called(1);
       expect(authViewModel.activeUser.value.photoPath, isNotNull);
     });
 
     testWidgets('should NOT update user profile when file path returned is null', (WidgetTester tester) async {
-      when(mockStoragePermission.requestCameraPermission()).thenAnswer((_) async => PermissionStatus.granted);
+      when(mockDevicePermission.requestCameraPermission()).thenAnswer((_) async => PermissionStatus.granted);
       when(mockAssetPicker.pickImage(source: ImageSource.camera)).thenAnswer((_) async => null);
 
       await tester.pumpWidget(AppWrapper(child: const Profile()));
@@ -160,12 +160,12 @@ void main() {
       await tester.pumpAndSettle();
 
       verify(mockAssetPicker.pickImage(source: ImageSource.camera)).called(1);
-      verify(mockStoragePermission.requestCameraPermission()).called(1);
+      verify(mockDevicePermission.requestCameraPermission()).called(1);
       expect(authViewModel.activeUser.value.photoPath, isNull);
     });
 
     testWidgets('should show request access pop when camera access is permanently denied', (WidgetTester tester) async {
-      when(mockStoragePermission.requestCameraPermission()).thenAnswer((_) async => PermissionStatus.permanentlyDenied);
+      when(mockDevicePermission.requestCameraPermission()).thenAnswer((_) async => PermissionStatus.permanentlyDenied);
 
       await tester.pumpWidget(AppWrapper(child: const Profile()));
 
@@ -177,14 +177,14 @@ void main() {
       await tester.tap(selectAssetFromCamera);
       await tester.pumpAndSettle();
 
-      verify(mockStoragePermission.requestCameraPermission()).called(1);
+      verify(mockDevicePermission.requestCameraPermission()).called(1);
 
       final requestAccessPopup = find.byKey(Key(WidgetKeys.requestAccessPopup));
       expect(requestAccessPopup, findsOneWidget);
     });
 
     testWidgets('should show request access pop when galery access is permanently denied', (WidgetTester tester) async {
-      when(mockStoragePermission.requestGaleryPermission()).thenAnswer((_) async => PermissionStatus.permanentlyDenied);
+      when(mockDevicePermission.requestGaleryPermission()).thenAnswer((_) async => PermissionStatus.permanentlyDenied);
 
       await tester.pumpWidget(AppWrapper(child: const Profile()));
 
@@ -196,14 +196,14 @@ void main() {
       await tester.tap(selectAssetFromGalery);
       await tester.pumpAndSettle();
 
-      verify(mockStoragePermission.requestGaleryPermission()).called(1);
+      verify(mockDevicePermission.requestGaleryPermission()).called(1);
 
       final requestAccessPopup = find.byKey(Key(WidgetKeys.requestAccessPopup));
       expect(requestAccessPopup, findsOneWidget);
     });
 
     testWidgets('should confirm access when popup is presented', (WidgetTester tester) async {
-      when(mockStoragePermission.requestGaleryPermission()).thenAnswer((_) async => PermissionStatus.permanentlyDenied);
+      when(mockDevicePermission.requestGaleryPermission()).thenAnswer((_) async => PermissionStatus.permanentlyDenied);
 
       await tester.pumpWidget(AppWrapper(child: const Profile()));
 
@@ -215,7 +215,7 @@ void main() {
       await tester.tap(selectAssetFromGalery);
       await tester.pumpAndSettle();
 
-      verify(mockStoragePermission.requestGaleryPermission()).called(1);
+      verify(mockDevicePermission.requestGaleryPermission()).called(1);
 
       final requestAccessPopup = find.byKey(Key(WidgetKeys.requestAccessPopup));
       expect(requestAccessPopup, findsOneWidget);
@@ -228,7 +228,7 @@ void main() {
     });
 
     testWidgets('should deny request to access is presented', (WidgetTester tester) async {
-      when(mockStoragePermission.requestGaleryPermission()).thenAnswer((_) async => PermissionStatus.permanentlyDenied);
+      when(mockDevicePermission.requestGaleryPermission()).thenAnswer((_) async => PermissionStatus.permanentlyDenied);
 
       await tester.pumpWidget(AppWrapper(child: const Profile()));
 
@@ -240,7 +240,7 @@ void main() {
       await tester.tap(selectAssetFromGalery);
       await tester.pumpAndSettle();
 
-      verify(mockStoragePermission.requestGaleryPermission()).called(1);
+      verify(mockDevicePermission.requestGaleryPermission()).called(1);
 
       final requestAccessPopup = find.byKey(Key(WidgetKeys.requestAccessPopup));
       expect(requestAccessPopup, findsOneWidget);

@@ -36,7 +36,7 @@ class _ProfileState extends State<Profile> with Pickers {
           authViewModel.updateUserPhoto(filePath);
         }
       },
-      storagePermission: Get.find<StoragePermission>(),
+      devicePermission: Get.find<DevicePermission>(),
       pickerAssetType: PickerAssetType.photo,
       picker: Get.find<AssetPicker>(),
       context: context,

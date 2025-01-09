@@ -43,7 +43,7 @@ class TaskiDependencies {
   }
 
   static Future _initStoragePermissionDependencies() async {
-    Get.lazyPut(() => StoragePermission());
+    Get.lazyPut(() => DevicePermission());
     Get.lazyPut(() => AssetPicker());
   }
 

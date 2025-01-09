@@ -17,7 +17,7 @@ enum RequestAccess { galery, camera }
 mixin Pickers {
   Future<void> pickAnAsset({
     required void Function(String? filePath) onAssetPicked,
-    required StoragePermission storagePermission,
+    required DevicePermission devicePermission,
     required PickerAssetType pickerAssetType,
     required BuildContext context,
     required AssetPicker picker,
@@ -39,7 +39,7 @@ mixin Pickers {
                   onTap: () async {
                     Get.back();
 
-                    final cameraAccessPermission = await storagePermission.requestCameraPermission();
+                    final cameraAccessPermission = await devicePermission.requestCameraPermission();
 
                     if (cameraAccessPermission.isPermanentlyDenied) {
                       requestAccessPopup(Get.context!, RequestAccess.camera);
@@ -57,7 +57,7 @@ mixin Pickers {
                   color: isDarkMode ? TaskiColors.paleWhite : TaskiColors.statePurple,
                   onTap: () async {
                     Get.back();
-                    final galleryAccessPermission = await storagePermission.requestGaleryPermission();
+                    final galleryAccessPermission = await devicePermission.requestGaleryPermission();
 
                     if (galleryAccessPermission.isPermanentlyDenied) {
                       requestAccessPopup(Get.context!, RequestAccess.galery);

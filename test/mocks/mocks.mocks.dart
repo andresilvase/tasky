@@ -78,11 +78,11 @@ class _FakeFileStat_8 extends _i1.SmartFake implements _i3.FileStat {
     : super(parent, parentInvocation);
 }
 
-/// A class which mocks [StoragePermission].
+/// A class which mocks [DevicePermission].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockStoragePermission extends _i1.Mock implements _i4.StoragePermission {
-  MockStoragePermission() {
+class MockDevicePermission extends _i1.Mock implements _i4.DevicePermission {
+  MockDevicePermission() {
     _i1.throwOnMissingStub(this);
   }
 

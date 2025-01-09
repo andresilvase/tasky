@@ -1,11 +1,20 @@
 import 'package:permission_handler/permission_handler.dart';
 
-class StoragePermission {
+class DevicePermission {
+  final Permission _cameraPermission;
+  final Permission _galeryPermission;
+
+  DevicePermission([
+    Permission? cameraPermission,
+    Permission? galeryPermission,
+  ])  : _cameraPermission = cameraPermission ?? Permission.camera,
+        _galeryPermission = galeryPermission ?? Permission.photos;
+
   Future<PermissionStatus> requestGaleryPermission() {
-    return Permission.photos.request();
+    return _galeryPermission.request();
   }
 
   Future<PermissionStatus> requestCameraPermission() {
-    return Permission.camera.request();
+    return _cameraPermission.request();
   }
 }

@@ -7,7 +7,7 @@ import 'package:taski/core/utils/asset_picker.dart';
 import 'package:taski/core/utils/storage_permission.dart';
 
 @GenerateMocks([
-  StoragePermission,
+  DevicePermission,
   AssetPicker,
   ImagePicker,
   Database,

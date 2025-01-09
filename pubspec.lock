@@ -762,7 +762,7 @@ packages:
     source: hosted
     version: "0.1.3+5"
   permission_handler_platform_interface:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: permission_handler_platform_interface
       sha256: e9c8eadee926c4532d0305dff94b85bf961f16759c3af791486613152af4b4f9
