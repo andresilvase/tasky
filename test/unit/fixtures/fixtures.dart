@@ -1,6 +1,6 @@
 import 'package:taski/features/language/model/locale.dart';
 
-final locale = LocaleModel(languageCode: 'en');
-final localeMap = locale.toMap();
+final defaultLocale = LocaleModel(languageCode: 'en');
+final localeMap = defaultLocale.toMap();
 
 final localeList = [localeMap];

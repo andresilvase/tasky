@@ -19,7 +19,7 @@ void main() {
 
     test('should save a locale', () async {
       when(db.insert('locale', localeMap)).thenAnswer((_) async => 1);
-      await repository.saveLocale(locale);
+      await repository.saveLocale(defaultLocale);
 
       verify(db.insert('locale', localeMap)).called(1);
     });
@@ -27,7 +27,14 @@ void main() {
     test('should get a locale', () async {
       when(db.getAll('locale')).thenAnswer((_) async => [localeMap]);
       final result = await repository.getLocale();
-      expect(result, equals(locale));
+      expect(result, equals(defaultLocale));
+    });
+
+    test('should get a default locale when no locale is found', () async {
+      when(db.getAll('locale')).thenAnswer((_) async => []);
+      final result = await repository.getLocale();
+
+      expect(result, equals(defaultLocale));
     });
   });
 }

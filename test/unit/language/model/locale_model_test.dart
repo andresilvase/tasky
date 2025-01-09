@@ -19,5 +19,22 @@ void main() {
       final map = localeModel.toMap();
       expect(map, isNotNull);
     });
+
+    test('should create a LocaleModel instance from a existing one', () {
+      final localeModel = LocaleModel(languageCode: 'en');
+
+      final newLocaleModel = localeModel.copyWith(
+        languageCode: 'es',
+      );
+
+      expect(newLocaleModel.languageCode, 'es');
+    });
+
+    test('should have the same hashCode', () {
+      final localeModel = LocaleModel(languageCode: 'en');
+      final localeModel2 = LocaleModel(languageCode: 'en');
+
+      expect(localeModel.hashCode, equals(localeModel2.hashCode));
+    });
   });
 }
