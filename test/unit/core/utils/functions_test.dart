@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -15,8 +14,6 @@ import '../../mocks/mocks.mocks.dart';
 import 'package:path_provider/path_provider.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-
   late FileBuilder fileBuilder;
   late MockFile mockSourceFile;
   late MockFile mockNewFile;
