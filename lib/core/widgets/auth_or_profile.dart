@@ -9,10 +9,12 @@ class AuthOrProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authViewModel = Get.find<AuthViewModel>();
+
     return Obx(() {
       return Visibility(
-        visible: Get.find<AuthViewModel>().isLoggedIn,
         replacement: const AuthScreen(),
+        visible: authViewModel.isLoggedIn,
         child: Profile(),
       );
     });
