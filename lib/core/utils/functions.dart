@@ -1,7 +1,7 @@
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 
-Future<String> saveToAppDirectory(String path) async {
+Future<String> saveToAppDirectory(String path, {File Function(String)? fileFactory}) async {
   try {
     final appDirectory = await getApplicationDocumentsDirectory();
 
@@ -9,7 +9,9 @@ Future<String> saveToAppDirectory(String path) async {
 
     final newPath = '${appDirectory.path}/$fileName';
 
-    final file = File(path);
+    final fileCreator = fileFactory ?? (path) => File(path);
+
+    final file = fileCreator(path);
 
     if (!await file.exists()) {
       throw FileSystemException('Source file does not exist', newPath);
@@ -17,7 +19,7 @@ Future<String> saveToAppDirectory(String path) async {
 
     final bytes = await file.readAsBytes();
 
-    final newFile = File(newPath);
+    final newFile = fileCreator(newPath);
     await newFile.writeAsBytes(bytes);
 
     return newPath;
