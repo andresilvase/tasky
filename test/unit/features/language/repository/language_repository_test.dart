@@ -3,7 +3,7 @@ import 'package:taski/core/db/abstract_db.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import '../../../fixtures/fixtures.dart';
-import '../../mocks/mocks.mocks.dart';
+import '../../../mocks/mocks.mocks.dart';
 import 'package:test/test.dart';
 
 @GenerateMocks([Database])

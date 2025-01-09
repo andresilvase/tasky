@@ -5,7 +5,7 @@ import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
 import '../../../fixtures/fixtures.dart';
-import '../../mocks/mocks.mocks.dart';
+import '../../../mocks/mocks.mocks.dart';
 
 void main() {
   group('Language View Model', () {
