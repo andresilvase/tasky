@@ -83,13 +83,10 @@ If you're a fan of dark screens or want to save your phone's battery, Tasky also
 
 <table>
   <tr>
-    <td align="center" colspan="3">TiuTok</td>
-  </tr>  
-  <tr>
-    <td><img src="assets/repo/creating-task-dark-mode.png" alt="TiuTok" width="200"/></td>    
-    <td><img src="assets/repo/unlogged-initial-screen-dark-mode.png" alt="TiuTok" width="200"/></td>
-    <td><img src="assets/repo/search-task-found-dark-mode.png" alt="TiuTok" width="200"/></td>    
-    <td><img src="assets/repo/completed-dark-mode.png" alt="TiuTok" width="200"/></td>    
+    <td><img src="assets/repo/creating-task-dark-mode.png" width="200"/></td>    
+    <td><img src="assets/repo/unlogged-initial-screen-dark-mode.png" width="200"/></td>
+    <td><img src="assets/repo/search-task-found-dark-mode.png" width="200"/></td>    
+    <td><img src="assets/repo/completed-dark-mode.png" width="200"/></td>    
   </tr>  
 </table>
 
