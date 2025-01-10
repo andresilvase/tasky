@@ -4,7 +4,13 @@
 
 # <img src="assets/icon/round_icon.png" alt="Logo" width="64" style="vertical-align: middle;"/> Tasky - Gerenciador de Tarefas 📝
 
+> "As pessoas organizadas são apenas preguiçosas demais para procurar as coisas" - Albert Einstein (não, ele nunca disse isso 😅)
+
+
+## 🎯 O Que é o Tasky?
 Bem-vindo ao **Tasky**, o aplicativo de tarefas mais organizado e poliglota que você já viu! 🎉
+
+Tasky é aquele amigo organizado que você sempre quis ter! Um app de tarefas que não julga seu caos, apenas tenta organizá-lo de uma forma legal.
 
 Aqui você pode finalmente dar um jeito na bagunça que chama de "meu dia" com estilo e simplicidade. 🚀
 
@@ -36,77 +42,12 @@ Aqui você pode finalmente dar um jeito na bagunça que chama de "meu dia" com e
   </tr>  
 </table>
 
-
-## 🛠️ Como Configurar e Executar
-Para executar o aplicativo, siga estas etapas:
-
-1. Configure Flutter na sua máquina, se ainda não estiver configurado.
-    Acesse [flutter.dev](https://flutter.dev).
-
-2. Clone o repositório:
-```bash
-git clone https://github.com/andresilva/tasky.git
-```
-
-3. Instale as dependências:
-```bash
-flutter pub get
-```
-
-4. Execute o aplicativo:
-```bash
-flutter run
-```
 ---
 ### Offline First! 📶
 
 Internet? Quem precisa dela? O Tasky usa o banco de dados local Hive 🐝, para que suas tarefas estejam sempre com você, mesmo quando o Wi-Fi estiver contra.
 
 ---
-## 🏗️ Arquitetura MVVM
-O aplicativo segue a arquitetura MVVM (Model-View-ViewModel) para uma estrutura de código organizada e escalável.
-| Feature Tasks                          | Feature Language                 | Feature Auth                    |
-| -------------------------------------- | -------------------------------- | ------------------------------- |
-| ![Tela Inicial](/assets/repo/mvvm.png) | ![Criar](/assets/repo/mvvm2.png) | ![Done](/assets/repo/mvvm3.png) |
-
-## 🏗️ Testes Automatizados
-O aplicativo possui testes automatizados de unidade, interface e integração para garantir a qualidade do código. Para executar os testes, execute o seguinte comando na raiz do projeto:
-
-- Testes de unidade:
-
-```bash
-flutter test test/unit_test.dart
-```
-
-- Testes de interface:
-```bash
-flutter test test/widgets_test.dart
-```
-
-- Testes de integração:
-```bash
-flutter test integration_test/app_test.dart
-```
-
-## Cobertura de código LCOV: 95,4% (linhas de código)
-Utilizando a ferramenta de cobertura de código LCOV,podemos visualizar a porcentagem de cobertura de código do aplicativo.
-Para visualizar a cobertura de código, é necessário ter instalado o LCOV. Após instalar o LCOV, execute os seguintes comandos na raiz do projeto:
-
-```bash
-flutter test flutter test --coverage
-```
-
-```bash
-genhtml -o coverage/html coverage/lcov.info
-```
-
-```bash
-open coverage/html/index.html
-```
-
-Após executar os comandos, a cobertura de código será exibida em um navegador.
-
-![Cobertura de código](/assets/repo/coverage.png)
 
 ## 🌟 Sobre o app e funcionalidades Principais
 
@@ -153,8 +94,14 @@ Se você é fã de telas escuras ou quer poupar a bateria do celular, o Tasky ta
 </table>
 
 ### Multilinguismo à Toda Prova 🌎
-O Tasky fala mais idiomas que aquele seu amigo poliglota metido.
-
+O Tasky fala mais idiomas que aquele seu amigo poliglota metido. Disponível em:
+- 🇺🇸 Inglês (para os fancy)
+- 🇧🇷 Português (pra nós!)
+- 🇪🇸 Espanhol (¡Hola!)
+- 🇫🇷 Francês (Oui oui)
+- 🇮🇹 Italiano (Mamma mia!)
+- 🇮🇳 Hindi (नमस्ते)
+- 🇨🇳 Chinês (你好)
 <table>  
   <tr>
     <td><img src="assets/repo/language.png" alt="Login nas Redes Sociais" width="200"/></td>
@@ -163,6 +110,79 @@ O Tasky fala mais idiomas que aquele seu amigo poliglota metido.
 </table>
 
 Se a organização mundial não bastar, pelo menos você vai aprender um "hello" em sete línguas! 😉
+
+# 🛠️ Tecnicamente Falando...
+
+Para executar o aplicativo, siga estas etapas:
+
+1. Configure Flutter na sua máquina, se ainda não estiver configurado.
+    Acesse [flutter.dev](https://flutter.dev).
+
+2. Clone o repositório:
+```bash
+git clone https://github.com/andresilva/tasky.git
+```
+
+3. Instale as dependências:
+```bash
+flutter pub get
+```
+
+4. Execute o aplicativo:
+```bash
+flutter run
+```
+
+## 🏗️ Arquitetura MVVM
+O aplicativo segue a arquitetura MVVM (Model-View-ViewModel) para uma estrutura de código organizada e escalável.
+| Feature Tasks                          | Feature Language                 | Feature Auth                    |
+| -------------------------------------- | -------------------------------- | ------------------------------- |
+| ![Tela Inicial](/assets/repo/mvvm.png) | ![Criar](/assets/repo/mvvm2.png) | ![Done](/assets/repo/mvvm3.png) |
+
+## Testes Automatizados 🔬
+O aplicativo possui testes automatizados de unidade, interface e integração para garantir a qualidade do código. Para executar os testes, execute o seguinte comando na raiz do projeto:
+
+- Testes de unidade:
+
+```bash
+flutter test test/unit_test.dart
+```
+
+- Testes de interface:
+```bash
+flutter test test/widgets_test.dart
+```
+
+- Testes de integração:
+```bash
+flutter test integration_test/app_test.dart
+```
+
+## Cobertura de código LCOV ![Coverage: 95.4%](https://img.shields.io/badge/coverage-95.4%25-brightgreen)
+
+Utilizando a ferramenta de cobertura de código LCOV,podemos visualizar a porcentagem de cobertura de código do aplicativo.
+Para visualizar a cobertura de código, é necessário ter instalado o LCOV. Após instalar o LCOV, execute os seguintes comandos na raiz do projeto:
+
+```bash
+flutter test flutter test --coverage
+```
+
+```bash
+genhtml -o coverage/html coverage/lcov.info
+```
+
+```bash
+open coverage/html/index.html
+```
+
+Após executar os comandos, a cobertura de código será exibida em um navegador.
+
+![Cobertura de código](/assets/repo/coverage.png)
+
+## CI/CD - Codemagic 
+O aplicativo está hospedado no Codemagic, uma plataforma de CI/CD para aplicativos Flutter. O Codemagic é responsável por compilar e implantar o aplicativo em dispositivos iOS e Android.
+
+![Cobertura de código](/assets/repo/coverage.png)
 
 ## 🚀 Tecnologias Utilizadas
 
