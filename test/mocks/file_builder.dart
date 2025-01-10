@@ -15,7 +15,7 @@ class FileBuilder {
     required this.sourcePath,
   });
 
-  File fileFactory({required String path}) {
+  File fileFactory(String path) {
     if (path == sourcePath) return mockSourceFile;
     if (path == destinationPath) return mockNewFile;
     throw ArgumentError('Unexpected path: $path');

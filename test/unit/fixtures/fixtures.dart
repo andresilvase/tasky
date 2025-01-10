@@ -4,15 +4,19 @@ import 'package:taski/features/language/model/locale.dart';
 final defaultLocale = LocaleModel(languageCode: 'en');
 final localeMap = defaultLocale.toMap();
 
-final defaultUserMap = {
-  UserProperty.username.name: 'default',
-  UserProperty.displayName.name: '',
-  UserProperty.photoPath.name: '',
-  UserProperty.password.name: '',
-  'id': 'default',
-};
+final defaultUser = User.empty();
+final defaultUserMap = defaultUser.toMap();
 
-final defaultUser = User.fromMap(defaultUserMap);
+final userWithPassword = defaultUser.copyWith(password: '123456');
+final userWithPasswordCiphered = userWithPassword.copyWith(password: 'MTIzNDU2');
+
+final userPhotoPath = '/path/to/resource/photo.jpg';
+final userUpdatePhotoPath = '/path/to/app/directory/photo.jpg';
+
+final userWithPhoto = defaultUser.copyWith(photoPath: userPhotoPath);
+
+final userWithDisplayName = defaultUser.copyWith(displayName: 'John Doe');
+
 final defaultUserWithInvalidPassword = defaultUser.copyWith(password: 'invalid');
 
 final localeList = [localeMap];

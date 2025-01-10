@@ -1,4 +1,3 @@
-import 'package:taski/core/utils/asset_picker.dart';
 import 'package:taski/features/auth/viewModel/auth_view_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taski/features/auth/widgets/input_text.dart';
@@ -9,10 +8,10 @@ import 'package:taski/core/widgets/common_widgets.dart';
 import 'package:taski/core/constants/widgets_keys.dart';
 import 'package:taski/core/widgets/profile_image.dart';
 import 'package:taski/core/utils/image_picker.dart';
+import 'package:taski/core/utils/asset_picker.dart';
 import 'package:taski/core/constants/colors.dart';
 import 'package:taski/core/constants/assets.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

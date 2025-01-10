@@ -5,6 +5,7 @@ import 'package:taski/core/utils/extensions.dart';
 import 'package:taski/core/utils/functions.dart';
 import 'package:get/get.dart';
 import 'dart:convert';
+import 'dart:io';
 
 class AuthViewModel extends GetxController {
   AuthViewModel(this._repository);
@@ -32,9 +33,9 @@ class AuthViewModel extends GetxController {
   void setErrorState(bool value) => _isInErrorState.value = value;
   void setLoading(bool value) => _isLoading.value = value;
 
-  Future<void> _updateUserPersistentData() async {
+  Future<void> _updateUserPersistentData({File Function(String)? fileFactory}) async {
     if (activeUser.value.photoPath != null && activeUser.value.photoPath!.isNotEmpty) {
-      final newPath = await saveToAppDirectory(activeUser.value.photoPath!);
+      final newPath = await saveToAppDirectory(activeUser.value.photoPath!, fileFactory: fileFactory);
       activeUser.value = activeUser.value.copyWith(photoPath: newPath);
     }
 
@@ -47,9 +48,10 @@ class AuthViewModel extends GetxController {
     _updateUserPersistentData();
   }
 
-  void updateUserPhoto(String photoPath) {
+  void updateUserPhoto(String photoPath, {File Function(String)? fileFactory}) {
     setActiveUser(activeUser.value.copyWith(photoPath: photoPath));
-    _updateUserPersistentData();
+
+    _updateUserPersistentData(fileFactory: fileFactory);
   }
 
   Future<void> initSession() async {

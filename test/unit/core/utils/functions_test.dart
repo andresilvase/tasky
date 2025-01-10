@@ -51,9 +51,7 @@ void main() {
 
     final newFilePath = await saveToAppDirectory(
       sourcePath,
-      fileFactory: (path) {
-        return fileBuilder.fileFactory(path: path);
-      },
+      fileFactory: fileBuilder.fileFactory,
     );
 
     expect(newFilePath, destinationPath);
@@ -77,9 +75,7 @@ void main() {
     expect(
       () async => await saveToAppDirectory(
         sourcePath,
-        fileFactory: (path) {
-          return fileBuilder.fileFactory(path: path);
-        },
+        fileFactory: fileBuilder.fileFactory,
       ),
       throwsA(isA<FileSystemException>()),
     );
