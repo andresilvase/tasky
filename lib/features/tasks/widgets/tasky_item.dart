@@ -1,7 +1,7 @@
-import 'package:taski/core/constants/widgets_keys.dart';
-import 'package:taski/features/tasks/model/task.dart';
-import 'package:taski/core/utils/extensions.dart';
-import 'package:taski/core/constants/colors.dart';
+import 'package:tasky/core/constants/widgets_keys.dart';
+import 'package:tasky/features/tasks/model/task.dart';
+import 'package:tasky/core/utils/extensions.dart';
+import 'package:tasky/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

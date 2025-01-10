@@ -1,8 +1,8 @@
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:taski/core/constants/widgets_keys.dart';
-import 'package:taski/core/constants/assets.dart';
-import 'package:taski/core/constants/colors.dart';
-import 'package:taski/core/widgets/icon_svg.dart';
+import 'package:tasky/core/constants/widgets_keys.dart';
+import 'package:tasky/core/constants/assets.dart';
+import 'package:tasky/core/constants/colors.dart';
+import 'package:tasky/core/widgets/icon_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

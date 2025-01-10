@@ -1,6 +1,6 @@
-import 'package:taski/features/tasks/widgets/tasky_item.dart';
-import 'package:taski/features/tasks/widgets/no_task.dart';
-import 'package:taski/features/tasks/model/task.dart';
+import 'package:tasky/features/tasks/widgets/tasky_item.dart';
+import 'package:tasky/features/tasks/widgets/no_task.dart';
+import 'package:tasky/features/tasks/model/task.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

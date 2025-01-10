@@ -1,4 +1,4 @@
-import 'package:taski/core/db/abstract_db.dart';
+import 'package:tasky/core/db/abstract_db.dart';
 import 'package:hive/hive.dart';
 
 class HiveDB extends Database {

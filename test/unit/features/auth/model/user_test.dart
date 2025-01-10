@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:taski/features/auth/model/user.dart';
+import 'package:tasky/features/auth/model/user.dart';
 import 'package:test/test.dart';
 
 import '../../../fixtures/fixtures.dart';

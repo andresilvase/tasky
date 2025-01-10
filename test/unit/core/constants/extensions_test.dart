@@ -1,4 +1,4 @@
-import 'package:taski/core/utils/extensions.dart';
+import 'package:tasky/core/utils/extensions.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

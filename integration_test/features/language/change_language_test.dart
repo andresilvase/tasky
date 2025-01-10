@@ -1,8 +1,8 @@
-import 'package:taski/core/constants/widgets_keys.dart';
+import 'package:tasky/core/constants/widgets_keys.dart';
 import 'common/open_language_settings_flow.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
-import 'package:taski/main.dart';
+import 'package:tasky/main.dart';
 
 Future<void> _initApp(WidgetTester tester) async {
   await tester.pumpWidget(const MyApp());

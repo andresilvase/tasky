@@ -1,9 +1,9 @@
-import 'package:taski/features/language/viewModel/language_view_model.dart';
+import 'package:tasky/features/language/viewModel/language_view_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:taski/core/routes/router.dart';
-import 'package:taski/core/routes/routes.dart';
-import 'package:taski/core/dependencies.dart';
+import 'package:tasky/core/routes/router.dart';
+import 'package:tasky/core/routes/routes.dart';
+import 'package:tasky/core/dependencies.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:get/get.dart';

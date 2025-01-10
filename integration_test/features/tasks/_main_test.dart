@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'search_task_by_description.dart';
 import 'search_task_by_title.dart';
 import 'complete_task_test.dart';
-import 'package:taski/main.dart';
+import 'package:tasky/main.dart';
 import 'delete_task_by_id.dart';
 import 'create_task_test.dart';
 

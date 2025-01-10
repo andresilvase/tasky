@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:taski/features/auth/model/auth_result.dart';
+import 'package:tasky/features/auth/model/auth_result.dart';
 import 'package:test/test.dart';
 
 void main() {

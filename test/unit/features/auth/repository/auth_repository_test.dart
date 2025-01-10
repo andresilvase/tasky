@@ -1,4 +1,4 @@
-import 'package:taski/features/auth/respository/auth_repository.dart';
+import 'package:tasky/features/auth/respository/auth_repository.dart';
 import '../../../../mocks/mocks.mocks.dart';
 import 'package:flutter/material.dart';
 import 'package:mockito/mockito.dart';

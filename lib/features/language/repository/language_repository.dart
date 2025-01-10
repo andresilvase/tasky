@@ -1,5 +1,5 @@
-import 'package:taski/features/language/model/locale.dart';
-import 'package:taski/core/db/abstract_db.dart';
+import 'package:tasky/features/language/model/locale.dart';
+import 'package:tasky/core/db/abstract_db.dart';
 
 class LanguageRepository {
   LanguageRepository(this._db);

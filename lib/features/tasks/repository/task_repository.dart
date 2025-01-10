@@ -1,5 +1,5 @@
-import 'package:taski/features/tasks/model/task.dart';
-import 'package:taski/core/db/abstract_db.dart';
+import 'package:tasky/features/tasks/model/task.dart';
+import 'package:tasky/core/db/abstract_db.dart';
 
 class TaskRepository {
   TaskRepository(this.db, this.username);

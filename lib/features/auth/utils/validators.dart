@@ -1,5 +1,5 @@
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:taski/core/utils/extensions.dart';
+import 'package:tasky/core/utils/extensions.dart';
 import 'package:flutter/material.dart';
 
 class AuthValidators {

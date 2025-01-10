@@ -1,10 +1,10 @@
-import 'package:taski/features/auth/respository/auth_repository.dart';
-import 'package:taski/features/auth/viewModel/auth_view_model.dart';
+import 'package:tasky/features/auth/respository/auth_repository.dart';
+import 'package:tasky/features/auth/viewModel/auth_view_model.dart';
 
-import 'package:taski/core/widgets/auth_or_profile.dart';
-import 'package:taski/features/auth/views/profile.dart';
-import 'package:taski/features/auth/views/auth.dart';
-import 'package:taski/core/db/abstract_db.dart';
+import 'package:tasky/core/widgets/auth_or_profile.dart';
+import 'package:tasky/features/auth/views/profile.dart';
+import 'package:tasky/features/auth/views/auth.dart';
+import 'package:tasky/core/db/abstract_db.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../mocks/mocks.mocks.dart';

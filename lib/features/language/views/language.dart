@@ -1,11 +1,11 @@
-import 'package:taski/features/language/constants/language_constants.dart';
-import 'package:taski/features/language/viewModel/language_view_model.dart';
+import 'package:tasky/features/language/constants/language_constants.dart';
+import 'package:tasky/features/language/viewModel/language_view_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:taski/core/widgets/screen_background.dart';
-import 'package:taski/core/widgets/common_widgets.dart';
-import 'package:taski/core/widgets/rounded_button.dart';
+import 'package:tasky/core/widgets/screen_background.dart';
+import 'package:tasky/core/widgets/common_widgets.dart';
+import 'package:tasky/core/widgets/rounded_button.dart';
 import 'package:country_flags/country_flags.dart';
-import 'package:taski/core/constants/colors.dart';
+import 'package:tasky/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

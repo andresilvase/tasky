@@ -13,8 +13,8 @@ class WidgetKeys {
 
   static const String searchTaskInput = 'search-task-input';
 
-  static const String taskiItemCheckbox = 'taski-item-checkbox';
-  static String taskiItemDeleteButton(String taskId) => 'taski-item-delete-button-$taskId';
+  static const String taskiItemCheckbox = 'tasky-item-checkbox';
+  static String taskiItemDeleteButton(String taskId) => 'tasky-item-delete-button-$taskId';
   static const String deleteAllCompletedTasksButton = 'delete-all-completed-tasks-button';
 
   static const String usernameInput = 'username-input';

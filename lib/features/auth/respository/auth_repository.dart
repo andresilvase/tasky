@@ -1,7 +1,7 @@
-import 'package:taski/features/auth/model/auth_result.dart';
-import 'package:taski/features/auth/model/user.dart';
-import 'package:taski/core/db/hive/hive_boxes.dart';
-import 'package:taski/core/db/abstract_db.dart';
+import 'package:tasky/features/auth/model/auth_result.dart';
+import 'package:tasky/features/auth/model/user.dart';
+import 'package:tasky/core/db/hive/hive_boxes.dart';
+import 'package:tasky/core/db/abstract_db.dart';
 
 class AuthRepository {
   final Database _db;

@@ -1,12 +1,12 @@
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:taski/core/utils/storage_permission.dart';
-import 'package:taski/core/constants/widgets_keys.dart';
-import 'package:taski/core/utils/asset_picker.dart';
-import 'package:taski/core/constants/colors.dart';
+import 'package:tasky/core/utils/storage_permission.dart';
+import 'package:tasky/core/constants/widgets_keys.dart';
+import 'package:tasky/core/utils/asset_picker.dart';
+import 'package:tasky/core/constants/colors.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:app_settings/app_settings.dart';
-import 'package:taski/core/widgets/popup.dart';
+import 'package:tasky/core/widgets/popup.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

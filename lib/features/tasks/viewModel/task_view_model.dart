@@ -1,7 +1,7 @@
-import 'package:taski/features/tasks/repository/task_repository.dart';
-import 'package:taski/features/auth/viewModel/auth_view_model.dart';
-import 'package:taski/features/tasks/model/task.dart';
-import 'package:taski/core/utils/extensions.dart';
+import 'package:tasky/features/tasks/repository/task_repository.dart';
+import 'package:tasky/features/auth/viewModel/auth_view_model.dart';
+import 'package:tasky/features/tasks/model/task.dart';
+import 'package:tasky/core/utils/extensions.dart';
 import 'package:uuid/uuid.dart';
 import 'package:get/get.dart';
 import 'dart:async';

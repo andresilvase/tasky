@@ -1,5 +1,5 @@
 import 'package:permission_handler_platform_interface/permission_handler_platform_interface.dart';
-import 'package:taski/core/utils/storage_permission.dart';
+import 'package:tasky/core/utils/storage_permission.dart';
 import 'package:test/test.dart';
 
 import '../../../mocks/permission_handler.dart';

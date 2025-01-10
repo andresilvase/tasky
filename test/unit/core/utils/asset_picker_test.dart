@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mockito/mockito.dart';
-import 'package:taski/core/utils/asset_picker.dart';
+import 'package:tasky/core/utils/asset_picker.dart';
 
 import '../../../mocks/mocks.mocks.dart';
 

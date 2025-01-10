@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:taski/main.dart';
+import 'package:tasky/main.dart';
 
 import 'common/create_task_flow.dart';
 

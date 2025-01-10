@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:taski/features/auth/utils/validators.dart';
+import 'package:tasky/features/auth/utils/validators.dart';
 
 import 'get_context.dart';
 

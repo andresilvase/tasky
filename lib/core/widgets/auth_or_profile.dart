@@ -1,6 +1,6 @@
-import 'package:taski/features/auth/viewModel/auth_view_model.dart';
-import 'package:taski/features/auth/views/profile.dart';
-import 'package:taski/features/auth/views/auth.dart';
+import 'package:tasky/features/auth/viewModel/auth_view_model.dart';
+import 'package:tasky/features/auth/views/profile.dart';
+import 'package:tasky/features/auth/views/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

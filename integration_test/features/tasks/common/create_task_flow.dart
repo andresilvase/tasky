@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:taski/core/constants/widgets_keys.dart';
+import 'package:tasky/core/constants/widgets_keys.dart';
 
 Future<void> createTaskCommon(WidgetTester tester, {String? title, String? taskDescription}) async {
   final createTaskButton = find.byKey(const Key(WidgetKeys.navBarAddIcon));

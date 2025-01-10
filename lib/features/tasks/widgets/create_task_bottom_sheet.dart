@@ -1,5 +1,5 @@
-import 'package:taski/features/tasks/views/create_task.dart';
-import 'package:taski/core/constants/colors.dart';
+import 'package:tasky/features/tasks/views/create_task.dart';
+import 'package:tasky/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

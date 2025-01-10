@@ -1,15 +1,15 @@
-import 'package:taski/features/language/repository/language_repository.dart';
-import 'package:taski/features/language/viewModel/language_view_model.dart';
-import 'package:taski/features/tasks/repository/task_repository.dart';
-import 'package:taski/features/auth/respository/auth_repository.dart';
-import 'package:taski/features/tasks/viewModel/task_view_model.dart';
-import 'package:taski/features/auth/viewModel/auth_view_model.dart';
-import 'package:taski/core/utils/storage_permission.dart';
-import 'package:taski/features/home/controller.dart';
-import 'package:taski/core/db/hive/hive_boxes.dart';
-import 'package:taski/core/utils/asset_picker.dart';
-import 'package:taski/core/theme/controller.dart';
-import 'package:taski/core/db/hive/hive.dart';
+import 'package:tasky/features/language/repository/language_repository.dart';
+import 'package:tasky/features/language/viewModel/language_view_model.dart';
+import 'package:tasky/features/tasks/repository/task_repository.dart';
+import 'package:tasky/features/auth/respository/auth_repository.dart';
+import 'package:tasky/features/tasks/viewModel/task_view_model.dart';
+import 'package:tasky/features/auth/viewModel/auth_view_model.dart';
+import 'package:tasky/core/utils/storage_permission.dart';
+import 'package:tasky/features/home/controller.dart';
+import 'package:tasky/core/db/hive/hive_boxes.dart';
+import 'package:tasky/core/utils/asset_picker.dart';
+import 'package:tasky/core/theme/controller.dart';
+import 'package:tasky/core/db/hive/hive.dart';
 import 'package:get/get.dart';
 
 class TaskiDependencies {

@@ -1,4 +1,4 @@
-import 'package:taski/features/language/model/locale.dart';
+import 'package:tasky/features/language/model/locale.dart';
 import 'package:test/test.dart';
 
 void main() {

@@ -1,8 +1,8 @@
-import 'package:taski/features/auth/respository/auth_repository.dart';
-import 'package:taski/features/auth/model/auth_result.dart';
-import 'package:taski/features/auth/model/user.dart';
-import 'package:taski/core/utils/extensions.dart';
-import 'package:taski/core/utils/functions.dart';
+import 'package:tasky/features/auth/respository/auth_repository.dart';
+import 'package:tasky/features/auth/model/auth_result.dart';
+import 'package:tasky/features/auth/model/user.dart';
+import 'package:tasky/core/utils/extensions.dart';
+import 'package:tasky/core/utils/functions.dart';
 import 'package:get/get.dart';
 import 'dart:convert';
 import 'dart:io';

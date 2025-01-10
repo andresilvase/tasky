@@ -2,8 +2,8 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:path_provider_platform_interface/path_provider_platform_interface.dart';
-import 'package:taski/features/auth/respository/auth_repository.dart';
-import 'package:taski/features/auth/viewModel/auth_view_model.dart';
+import 'package:tasky/features/auth/respository/auth_repository.dart';
+import 'package:tasky/features/auth/viewModel/auth_view_model.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 

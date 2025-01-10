@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'common/login_common_flow.dart';
-import 'package:taski/main.dart';
+import 'package:tasky/main.dart';
 
 Future<void> _initApp(WidgetTester tester) async {
   await tester.pumpWidget(const MyApp());

@@ -1,11 +1,11 @@
-import 'package:taski/features/auth/viewModel/auth_view_model.dart';
+import 'package:tasky/features/auth/viewModel/auth_view_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:taski/core/constants/widgets_keys.dart';
-import 'package:taski/features/home/controller.dart';
-import 'package:taski/core/constants/colors.dart';
-import 'package:taski/core/theme/controller.dart';
+import 'package:tasky/core/constants/widgets_keys.dart';
+import 'package:tasky/features/home/controller.dart';
+import 'package:tasky/core/constants/colors.dart';
+import 'package:tasky/core/theme/controller.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taski/core/routes/routes.dart';
+import 'package:tasky/core/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

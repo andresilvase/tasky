@@ -1,5 +1,5 @@
-import 'package:taski/core/widgets/text_field_common_widgets.dart';
-import 'package:taski/core/constants/colors.dart';
+import 'package:tasky/core/widgets/text_field_common_widgets.dart';
+import 'package:tasky/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class PasswordInput extends StatelessWidget {

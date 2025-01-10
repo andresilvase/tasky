@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:path_provider_platform_interface/path_provider_platform_interface.dart';
-import 'package:taski/core/utils/functions.dart';
+import 'package:tasky/core/utils/functions.dart';
 
 import '../../fixtures/fixtures.dart';
 import '../../../mocks/fake_path_provider.dart';

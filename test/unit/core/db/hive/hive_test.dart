@@ -1,4 +1,4 @@
-import 'package:taski/core/db/hive/hive.dart';
+import 'package:tasky/core/db/hive/hive.dart';
 import 'package:hive_test/hive_test.dart';
 import 'package:test/test.dart';
 import 'fixtures/hive_data.dart';

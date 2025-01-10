@@ -1,5 +1,5 @@
-import 'package:taski/features/tasks/widgets/tasky_item.dart';
-import 'package:taski/core/constants/widgets_keys.dart';
+import 'package:tasky/features/tasks/widgets/tasky_item.dart';
+import 'package:tasky/core/constants/widgets_keys.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/foundation.dart';
 

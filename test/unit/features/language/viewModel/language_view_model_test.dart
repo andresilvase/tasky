@@ -1,6 +1,6 @@
-import 'package:taski/features/language/repository/language_repository.dart';
-import 'package:taski/features/language/viewModel/language_view_model.dart';
-import 'package:taski/core/db/abstract_db.dart';
+import 'package:tasky/features/language/repository/language_repository.dart';
+import 'package:tasky/features/language/viewModel/language_view_model.dart';
+import 'package:tasky/core/db/abstract_db.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 

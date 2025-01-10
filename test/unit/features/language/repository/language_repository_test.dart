@@ -1,5 +1,5 @@
-import 'package:taski/features/language/repository/language_repository.dart';
-import 'package:taski/core/db/abstract_db.dart';
+import 'package:tasky/features/language/repository/language_repository.dart';
+import 'package:tasky/core/db/abstract_db.dart';
 import 'package:mockito/mockito.dart';
 import '../../../fixtures/fixtures.dart';
 import '../../../../mocks/mocks.mocks.dart';

@@ -1,5 +1,5 @@
-import 'package:taski/features/auth/model/user.dart';
-import 'package:taski/features/language/model/locale.dart';
+import 'package:tasky/features/auth/model/user.dart';
+import 'package:tasky/features/language/model/locale.dart';
 
 final defaultLocale = LocaleModel(languageCode: 'en');
 final localeMap = defaultLocale.toMap();

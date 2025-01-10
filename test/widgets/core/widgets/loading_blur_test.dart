@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:taski/core/widgets/loading_blur.dart';
+import 'package:tasky/core/widgets/loading_blur.dart';
 
 import 'package:flutter_test/flutter_test.dart';
 
