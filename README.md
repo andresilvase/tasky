@@ -36,6 +36,77 @@ O **Tiu, Tiu** é um aplicativo poderoso e intuitivo criado para facilitar o pro
 
 ---
 
+## 🛠️ Como Configurar e Executar
+
+Para executar o aplicativo, siga estas etapas:
+
+1. Configure Flutter na sua máquina, se ainda não estiver configurado.
+    Acesse [flutter.dev](https://flutter.dev).
+
+2. Clone o repositório:
+```bash
+git clone https://github.com/andresilva/tasky.git
+```
+
+3. Instale as dependências:
+```bash
+flutter pub get
+```
+
+4. Execute o aplicativo:
+```bash
+flutter run
+```
+
+---
+## 🏗️ Arquitetura MVVM
+O aplicativo segue a arquitetura MVVM (Model-View-ViewModel) para uma estrutura de código organizada e escalável.
+
+![Tela Inicial](/assets/repo/mvvm.png)  ![Tela Inicial](/assets/repo/mvvm2.png) 
+
+---
+
+## 🏗️ Testes Automatizados
+O aplicativo possui testes automatizados de unidade, interface e integração para garantir a qualidade do código. Para executar os testes, execute o seguinte comando na raiz do projeto:
+
+- Testes de unidade:
+
+```bash
+flutter test test/unit_test.dart
+```
+
+- Testes de interface:
+```bash
+flutter test test/widgets_test.dart
+```
+
+- Testes de integração:
+```bash
+flutter test integration_test/app_test.dart
+```
+
+## Cobertura de código LCOV: 95,4% (linhas de código)
+Utilizando a ferramenta de cobertura de código LCOV,podemos visualizar a porcentagem de cobertura de código do aplicativo.
+Para visualizar a cobertura de código, é necessário ter instalado o LCOV. Após instalar o LCOV, execute os seguintes comandos na raiz do projeto:
+
+```bash
+flutter test flutter test --coverage
+```
+
+```bash
+genhtml -o coverage/html coverage/lcov.info
+```
+
+```bash
+open coverage/html/index.html
+```
+
+Após executar os comandos, a cobertura de código será exibida em um navegador.
+
+![Cobertura de código](/assets/repo/coverage.png)
+
+---
+
 ## 📸 Capturas de telas
 
 | Tela Inicial                                                         | Criar tarefa                                      | Tarefas Feitas                                     |
@@ -59,6 +130,7 @@ O **Tiu, Tiu** é um aplicativo poderoso e intuitivo criado para facilitar o pro
 ## 🌟 Funcionalidades Principais
 
 ### 📝 Criar uma nova Tarefa
+
 Doar um animal nunca foi tão fácil! Com poucos cliques, você pode criar um anúncio completo, incluindo fotos, descrições detalhadas e informações essenciais sobre o pet. O Tiu, Tiu também permite o acompanhamento das interações de potenciais adotantes em tempo real.
 
 <table>  
@@ -76,18 +148,12 @@ Encontre o animal ideal para adoção com nossos **filtros avançados**, que per
   </tr>  
 </table>
 
-### ☾ Dark Mode
-A **seção TiuTok** oferece uma experiência inovadora e envolvente, permitindo que você explore vídeos de animais disponíveis para adoção em uma interface contínua, semelhante ao TikTok. Descubra seu próximo amigo enquanto curte e compartilha vídeos adoráveis de pets!
+### 📱 Ver lista de tarefas completas 
+Encontre o animal ideal para adoção com nossos **filtros avançados**, que permitem buscas por raça, porte, idade, localização e outras características. O processo foi otimizado para que você encontre o companheiro perfeito rapidamente.
 
-<table>
+<table>  
   <tr>
-    <td align="center" colspan="3">TiuTok</td>
-  </tr>  
-  <tr>
-    <td><img src="assets/repo/creating-task-dark-mode.png" alt="TiuTok" width="200"/></td>    
-    <td><img src="assets/repo/unlogged-initial-screen-dark-mode.png" alt="TiuTok" width="200"/></td>
-    <td><img src="assets/repo/search-task-found-dark-mode.png" alt="TiuTok" width="200"/></td>    
-    <td><img src="assets/repo/completed-dark-mode.png" alt="TiuTok" width="200"/></td>    
+    <td><img src="assets/repo/unlogged-done-with-tasks.png" alt="Ver tarefas feitas" width="200"/></td>    
   </tr>  
 </table>
 
@@ -106,17 +172,28 @@ Nossa funcionalidade de **geolocalização avançada** permite que você encontr
   </tr>  
 </table>
 
-### 🔗 Integração com Redes Sociais
-Compartilhe perfis de animais diretamente em suas redes sociais favoritas, como Instagram, Facebook e WhatsApp. Cada compartilhamento ajuda a aumentar a visibilidade de animais que precisam de um novo lar!
+### ☾ Dark Mode
+A **seção TiuTok** oferece uma experiência inovadora e envolvente, permitindo que você explore vídeos de animais disponíveis para adoção em uma interface contínua, semelhante ao TikTok. Descubra seu próximo amigo enquanto curte e compartilha vídeos adoráveis de pets!
 
 <table>
   <tr>
-    <td align="center" colspan="3">Login e compartilhamento nas Redes Sociais</td>
+    <td align="center" colspan="3">TiuTok</td>
   </tr>  
   <tr>
-    <td><img src="assets/repo/Social Login.jpeg" alt="Login nas Redes Sociais" width="200"/></td>
-    <td><img src="assets/repo/Share.jpeg" alt="Preparando Post para Compartilhar nas Redes Sociais" width="200"/></td>
-    <td><img src="assets/repo/Follow Us.jpeg" alt="Nossas Redes Sociais" width="200"/></td>    
+    <td><img src="assets/repo/creating-task-dark-mode.png" alt="TiuTok" width="200"/></td>    
+    <td><img src="assets/repo/unlogged-initial-screen-dark-mode.png" alt="TiuTok" width="200"/></td>
+    <td><img src="assets/repo/search-task-found-dark-mode.png" alt="TiuTok" width="200"/></td>    
+    <td><img src="assets/repo/completed-dark-mode.png" alt="TiuTok" width="200"/></td>    
+  </tr>  
+</table>
+
+### 🌐 Disponível em 7 idiomas
+Compartilhe perfis de animais diretamente em suas redes sociais favoritas, como Instagram, Facebook e WhatsApp. Cada compartilhamento ajuda a aumentar a visibilidade de animais que precisam de um novo lar!
+
+<table>  
+  <tr>
+    <td><img src="assets/repo/language.png" alt="Login nas Redes Sociais" width="200"/></td>
+    <td><img src="assets/repo/language-dark-mode.png" alt="Login nas Redes Sociais" width="200"/></td>    
   </tr>  
 </table>
 
@@ -212,31 +289,6 @@ Veja o que planejamos para as próximas versões:
 
 ## 📜 Licença
 Este projeto está licenciado sob a [MIT License](LICENSE).
-
----
-
-## 🛠️ Como Configurar e Executar
-
-Quer contribuir ou rodar o **Tiu, Tiu** localmente? Siga as etapas abaixo para configurar o ambiente:
-
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/AndreDrummer/Tiutiu.git
-   ```
-2. Instale as dependências:
-   ```bash
-   flutter pub get
-   ```
-3. Configure os idiomas:
-   ```bash
-   flutter gen-l10n
-   ```
-4. Execute o aplicativo:
-   ```bash
-   flutter run
-   ```
-
----
 
 ## 🌍 Links Importantes
 
