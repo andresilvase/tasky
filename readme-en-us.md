@@ -139,7 +139,7 @@ The app follows the MVVM (Model-View-ViewModel) architecture for an organized an
 | ---------------------------------------- | --------------------------------- | ------------------------------- |
 | ![Initial Screen](/assets/repo/mvvm.png) | ![Create](/assets/repo/mvvm2.png) | ![Done](/assets/repo/mvvm3.png) |
 
-## 🏗️ Automated Tests
+## Automated Tests 🔬
 The app has automated unit, interface, and integration tests to ensure code quality. To run the tests, execute the following command in the project root:
 
 - Unit tests:
