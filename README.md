@@ -81,15 +81,12 @@ Internet? Quem precisa dela? O Tasky usa o banco de dados local Hive 🐝, para 
 ### Dark Mode ☾
 Se você é fã de telas escuras ou quer poupar a bateria do celular, o Tasky também tem **Dark Mode**! Organize suas tarefas com estilo, sem queimar as retinas. 
 
-<table>
+<table> 
   <tr>
-    <td align="center" colspan="3">TiuTok</td>
-  </tr>  
-  <tr>
-    <td><img src="assets/repo/creating-task-dark-mode.png" alt="TiuTok" width="200"/></td>    
-    <td><img src="assets/repo/unlogged-initial-screen-dark-mode.png" alt="TiuTok" width="200"/></td>
-    <td><img src="assets/repo/search-task-found-dark-mode.png" alt="TiuTok" width="200"/></td>    
-    <td><img src="assets/repo/completed-dark-mode.png" alt="TiuTok" width="200"/></td>    
+    <td><img src="assets/repo/creating-task-dark-mode.png" width="200"/></td>    
+    <td><img src="assets/repo/unlogged-initial-screen-dark-mode.png" width="200"/></td>
+    <td><img src="assets/repo/search-task-found-dark-mode.png" width="200"/></td>    
+    <td><img src="assets/repo/completed-dark-mode.png" width="200"/></td>    
   </tr>  
 </table>
 
