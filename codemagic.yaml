@@ -1,0 +1,44 @@
+workflows:
+  android-workflow:
+    name: Android
+    working_directory: app
+    max_build_duration: 120
+    environment:
+      android_signing:
+        - upload-keystore
+      groups:
+        - google_play
+      vars:
+        PACKAGE_NAME: "br.com.anjasolutions.tasky"
+        GOOGLE_PLAY_TRACK: internal
+      flutter: stable
+    scripts:
+      - name: Set up local.properties
+        working_directory: app
+        script: |
+          echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/app/android/local.properties"
+      - name: Get Flutter packages
+        working_directory: app
+        script: |
+          flutter packages pub get
+      - name: Flutter Clean
+        working_directory: app
+        script: |
+          flutter clean
+      - name: Flutter Build App Bundle
+        working_directory: app
+        script: |
+          LAST_BUILD_NUMBER=$(google-play get-latest-build-number --package-name $PACKAGE_NAME --tracks=$GOOGLE_PLAY_TRACK)
+          NEW_RELEASE_NUMBER=$((LAST_BUILD_NUMBER + 1))
+          flutter build appbundle --release \          
+          --build-name=1.0.$NEW_RELEASE_NUMBER \
+          --build-number=$NEW_RELEASE_NUMBER
+    artifacts:
+      - build/**/outputs/**/*.aab
+      - build/**/outputs/**/mapping.txt
+      - flutter_drive.log
+    publishing:
+      google_play:
+        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
+        track: $GOOGLE_PLAY_TRACK
+        submit_as_draft: false
