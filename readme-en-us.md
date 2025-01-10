@@ -177,10 +177,9 @@ After running the commands, code coverage will be displayed in a browser.
 
 ![Code coverage](/assets/repo/coverage.png)
 
-## CI/CD - Codemagic
+## CI/CD - Codemagic ![Codemagic CI](https://api.codemagic.io/apps/67812d37d859346d098d32d1/67812d37d859346d098d32d0/status_badge.svg)
 The app is hosted on Codemagic, a CI/CD platform for Flutter apps. Codemagic is responsible for building and deploying the app to iOS and Android devices.
 
-![Code coverage](/assets/repo/coverage.png)
 
 ## 🚀 Technologies Used
 

@@ -179,10 +179,8 @@ Após executar os comandos, a cobertura de código será exibida em um navegador
 
 ![Cobertura de código](/assets/repo/coverage.png)
 
-## CI/CD - Codemagic 
+## CI/CD - Codemagic ![Codemagic CI](https://api.codemagic.io/apps/67812d37d859346d098d32d1/67812d37d859346d098d32d0/status_badge.svg)
 O aplicativo está hospedado no Codemagic, uma plataforma de CI/CD para aplicativos Flutter. O Codemagic é responsável por compilar e implantar o aplicativo em dispositivos iOS e Android.
-
-![Cobertura de código](/assets/repo/coverage.png)
 
 ## 🚀 Tecnologias Utilizadas
 
