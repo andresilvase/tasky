@@ -1,7 +1,6 @@
 workflows:
   android-workflow:
     name: Android
-    working_directory: app
     max_build_duration: 120
     environment:
       android_signing:
