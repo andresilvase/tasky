@@ -1,8 +1,12 @@
-**Idioma**: 🇧🇷 <a href="https://github.com/AndreDrummer/Tiutiu/blob/main/readme.md">Português Brasileiro</a> | 🇺🇸 <a href="https://github.com/AndreDrummer/Tiutiu/blob/main/readme-en-us.md">Inglês Americano</a>
+**Idioma**: 🇧🇷 <a href="https://github.com/andresilva/tasky/blob/main/readme.md">Português Brasileiro</a> | 🇺🇸 <a href="https://github.com/andresilva/tasky/blob/main/readme-en-us.md">Inglês Americano</a>
 
-# <img src="assets/icon/round_icon.png" alt="Logo" width="64" style="vertical-align: middle;"/> Tasky - Gerenciador de Tarefas
+---
 
-### Simples gerenciador de tarefas para Android e iOS 📝
+# <img src="assets/icon/round_icon.png" alt="Logo" width="64" style="vertical-align: middle;"/> Tasky - Gerenciador de Tarefas 📝
+
+Bem-vindo ao **Tasky**, o aplicativo de tarefas mais organizado e poliglota que você já viu! 🎉
+
+Aqui você pode finalmente dar um jeito na bagunça que chama de "meu dia" com estilo e simplicidade. 🚀
 
 <table>  
   <tr>    
@@ -32,12 +36,8 @@
   </tr>  
 </table>
 
-O **Tasky** é um aplicativo poderoso e intuitivo criado para facilitar o processo de adoção e doação de animais. Com uma série de funcionalidades robustas, nossa missão é conectar adotantes e doadores, garantindo que mais animais encontrem lares amorosos. Além disso, proporcionamos uma experiência de uso moderna, com vídeos, geolocalização, chat integrado e muito mais!
-
----
 
 ## 🛠️ Como Configurar e Executar
-
 Para executar o aplicativo, siga estas etapas:
 
 1. Configure Flutter na sua máquina, se ainda não estiver configurado.
@@ -57,6 +57,10 @@ flutter pub get
 ```bash
 flutter run
 ```
+---
+### Offline First! 📶
+
+Internet? Quem precisa dela? O Tasky usa o banco de dados local Hive 🐝, para que suas tarefas estejam sempre com você, mesmo quando o Wi-Fi estiver contra.
 
 ---
 ## 🏗️ Arquitetura MVVM
@@ -64,8 +68,6 @@ O aplicativo segue a arquitetura MVVM (Model-View-ViewModel) para uma estrutura 
 | Feature Tasks                          | Feature Language                 | Feature Auth                    |
 | -------------------------------------- | -------------------------------- | ------------------------------- |
 | ![Tela Inicial](/assets/repo/mvvm.png) | ![Criar](/assets/repo/mvvm2.png) | ![Done](/assets/repo/mvvm3.png) |
-
----
 
 ## 🏗️ Testes Automatizados
 O aplicativo possui testes automatizados de unidade, interface e integração para garantir a qualidade do código. Para executar os testes, execute o seguinte comando na raiz do projeto:
@@ -106,31 +108,12 @@ Após executar os comandos, a cobertura de código será exibida em um navegador
 
 ![Cobertura de código](/assets/repo/coverage.png)
 
----
+## 🌟 Sobre o app e funcionalidades Principais
 
-## 📸 Capturas de telas
-
-| Tela Inicial                                                         | Criar tarefa                                      | Tarefas Feitas                                     |
-| -------------------------------------------------------------------- | ------------------------------------------------- | -------------------------------------------------- |
-| ![Tela Inicial](/assets/repo/unlogged-initial-screen-with-tasks.png) | ![Criar](/assets/repo/unlogged-creating-task.png) | ![Done](/assets/repo/unlogged-done-with-tasks.png) |
-
----
-
-## ⬇ Baixe nas lojas de aplicativos
-
-### Disponível para Android
-<p>
-  <a href="https://play.google.com/store/apps/details?id=com.anjasolutions.Tiutiu&hl=pt">
-    <img src="assets/repo/Play Store Logo.png" alt="Play Store Download" width="256"/>
-  </a>  
-</p>
-
-
----
-
-## 🌟 Funcionalidades Principais
-
-Doar um animal nunca foi tão fácil! Com poucos cliques, você pode criar um anúncio completo, incluindo fotos, descrições detalhadas e informações essenciais sobre o pet. O Tasky também permite o acompanhamento das interações de potenciais adotantes em tempo real.
+### O Básico (porque ninguém quer complicação):
+- **Criar Tarefa:** Adicione um título e uma descrição para a sua tarefa. Simples, direto e sem frescuras!
+- **Pesquisar Tarefa:** Procure por título ou descrição. (Não se preocupe, nós não julgamos as palavras-chave absurdas que você digitar.)
+- **Completar Tarefa:** Concluiu? Risque da lista e celebre com estilo. 🍾
 
 <table>  
   <tr>
@@ -141,13 +124,12 @@ Doar um animal nunca foi tão fácil! Com poucos cliques, você pode criar um an
 </table>
 
 
-### 🌍 Autenticação Básica
-Nossa funcionalidade de **geolocalização avançada** permite que você encontre animais para adoção perto de sua localização atual. Isso facilita ainda mais o processo, ajudando a conectar adotantes a animais que estão próximos.
+### Sistema de Autenticação Simples 🔐
+- **Modo sem Login:** Use o Tasky no modo "eu não quero me registrar". Todas as tarefas ficam no perfil padrão, perfeito para os minimalistas.
+- **Modo com Login:** Faça login, adicione um nome incrível e uma foto de perfil estilosa. Suas tarefas ficam personalizadas e prontas para impressionar!
+
 
 <table>
-  <tr>
-    <td align="center" colspan="2">Disponível Mundialmente</td>
-  </tr>  
   <tr>
     <td><img src="assets/repo/auth-screen.png" alt="Brasil Selecionado" width="200"/></td>
     <td><img src="assets/repo/profile.png" alt="EUA Selecionado" width="200"/></td>    
@@ -155,8 +137,8 @@ Nossa funcionalidade de **geolocalização avançada** permite que você encontr
   </tr>  
 </table>
 
-### ☾ Dark Mode
-A **seção TiuTok** oferece uma experiência inovadora e envolvente, permitindo que você explore vídeos de animais disponíveis para adoção em uma interface contínua, semelhante ao TikTok. Descubra seu próximo amigo enquanto curte e compartilha vídeos adoráveis de pets!
+### Dark Mode ☾
+Se você é fã de telas escuras ou quer poupar a bateria do celular, o Tasky também tem **Dark Mode**! Organize suas tarefas com estilo, sem queimar as retinas. 
 
 <table>
   <tr>
@@ -170,8 +152,8 @@ A **seção TiuTok** oferece uma experiência inovadora e envolvente, permitindo
   </tr>  
 </table>
 
-### 🌐 Disponível em 7 idiomas
-Compartilhe perfis de animais diretamente em suas redes sociais favoritas, como Instagram, Facebook e WhatsApp. Cada compartilhamento ajuda a aumentar a visibilidade de animais que precisam de um novo lar!
+### Multilinguismo à Toda Prova 🌎
+O Tasky fala mais idiomas que aquele seu amigo poliglota metido.
 
 <table>  
   <tr>
@@ -179,6 +161,8 @@ Compartilhe perfis de animais diretamente em suas redes sociais favoritas, como 
     <td><img src="assets/repo/language-dark-mode.png" alt="Login nas Redes Sociais" width="200"/></td>    
   </tr>  
 </table>
+
+Se a organização mundial não bastar, pelo menos você vai aprender um "hello" em sete línguas! 😉
 
 ## 🚀 Tecnologias Utilizadas
 
@@ -191,14 +175,12 @@ O **Tasky** foi construído com um conjunto de tecnologias modernas para oferece
 ## 🔮 Roadmap Futuro
 
 Veja o que planejamos para as próximas versões:
-- [ ] 📍 Mapa de Abrigos.
-- [ ] ▶️  Melhorias na interface do TiuTok.
-- [ ] 🤖 IA para Sugestão de Animais: Uso de inteligência artificial para recomendar animais com base nas preferências do usuário e no histórico de adoções.
-- [ ] 🎮 Gamificação: Implementação de um sistema de recompensas para incentivar os usuários a engajar mais na plataforma, como ao completar perfis de doação.
+- [ ] ☁️  Melhorar o sistema de autenticação para ter um servidor remoto.
+- [ ] 🔑 Criação de uma conta online.
 ---
 
 ## 📜 Licença
-Este projeto está licenciado sob a [MIT License](LICENSE).
+O Tasky está sob a licença [MIT](LICENSE). Use, abuse, modifique e compartilhe. Só não esqueça de mandar aquele "obrigado" maroto. 😎
 
 ## 🌍 Links Importantes
 
@@ -232,3 +214,5 @@ Vamos construir juntos uma plataforma que ajude mais animais a encontrar seus la
     <img src="assets/repo/App Store Logo.png" alt="App Store Download" width="256" style="margin-right: 4px;"/>
   </a>
 </p>
+
+Feito com ❤️, café ☕ e algumas noites mal dormidas pelo seu desenvolvedor favorito. Baixe o Tasky e organize-se já (ou pelo menos finja que vai)! 😅
