@@ -1,4 +1,4 @@
-**Idioma**: 🇧🇷 <a href="https://github.com/andresilva/tasky/blob/main/readme.md">Português Brasileiro</a> | 🇺🇸 <a href="https://github.com/andresilva/tasky/blob/main/readme-en-us.md">Inglês Americano</a>
+**Idioma**: 🇧🇷 <a href="https://github.com/andresilvase/tasky/blob/main/readme.md">Português Brasileiro</a> | 🇺🇸 <a href="https://github.com/andresilvase/tasky/blob/main/readme-en-us.md">Inglês Americano</a>
 
 ---
 
