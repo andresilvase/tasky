@@ -28,12 +28,12 @@ void main() {
       Get.put(authViewModel);
     });
 
-    testWidgets('AuthOrProfile should render AuthScreen when user is not logged in', (WidgetTester tester) async {
+    testWidgets('should render AuthScreen when user is not logged in', (WidgetTester tester) async {
       await tester.pumpWidget(AppWrapper(child: const AuthOrProfile()));
       expect(find.byType(AuthScreen), findsOneWidget);
     });
 
-    testWidgets('AuthOrProfile should render ProfileScreen when user is logged in', (WidgetTester tester) async {
+    testWidgets('should render ProfileScreen when user is logged in', (WidgetTester tester) async {
       authViewModel.setActiveUser(authViewModel.activeUser.value.copyWith(displayName: 'Test User'));
 
       await tester.pumpWidget(AppWrapper(child: const AuthOrProfile()));
