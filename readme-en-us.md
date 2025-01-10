@@ -157,3 +157,64 @@ Tasky speaks more languages than your show-off polyglot friend.
     <td><img src="assets/repo/language-dark-mode.png" alt="Language Selector Dark Mode" width="200"/></td>    
   </tr>  
 </table>
+
+## 🚀 Technologies Used
+
+**Tasky** was built with a modern stack to provide the best user experience:
+
+- **Flutter**: A framework used to ensure a smooth application experience on both Android and iOS.
+- **Hive**: A local database for data storage.
+
+---
+
+## 🔮 Future Roadmap
+
+Check out what we’re planning for upcoming versions:
+- [ ] ☁️ Improve the authentication system to include a remote server.
+- [ ] 🔑 Enable online account creation.
+
+---
+
+## 📜 License
+
+Tasky is licensed under [MIT](LICENSE). Feel free to use, modify, and share it. Just don’t forget to drop a friendly “thank you.” 😎
+
+---
+
+## 🌍 Important Links
+
+- [Download Tasky on the Play Store]()
+- [Download Tasky on the Apple Store]()
+- [Visit the official website]()
+- [Check out the GitHub repository](https://github.com/andrese/tasky)
+
+---
+
+## 🤝 How to Contribute
+
+Contributions are welcome! If you’d like to help develop **Tasky**, follow the steps below:
+
+1. **Fork** this repository.
+2. Create a **branch** for your modifications.
+3. Submit a **Pull Request** with your suggestions.
+
+Let’s work together to build a platform that helps more people organize their lives efficiently!
+
+---
+
+## ⬇ Download Now
+
+![Banner](assets/repo/banner.png)
+
+<p>
+  <a href="">
+    <img src="assets/repo/Play Store Logo.png" alt="Play Store Download" width="256"/>
+  </a>
+
+  <a href="">
+    <img src="assets/repo/App Store Logo.png" alt="App Store Download" width="256" style="margin-right: 4px;"/>
+  </a>
+</p>
+
+Made with ❤️, coffee ☕, and a few sleepless nights by your favorite developer. Download Tasky and get organized today (or at least pretend to)! 😅
+
