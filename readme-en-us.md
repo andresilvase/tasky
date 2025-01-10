@@ -117,7 +117,7 @@ To run the application, follow these steps:
 
 2. Clone the repository:
 ```bash
-git clone https://github.com/andresilva/tasky.git
+git clone https://github.com/andresilvase/tasky.git
 ```
 
 3. Install dependencies:

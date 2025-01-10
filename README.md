@@ -117,7 +117,7 @@ Para executar o aplicativo, siga estas etapas:
 
 2. Clone o repositório:
 ```bash
-git clone https://github.com/andresilva/tasky.git
+git clone https://github.com/andresilvase/tasky.git
 ```
 
 3. Instale as dependências:
