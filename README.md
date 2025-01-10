@@ -62,7 +62,7 @@ flutter run
 ## 🏗️ Arquitetura MVVM
 O aplicativo segue a arquitetura MVVM (Model-View-ViewModel) para uma estrutura de código organizada e escalável.
 
-![Tela Inicial](/assets/repo/mvvm.png)  ![Tela Inicial](/assets/repo/mvvm2.png) 
+| ![Tela Inicial](/assets/repo/mvvm.png) | ![Criar](/assets/repo/mvvm2.png) |
 
 ---
 
