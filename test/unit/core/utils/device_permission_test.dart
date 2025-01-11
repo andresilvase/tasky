@@ -1,5 +1,5 @@
 import 'package:permission_handler_platform_interface/permission_handler_platform_interface.dart';
-import 'package:tasky/core/utils/storage_permission.dart';
+import 'package:tasky/core/utils/device_permission.dart';
 import 'package:test/test.dart';
 
 import '../../../mocks/permission_handler.dart';
@@ -9,7 +9,11 @@ void main() {
 
   setUp(() {
     PermissionHandlerPlatform.instance = MockPermissionHandlerPlatform();
-    devicePermission = DevicePermission(Permission.camera, Permission.photos);
+
+    devicePermission = DevicePermission(
+      cameraPermission: Permission.camera,
+      galeryPermission: Permission.photos,
+    );
   });
 
   group('DevicePermission', () {

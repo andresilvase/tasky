@@ -44,6 +44,7 @@ class WidgetKeys {
   static const String changeDisplayNameInput = 'change-display-name-input';
   static const String saveProfileButton = 'save-profile-button';
   static const String headerDisplayName = 'header-display-name';
+  static const String changePhoto = 'change-photo';
 
   static const String profileImage = 'profileImage';
   static const String pickAssetFromGalery = 'pick-asset-from-galery';

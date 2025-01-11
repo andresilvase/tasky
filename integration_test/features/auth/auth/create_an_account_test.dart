@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'common/login_common_flow.dart';
+import '../common/create_account_common_flow.dart';
 import 'package:tasky/main.dart';
 
 Future<void> _initApp(WidgetTester tester) async {
@@ -7,10 +7,10 @@ Future<void> _initApp(WidgetTester tester) async {
   await tester.pumpAndSettle();
 }
 
-void login() {
-  testWidgets('login', (tester) async {
+void createAnAccount() {
+  testWidgets('create an account', (tester) async {
     await _initApp(tester);
 
-    await loginCommon(tester);
+    await createAccountCommon(tester);
   });
 }

@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'common/logout_common_flow.dart';
+import '../common/login_common_flow.dart';
 import 'package:tasky/main.dart';
 
 Future<void> _initApp(WidgetTester tester) async {
@@ -7,10 +7,10 @@ Future<void> _initApp(WidgetTester tester) async {
   await tester.pumpAndSettle();
 }
 
-void logout() {
-  testWidgets('logout', (tester) async {
+void login() {
+  testWidgets('login', (tester) async {
     await _initApp(tester);
 
-    await logoutCommon(tester);
+    await loginCommon(tester);
   });
 }

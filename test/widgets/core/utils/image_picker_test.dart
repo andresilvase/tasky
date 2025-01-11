@@ -1,3 +1,5 @@
+import 'package:permission_handler_platform_interface/permission_handler_platform_interface.dart';
+import 'package:image_picker_platform_interface/image_picker_platform_interface.dart';
 import 'package:tasky/features/auth/respository/auth_repository.dart';
 import 'package:tasky/features/auth/viewModel/auth_view_model.dart';
 import 'package:get/get.dart';
@@ -6,23 +8,26 @@ import 'package:mockito/mockito.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:tasky/core/constants/widgets_keys.dart';
 import 'package:tasky/core/utils/asset_picker.dart';
-import 'package:tasky/core/utils/storage_permission.dart';
+import 'package:tasky/core/utils/device_permission.dart';
 import 'package:tasky/features/auth/views/profile.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
 
+import '../../../mocks/image_picker.dart';
 import '../../../mocks/mocks.mocks.dart';
+import '../../../mocks/permission_handler.dart';
 import '../../../unit/fixtures/fixtures.dart';
 import '../../common/app_wrapper.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
+  late MockImagePickerPlatformMock imagePickerPlatformMock;
   late MockDevicePermission mockDevicePermission;
-  late MockAssetPicker mockAssetPicker;
   late AuthRepository authRepository;
   late AuthViewModel authViewModel;
   late String assetTestPath;
+  late ImagePicker picker;
   late MockDatabase db;
 
   group('ImagePicker', () {
@@ -32,11 +37,18 @@ void main() {
       authViewModel = AuthViewModel(authRepository);
       mockDevicePermission = MockDevicePermission();
       assetTestPath = 'path/to/test/image';
-      mockAssetPicker = MockAssetPicker();
+
+      imagePickerPlatformMock = MockImagePickerPlatformMock();
+      ImagePickerPlatform.instance = imagePickerPlatformMock;
+
+      picker = ImagePicker();
 
       Get.put(authViewModel);
       Get.put<DevicePermission>(mockDevicePermission);
-      Get.put<AssetPicker>(mockAssetPicker);
+      Get.put(AssetPicker(picker));
+
+      when(imagePickerPlatformMock.getImageFromSource(source: anyNamed('source'), options: anyNamed('options')))
+          .thenAnswer((Invocation _) async => null);
     });
 
     testWidgets('should display asset source selection popup', (WidgetTester tester) async {
@@ -50,8 +62,8 @@ void main() {
     });
 
     testWidgets('should select camera option', (WidgetTester tester) async {
+      when(picker.pickImage(source: ImageSource.camera)).thenAnswer((_) async => XFile(assetTestPath));
       when(mockDevicePermission.requestCameraPermission()).thenAnswer((_) async => PermissionStatus.granted);
-      when(mockAssetPicker.pickImage(source: ImageSource.camera)).thenAnswer((_) async => XFile(assetTestPath));
       await tester.pumpWidget(AppWrapper(child: const Profile()));
 
       final profileImage = find.byKey(Key(WidgetKeys.profileImage));
@@ -63,11 +75,18 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(AlertDialog), findsNothing);
-      verify(mockAssetPicker.pickImage(source: ImageSource.camera)).called(1);
+
+      verify(imagePickerPlatformMock.getImageFromSource(
+        source: ImageSource.camera,
+        options: argThat(
+          isInstanceOf<ImagePickerOptions>(),
+          named: 'options',
+        ),
+      )).called(1);
     });
 
     testWidgets('should select galery option', (WidgetTester tester) async {
-      when(mockAssetPicker.pickImage(source: ImageSource.gallery)).thenAnswer((_) async => XFile(assetTestPath));
+      when(picker.pickImage(source: ImageSource.gallery)).thenAnswer((_) async => XFile(assetTestPath));
       when(mockDevicePermission.requestGaleryPermission()).thenAnswer((_) async => PermissionStatus.granted);
 
       await tester.pumpWidget(AppWrapper(child: const Profile()));
@@ -81,12 +100,18 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(AlertDialog), findsNothing);
-      verify(mockAssetPicker.pickImage(source: ImageSource.gallery)).called(1);
+      verify(imagePickerPlatformMock.getImageFromSource(
+        source: ImageSource.gallery,
+        options: argThat(
+          isInstanceOf<ImagePickerOptions>(),
+          named: 'options',
+        ),
+      )).called(1);
     });
 
     testWidgets('should select asset camera', (WidgetTester tester) async {
       when(mockDevicePermission.requestCameraPermission()).thenAnswer((_) async => PermissionStatus.granted);
-      when(mockAssetPicker.pickImage(source: ImageSource.camera)).thenAnswer((_) async => XFile(assetTestPath));
+      when(picker.pickImage(source: ImageSource.camera)).thenAnswer((_) async => XFile(assetTestPath));
 
       await tester.pumpWidget(AppWrapper(child: const Profile()));
 
@@ -99,12 +124,18 @@ void main() {
       await tester.pumpAndSettle();
 
       verify(mockDevicePermission.requestCameraPermission()).called(1);
-      verify(mockAssetPicker.pickImage(source: ImageSource.camera)).called(1);
+      verify(imagePickerPlatformMock.getImageFromSource(
+        source: ImageSource.camera,
+        options: argThat(
+          isInstanceOf<ImagePickerOptions>(),
+          named: 'options',
+        ),
+      )).called(1);
     });
 
     testWidgets('should select asset galery', (WidgetTester tester) async {
       when(mockDevicePermission.requestGaleryPermission()).thenAnswer((_) async => PermissionStatus.granted);
-      when(mockAssetPicker.pickImage(source: ImageSource.gallery)).thenAnswer((_) async => XFile(assetTestPath));
+      when(picker.pickImage(source: ImageSource.gallery)).thenAnswer((_) async => XFile(assetTestPath));
 
       await tester.pumpWidget(AppWrapper(child: const Profile()));
 
@@ -117,12 +148,19 @@ void main() {
       await tester.pumpAndSettle();
 
       verify(mockDevicePermission.requestGaleryPermission()).called(1);
-      verify(mockAssetPicker.pickImage(source: ImageSource.gallery)).called(1);
+      verify(imagePickerPlatformMock.getImageFromSource(
+        source: ImageSource.gallery,
+        options: argThat(
+          isInstanceOf<ImagePickerOptions>(),
+          named: 'options',
+        ),
+      )).called(1);
     });
 
     testWidgets('should update user profile when file path returned is NOT null', (WidgetTester tester) async {
       when(mockDevicePermission.requestCameraPermission()).thenAnswer((_) async => PermissionStatus.granted);
-      when(mockAssetPicker.pickImage(source: ImageSource.camera)).thenAnswer((_) async => XFile(assetTestPath));
+      when(imagePickerPlatformMock.getImageFromSource(source: ImageSource.camera, options: anyNamed('options')))
+          .thenAnswer((_) async => XFile(assetTestPath));
 
       when(
         db.insert(defaultUser.username, defaultUser.copyWith(photoPath: assetTestPath).toMap()),
@@ -138,14 +176,21 @@ void main() {
       await tester.tap(selectAssetFromCamera);
       await tester.pumpAndSettle();
 
-      verify(mockAssetPicker.pickImage(source: ImageSource.camera)).called(1);
+      verify(imagePickerPlatformMock.getImageFromSource(
+        source: ImageSource.camera,
+        options: argThat(
+          isInstanceOf<ImagePickerOptions>(),
+          named: 'options',
+        ),
+      )).called(1);
+
       verify(mockDevicePermission.requestCameraPermission()).called(1);
       expect(authViewModel.activeUser.value.photoPath, isNotNull);
     });
 
     testWidgets('should NOT update user profile when file path returned is null', (WidgetTester tester) async {
       when(mockDevicePermission.requestCameraPermission()).thenAnswer((_) async => PermissionStatus.granted);
-      when(mockAssetPicker.pickImage(source: ImageSource.camera)).thenAnswer((_) async => null);
+      when(picker.pickImage(source: ImageSource.camera)).thenAnswer((_) async => null);
 
       await tester.pumpWidget(AppWrapper(child: const Profile()));
 
@@ -157,7 +202,13 @@ void main() {
       await tester.tap(selectAssetFromCamera);
       await tester.pumpAndSettle();
 
-      verify(mockAssetPicker.pickImage(source: ImageSource.camera)).called(1);
+      verify(imagePickerPlatformMock.getImageFromSource(
+        source: ImageSource.camera,
+        options: argThat(
+          isInstanceOf<ImagePickerOptions>(),
+          named: 'options',
+        ),
+      )).called(1);
       verify(mockDevicePermission.requestCameraPermission()).called(1);
       expect(authViewModel.activeUser.value.photoPath, isNull);
     });

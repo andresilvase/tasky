@@ -4,7 +4,7 @@ import 'package:tasky/features/tasks/repository/task_repository.dart';
 import 'package:tasky/features/auth/respository/auth_repository.dart';
 import 'package:tasky/features/tasks/viewModel/task_view_model.dart';
 import 'package:tasky/features/auth/viewModel/auth_view_model.dart';
-import 'package:tasky/core/utils/storage_permission.dart';
+import 'package:tasky/core/utils/device_permission.dart';
 import 'package:tasky/features/home/controller.dart';
 import 'package:tasky/core/db/hive/hive_boxes.dart';
 import 'package:tasky/core/utils/asset_picker.dart';

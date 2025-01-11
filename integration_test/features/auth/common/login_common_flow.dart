@@ -23,4 +23,7 @@ Future<void> loginCommon(WidgetTester tester) async {
 
   await tester.tap(find.byKey(const Key(WidgetKeys.authSubmitButton)));
   await tester.pumpAndSettle();
+
+  expect(find.byKey(const Key(WidgetKeys.welcome)), findsOneWidget);
+  await tester.pumpAndSettle();
 }

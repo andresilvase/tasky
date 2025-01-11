@@ -53,6 +53,7 @@ dependencies:
   plugin_platform_interface: ^2.1.8
   path_provider_platform_interface: ^2.1.2
   permission_handler_platform_interface: ^4.2.3
+  image_picker_platform_interface: ^2.10.1
 
 flutter_launcher_icons:
   image_path: "assets/icon/icon.png"

@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'common/create_account_common_flow.dart';
-import 'common/logout_common_flow.dart';
+import '../common/logout_common_flow.dart';
 import 'package:tasky/main.dart';
 
 Future<void> _initApp(WidgetTester tester) async {
@@ -8,11 +7,10 @@ Future<void> _initApp(WidgetTester tester) async {
   await tester.pumpAndSettle();
 }
 
-void createAnAccount() {
-  testWidgets('create an account', (tester) async {
+void logout() {
+  testWidgets('logout', (tester) async {
     await _initApp(tester);
 
-    await createAccountCommon(tester);
     await logoutCommon(tester);
   });
 }

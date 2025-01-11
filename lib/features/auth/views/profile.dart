@@ -2,7 +2,7 @@ import 'package:tasky/features/auth/viewModel/auth_view_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:tasky/features/auth/widgets/input_text.dart';
 import 'package:tasky/core/widgets/screen_background.dart';
-import 'package:tasky/core/utils/storage_permission.dart';
+import 'package:tasky/core/utils/device_permission.dart';
 import 'package:tasky/core/widgets/rounded_button.dart';
 import 'package:tasky/core/widgets/common_widgets.dart';
 import 'package:tasky/core/constants/widgets_keys.dart';
@@ -131,6 +131,7 @@ class _ProfileState extends State<Profile> with Pickers {
 
   Widget _changePhoto(bool isDarkMode) {
     return TextButton.icon(
+      key: Key(WidgetKeys.changePhoto),
       icon: Icon(
         color: isDarkMode ? TaskiColors.paleWhite : TaskiColors.statePurple,
         Icons.camera_alt_outlined,

@@ -4,10 +4,10 @@ class DevicePermission {
   final Permission _cameraPermission;
   final Permission _galeryPermission;
 
-  DevicePermission([
+  DevicePermission({
     Permission? cameraPermission,
     Permission? galeryPermission,
-  ])  : _cameraPermission = cameraPermission ?? Permission.camera,
+  })  : _cameraPermission = cameraPermission ?? Permission.camera,
         _galeryPermission = galeryPermission ?? Permission.photos;
 
   Future<PermissionStatus> requestGaleryPermission() {

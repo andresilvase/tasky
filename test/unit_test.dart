@@ -7,7 +7,7 @@ import 'unit/core/constants/extensions_test.dart' as extensions_test;
 import 'unit/core/constants/widgets_keys_test.dart' as widgets_keys_test;
 import 'unit/core/utils/asset_picker_test.dart' as asset_picker_test;
 import 'unit/core/utils/functions_test.dart' as functions_test;
-import 'unit/core/utils/storage_permission_test.dart' as storage_permission_test;
+import 'unit/core/utils/device_permission_test.dart' as storage_permission_test;
 import 'unit/features/auth/repository/auth_repository_test.dart' as auth_repository_test;
 import 'unit/features/auth/viewModel/auth_view_model_test.dart' as auth_view_model_test;
 import 'unit/features/auth/model/auth_result_test.dart' as auth_result_test;

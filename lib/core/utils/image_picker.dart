@@ -1,6 +1,6 @@
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:tasky/core/utils/storage_permission.dart';
+import 'package:tasky/core/utils/device_permission.dart';
 import 'package:tasky/core/constants/widgets_keys.dart';
 import 'package:tasky/core/utils/asset_picker.dart';
 import 'package:tasky/core/constants/colors.dart';
@@ -52,9 +52,9 @@ mixin Pickers {
                 ),
                 Divider(height: 32),
                 selectResourceText(
-                  key: const Key(WidgetKeys.pickAssetFromGalery),
-                  text: AppLocalizations.of(context)!.chooseFromGallery,
                   color: isDarkMode ? TaskiColors.paleWhite : TaskiColors.statePurple,
+                  text: AppLocalizations.of(context)!.chooseFromGallery,
+                  key: const Key(WidgetKeys.pickAssetFromGalery),
                   onTap: () async {
                     Get.back();
                     final galleryAccessPermission = await devicePermission.requestGaleryPermission();
@@ -114,12 +114,12 @@ mixin Pickers {
             AppSettings.openAppSettings(type: AppSettingsType.internalStorage);
             Get.back();
           },
-          backGroundColor: TaskiColors.blue10,
-          title: 'Solicitação de acesso',
-          denyAction: () => Get.back(),
           confirmText: AppLocalizations.of(context)!.yes,
           denyText: AppLocalizations.of(context)!.no,
+          backGroundColor: TaskiColors.blue10,
+          denyAction: () => Get.back(),
           message: message,
+          title: 'Access',
         );
       },
     );
