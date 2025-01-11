@@ -1,16 +1,12 @@
 import 'package:tasky/core/constants/widgets_keys.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
-import 'package:tasky/main.dart';
 
-Future<void> _initApp(WidgetTester tester) async {
-  await tester.pumpWidget(const MyApp());
-  await tester.pumpAndSettle();
-}
+import '../../common/init_app.dart';
 
 void tryCreateAccountWithInvalidInputs() {
   testWidgets('try create an account with invalid inputs', (tester) async {
-    await _initApp(tester);
+    await initApp(tester);
 
     await tester.tap(find.byKey(const Key(WidgetKeys.headerProfilePicture)));
     await tester.pumpAndSettle();

@@ -2,20 +2,16 @@ import 'package:tasky/features/tasks/widgets/tasky_item.dart';
 import 'package:tasky/core/constants/widgets_keys.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
-import 'package:tasky/main.dart';
 
 import 'common/create_task_flow.dart';
 
-Future<void> _initApp(WidgetTester tester) async {
-  await tester.pumpWidget(const MyApp());
-  await tester.pumpAndSettle();
-}
+import '../common/init_app.dart';
 
 void searchTaskByTitle() {
   testWidgets('search task', (tester) async {
-    await _initApp(tester);
+    await initApp(tester);
 
-    final String taskTitle = 'Task to search';
+    final String taskTitle = 'Lavar o carro';
 
     await createTaskCommon(tester, title: taskTitle);
 

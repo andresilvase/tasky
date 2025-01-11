@@ -1,17 +1,12 @@
 import 'package:tasky/core/constants/widgets_keys.dart';
+import '../common/init_app.dart';
 import 'common/open_language_settings_flow.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
-import 'package:tasky/main.dart';
-
-Future<void> _initApp(WidgetTester tester) async {
-  await tester.pumpWidget(const MyApp());
-  await tester.pumpAndSettle();
-}
 
 void changeLanguage() {
   testWidgets('switch to english', (tester) async {
-    await _initApp(tester);
+    await initApp(tester);
 
     await openLanguageSettings(tester);
 
@@ -28,7 +23,7 @@ void changeLanguage() {
   });
 
   testWidgets('switch to portuguese', (tester) async {
-    await _initApp(tester);
+    await initApp(tester);
 
     await openLanguageSettings(tester);
 
@@ -45,7 +40,7 @@ void changeLanguage() {
   });
 
   testWidgets('switch to spanish', (tester) async {
-    await _initApp(tester);
+    await initApp(tester);
 
     await openLanguageSettings(tester);
 
@@ -62,7 +57,7 @@ void changeLanguage() {
   });
 
   testWidgets('switch to french', (tester) async {
-    await _initApp(tester);
+    await initApp(tester);
 
     await openLanguageSettings(tester);
 
@@ -79,7 +74,7 @@ void changeLanguage() {
   });
 
   testWidgets('switch to italian', (tester) async {
-    await _initApp(tester);
+    await initApp(tester);
 
     await openLanguageSettings(tester);
 
@@ -96,7 +91,7 @@ void changeLanguage() {
   });
 
   testWidgets('switch to indian', (tester) async {
-    await _initApp(tester);
+    await initApp(tester);
 
     await openLanguageSettings(tester);
 
@@ -113,7 +108,7 @@ void changeLanguage() {
   });
 
   testWidgets('switch to chinese', (tester) async {
-    await _initApp(tester);
+    await initApp(tester);
 
     await openLanguageSettings(tester);
 
@@ -123,6 +118,23 @@ void changeLanguage() {
     await tester.pumpAndSettle();
 
     final selectedLanguageItem = find.byKey(const Key(WidgetKeys.chineseLanguage));
+    expect(selectedLanguageItem, findsOneWidget);
+
+    final visible = tester.widget<Visibility>(selectedLanguageItem).visible;
+    expect(visible, true);
+  });
+
+  testWidgets('switch to english', (tester) async {
+    await initApp(tester);
+
+    await openLanguageSettings(tester);
+
+    const String locale = 'en';
+
+    await tester.tap(find.byKey(const Key(locale)));
+    await tester.pumpAndSettle();
+
+    final selectedLanguageItem = find.byKey(const Key(WidgetKeys.englishLanguage));
     expect(selectedLanguageItem, findsOneWidget);
 
     final visible = tester.widget<Visibility>(selectedLanguageItem).visible;

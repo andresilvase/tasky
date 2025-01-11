@@ -3,20 +3,16 @@ import 'package:tasky/core/constants/widgets_keys.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'common/complete_task_flow.dart';
 import 'package:flutter/material.dart';
-import 'package:tasky/main.dart';
 
 import 'common/create_task_flow.dart';
 
-Future<void> _initApp(WidgetTester tester) async {
-  await tester.pumpWidget(const MyApp());
-  await tester.pumpAndSettle();
-}
+import '../common/init_app.dart';
 
 void deleteTaskById() {
   testWidgets('delete task', (tester) async {
-    await _initApp(tester);
+    await initApp(tester);
 
-    final String taskTitle = 'Task to delete';
+    final String taskTitle = 'Estudar Java';
 
     await createTaskCommon(tester, title: taskTitle);
     await completeTaskCommon(tester, taskTitle);

@@ -3,19 +3,14 @@ import 'package:tasky/core/constants/widgets_keys.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
 import 'common/create_task_flow.dart';
-import 'package:tasky/main.dart';
-
-Future<void> _initApp(WidgetTester tester) async {
-  await tester.pumpWidget(const MyApp());
-  await tester.pumpAndSettle();
-}
+import '../common/init_app.dart';
 
 void searchTaskByDescription() {
   testWidgets('search task', (tester) async {
-    await _initApp(tester);
+    await initApp(tester);
 
-    final String taskTitle = 'Task to search';
-    final String taskDescription = 'Task to search description';
+    final String taskTitle = 'Ir a academia';
+    final String taskDescription = 'Treinão de Peito e Tríceps';
 
     await createTaskCommon(tester, title: taskTitle, taskDescription: taskDescription);
 
@@ -51,6 +46,9 @@ void searchTaskByDescription() {
     });
 
     expect(searchTaskInputText, findsOneWidget);
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byKey(const Key(WidgetKeys.navBarAddIcon)));
     await tester.pumpAndSettle();
   });
 }

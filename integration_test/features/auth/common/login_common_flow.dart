@@ -12,7 +12,7 @@ Future<void> loginCommon(WidgetTester tester) async {
   await tester.tap(find.byKey(const Key(WidgetKeys.usernameInput)));
   await tester.pumpAndSettle();
 
-  await tester.enterText(find.byKey(const Key(WidgetKeys.usernameInput)), 'testAccount');
+  await tester.enterText(find.byKey(const Key(WidgetKeys.usernameInput)), 'andresilvase');
   await tester.pumpAndSettle();
 
   await tester.tap(find.byKey(const Key(WidgetKeys.passwordInput)));

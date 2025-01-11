@@ -9,7 +9,7 @@ Future<void> createTaskCommon(WidgetTester tester, {String? title, String? taskD
   await tester.tap(createTaskButton);
   await tester.pumpAndSettle();
 
-  final taskTitle = title ?? 'Test Task 2';
+  final taskTitle = title ?? 'Postar esse vídeo no Linkedin';
 
   final titleField = find.byKey(const Key(WidgetKeys.createTaskTitleInput));
   expect(titleField, findsOneWidget);

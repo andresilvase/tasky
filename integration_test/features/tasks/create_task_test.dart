@@ -1,17 +1,12 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:tasky/main.dart';
-
 import 'common/create_task_flow.dart';
 
-Future<void> _initApp(WidgetTester tester) async {
-  await tester.pumpWidget(const MyApp());
-  await tester.pumpAndSettle();
-}
+import '../common/init_app.dart';
 
 void createTask({String? title, String? taskDescription}) {
   testWidgets('create a new task', (tester) async {
-    await _initApp(tester);
+    await initApp(tester);
 
     await createTaskCommon(tester);
   });

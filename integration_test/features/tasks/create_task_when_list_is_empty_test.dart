@@ -2,16 +2,12 @@ import 'package:tasky/features/tasks/widgets/tasky_item.dart';
 import 'package:tasky/core/constants/widgets_keys.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
-import 'package:tasky/main.dart';
 
-Future<void> _initApp(WidgetTester tester) async {
-  await tester.pumpWidget(const MyApp());
-  await tester.pumpAndSettle();
-}
+import '../common/init_app.dart';
 
 void createTaskWhenListIsEmpty() {
   testWidgets('create a new task if the list is empty', (tester) async {
-    await _initApp(tester);
+    await initApp(tester);
 
     final createTaskButton = find.byKey(const Key(WidgetKeys.createTaskButton));
     expect(createTaskButton, findsOneWidget);
@@ -22,13 +18,13 @@ void createTaskWhenListIsEmpty() {
     final titleField = find.byKey(const Key(WidgetKeys.createTaskTitleInput));
     expect(titleField, findsOneWidget);
 
-    await tester.enterText(titleField, 'Test Task');
+    await tester.enterText(titleField, 'Ler a bíblia');
     await tester.pumpAndSettle();
 
     final descriptionField = find.byKey(const Key(WidgetKeys.createTaskDescriptionInput));
     expect(descriptionField, findsOneWidget);
 
-    await tester.enterText(descriptionField, 'Test Description');
+    await tester.enterText(descriptionField, 'Jeremias 33:03');
     await tester.pumpAndSettle();
 
     final createTaskSubmitButton = find.byKey(const Key(WidgetKeys.createTaskSubmitButton));
