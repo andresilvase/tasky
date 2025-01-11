@@ -15,7 +15,6 @@ import 'package:flutter/material.dart';
 
 import '../../../mocks/image_picker.dart';
 import '../../../mocks/mocks.mocks.dart';
-import '../../../mocks/permission_handler.dart';
 import '../../../unit/fixtures/fixtures.dart';
 import '../../common/app_wrapper.dart';
 

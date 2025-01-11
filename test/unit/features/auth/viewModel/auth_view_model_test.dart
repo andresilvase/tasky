@@ -76,16 +76,7 @@ void main() {
       when(db.update('auth', userMap, user.username)).thenAnswer((_) async => 1);
       when(db.insert('activeUser', userMap)).thenAnswer((_) async => 1);
 
-      const byts = <int>[1, 2, 3];
-
-      when(mockSourceFile.exists()).thenAnswer((_) async => true);
-      when(mockSourceFile.readAsBytes()).thenAnswer((_) async => Uint8List.fromList(byts));
-      when(mockNewFile.writeAsBytes(byts)).thenAnswer((_) async => mockNewFile);
-
-      viewModel.updateUserPhoto(
-        userPhotoPath,
-        fileFactory: fileBuilder.fileFactory,
-      );
+      viewModel.setUserPhoto(userPhotoPath);
 
       expect(viewModel.activeUser.value, userWithPhoto);
     });
@@ -94,9 +85,28 @@ void main() {
       when(db.insert('activeUser', userWithDisplayName.toMap())).thenAnswer((_) async => 1);
       when(db.update('auth', userWithDisplayName.toMap(), userWithDisplayName.username)).thenAnswer((_) async => 1);
 
-      viewModel.updateUserDisplayName(userWithDisplayName.displayName);
+      viewModel.setUserDisplayName(userWithDisplayName.displayName);
 
       expect(viewModel.activeUser.value, userWithDisplayName);
+    });
+
+    test('should update user data', () async {
+      when(db.update('auth', userWithPhotoAndName.toMap(), userWithPhotoAndName.username)).thenAnswer((_) async => 1);
+      when(db.insert('activeUser', userWithPhotoAndName.toMap())).thenAnswer((_) async => 1);
+
+      const byts = <int>[1, 2, 3];
+
+      when(mockSourceFile.exists()).thenAnswer((_) async => true);
+      when(mockSourceFile.readAsBytes()).thenAnswer((_) async => Uint8List.fromList(byts));
+      when(mockNewFile.writeAsBytes(byts)).thenAnswer((_) async => mockNewFile);
+
+      viewModel.setUserPhoto(userWithPhotoAndName.photoPath!);
+      viewModel.setUserDisplayName(userWithPhotoAndName.displayName);
+
+      viewModel.updateUserData(fileFactory: fileBuilder.fileFactory);
+
+      expect(viewModel.activeUser.value.photoPath, userWithPhotoAndName.photoPath);
+      expect(viewModel.activeUser.value.displayName, userWithPhotoAndName.displayName);
     });
 
     test('should register a new user', () async {

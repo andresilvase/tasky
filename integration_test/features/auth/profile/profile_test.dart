@@ -50,11 +50,14 @@ void main() {
         .thenAnswer((Invocation _) async => XFile(TaskiAssets.mockedProfilePhoto));
   });
 
-  group('user profile tests should', () {
-    testWidgets('update photo and display name', (tester) async {
+  group('profile tests should', () {
+    testWidgets('update user photo and display name', (tester) async {
       await _initApp(tester);
+
       await createAccountCommon(tester);
-      // await updatePhotoProfile(tester);
+      await Future.delayed(const Duration(seconds: 2));
+
+      await updatePhotoProfile(tester);
       await updateUserDisplayName(tester);
       await Future.delayed(const Duration(seconds: 2));
     });

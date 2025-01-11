@@ -14,8 +14,9 @@ final userPhotoPath = '/path/to/resource/photo.jpg';
 final userUpdatePhotoPath = '/path/to/app/directory/photo.jpg';
 
 final userWithPhoto = defaultUser.copyWith(photoPath: userPhotoPath);
-
 final userWithDisplayName = defaultUser.copyWith(displayName: 'John Doe');
+
+final userWithPhotoAndName = defaultUser.copyWith(photoPath: userUpdatePhotoPath, displayName: 'John Doe');
 
 final defaultUserWithInvalidPassword = defaultUser.copyWith(password: 'invalid');
 

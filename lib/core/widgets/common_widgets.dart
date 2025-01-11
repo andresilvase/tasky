@@ -2,6 +2,7 @@ import 'package:tasky/core/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tasky/core/constants/widgets_keys.dart';
 
 AppBar commonAppBar({required String title, bool darkMode = false}) {
   final titleColor = darkMode ? TaskiColors.stateBlue : TaskiColors.paleWhite;
@@ -22,6 +23,7 @@ AppBar commonAppBar({required String title, bool darkMode = false}) {
 
 Widget _closeButton(Color color) {
   return IconButton(
+    key: Key(WidgetKeys.headerCloseButton),
     icon: Container(
       padding: EdgeInsets.all(8),
       decoration: BoxDecoration(

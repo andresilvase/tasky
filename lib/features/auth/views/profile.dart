@@ -32,7 +32,7 @@ class _ProfileState extends State<Profile> with Pickers {
     pickAnAsset(
       onAssetPicked: (filePath) {
         if (filePath != null) {
-          authViewModel.updateUserPhoto(filePath);
+          authViewModel.setUserPhoto(filePath);
         }
       },
       devicePermission: Get.find<DevicePermission>(),
@@ -151,6 +151,9 @@ class _ProfileState extends State<Profile> with Pickers {
   Widget _editDisplayName(bool isDarkMode) {
     return InputText(
       labelText: AppLocalizations.of(Get.context!)!.displayName,
+      onChanged: (_) {
+        authViewModel.setUserDisplayName(displayNameController.text);
+      },
       key: Key(WidgetKeys.changeDisplayNameInput),
       onInputClear: displayNameController.clear,
       controller: displayNameController,
@@ -168,7 +171,7 @@ class _ProfileState extends State<Profile> with Pickers {
         backgroundColor: darkMode ? TaskiColors.statePurple : TaskiColors.blue,
         textColor: TaskiColors.white,
         onPressed: () {
-          authViewModel.updateUserDisplayName(displayNameController.text);
+          authViewModel.updateUserData();
           Get.back();
         },
         width: Get.width,

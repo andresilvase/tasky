@@ -43,14 +43,15 @@ class AuthViewModel extends GetxController {
     _repository.updateUserAccount(activeUser.value);
   }
 
-  void updateUserDisplayName(String displayName) {
+  void setUserDisplayName(String displayName) {
     setActiveUser(activeUser.value.copyWith(displayName: displayName));
-    _updateUserPersistentData();
   }
 
-  void updateUserPhoto(String photoPath, {File Function(String)? fileFactory}) {
+  void setUserPhoto(String photoPath) {
     setActiveUser(activeUser.value.copyWith(photoPath: photoPath));
+  }
 
+  void updateUserData({File Function(String)? fileFactory}) {
     _updateUserPersistentData(fileFactory: fileFactory);
   }
 

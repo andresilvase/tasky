@@ -29,6 +29,7 @@ class WidgetKeys {
   static const String menuLanguageSettingsButton = 'menu-language-settings-button';
   static const String menuThemeButton = 'menu-theme-button';
   static const String menuLogoutButton = 'menu-logout-button';
+  static const String headerCloseButton = 'header-close-button';
 
   static const String englishLanguage = 'english-language';
   static const String portugueseLanguage = 'portuguese-language';
