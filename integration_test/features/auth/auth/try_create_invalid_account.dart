@@ -18,9 +18,6 @@ void tryCreateAccountWithInvalidInputs() {
     await tester.tap(find.byKey(const Key(WidgetKeys.menuAccountButton)));
     await tester.pumpAndSettle();
 
-    await tester.tap(find.byKey(const Key(WidgetKeys.toggleAuthModeButton)));
-    await tester.pumpAndSettle();
-
     await tester.tap(find.byKey(const Key(WidgetKeys.usernameInput)));
     await tester.pumpAndSettle();
 

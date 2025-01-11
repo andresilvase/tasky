@@ -18,7 +18,7 @@ void main() {
     continueAnnonimous();
     tryCreateAccountWithInvalidInputs();
     createAnAccount();
-    login();
     logout();
+    login();
   });
 }
