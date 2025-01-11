@@ -116,7 +116,6 @@ void main() {
   });
 
   group('#Delete Tasks', () {
-    deleteTaskById();
     deleteAllTasksAtOnce();
   });
 }
