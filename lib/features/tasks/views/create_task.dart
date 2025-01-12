@@ -1,5 +1,5 @@
-import 'package:tasky/core/widgets/text_field_common_widgets.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:tasky/features/auth/widgets/input_text.dart';
 import 'package:tasky/core/constants/widgets_keys.dart';
 import 'package:tasky/features/tasks/model/task.dart';
 import 'package:tasky/core/constants/colors.dart';
@@ -20,9 +20,11 @@ class _CreateTaskState extends State<CreateTask> {
   final TextEditingController _titleController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final FocusNode _descriptionFocus = FocusNode();
+  final FocusNode _titleFocus = FocusNode();
 
   @override
   void initState() {
+    _titleFocus.addListener(() => setState(() {}));
     _descriptionFocus.addListener(() => setState(() {}));
 
     super.initState();
@@ -61,9 +63,26 @@ class _CreateTaskState extends State<CreateTask> {
     final bool isDarkMode = Theme.of(Get.context!).brightness == Brightness.dark;
 
     return Container(
-      margin: EdgeInsets.only(right: 40, left: 40, top: 16),
+      decoration: BoxDecoration(
+        color: isDarkMode ? null : TaskiColors.paleWhite,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      margin: EdgeInsets.all(40),
+      padding: EdgeInsets.all(8.0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        spacing: 16,
         children: [
+          Text(
+            AppLocalizations.of(context)!.createTask,
+            style: GoogleFonts.poppins(
+              fontSize: 24,
+              fontWeight: FontWeight.w600,
+            ),
+            textAlign: TextAlign.left,
+          ),
           _title(isDarkMode),
           _description(isDarkMode),
           _createButton(),
@@ -77,30 +96,16 @@ class _CreateTaskState extends State<CreateTask> {
       padding: const EdgeInsets.only(top: 16.0),
       child: Form(
         key: _formKey,
-        child: TextFormField(
+        child: InputText(
+          labelText: AppLocalizations.of(context)!.whatsInYourMind,
           key: Key(WidgetKeys.createTaskTitleInput),
-          cursorErrorColor: TaskiColors.redShade,
-          decoration: _titleInputDecoration(),
-          style: _titleTextStyle(isDarkMode),
+          prefixWidget: _titlePrefixIcon(),
           validator: validateTitleInput,
           controller: _titleController,
+          isDarkMode: isDarkMode,
+          focusNode: _titleFocus,
         ),
       ),
-    );
-  }
-
-  InputDecoration _titleInputDecoration() {
-    return InputDecoration(
-      labelText: AppLocalizations.of(context)!.whatsInYourMind,
-      errorBorder: activeBorder(TaskiColors.redShade),
-      prefixIcon: _titlePrefixIcon(),
-      labelStyle: _titleLableStyle(),
-      errorStyle: _titleErrorStyle(),
-      focusedErrorBorder: noBorder(),
-      disabledBorder: noBorder(),
-      enabledBorder: noBorder(),
-      focusedBorder: noBorder(),
-      border: noBorder(),
     );
   }
 
@@ -123,72 +128,18 @@ class _CreateTaskState extends State<CreateTask> {
     );
   }
 
-  TextStyle _titleTextStyle(bool isDarkMode) {
-    return GoogleFonts.urbanist(
-      color: isDarkMode ? TaskiColors.paleWhite : TaskiColors.statePurple,
-      fontWeight: FontWeight.normal,
-      fontSize: 18,
-    );
-  }
-
-  TextStyle _titleLableStyle() {
-    return GoogleFonts.urbanist(
-      color: TaskiColors.mutedAzure,
-      fontWeight: FontWeight.normal,
-      fontSize: 16,
-    );
-  }
-
-  TextStyle _titleErrorStyle() {
-    return GoogleFonts.urbanist(
-      color: TaskiColors.fireRed,
-      fontWeight: FontWeight.normal,
-      fontSize: 14,
-    );
-  }
-
   Widget _description(bool isDarkMode) {
     return Container(
       margin: EdgeInsets.only(top: _descriptionFocus.hasFocus ? 32 : 0),
-      child: TextField(
+      child: InputText(
+        labelText: AppLocalizations.of(context)!.addNote,
         key: Key(WidgetKeys.createTaskDescriptionInput),
-        decoration: _descriptionInputDecoration(),
-        style: _descriptionTextstyle(isDarkMode),
-        textInputAction: TextInputAction.done,
         controller: _descriptionController,
         focusNode: _descriptionFocus,
+        prefixIcon: Icons.edit,
+        isDarkMode: isDarkMode,
         maxLines: 2,
       ),
-    );
-  }
-
-  InputDecoration _descriptionInputDecoration() {
-    return InputDecoration(
-      prefixIcon: Icon(Icons.edit, color: TaskiColors.mutedAzure),
-      labelText: AppLocalizations.of(context)!.addNote,
-      labelStyle: _descriptionLabelStyle(),
-      focusedErrorBorder: noBorder(),
-      disabledBorder: noBorder(),
-      enabledBorder: noBorder(),
-      focusedBorder: noBorder(),
-      errorBorder: noBorder(),
-      border: noBorder(),
-    );
-  }
-
-  TextStyle _descriptionTextstyle(bool isDarkMode) {
-    return GoogleFonts.urbanist(
-      color: isDarkMode ? TaskiColors.paleWhite : TaskiColors.statePurple,
-      fontWeight: FontWeight.normal,
-      fontSize: 18,
-    );
-  }
-
-  TextStyle _descriptionLabelStyle() {
-    return GoogleFonts.urbanist(
-      color: TaskiColors.mutedAzure,
-      fontWeight: FontWeight.normal,
-      fontSize: 16,
     );
   }
 

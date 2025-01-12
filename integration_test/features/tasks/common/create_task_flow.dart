@@ -31,6 +31,9 @@ Future<void> createTaskCommon(WidgetTester tester, {String? title, String? taskD
   await tester.tap(createTaskSubmitButton);
   await tester.pumpAndSettle();
 
+  await tester.tap(find.byKey(const Key(WidgetKeys.navBarTodoIcon)));
+  await tester.pumpAndSettle();
+
   final taskCard = find.text(taskTitle);
   expect(taskCard, findsOneWidget);
 }

@@ -1,6 +1,7 @@
 import 'package:tasky/features/tasks/widgets/tasky_item.dart';
 import 'package:tasky/features/tasks/widgets/no_task.dart';
 import 'package:tasky/features/tasks/model/task.dart';
+import 'package:tasky/features/home/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -57,7 +58,13 @@ class TaskList extends StatelessWidget {
     return Container(
       alignment: Alignment.center,
       margin: EdgeInsets.only(top: marginTop),
-      child: NoTask(feedback: emptyTasksMessage, showCreateTaskButton: showCreateTaskButton),
+      child: NoTask(
+        showCreateTaskButton: showCreateTaskButton,
+        feedback: emptyTasksMessage,
+        onNewTask: () {
+          Get.find<HomeController>().changeIndex(1);
+        },
+      ),
     );
   }
 

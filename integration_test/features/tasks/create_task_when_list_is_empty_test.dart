@@ -33,6 +33,9 @@ void createTaskWhenListIsEmpty() {
     await tester.tap(createTaskSubmitButton);
     await tester.pumpAndSettle();
 
+    await tester.tap(find.byKey(const Key(WidgetKeys.navBarTodoIcon)));
+    await tester.pumpAndSettle();
+
     final taskCard = find.byType(TaskiItem);
     expect(taskCard, findsOneWidget);
   });

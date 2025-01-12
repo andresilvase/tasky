@@ -1,4 +1,3 @@
-import 'package:tasky/features/tasks/widgets/create_task_bottom_sheet.dart';
 import 'package:tasky/features/home/custom_bottom_navigator.dart';
 import 'package:tasky/features/tasks/views/tasks_completed.dart';
 import 'package:tasky/features/tasks/views/todo_list.dart.dart';
@@ -35,6 +34,7 @@ class Home extends StatelessWidget {
       backgroundColor: isDarkMode ? null : TaskiColors.white,
       body: SafeArea(
         child: SingleChildScrollView(
+          physics: NeverScrollableScrollPhysics(),
           child: Column(
             children: [
               Visibility(visible: Platform.isAndroid, child: SizedBox(height: 16)),
@@ -55,12 +55,7 @@ class Home extends StatelessWidget {
       bottomNavigationBar: Obx(
         () => CustomBottomNavigator(
           onIndexChanged: (index) async {
-            if (index == 1) {
-              await createTaskBottomSheet(context);
-              homeController.backToHome();
-            } else {
-              homeController.changeIndex(index);
-            }
+            homeController.changeIndex(index);
           },
           currentIndex: homeController.currentIndex,
         ),

@@ -11,20 +11,24 @@ class InputText extends StatelessWidget {
     required this.focusNode,
     required this.labelText,
     this.onInputClear,
+    this.prefixWidget,
     this.prefixIcon,
     this.validator,
     this.onChanged,
+    this.maxLines,
   });
 
   final String? Function(String?)? validator;
   final TextEditingController controller;
   final Function(String)? onChanged;
   final Function()? onInputClear;
+  final Widget? prefixWidget;
   final IconData? prefixIcon;
   final bool isInErrorState;
   final FocusNode focusNode;
   final String labelText;
   final bool isDarkMode;
+  final int? maxLines;
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +42,7 @@ class InputText extends StatelessWidget {
       cursorErrorColor: TaskiColors.redShade,
       cursorColor: TaskiColors.mutedAzure,
       validator: validator,
+      maxLines: maxLines,
       decoration: InputDecoration(
         errorStyle: inputTextStyle(
           TaskiColors.fireRed,
@@ -48,10 +53,7 @@ class InputText extends StatelessWidget {
           visible: controller.text.isNotEmpty,
           onPressed: onInputClear,
         ),
-        prefixIcon: Icon(
-          prefixIcon ?? Icons.person_3_outlined,
-          color: inputColor,
-        ),
+        prefixIcon: prefixWidget ?? Icon(prefixIcon ?? Icons.person_3_outlined, color: inputColor),
         floatingLabelStyle: inputTextStyle(inputColor),
         focusedErrorBorder: activeBorder(inputColor),
         focusedBorder: activeBorder(inputColor),

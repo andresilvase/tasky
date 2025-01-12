@@ -1,4 +1,3 @@
-import 'package:tasky/features/tasks/widgets/create_task_bottom_sheet.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:tasky/core/constants/widgets_keys.dart';
 import 'package:tasky/core/constants/assets.dart';
@@ -8,12 +7,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class NoTask extends StatelessWidget {
-  const NoTask({super.key, this.feedback, this.showCreateTaskButton = true});
+  const NoTask({
+    super.key,
+    this.showCreateTaskButton = true,
+    this.onNewTask,
+    this.feedback,
+  });
 
   final bool showCreateTaskButton;
+  final Function()? onNewTask;
   final String? feedback;
-
-  void onNewTask(BuildContext context) => createTaskBottomSheet(context);
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +65,8 @@ class NoTask extends StatelessWidget {
           ),
         ),
         icon: Icon(Icons.add, color: isDarkMode ? TaskiColors.blue10 : TaskiColors.blue),
-        onPressed: () => onNewTask(context),
         style: buttonStyle(isDarkMode),
+        onPressed: onNewTask,
       ),
     );
   }
