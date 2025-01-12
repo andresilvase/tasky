@@ -27,6 +27,20 @@ import 'features/tasks/search_task_by_title.dart';
 import 'features/tasks/complete_task_test.dart';
 import 'features/tasks/create_task_test.dart';
 
+class TestDevice {
+  static String getMockedImagePathOnIOS() {
+    final String home = '/Users/andresilva';
+    final String deviceId = '97FA45C4-4EDC-4A00-A895-A4130D13F6F9';
+    final String file = 'IMG_0006.JPG';
+
+    return '$home/Library/Developer/CoreSimulator/Devices/$deviceId/data/Media/DCIM/100APPLE/$file';
+  }
+
+  static String getMockedImagePathOnAndroid() {
+    throw UnimplementedError();
+  }
+}
+
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
@@ -35,8 +49,7 @@ void main() {
   late ImagePicker picker;
 
   setUp(() async {
-    final mockedPhoto =
-        '/Users/andresilva/Library/Developer/CoreSimulator/Devices/97FA45C4-4EDC-4A00-A895-A4130D13F6F9/data/Media/DCIM/100APPLE/IMG_0006.JPG';
+    final mockedPhoto = TestDevice.getMockedImagePathOnIOS();
 
     await init();
 
@@ -67,7 +80,7 @@ void main() {
   });
 
   group('#Manage Profile', () {
-    testWidgets('#Update Photo Profile', (tester) async {
+    testWidgets('#Update Photo and Display Name', (tester) async {
       await initApp(tester);
 
       await updatePhotoProfile(tester);

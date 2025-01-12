@@ -18,11 +18,7 @@ void deleteAllTasksAtOnce() {
 
     for (final String taskTitle in taskTitles) {
       await createTaskCommon(tester, title: taskTitle);
-    }
-
-    await Future.delayed(const Duration(seconds: 2));
-
-    for (final String taskTitle in taskTitles) {
+      await Future.delayed(const Duration(seconds: 1));
       await completeTaskCommon(tester, taskTitle);
     }
 

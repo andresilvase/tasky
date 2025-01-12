@@ -100,12 +100,12 @@ void main() {
       when(mockSourceFile.readAsBytes()).thenAnswer((_) async => Uint8List.fromList(byts));
       when(mockNewFile.writeAsBytes(byts)).thenAnswer((_) async => mockNewFile);
 
-      viewModel.setUserPhoto(userWithPhotoAndName.photoPath!);
+      viewModel.setUserPhoto(userPhotoPath);
       viewModel.setUserDisplayName(userWithPhotoAndName.displayName);
 
       viewModel.updateUserData(fileFactory: fileBuilder.fileFactory);
 
-      expect(viewModel.activeUser.value.photoPath, userWithPhotoAndName.photoPath);
+      expect(viewModel.activeUser.value.photoPath, userPhotoPath);
       expect(viewModel.activeUser.value.displayName, userWithPhotoAndName.displayName);
     });
 

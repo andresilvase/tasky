@@ -48,5 +48,8 @@ void searchTaskByTitle() {
 
     expect(searchTaskInputText, findsOneWidget);
     await tester.pumpAndSettle();
+
+    await tester.tap(find.byKey(const Key(WidgetKeys.navBarAddIcon)));
+    await tester.pumpAndSettle();
   });
 }
