@@ -220,7 +220,7 @@ Let's build together a platform that helps more animals find their forever homes
 ![Banner](assets/repo/banner.png)
 
 <p>
-  <a href="">
+  <a href="https://play.google.com/store/apps/details?id=br.com.anjasolutions.tasky">
     <img src="assets/repo/Play Store Logo.png" alt="Play Store Download" width="256"/>
   </a>
 
